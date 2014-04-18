@@ -1,0 +1,33 @@
+{
+		"featured": [
+				{
+						"id": 1,
+						"name": "Title 01.",
+						"description": "Description 01.",
+						"category": "featured",
+						"price": "<a href='mailto:contact@somewhere.com'>Ask now!</a>",
+						"active": true
+				},
+				{
+						"id": 2,
+						"name": "Title 02.",
+						"description": "Description 02.",
+						"category": "featured",
+						"price": "<a href='mailto:contact@somewhere.com'>Ask now!</a>"
+				},
+				{
+						"id": 3,
+						"name": "Title 03.",
+						"description": "Description 03.",
+						"category": "featured",
+						"price": "<a href='mailto:contact@somewhere.com'>Ask now!</a>"
+				},
+				{
+						"id": 4,
+						"name": "title 04.",
+						"description": "Description 04.",
+						"category": "featured",
+						"price": "<a href='mailto:contact@somewhere.com'>Ask now!</a>"
+				}
+		]
+}

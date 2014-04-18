@@ -1,0 +1,28 @@
+{
+		"users":[
+	{
+			"id": 1,
+			"login": "root",
+			"password": "A12345678a",
+			"email": "root@awknet.org"
+	},
+	{
+			"id": 2,
+			"login": "jefferson",
+			"password": "A12345678a",
+			"email": "jefferson@awknet.org"
+	},
+	{
+			"id": 3,
+			"login": "basic",
+			"password": "A12345678a",
+			"email": "basic@awknet.org"
+	},
+	{
+			"id": 4,
+			"login": "power",
+			"password": "A12345678a",
+			"email": "power@awknet.org"
+	}
+		]
+}

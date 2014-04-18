@@ -1,0 +1,14 @@
+{
+		"name": "{%= name %}",
+		"version": "{%= version %}",
+		"description": "{%= description %}",
+		"dependencies": {
+				"jquery": "latest",
+				"requirejs": "latest",
+				"backbone": "latest",
+				"underscore": "latest",
+				"backbone.marionette": "latest",
+				"handlebars": "latest",
+				"bootstrap": "latest"
+		}
+}

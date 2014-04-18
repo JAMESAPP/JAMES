@@ -1,0 +1,242 @@
+/* @import url('../js/libs/bootstrap/docs/assets/css/bootstrap.css'); */
+/*@import url('../js/libs/bootstrap/docs/assets/css/bootstrap-responsive.css');*/
+
+@import url('bootstrap-min.css');
+@import url('bootstrap-responsive-min.css');
+
+/*BOOTSTRAP MODIFICATIONS*/
+ul, ol {
+		margin: 0;
+}
+
+ul li {
+		list-style-type: none !important;
+}
+
+.navbar .nav img {
+		max-width: none; /*Necessario para renderizar imagens corretamente na navbar no IE8*/
+}
+
+.navbar-inner {
+		-moz-border-radius: 0 !important;
+		-webkit-border-radius: 0 !important;
+		border-radius: 0 !important;
+}
+
+.navbar-static-top {
+		width: auto !important;
+}
+
+h3 {
+		color: #b22222 !important;
+}
+
+/*Corrige a altura dos inputs dentro de uma div row-fluid no IE6-8*/
+.row-fluid [class*="span"] {
+		min-height: 20px;
+}
+
+
+/*END OF BOOTSTRAP MODIFICATIONS*/
+
+html, body {
+		height: 100%;
+}
+
+body {
+		background: #f5f5f5;
+}
+
+#prefeitura_logo {
+		width: 40px;
+}
+
+#main {
+		padding-top: 20px;
+		height: 90%;
+}
+
+.box {
+		min-height: 90%;
+		padding: 10px;
+		background: #ffffff;
+		border: 1px solid #d4d4d4;
+}
+
+.licitacaoObjeto:hover {
+		text-decoration: none !important;
+}
+
+/*Classe para retirar margem do elemento*/
+.noMargin {
+		margin: 0;
+}
+
+.alignVertical {
+		vertical-align: top;
+		line-height: 18px;
+}
+
+/* ADMIN MENU START */
+
+.menu-wrapper {
+		width: 100%;
+		background: #555;
+		height: 30px;
+		border-radius: 5px;
+}
+.menu-wrapper ul {
+		margin: 0;
+		z-index: 50;
+}
+.menu-wrapper ul li {
+		list-style-type: none;
+}
+.menu-itens > li {
+		display: inline-block;
+		padding: 5px 42px;
+		color: #ffffff;
+		position: relative;
+		border-right: 2px solid transparent;
+}
+/*.menu-itens > li:first-child {
+	padding: 5px 32px !important;
+	}
+	.menu-itens > li:last-child {
+	padding: 5px 42px !important;
+	}*/
+.menu-itens > li:hover {
+		/*background: #4d4d4d;*/
+		background: #444;
+		cursor: pointer;
+		border-radius: 5px 5px 0px 0px;
+}
+.menu-itens > li ul {
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 30px;
+		width: 100%;
+		background: #f5f5f5;
+		border: 1px solid #ccc;
+}
+.menu-itens > li a {
+		margin: 0 !important;
+		padding: 3px 10px !important;
+}
+.menu-itens > li:hover > ul {
+		display: block;
+		padding: 5px 0 10px 0 !important;
+		box-shadow: 3px 3px 3px #ccc;
+}
+.menu-itens > li:hover > ul li {
+		margin: 0;
+}
+.submenu-left, .submenu-right {
+		position: relative;
+}
+.submenu-left:hover > ul, .submenu-right:hover > ul {
+		top: 0;
+		display: block;
+		padding: 5px 0 !important;
+		box-shadow: 3px 3px 3px #ccc;
+}
+.submenu-left:hover > ul {
+		left: -101%;
+}
+.submenu-right:hover > ul {
+		left: 100%;
+}
+.menu-itens li.nav-header hr {
+		margin: 5px 0 !important;
+		border-bottom: solid 1px #ccc !important;
+}
+
+.menu-itens li.nav-header {
+		color: #b22222 !important;
+		padding: 3px 10px !important;
+}
+
+/* ADMIN MENU END */
+
+/* YAWECAPP */
+.img-featured {
+		position: relative;
+		height: 500px;
+		width: 500px;
+}
+
+.img-error {
+		position: relative;
+		height: 300px;
+		width: 300px;
+}
+
+.img-itemView {
+		position: relative;
+		height: 50px;
+		width: 50px;
+}
+
+.composite-footer {
+		background-color: #0f0;
+}
+
+.composite-tbl {
+		border: solid red 5px;
+}
+
+p.blocktext {
+		text-align: center;
+}
+
+div.center {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		width: 30em;
+}
+
+img.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+}
+
+.displayed {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		min-height: 10em;
+		display: table-cell;
+		vertical-align: middle;
+}
+
+.resultado {
+		font-size: 36px;
+}
+
+.error-meme {
+		width: 200px;
+		height: 200px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+}
+/* END YAWECAPP */
+
+/* FOOTER */
+
+.push {
+		height: 71px;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin-bottom: -71px;
+	padding: 0 !important;
+}
+
+/* END FOOTER */

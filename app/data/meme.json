@@ -1,0 +1,55 @@
+{
+		"memes":
+		[
+				{
+						"id": 1,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 2,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 3,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 4,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 5,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 6,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 7,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 8,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 9,
+						"path": "app/img/memes/",
+						"extension": "png"
+				},
+				{
+						"id": 10,
+						"path": "app/img/memes/",
+						"extension": "png"
+				}
+		]
+}

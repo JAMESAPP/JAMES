@@ -1,0 +1,11 @@
+* TODO Environment
+** TODO Bower
+** TODO Grunt
+** TODO YAWECAPP
+** TODO Firefox OS emulator
+** TODO Deploy at my own phone
+** TODO Deploy at https://marketplace.firefox.com/
+* TODO Function
+** TODO CRUD
+** TODO Export to QIF
+** TODO Clear all entries
