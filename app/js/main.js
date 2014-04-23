@@ -1,13 +1,20 @@
 require.config({
-	baseUrl: '.',
+	baseUrl: 'app/js',
 	paths: {
 		// LIBS
-		'underscore': 'libs/vendor/underscore-min',
-		'jquery': 'libs/vendor/jquery-min',
-		'backbone': 'libs/vendor/backbone-min',
-		'bootstrap': 'libs/vendor/bootstrap-min',
-		'marionette': 'libs/vendor/backbone.marionette-min',
-		'handlebars': 'libs/vendor/handlebars',
+		'underscore': 'libs/bower/underscore/underscore',
+		'jquery': 'libs/bower/jquery/dist/jquery.min',
+		'backbone': 'libs/bower/backbone/backbone',
+		'bootstrap': 'libs/bower/bootstrap/dist/js/bootstrap.min',
+		'marionette': 'libs/bower/backbone.marionette/lib/backbone.marionette.min',
+
+		'handlebars': 'libs/bower/handlebars/handlebars.min',
+
+		// 'jquery': 'libs/vendor/jquery-min',
+		// 'backbone': 'libs/vendor/backbone-min',
+		// 'bootstrap': 'libs/vendor/bootstrap-min',
+		// 'marionette': 'libs/vendor/backbone.marionette-min',
+		// 'handlebars': 'libs/vendor/handlebars',
 
 		// RequireJS
 		'text': 'libs/vendor/text',
@@ -46,9 +53,6 @@ require.config({
 		},
 		'templates': {
 			deps: ['handlebars']
-		},
-		'user': {
-			exports: 'user'
 		}
 	}
 });
