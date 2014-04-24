@@ -1,5 +1,5 @@
-<h1>YAWECAPP.</h1>
+<h1>YAEW.</h1>
 <p class="text-success">
-	Yet Another WEb Client APP.<br />
-	Contact developer: <a href="mailto:foguinho.peruca@gmail.com">Jefferson Campos (foguinho.peruca@gmail.com)</a>.
+	Yet Another Eletronic Wallet.<br />
+	Contact developer: <a href="mailto:jefferson@jeffersoncampos.eti.br">Jefferson Campos (http://jeffersoncampos.eti.br)</a>.
 </p>

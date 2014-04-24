@@ -10,12 +10,6 @@ require.config({
 
 		'handlebars': 'libs/bower/handlebars/handlebars.min',
 
-		// 'jquery': 'libs/vendor/jquery-min',
-		// 'backbone': 'libs/vendor/backbone-min',
-		// 'bootstrap': 'libs/vendor/bootstrap-min',
-		// 'marionette': 'libs/vendor/backbone.marionette-min',
-		// 'handlebars': 'libs/vendor/handlebars',
-
 		// RequireJS
 		'text': 'libs/vendor/text',
 
@@ -57,16 +51,16 @@ require.config({
 	}
 });
 
-// TODO put everybody in router.js
 require([
 	'backbone'
 	, 'app'
 	, 'controllers/home'
 	, 'controllers/user'
 	, 'controllers/marionette'
+	, 'controllers/dailyActivities'
 	, 'views/menu'
 	, 'views/footer'
-], function(Backbone, App, HomeController, UserController, MarionetteController, MenuView, FooterView) {
+], function(Backbone, App, HomeController, UserController, MarionetteController, DailyActivitiesController, MenuView, FooterView) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
@@ -77,6 +71,7 @@ require([
 	new HomeController();
 	new UserController();
 	new MarionetteController();
+	new DailyActivitiesController();
 
 	Backbone.history.start();
 	// FIXME not working out of box! Need use jquery to trigger url change! :(

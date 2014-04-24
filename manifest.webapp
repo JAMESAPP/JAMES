@@ -1,0 +1,13 @@
+{
+	"name": "YAEW",
+	"description": "Yet Another Eletronic Wallet",
+	"launch_path": "/index.html",
+	"icons": {
+		"128": "/app/img/logo.png"
+	},
+	"developer": {
+		"name": "Jefferson Campos",
+		"url": "http://jeffersoncampos.eti.br"
+	},
+	"default_locale": "en"
+}

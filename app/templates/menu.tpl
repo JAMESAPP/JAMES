@@ -14,7 +14,7 @@
 				</li>
 			</a>
 		</ul>
-		<a class="brand" href="#about">YAWECAPP</a>
+		<a class="brand" href="#about">YAEW</a>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
 				<li class="dropdown">
@@ -34,17 +34,14 @@
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Login Features <b class="caret"></b>
+						Daily Activity <b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<!-- <li class="dropdown"><a data-toggle="dropdown" href="#login">Login</a></li> -->
-						<!-- <li class="dropdown"><a data-toggle="dropdown" href="#logout">Logout</a></li> -->
-						<!-- <li class="dropdown"><a data-toggle="dropdown" href="#isLogged">Is logged?</a></li> -->
-						<!-- <li class="dropdown"><a data-toggle="dropdown" href="#hasPermission">Has Permission?</a></li> -->
-						<li class="dropdown"><a href="#login">Login</a></li>
-						<li class="dropdown"><a href="#logout">Logout</a></li>
-						<li class="dropdown"><a href="#isLogged">Is logged?</a></li>
-						<li class="dropdown"><a href="#hasPermission">Has Permission?</a></li>
+						<li class="dropdown"><a href="#expenses">Expenses</a></li>
+						<li class="dropdown"><a href="#food">Food</a></li>
+						<li class="dropdown"><a href="#motorcycle">Motorcycle</a></li>
+						<li class="dropdown"><a href="#gym">Gym</a></li>
+						<li class="dropdown"><a href="#timesheet">Timesheet</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -67,22 +64,10 @@
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Handlebars <b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="dropdown"><a href="#login">helper</a></li>
-					</ul>
-				</li>
 				<li>
 					<a href="#about">About</a>
 				</li>
 			</ul>
-			<p class="pull-right">
-				<a href="#security/doLogin" class="btn btn-success">Login</a>
-				<a href="#security/doLogout" class="btn btn-danger">Logout</a>
-			</p>
 		</div><!--/.nav-collapse -->
 	</div>
 </div>
