@@ -14,3 +14,7 @@
 
 <label for="inputMemo">Memo</label>
 <input type="text" id="inputMemo" />
+
+<br />
+<a href="#" class="btn btn-inverse"><i class="icon-home icon-white"></i> Voltar</a>
+<a href="#" id="btnSave" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Enviar</a>
