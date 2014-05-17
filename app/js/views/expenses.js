@@ -12,59 +12,74 @@ define([
 		}
 
 		, initialize: function() {
-			if (window.indexedDB) {
-				console.log('has indexedDB');
-			} else {
-				console.log('no indexedDb to play... :\'(');
-			}
+			// if (window.indexedDB) {
+			// 	console.log('has indexedDB');
+			// } else {
+			// 	console.log('no indexedDb to play... :\'(');
+			// }
 
-			this.db = {};
-			this.bozo ={};
-			var self = this;
-			var request = window.indexedDB.open('yaew', 1);
+			var indexedDB = {};
 
-			request.onsuccess = function(e) {
-				self.db = e.target.Result;
+			indexedDB.db = null;
+			indexedDB.open = function() {
+
+				var request = window.indexedDB.open('yaew', 1);
+
+				// console.log('show before onsuccess...');
+				// console.log(this);
+
+				var self = this;
+
+				request.onsuccess = function(e) {
+					self.db = e.target.result;
+
+					console.log('Show inside onsucess');
+					console.log(self);
+					console.log(self.db);
+				};
+
+				request.onerror = function(err) {
+					console.log("Warning! Expense app has an error:");
+					console.log(err);
+				};
+
+				// request.onupgradeneeded =function(e) {
+				// 	this.db = e.target.result;
+
+				// 	if (this.db.objectStoreNames.contains('expenses')) {
+				// 		console.log("Removing expense\'s db");
+				// 		this.db.deleteObjectStore('expenses');
+				// 	}
+
+				// 	var objectStore = this.db.createObjectStore('expenses', {keyPath: 'id', autoIncrement: true});
+
+				// 	console.log('Object has been stored');
+				// };
+
+				return request;
+				
 			};
 
-			request.onerror = function(err) {
-				console.log("Warning! Expense app has an error:");
-				console.log(err);
-			};
+			this.indexedDB = indexedDB;
 
-			request.onupgradeneeded =function(e) {
-				self.db = e.target.result;
-
-				if (self.db.objectStoreNames.contains('expenses')) {
-					self.db.deleteObjectStore('expenses');
-				}
-
-				var objectStore = this.db.createObjectStore('expenses', {keyPath: 'id', autoIncrement: true});
-
-
-				console.log('Object has been stored');
-
-			};
-			console.log('show db...');
-			console.log(this.db);
+			this.indexedDB.open();
 		}
 
 		, save: function(ev) {
 			ev.preventDefault();
-			console.log(window.indexedDB);
 
-			console.log('show db in save....');
-			console.log(this.db);
-			console.log(this.bozo);
-			console.log(this);
-			console.log(ev);
+			// console.log('show indexedDB before open');
+			// console.log(this.indexedDB);
 
-			var transaction = this.db.transaction(['expenses'], 'readwrite');
+			// console.log('Show indexedDB after open');
+			console.log(this.indexedDB.db);
+
 			var value = {id: 1, description: 'test', value: 1.99};
 
+			var transaction = this.indexedDB.db.transaction(['expenses'], 'readwrite');
 			var store = transaction.objectStore('expenses');
-			var request = store.add(value);
 
+			var request = store.add(value);
 			request.onsuccess = function(e) {
 				console.log('Value salved');
 				console.log(value);
