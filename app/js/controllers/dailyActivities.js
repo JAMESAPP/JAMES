@@ -6,7 +6,8 @@ define([
 	, 'views/motorcycle'
 	, 'views/gym'
 	, 'views/timesheet'
-], function (Backbone, App, ExpensesView, FoodView, MotorcycleView, GymView, TimesheetView) {
+	, 'models/expense'
+], function (Backbone, App, ExpensesView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -17,7 +18,8 @@ define([
 		},
 
 		expenses: function() {
-			App.mainRegion.show(new ExpensesView());
+			var expense = new ExpenseModel();
+			App.mainRegion.show(new ExpensesView(expense));
 		},
 
 		food: function() {

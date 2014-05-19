@@ -7,6 +7,7 @@ require.config({
 		'backbone': 'libs/bower/backbone/backbone',
 		'bootstrap': 'libs/bower/bootstrap/dist/js/bootstrap.min',
 		'marionette': 'libs/bower/backbone.marionette/lib/backbone.marionette.min',
+		'epoxy': 'libs/bower/backbone.epoxy/backbone.epoxy.min',
 
 		'handlebars': 'libs/bower/handlebars/handlebars.min',
 
@@ -39,6 +40,10 @@ require.config({
 		},
 		'handlebars': {
 			exports: 'Handlebars'
+		},
+		'epoxy': {
+			deps: ['jquery', 'underscore', 'backbone'],
+			exports: 'Epoxy'
 		},
 
 		// App
@@ -79,4 +84,6 @@ require([
 
 	App.menuRegion.show(new MenuView());
 	App.footerRegion.show(new FooterView());
+
+	App.initializeDB();
 });
