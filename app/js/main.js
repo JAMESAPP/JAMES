@@ -8,8 +8,9 @@ require.config({
 		'bootstrap': 'libs/bower/bootstrap/dist/js/bootstrap.min',
 		'marionette': 'libs/bower/backbone.marionette/lib/backbone.marionette.min',
 		'epoxy': 'libs/bower/backbone.epoxy/backbone.epoxy.min',
-
 		'handlebars': 'libs/bower/handlebars/handlebars.min',
+		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
+		'jqueryui': 'libs/vendor/jquery-ui-custom.min',
 
 		// RequireJS
 		'text': 'libs/vendor/text',
@@ -44,6 +45,14 @@ require.config({
 		'epoxy': {
 			deps: ['jquery', 'underscore', 'backbone'],
 			exports: 'Epoxy'
+		},
+		'jquerymask': {
+			deps: ['jquery'],
+			exports : 'jquerymask'
+		},
+		'jqueryui': {
+			deps: ['jquery'],
+			exports : 'jqueryui'
 		},
 
 		// App

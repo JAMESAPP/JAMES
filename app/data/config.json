@@ -13,7 +13,7 @@
         "prevText": "Anterior",
         "changeMonth": true,
         "changeYear": true,
-        "yearRange": (new Date().getFullYear() - 100) + ':' + (new Date().getFullYear() + 100)
+        "yearRange": function(){return new Date().getFullYear() - 100}
     }
 	, "isProtected": false
 }

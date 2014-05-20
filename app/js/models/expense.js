@@ -6,7 +6,6 @@ define([
 		defaults: {
 			date: null
 			, ammount: 0.00
-			, payee: null
 			, category: null
 			, memo: null
 		}
@@ -21,9 +20,6 @@ define([
 
 			if (attr.ammount == '')
 				return 'Ammount can\'t be empty!';
-
-			if (attr.payee == '')
-				return 'Payee can\'t be empty!';
 
 			if (attr.category == '')
 				return 'Category can\'t be empty!';

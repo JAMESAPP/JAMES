@@ -55,8 +55,9 @@ define([
 			async: false
 		}).responseText;
 
-		// return JSON.parse(config);
-		return config;
+		console.log(config);
+		return JSON.parse(config);
+		// return config;
 	};
 
 	app.initializeDB = function() {

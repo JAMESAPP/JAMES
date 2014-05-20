@@ -11,13 +11,14 @@ define([
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
+			'expenses/:id': 'expenses',
 			'food': 'food',
 			'motorcycle': 'motorcycle',
 			'gym': 'gym',
 			'timesheet': 'timesheet'
 		},
 
-		expenses: function() {
+		expenses: function(id) {
 			var expense = new ExpenseModel();
 			App.mainRegion.show(new ExpensesView(expense));
 		},
