@@ -19,7 +19,7 @@ define([
 		},
 
 		expenses: function(id) {
-			var expense = new ExpenseModel();
+			var expense = new ExpenseModel(id);
 			App.mainRegion.show(new ExpensesView(expense));
 		},
 
