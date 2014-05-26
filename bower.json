@@ -11,6 +11,7 @@
     "handlebars": "latest",
     "bootstrap": "latest",
     "jQuery-Mask-Plugin": "~1.6.4",
-    "backbone.epoxy": "latest"
+    "backbone.epoxy": "latest",
+    "requirejs-text": "~2.0.12"
   }
 }

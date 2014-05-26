@@ -2,16 +2,18 @@ define([
 	'underscore'
 	, 'backbone'
 	, 'app'
-	, 'views/expenses'
+	, 'views/expense/register'
+	, 'views/expense/list'
 	, 'views/food'
 	, 'views/motorcycle'
 	, 'views/gym'
 	, 'views/timesheet'
 	, 'models/expense'
-], function (_, Backbone, App, ExpensesView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
+], function (_, Backbone, App, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
-			'expense/novo': 'expense',
+			'expenses': 'expenses',
+			'expense/new': 'expense',
 			'expense/:id': 'expense',
 
 			'food': 'food',
@@ -23,12 +25,15 @@ define([
 			'timesheet': 'timesheet'
 		},
 
+		expenses: function() {
+			App.mainRegion.show(new ExpensesListView());
+		},
 		expense: function(id) {
 			// FIXME after first time, var App.indexedDB.db is equal to null. Why?
 			var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
 			objectStore.onsuccess = function(event) {
 				var expense = new ExpenseModel(event.target.result);
-				App.mainRegion.show(new ExpensesView(expense));
+				App.mainRegion.show(new ExpenseRegisterView(expense));
 			};
 		},
 

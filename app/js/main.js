@@ -10,13 +10,8 @@ require.config({
 		'epoxy': 'libs/bower/backbone.epoxy/backbone.epoxy.min',
 		'handlebars': 'libs/bower/handlebars/handlebars.min',
 		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
-		'jqueryui': 'libs/vendor/jquery-ui-custom.min',
-
-		// RequireJS
-		'text': 'libs/vendor/text',
-
-		// App modules
-		'config': 'config',
+		'jqueryui': 'libs/custom/jquery-ui-custom.min',
+		'text': 'libs/bower/requirejs-text/text',
 		'templates': '../templates/templates'
 	},
 	shim: {
@@ -55,10 +50,6 @@ require.config({
 			exports : 'jqueryui'
 		},
 
-		// App
-		'config': {
-			exports: 'config'
-		},
 		'templates': {
 			deps: ['handlebars']
 		}
@@ -69,12 +60,10 @@ require([
 	'backbone'
 	, 'app'
 	, 'controllers/home'
-	, 'controllers/user'
-	, 'controllers/marionette'
 	, 'controllers/dailyActivities'
 	, 'views/menu'
 	, 'views/footer'
-], function(Backbone, App, HomeController, UserController, MarionetteController, DailyActivitiesController, MenuView, FooterView) {
+], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, FooterView) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
@@ -83,8 +72,6 @@ require([
 
 	// start routers
 	new HomeController();
-	new UserController();
-	new MarionetteController();
 	new DailyActivitiesController();
 
 	Backbone.history.start();

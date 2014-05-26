@@ -5,7 +5,7 @@ define([
 	, 'config'
 	, 'collections/categories'
 	, 'views/register'
-	, 'text!../../templates/expenses.tpl'
+	, 'text!../../../templates/expense/register.tpl'
 	, 'jquerymask'
 	, 'jqueryui'
 ], function (Marionette, _, App, Config, CategoriesCollection, RegisterView, Template) {
