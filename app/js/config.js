@@ -17,8 +17,7 @@ define([
             changeYear: true,
             yearRange: (new Date().getFullYear() - 100) + ':' + (new Date().getFullYear() + 100)
 		}
-	, 'isProtected': false
-
+		, 'isProtected': false
 	};
 	return config;
 });

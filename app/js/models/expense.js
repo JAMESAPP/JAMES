@@ -5,8 +5,7 @@ define([
 ], function (_, Backbone, App) {
     var ExpenseModel = Backbone.Model.extend({
 		defaults: {
-			id: null
-			, date: null
+			date: null
 			, ammount: 0.00
 			, category: null
 			, memo: null

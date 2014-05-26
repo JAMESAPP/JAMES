@@ -1,16 +1,13 @@
 define([
-    'backbone'
-    , 'app'
-], function (Backbone, App) {
-    var Model = Backbone.Model.extend({
-
-		initialize: function(params) {
-			this.db = null;
+], function () {
+	var IndexedDB = function () {
+		this.db =  function() {
 			if (!window.indexedDB)
-				console.log('[WARNING] No indexedDB API to start app. Your browser is supported?');
-		}
+				console.log('[WARNING] No indexedDB API to start app. Is your browser supported?');
 
-		, openDB: function() {
+			return null;
+		};
+		this.openDB = function() {
 			var self = this;
 			var request = window.indexedDB.open('yaew', 1);
 
@@ -33,11 +30,12 @@ define([
 			};
 
 			return request;
-		}
+		};
+		// , saveItem: function(model, objectStore){
+		// }
 
-		, saveItem: function(model, objectStore){
-		}
-    });
+		return this;
+    };
 
-    return Model;
+    return IndexedDB;
 });

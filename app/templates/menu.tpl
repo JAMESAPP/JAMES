@@ -37,7 +37,7 @@
 						Daily Activity <b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<li class="dropdown"><a href="#expenses">Expenses</a></li>
+						<li class="dropdown"><a href="#expense">Expenses</a></li>
 						<li class="dropdown"><a href="#food">Food</a></li>
 						<li class="dropdown"><a href="#motorcycle">Motorcycle</a></li>
 						<li class="dropdown"><a href="#gym">Gym</a></li>

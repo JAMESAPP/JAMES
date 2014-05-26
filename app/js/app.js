@@ -45,20 +45,20 @@ define([
 		return Backbone.$.ajax.apply(Backbone.$, arguments);
 	};
 
-	app.getConfig = function(file) {
-		if (file == undefined)
-			file = "app/data/config.json";
+	// app.getConfig = function(file) {
+	// 	if (file == undefined)
+	// 		file = "app/data/config.json";
 
-		var config = $.ajax({
-			type: "GET",
-			url: file,
-			async: false
-		}).responseText;
+	// 	var config = $.ajax({
+	// 		type: "GET",
+	// 		url: file,
+	// 		async: false
+	// 	}).responseText;
 
-		console.log(config);
-		return JSON.parse(config);
-		// return config;
-	};
+	// 	console.log(config);
+	// 	return JSON.parse(config);
+	// 	// return config;
+	// };
 
 	app.initializeDB = function() {
 		this.indexedDB = new IndexedDB();
