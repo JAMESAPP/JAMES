@@ -1,29 +1,34 @@
 define([
 	'marionette'
-	, 'underscore'
-	, 'app'
-	, 'config'
-	, 'collections/categories'
-	, 'views/list'
+	, 'collections/expenses'
 	, 'text!../../../templates/expense/list.tpl'
-], function (Marionette, _, App, Config, CategoriesCollection, ListView, Template) {
-	var ItemView = ListView.extend({
-		template: Template
-		, objectStore: 'expenses'
-		, serializeData: function() {
-			var attrToView = _.clone(this.attributes);
+	, 'text!../../../templates/expense/list-item.tpl'
+], function (Marionette, ExpenseCollection, CompositeViewTemplate, ItemViewTemplate) {
+	var itemView = Marionette.ItemView.extend({
+		template: ItemViewTemplate,
+		tagName: 'tr'
+	});
 
-			// var categoriesCollection = new CategoriesCollection();
-			// categoriesCollection.fetch({async: false});
-			// attrToView.selectCategory = categoriesCollection.toJSON();
-
-			// if (attrToView.id != undefined) {
-			// 	attrToView.selectCategory.unshift(attrToView.category);
-			// }
-
-			return attrToView;
+	var CompositeView = Marionette.CompositeView.extend({
+		template: CompositeViewTemplate,
+		itemView: itemView,
+		itemViewContainer: '#tbodyItem',
+		className: 'box',
+		tagName: 'div',
+		collection: new ExpenseCollection()
+		, events: {
+			'click #btnClearAll': 'clearAll'
+			, 'click .delete': 'delete'
+		}
+		, clearAll: function(ev) {
+			ev.preventDefault();
+			console.log('clear all not implemented...');
+		}
+		, delete: function(ev) {
+			ev.preventDefault();
+			console.log('delete not implemented...');
 		}
 	});
 
-	return ItemView;
+	return CompositeView;
 });

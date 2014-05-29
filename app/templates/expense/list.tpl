@@ -6,7 +6,21 @@
 </div>
 </div>
 <a href="#expense/new" class="btn btn-success">New Expense</a>
+<a id="btnClearAll" href="#" class="btn btn-danger">Clear All</a>
 <br />
 <br />
-<div id="divBackgrid"></div>
-<h1>Not Implemented Yet!!</h1.
+<table class="table table-striped table-bordered table-hover">
+    <caption>
+	    <strong><em>Expenses</em></strong>
+	</caption>
+	<thead>
+	    <tr>
+		    <th>ID</th>
+			<th>Date</th>
+			<th>Ammount</th>
+            <th>Category</th>
+            <th>Action</th>
+		</tr>
+	</thead>
+	<tbody id="tbodyItem"></tbody>
+</table>
