@@ -5,8 +5,9 @@
     </ul>
 </div>
 </div>
-<a href="#expense/new" class="btn btn-success">New Expense</a>
-<a id="btnClearAll" href="#" class="btn btn-danger">Clear All</a>
+<a href="#expense/new" class="btn btn-success">New</a>
+<a href="#" class="btn btn-warning">Sync</a>
+<a href="#expense/budget" class="btn btn-info">Budget</a>
 <br />
 <br />
 <table class="table table-striped table-bordered table-hover">

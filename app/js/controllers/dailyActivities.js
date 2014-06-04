@@ -26,10 +26,27 @@ define([
 		},
 
 		expenses: function() {
-			App.mainRegion.show(new ExpensesListView());
+			var expenses = [];
+			App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					expenses.push(cursor.value);
+					cursor.continue();
+				} else {
+					App.mainRegion.show(new ExpensesListView(expenses));
+				}
+			};
 		},
 		expense: function(id) {
 			// FIXME after first time, var App.indexedDB.db is equal to null. Why?
+
+			// console.log(App.indexedDB);
+			// console.log(App.indexedDB.db);
+			// if (App.indexedDB.db() == null) {
+			// 	console.log('App.indexedDB.db is null');
+			// 	App.initializeDB();
+			// }
+
 			var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
 			objectStore.onsuccess = function(event) {
 				var expense = new ExpenseModel(event.target.result);

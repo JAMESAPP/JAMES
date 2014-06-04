@@ -3,7 +3,7 @@ define([
 	var IndexedDB = function () {
 		this.db =  function() {
 			if (!window.indexedDB)
-				console.log('[WARNING] No indexedDB API to start app. Is your browser supported?');
+				console.error('[WARNING] No indexedDB API to start app. Is your browser supported?');
 
 			return null;
 		};
@@ -16,8 +16,8 @@ define([
 			};
 
 			request.onerror = function(err) {
-				console.log("Warning! Failed to start indexedDB!");
-				console.log(err);
+				console.error("[WARNING] Failed to start indexedDB!");
+				console.error(err);
 			};
 
 			request.onupgradeneeded = function(event) { 
@@ -27,6 +27,8 @@ define([
 				db.createObjectStore('motorcycles', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('gyms', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
+
+				console.log('onupgradeneed!');
 			};
 
 			return request;

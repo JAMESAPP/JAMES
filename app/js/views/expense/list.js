@@ -1,9 +1,10 @@
 define([
 	'marionette'
+	, 'app'
 	, 'collections/expenses'
 	, 'text!../../../templates/expense/list.tpl'
 	, 'text!../../../templates/expense/list-item.tpl'
-], function (Marionette, ExpenseCollection, CompositeViewTemplate, ItemViewTemplate) {
+], function (Marionette, App, ExpenseCollection, CompositeViewTemplate, ItemViewTemplate) {
 	var itemView = Marionette.ItemView.extend({
 		template: ItemViewTemplate,
 		tagName: 'tr'
@@ -15,12 +16,16 @@ define([
 		itemViewContainer: '#tbodyItem',
 		className: 'box',
 		tagName: 'div',
-		collection: new ExpenseCollection()
+
+		initialize: function(expenses) {
+			this.collection = new ExpenseCollection(expenses);
+		}
+
 		, events: {
-			'click #btnClearAll': 'clearAll'
+			'click .btn-warning': 'sync'
 			, 'click .delete': 'delete'
 		}
-		, clearAll: function(ev) {
+		, sync: function(ev) {
 			ev.preventDefault();
 			console.log('clear all not implemented...');
 		}

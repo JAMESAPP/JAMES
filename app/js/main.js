@@ -70,6 +70,8 @@ require([
 		this.unbind();
 	};
 
+	App.initializeDB();
+
 	// start routers
 	new HomeController();
 	new DailyActivitiesController();
@@ -80,6 +82,4 @@ require([
 
 	App.menuRegion.show(new MenuView());
 	App.footerRegion.show(new FooterView());
-
-	App.initializeDB();
 });
