@@ -2,6 +2,7 @@ define([
 	'underscore'
 	, 'backbone'
 	, 'app'
+	, 'collections/expenses'
 	, 'views/expense/register'
 	, 'views/expense/list'
 	, 'views/food'
@@ -9,7 +10,7 @@ define([
 	, 'views/gym'
 	, 'views/timesheet'
 	, 'models/expense'
-], function (_, Backbone, App, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
+], function (_, Backbone, App, ExpenseCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -33,7 +34,8 @@ define([
 					expenses.push(cursor.value);
 					cursor.continue();
 				} else {
-					App.mainRegion.show(new ExpensesListView(expenses));
+					var expensesCollection = new ExpenseCollection(expenses);
+					App.mainRegion.show(new ExpensesListView(expensesCollection));
 				}
 			};
 		},
