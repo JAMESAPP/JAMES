@@ -13,7 +13,7 @@ define([
 	, 'views/timesheet/list'
 	, 'models/expense'
 	, 'models/timesheet'
-], function (_, Backbone, App, ExpenseCollection, TimesheetCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, TimesheetModel) {
+], function (_, Backbone, App, ExpenseCollection, TimesheetCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleRegisterView, GymView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, TimesheetModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -22,7 +22,9 @@ define([
 
 			'food': 'food',
 
-			'motorcycle': 'motorcycle',
+			'motorcycles': 'motorcycles',
+			'motorcycle/new': 'motorcycle',
+			'motorcycle/:id': 'motorcycle',
 
 			'gym': 'gym',
 
@@ -53,6 +55,7 @@ define([
 			// 	App.initializeDB();
 			// }
 
+			// TODO think about inheritance for instantiate views
 			var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
 			objectStore.onsuccess = function(event) {
 				var expense = new ExpenseModel(event.target.result);
@@ -64,8 +67,27 @@ define([
 			App.mainRegion.show(new FoodView());
 		},
 
-		motorcycle: function() {
-			App.mainRegion.show(new MotorcycleView());
+		// TODO implement generic list and register in controller.
+		motorcycles: function() {
+			var motorcycle = [];
+			App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					motorcycle.push(cursor.value);
+					cursor.continue();
+				} else {
+					var collection = new Collection(motorcycle);
+					App.mainRegion.show(new MotorcyclesListView(collection));
+				}
+			};
+		},
+		motorcycle: function(id) {
+			App.mainRegion.show(new MotorcycleRegisterView());
+			var objectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(id != undefined ? parseInt(id) : 0);
+			objectStore.onsuccess = function(event) {
+				var motorcycle = new MotorcycleModel(event.target.result);
+				App.mainRegion.show(new MotorcycleRegisterView(motorcycle));
+			};
 		},
 
 		gym: function() {
