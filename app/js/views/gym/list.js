@@ -1,9 +1,9 @@
 define([
 	'marionette'
-	, 'models/expense'
+	, 'models/gym'
 	, 'views/list'
-	, 'text!../../../templates/motorcycle/list.tpl'
-	, 'text!../../../templates/motorcycle/list-item.tpl'
+	, 'text!../../../templates/gym/list.tpl'
+	, 'text!../../../templates/gym/list-item.tpl'
 ], function (Marionette, ExpenseModel, ListView, CompositeViewTemplate, ItemViewTemplate) {
 	var itemView = Marionette.ItemView.extend({
 		template: ItemViewTemplate,
@@ -13,7 +13,7 @@ define([
 	var CompositeView = ListView.extend({
 		template: CompositeViewTemplate,
 		itemView: itemView,
-		objectStore: 'motorcycles'
+		objectStore: 'gym'
 	});
 
 	return CompositeView;

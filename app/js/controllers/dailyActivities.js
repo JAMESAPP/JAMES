@@ -1,32 +1,40 @@
 define([
-	'underscore'
-	, 'backbone'
+	'backbone'
 	, 'app'
-	, 'collections/expenses'
-	, 'collections/timesheets'
+	, 'collections/generic'
 	, 'views/expense/register'
 	, 'views/expense/list'
-	, 'views/food'
-	, 'views/motorcycle'
-	, 'views/gym'
+	, 'views/food/register'
+	, 'views/food/list'
+	, 'views/motorcycle/register'
+	, 'views/motorcycle/list'
+	, 'views/gym/register'
+	, 'views/gym/list'
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
 	, 'models/expense'
+	, 'models/food'
+	, 'models/motorcycle'
+	, 'models/gym'
 	, 'models/timesheet'
-], function (_, Backbone, App, ExpenseCollection, TimesheetCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleRegisterView, GymView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, TimesheetModel) {
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
 			'expense/new': 'expense',
 			'expense/:id': 'expense',
 
-			'food': 'food',
+			'foods': 'foods',
+			'food/new': 'food',
+			'food/:id': 'food',
 
 			'motorcycles': 'motorcycles',
 			'motorcycle/new': 'motorcycle',
 			'motorcycle/:id': 'motorcycle',
 
-			'gym': 'gym',
+			'gyms': 'gyms',
+			'gym/new': 'gym',
+			'gym/:id': 'gym',
 
 			'timesheets': 'timesheets',
 			'timesheet/new': 'timesheet',
@@ -34,19 +42,56 @@ define([
 		},
 
 		expenses: function() {
-			var expenses = [];
-			App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
+			this.list('expenses', ExpensesListView);
+		},
+		expense: function(id) {
+			this.register(id, 'expenses', ExpenseModel, ExpenseRegisterView);
+		},
+
+		foods: function() {
+			this.list('foods', FoodsListView);
+		},
+		food: function(id) {
+			this.register(id, 'foods', FoodModel, FoodRegisterView);
+		},
+
+		motorcycles: function() {
+			this.list('motorcycles', MotorcyclesListView);
+		},
+		motorcycle: function(id) {
+			this.register(id, 'motorcycles', MotorcycleModel, MotorcycleRegisterView);
+		},
+
+		gyms: function() {
+			this.list('gyms', GymsListView);
+		},
+		gym: function(id) {
+			this.register(id, 'gyms', GymModel, GymRegisterView);
+		},
+
+		timesheets: function() {
+			this.list('timesheets', TimesheetsListView);
+		},
+		timesheet: function(id) {
+			this.register(id, 'timesheets', TimesheetModel, TimesheetRegisterView);
+		},
+
+		list: function(entity, View) {
+			console.log(entity);
+
+			var entities = [];
+			App.indexedDB.db.transaction([entity], 'readonly').objectStore(entity).openCursor().onsuccess = function(e) {
 				var cursor = e.target.result;
 				if (cursor) {
-					expenses.push(cursor.value);
+					entities.push(cursor.value);
 					cursor.continue();
 				} else {
-					var expensesCollection = new ExpenseCollection(expenses);
-					App.mainRegion.show(new ExpensesListView(expensesCollection));
+					var collection = new Collection(entities);
+					App.mainRegion.show(new View(collection));
 				}
 			};
 		},
-		expense: function(id) {
+		register: function(id, entity, Model, RegisterView) {
 			// FIXME after first time, var App.indexedDB.db is equal to null. Why?
 			// console.log(App.indexedDB);
 			// console.log(App.indexedDB.db);
@@ -55,66 +100,86 @@ define([
 			// 	App.initializeDB();
 			// }
 
-			// TODO think about inheritance for instantiate views
-			var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
+			var objectStore = App.indexedDB.db.transaction([entity]).objectStore(entity).get(id != undefined ? parseInt(id) : 0);
 			objectStore.onsuccess = function(event) {
-				var expense = new ExpenseModel(event.target.result);
-				App.mainRegion.show(new ExpenseRegisterView(expense));
-			};
-		},
-
-		food: function() {
-			App.mainRegion.show(new FoodView());
-		},
-
-		// TODO implement generic list and register in controller.
-		motorcycles: function() {
-			var motorcycle = [];
-			App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					motorcycle.push(cursor.value);
-					cursor.continue();
-				} else {
-					var collection = new Collection(motorcycle);
-					App.mainRegion.show(new MotorcyclesListView(collection));
-				}
-			};
-		},
-		motorcycle: function(id) {
-			App.mainRegion.show(new MotorcycleRegisterView());
-			var objectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(id != undefined ? parseInt(id) : 0);
-			objectStore.onsuccess = function(event) {
-				var motorcycle = new MotorcycleModel(event.target.result);
-				App.mainRegion.show(new MotorcycleRegisterView(motorcycle));
-			};
-		},
-
-		gym: function() {
-			App.mainRegion.show(new GymView());
-		},
-
-		timesheets: function() {
-			var timesheets = [];
-			App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					timesheets.push(cursor.value);
-					cursor.continue();
-				} else {
-					var timesheetsCollection = new TimesheetCollection(timesheets);
-					App.mainRegion.show(new TimesheetsListView(timesheetsCollection));
-				}
-			};
-		},
-
-		timesheet: function(id) {
-			var objectStore = App.indexedDB.db.transaction(['timesheets']).objectStore('timesheets').get(id != undefined ? parseInt(id) : 0);
-			objectStore.onsuccess = function(event) {
-				var timesheet = new TimesheetModel(event.target.result);
-				App.mainRegion.show(new TimesheetRegisterView(timesheet));
+				var model = new Model(event.target.result);
+				App.mainRegion.show(new RegisterView(model));
 			};
 		}
+
+		// expenses: function() {
+		// 	var expenses = [];
+		// 	App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
+		// 		var cursor = e.target.result;
+		// 		if (cursor) {
+		// 			expenses.push(cursor.value);
+		// 			cursor.continue();
+		// 		} else {
+		// 			var expensesCollection = new ExpenseCollection(expenses);
+		// 			App.mainRegion.show(new ExpensesListView(expensesCollection));
+		// 		}
+		// 	};
+		// },
+		// expense: function(id) {
+		// 	var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
+		// 	objectStore.onsuccess = function(event) {
+		// 		var expense = new ExpenseModel(event.target.result);
+		// 		App.mainRegion.show(new ExpenseRegisterView(expense));
+		// 	};
+		// },
+
+		// food: function() {
+		// 	App.mainRegion.show(new FoodView());
+		// },
+
+		// // TODO implement generic list and register in controller.
+		// motorcycles: function() {
+		// 	var motorcycle = [];
+		// 	App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
+		// 		var cursor = e.target.result;
+		// 		if (cursor) {
+		// 			motorcycle.push(cursor.value);
+		// 			cursor.continue();
+		// 		} else {
+		// 			var collection = new Collection(motorcycle);
+		// 			App.mainRegion.show(new MotorcyclesListView(collection));
+		// 		}
+		// 	};
+		// },
+		// motorcycle: function(id) {
+		// 	App.mainRegion.show(new MotorcycleRegisterView());
+		// 	var objectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(id != undefined ? parseInt(id) : 0);
+		// 	objectStore.onsuccess = function(event) {
+		// 		var motorcycle = new MotorcycleModel(event.target.result);
+		// 		App.mainRegion.show(new MotorcycleRegisterView(motorcycle));
+		// 	};
+		// },
+
+		// gym: function() {
+		// 	App.mainRegion.show(new GymView());
+		// },
+
+		// timesheets: function() {
+		// 	var timesheets = [];
+		// 	App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
+		// 		var cursor = e.target.result;
+		// 		if (cursor) {
+		// 			timesheets.push(cursor.value);
+		// 			cursor.continue();
+		// 		} else {
+		// 			var timesheetsCollection = new TimesheetCollection(timesheets);
+		// 			App.mainRegion.show(new TimesheetsListView(timesheetsCollection));
+		// 		}
+		// 	};
+		// },
+
+		// timesheet: function(id) {
+		// 	var objectStore = App.indexedDB.db.transaction(['timesheets']).objectStore('timesheets').get(id != undefined ? parseInt(id) : 0);
+		// 	objectStore.onsuccess = function(event) {
+		// 		var timesheet = new TimesheetModel(event.target.result);
+		// 		App.mainRegion.show(new TimesheetRegisterView(timesheet));
+		// 	};
+		// }
 	});
 
 	return DailyActivitiesController;

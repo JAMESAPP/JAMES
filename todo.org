@@ -9,6 +9,7 @@
 ** DONE Generic CRUD
 ** TODO Export to QIF
 ** TODO Clear all entries
+** TODO Sync
 ** TODO Timesheet
 *** DONE Basic CRUD
 *** TODO Painel

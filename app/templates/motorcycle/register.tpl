@@ -1,4 +1,4 @@
-<h1>Expenses</h1>
+<h1>Motorcycle</h1>
 
 <div id="divRegister">
     <label for="inputDate">Date</label>
@@ -20,5 +20,5 @@
 <span id="spanMessage"></span>
 <br />
 <br />
-<a href="#expenses" class="btn btn-inverse"><i class="icon-home icon-white"></i> Go Back!</a>
+<a href="#motorcycles" class="btn btn-inverse"><i class="icon-home icon-white"></i> Go Back!</a>
 <a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Send</a>
