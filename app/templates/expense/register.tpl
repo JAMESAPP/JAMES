@@ -8,12 +8,11 @@
     <input type="text" id="inputAmmount" class="input-small" value="{{ammount}}" placeholder="Ammount of transaction" data-bind="value:ammount,events:['keyup']" />
 
     <label for="inputCategory">Category</label>
-    <select id="selectCategory" data-bind="objectHandler:category,events:['change']">
+    <select id="selectCategory" data-bind="value:category,events:['change']">
         {{#each selectCategory}}
-        <option value="{{full_name}}">{{full_name}}</option>
+        <option value="{{value}}">{{label}}</option>
         {{/each}}
     </select>
-
     <label for="inputMemo">Memo</label>
     <textarea type="text" id="txtMemo" rows="10" class="input-xxlarge" placeholder="Memo of transaction" data-bind="value:memo,events:['keyup']">{{memo}}</textarea>
 </div>

@@ -21,19 +21,6 @@ define([
 
 			if (attrToView.id != undefined) {
 				attrToView.selectCategory.unshift(attrToView.category);
-
-				// TODO clean array...
-				// var attr = attrToView;
-				// var categoriesIds = _.uniq(_.map(attrToView.selectCategory, function(account) {
-				// 	return account.full_name;
-				// }));
-				// 	var categoriesFiltered = [];
-				// 	_.each(categoriesIds, function(full_name) {
-				// 		categoriesFiltered.push(_.find(attr.selectCategory, function(account) {
-				// 			return account.full_name == full_name;
-				// 		}));
-				// 	});
-				// 	attrToView.selectCategory = categoriesFiltered;
 			}
 
 			return attrToView;
@@ -42,7 +29,6 @@ define([
 			this.$el.find('#inputDate').datepicker(Config.datePickerConf);
 			this.$el.find('#inputDate').datepicker('option', 'yearRange', Config.datePickerConf.yearRange);
 			this.$el.find('#inputAmmount').mask('###00,00', {reverse: true});
-			// TODO implement integration with epoxy (objectHandler) with category element.
 		}
 	});
 

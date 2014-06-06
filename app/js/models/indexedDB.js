@@ -27,8 +27,6 @@ define([
 				db.createObjectStore('motorcycles', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('gyms', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
-
-				console.log('onupgradeneed!');
 			};
 
 			return request;
