@@ -6,6 +6,10 @@
 ** TODO Deploy at my own phone
 ** TODO Deploy at https://marketplace.firefox.com/
 * TODO Function
-** TODO CRUD
+** DONE Generic CRUD
 ** TODO Export to QIF
 ** TODO Clear all entries
+** TODO Timesheet
+*** DONE Basic CRUD
+*** TODO Painel
+*** TODO calc for leaving early

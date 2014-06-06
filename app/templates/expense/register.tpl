@@ -20,5 +20,5 @@
 <span id="spanMessage"></span>
 <br />
 <br />
-<a href="#expenses" class="btn btn-inverse"><i class="icon-home icon-white"></i> Voltar</a>
-<a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Enviar</a>
+<a href="#expenses" class="btn btn-inverse"><i class="icon-home icon-white"></i> Go Back!</a>
+<a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Send</a>

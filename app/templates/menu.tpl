@@ -23,10 +23,10 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li class="dropdown"><a href="#expenses">Expenses</a></li>
-						<li class="dropdown"><a href="#food">Food</a></li>
-						<li class="dropdown"><a href="#motorcycle">Motorcycle</a></li>
-						<li class="dropdown"><a href="#gym">Gym</a></li>
-						<li class="dropdown"><a href="#timesheet">Timesheet</a></li>
+						<li class="dropdown"><a href="#foods">Foods</a></li>
+						<li class="dropdown"><a href="#motorcycles">Motorcycles</a></li>
+						<li class="dropdown"><a href="#gyms">Gym</a></li>
+						<li class="dropdown"><a href="#timesheets">Timesheets</a></li>
 					</ul>
 				</li>
 				<li>

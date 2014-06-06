@@ -3,14 +3,17 @@ define([
 	, 'backbone'
 	, 'app'
 	, 'collections/expenses'
+	, 'collections/timesheets'
 	, 'views/expense/register'
 	, 'views/expense/list'
 	, 'views/food'
 	, 'views/motorcycle'
 	, 'views/gym'
-	, 'views/timesheet'
+	, 'views/timesheet/register'
+	, 'views/timesheet/list'
 	, 'models/expense'
-], function (_, Backbone, App, ExpenseCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetView, ExpenseModel) {
+	, 'models/timesheet'
+], function (_, Backbone, App, ExpenseCollection, TimesheetCollection, ExpenseRegisterView, ExpensesListView, FoodView, MotorcycleView, GymView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, TimesheetModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -23,7 +26,9 @@ define([
 
 			'gym': 'gym',
 
-			'timesheet': 'timesheet'
+			'timesheets': 'timesheets',
+			'timesheet/new': 'timesheet',
+			'timesheet/:id': 'timesheet'
 		},
 
 		expenses: function() {
@@ -41,7 +46,6 @@ define([
 		},
 		expense: function(id) {
 			// FIXME after first time, var App.indexedDB.db is equal to null. Why?
-
 			// console.log(App.indexedDB);
 			// console.log(App.indexedDB.db);
 			// if (App.indexedDB.db() == null) {
@@ -68,8 +72,26 @@ define([
 			App.mainRegion.show(new GymView());
 		},
 
-		timesheet: function() {
-			App.mainRegion.show(new TimesheetView());
+		timesheets: function() {
+			var timesheets = [];
+			App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					timesheets.push(cursor.value);
+					cursor.continue();
+				} else {
+					var timesheetsCollection = new TimesheetCollection(timesheets);
+					App.mainRegion.show(new TimesheetsListView(timesheetsCollection));
+				}
+			};
+		},
+
+		timesheet: function(id) {
+			var objectStore = App.indexedDB.db.transaction(['timesheets']).objectStore('timesheets').get(id != undefined ? parseInt(id) : 0);
+			objectStore.onsuccess = function(event) {
+				var timesheet = new TimesheetModel(event.target.result);
+				App.mainRegion.show(new TimesheetRegisterView(timesheet));
+			};
 		}
 	});
 

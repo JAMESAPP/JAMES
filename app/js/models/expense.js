@@ -1,9 +1,8 @@
 define([
-	'underscore'
-    , 'backbone'
+	'backbone'
     , 'app'
-], function (_, Backbone, App) {
-    var ExpenseModel = Backbone.Model.extend({
+], function (Backbone, App) {
+    var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
 			, ammount: 0.00
@@ -26,5 +25,5 @@ define([
 		}
     });
 
-    return ExpenseModel;
+    return Model;
 });
