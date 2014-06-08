@@ -77,8 +77,6 @@ define([
 		},
 
 		list: function(entity, View) {
-			console.log(entity);
-
 			var entities = [];
 			App.indexedDB.db.transaction([entity], 'readonly').objectStore(entity).openCursor().onsuccess = function(e) {
 				var cursor = e.target.result;
@@ -106,80 +104,6 @@ define([
 				App.mainRegion.show(new RegisterView(model));
 			};
 		}
-
-		// expenses: function() {
-		// 	var expenses = [];
-		// 	App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
-		// 		var cursor = e.target.result;
-		// 		if (cursor) {
-		// 			expenses.push(cursor.value);
-		// 			cursor.continue();
-		// 		} else {
-		// 			var expensesCollection = new ExpenseCollection(expenses);
-		// 			App.mainRegion.show(new ExpensesListView(expensesCollection));
-		// 		}
-		// 	};
-		// },
-		// expense: function(id) {
-		// 	var objectStore = App.indexedDB.db.transaction(['expenses']).objectStore('expenses').get(id != undefined ? parseInt(id) : 0);
-		// 	objectStore.onsuccess = function(event) {
-		// 		var expense = new ExpenseModel(event.target.result);
-		// 		App.mainRegion.show(new ExpenseRegisterView(expense));
-		// 	};
-		// },
-
-		// food: function() {
-		// 	App.mainRegion.show(new FoodView());
-		// },
-
-		// // TODO implement generic list and register in controller.
-		// motorcycles: function() {
-		// 	var motorcycle = [];
-		// 	App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
-		// 		var cursor = e.target.result;
-		// 		if (cursor) {
-		// 			motorcycle.push(cursor.value);
-		// 			cursor.continue();
-		// 		} else {
-		// 			var collection = new Collection(motorcycle);
-		// 			App.mainRegion.show(new MotorcyclesListView(collection));
-		// 		}
-		// 	};
-		// },
-		// motorcycle: function(id) {
-		// 	App.mainRegion.show(new MotorcycleRegisterView());
-		// 	var objectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(id != undefined ? parseInt(id) : 0);
-		// 	objectStore.onsuccess = function(event) {
-		// 		var motorcycle = new MotorcycleModel(event.target.result);
-		// 		App.mainRegion.show(new MotorcycleRegisterView(motorcycle));
-		// 	};
-		// },
-
-		// gym: function() {
-		// 	App.mainRegion.show(new GymView());
-		// },
-
-		// timesheets: function() {
-		// 	var timesheets = [];
-		// 	App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
-		// 		var cursor = e.target.result;
-		// 		if (cursor) {
-		// 			timesheets.push(cursor.value);
-		// 			cursor.continue();
-		// 		} else {
-		// 			var timesheetsCollection = new TimesheetCollection(timesheets);
-		// 			App.mainRegion.show(new TimesheetsListView(timesheetsCollection));
-		// 		}
-		// 	};
-		// },
-
-		// timesheet: function(id) {
-		// 	var objectStore = App.indexedDB.db.transaction(['timesheets']).objectStore('timesheets').get(id != undefined ? parseInt(id) : 0);
-		// 	objectStore.onsuccess = function(event) {
-		// 		var timesheet = new TimesheetModel(event.target.result);
-		// 		App.mainRegion.show(new TimesheetRegisterView(timesheet));
-		// 	};
-		// }
 	});
 
 	return DailyActivitiesController;
