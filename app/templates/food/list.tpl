@@ -5,8 +5,8 @@
     </ul>
 </div>
 </div>
-<a href="#food/new" class="btn btn-success">New</a>
-<a href="#" class="btn btn-warning">Sync</a>
+<a href="#food/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
+<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
 <br />
 <br />
 <table class="table table-striped table-bordered table-hover">
