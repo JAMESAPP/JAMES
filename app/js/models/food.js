@@ -5,6 +5,9 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
+			, time: null
+			, meal: null
+			, food: null
 		}
 
 		, validade: function(attr, options) {

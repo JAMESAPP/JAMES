@@ -3,6 +3,16 @@
 <div id="divRegister">
     <label for="inputDate">Date</label>
     <input type="text" id="inputDate" class="input-small dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
+
+    <label for="inputMeal">Meal</label>
+    <select id="selectMeal" data-bind="value:meal,events:['change']">
+        <option value="breakfast">breakfast</option>
+        <option value="lunch">lunch</option>
+        <option value="afternoonSnack">afternoon snack</option>
+        <option value="dinner">dinner</option>
+        <option value="lateNightSnack">late night snack</option>
+        <option value="Other">Other</option>
+    </select>
 </div>
 <br />
 <span id="spanMessage"></span>
