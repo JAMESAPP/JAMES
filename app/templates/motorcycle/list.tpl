@@ -17,8 +17,6 @@
 	    <tr>
 		    <th>ID</th>
 			<th>Date</th>
-			<th>Ammount</th>
-            <th>Category</th>
             <th>Action</th>
 		</tr>
 	</thead>

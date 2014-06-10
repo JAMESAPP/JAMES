@@ -5,7 +5,8 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
-			, ammout: 0.00
+			, KM: 0.0
+			, amount: 0.00
 			, price: 0.00
 			, observation: null
 		}
@@ -14,8 +15,11 @@ define([
 			if (attr.date == '')
 				return 'Date can\'t be empty';
 
-			if (attr.ammount == '')
-				return 'Ammount can\'t be empty!';
+			if (attr.KM == '')
+				return 'KM can\'t be empty!';
+
+			if (attr.amount == '')
+				return 'Amount can\'t be empty!';
 
 			if (attr.price == '')
 				return 'Price can\'t be empty!';
