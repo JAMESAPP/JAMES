@@ -4,9 +4,20 @@
         <li class="active">Timesheets<span class="divider">/</span></li>
     </ul>
 </div>
+<div class="row">
+  <div class="span9">
+	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
+	<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
+  </div>
+  <div class="span2">
+	<!-- <label for="inputMonth">Month</label> -->
+	<select id="selectMonth" data-bind="value:category,events:['change']">
+	  {{#each selectMonth}}
+	  <option value="{{value}}">{{label}}</option>
+	  {{/each}}
+	</select>
+  </div>
 </div>
-<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
-<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
 <br />
 <br />
 <div id="divPainel">TODO PAINEL</div> 

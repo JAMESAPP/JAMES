@@ -33,7 +33,7 @@ define([
 
 	app.getBaseURL = function(app) {
 		if (app == undefined)
-			app = "yawecapp";
+			app = 'yaew';
 
 		return "http://local." + app + "/" + Config.backend + "/";
 	};
