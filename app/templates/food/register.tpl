@@ -13,6 +13,13 @@
         <option value="lateNightSnack">late night snack</option>
         <option value="Other">Other</option>
     </select>
+
+    <label for="inputFood">Food</label>
+    <select id="selectFood" data-bind="value:food,events:['change']">
+        {{#each selectFood}}
+        <option value="{{value}}">{{label}}</option>
+        {{/each}}
+    </select>
 </div>
 <br />
 <span id="spanMessage"></span>
