@@ -3,24 +3,24 @@ define([
 	, 'underscore'
 	, 'app'
 	, 'config'
-	, 'collections/categories'
+	, 'collections/foods'
 	, 'views/register'
 	, 'text!../../../templates/food/register.tpl'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, Config, CategoriesCollection, RegisterView, Template) {
+], function (Marionette, _, App, Config, FoodCollection, RegisterView, Template) {
 	var ItemView = RegisterView.extend({
 		template: Template
 		, objectStore: 'foods'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 
-			var categoriesCollection = new CategoriesCollection();
-			categoriesCollection.fetch({async: false});
-			attrToView.selectCategory = categoriesCollection.toJSON();
+			var foodCollection = new FoodCollection();
+			foodCollection.fetch({async: false});
+			attrToView.selectFood = foodCollection.toJSON();
 
 			if (attrToView.id != undefined) {
-				attrToView.selectCategory.unshift(attrToView.category);
+				attrToView.selectFood.unshift(attrToView.food);
 			}
 
 			return attrToView;
