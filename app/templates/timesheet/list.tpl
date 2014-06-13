@@ -20,7 +20,28 @@
 </div>
 <br />
 <br />
-<div id="divPainel">TODO PAINEL</div> 
+<div id="divPainel" class="row">
+  <div class="span2">
+	Total Days Late to Work
+  </div>
+  <div class="span2">
+	Total Minutes After Start
+  </div>
+  <div class="span2">
+	Total Extra Time
+  </div>
+  <div class="span2">
+	Total Leaving Early
+  </div>
+  <div class="span2">
+	Balance
+  </div>
+  <div class="span1">
+	Status
+	<!-- until 8 days late to work and less than 45 minutes total minutes after: good -->
+	<!-- else: bad -->
+  </div>
+</div> 
 <table class="table table-striped table-bordered table-hover">
     <caption>
 	    <strong><em>Timesheets</em></strong>
