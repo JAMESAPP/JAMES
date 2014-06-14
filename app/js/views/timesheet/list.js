@@ -18,6 +18,84 @@ define([
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {};
 
+			console.log(this.collection);
+			console.log(this.attributes);
+			console.log(attrToView);
+
+			// var later = _.filter(this.collection.toJSON(), function(model) {
+			// 	return model.startTime == '08:07';
+			// });
+
+			// // Total Days Late to Work
+			// attrToView.totalLater = later.length;
+
+			// // Total Minutes After Start
+			// var totalMinutesLaterAfterStart;
+			// _.forEach(later, function(element, index, list) {
+			// 	console.log(element);
+			// 	console.log(index);
+			// 	console.log(list);
+
+			// 	totalMinutesLaterAfterStart += element.startTime;
+			// });
+
+			// // Total Extra Time
+			// // Extra time before start
+			// var daysWithExtraTimeBeforeStart = _.filter(this.collection.toJSON(), function(model) {
+			// 	return model.startTime < officialStartTime;
+			// });
+			// var totalExtraTimeBeforeStart;
+			// _.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
+			// 	console.log(element);
+			// 	console.log(index);
+			// 	console.log(list);
+				
+			// 	// TODO calculate extra time before start. Considering the folloow rule for each hour before:
+			// 	// 0..20 min before: 0 min;
+			// 	// 21..40 min before: 30 min;
+			// 	// 41..60 min before: 1 hour;
+			// });
+			// // Extra time after end
+			// var daysWithExtraTimeAfterEnd = _.filter(this.collection.toJSON(), function(model) {
+			// 	return model.endTime > officialEndTime;
+			// });
+			// var totalExtraTimeAfterEnd;
+			// _.forEach(daysWithExtraTimeAfterEnd, function(element, index, list) {
+			// 	console.log(element);
+			// 	console.log(index);
+			// 	console.log(list);
+				
+			// 	// TODO calculate extra time after end. Considering the folloow rule for each hour after:
+			// 	// 0..20 min before: 0 min;
+			// 	// 21..40 min before: 30 min;
+			// 	// 41..60 min before: 1 hour;
+			// });
+
+			// // Finally, the total of extra time!
+			// var totalExtraTime = totalExtraTimeBeforeStart + totalExtraTimeAfterEnd;
+
+			// // Total Leaving Early
+			// var daysWithLeavingEarly = _.filter(this.collection.toJSON(), function(model) {
+			// 	// TODO implement leaving early
+			// 	// if total hours worked <= workload then must discount those hours!
+			// 	return true;
+			// });
+			// var totalTimeLeavingEarly;
+			// _.forEach(daysWithLeavingEarly, function(element, index, list) {
+			// 	console.log(element);
+			// 	console.log(index);
+			// 	console.log(list);
+
+			// 	// TODO implement it!
+			// });
+
+			// // Balance
+			// var balance = totalExtraTime - totalTimeLeavingEarly;
+
+			// // Status
+			// // TODO implement it!
+			// // until 8 days late to work and less than 45 minutes total minutes after: good else: bad
+
 			// TODO filter by month
 			attrToView.selectMonth = [
 				{label: 'January', value: 0}

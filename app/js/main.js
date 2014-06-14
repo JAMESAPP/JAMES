@@ -12,7 +12,8 @@ require.config({
 		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
 		'jqueryui': 'libs/custom/jquery-ui-custom.min',
 		'text': 'libs/bower/requirejs-text/text',
-		'templates': '../templates/templates'
+		'templates': '../templates/templates',
+		'moment': 'libs/bower/moment/min/moment-with-langs.min'
 	},
 	shim: {
 		// LIBS
@@ -48,6 +49,9 @@ require.config({
 		'jqueryui': {
 			deps: ['jquery'],
 			exports : 'jqueryui'
+		},
+		'moment': {
+			exports : 'Moment'
 		},
 
 		'templates': {

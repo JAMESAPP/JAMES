@@ -10,7 +10,7 @@
 		<ul class="nav">
 			<a href="#">
 				<li>
-					<img src="app/img/logo.png" id="yawecapp_logo" width="40px">
+					<img src="app/img/logo.png" id="yawecapp_logo" width="40px"></img>
 				</li>
 			</a>
 		</ul>
@@ -28,6 +28,9 @@
 						<li class="dropdown"><a href="#gyms">Gym</a></li>
 						<li class="dropdown"><a href="#timesheets">Timesheets</a></li>
 					</ul>
+				</li>
+				<li>
+					<a href="#timesheets">Timesheets</a>
 				</li>
 				<li>
 					<a href="#about">About</a>
