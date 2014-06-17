@@ -3,10 +3,11 @@ define([
 	, 'bootstrap'
 	, 'backbone'
 	, 'marionette'
+	, 'moment'
 	, 'config'
 	, 'models/indexedDB'
 	, 'handlebars'
-], function ($, Bootstrap, Backbone, Marionette, Config, IndexedDB, Handlebars){
+], function ($, Bootstrap, Backbone, Marionette, Moment, Config, IndexedDB, Handlebars){
 	var app = new Marionette.Application();
 
 	// FIXME Bootstrap var is in memory but i cant access it!
@@ -21,6 +22,18 @@ define([
 		var compiled = Handlebars.compile(template);
 		return compiled(data);
 	};
+
+	app.dateFormat = function(date, format, lang) {
+		if (format == undefined)
+			format = 'DD/MM/YYYY'; // brazilian default date format
+
+		if (lang == undefined)
+			lang = 'pt-br'; // brazilian by default
+
+		var m = Moment(new Date(+date || date)).lang(lang);
+
+		return m.format(format);
+	},
 
 	// TODO implement all, except generic, to use marionette
 	app.getTemplate = function(template) {
