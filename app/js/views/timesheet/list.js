@@ -34,15 +34,16 @@ define([
 			// Total Days Late to Work
 			attrToView.totalLater = later.length;
 
-			// // Total Minutes After Start
-			// var totalMinutesLaterAfterStart;
-			// _.forEach(later, function(element, index, list) {
-			// 	console.log(element);
-			// 	console.log(index);
-			// 	console.log(list);
-
-			// 	totalMinutesLaterAfterStart += element.startTime;
-			// });
+			// Total Minutes After Start
+			var totalMinutesLateByDay;
+			var totalMinutesLaterAfterStart = Moment('00:00', 'HH:mm');
+			console.log(totalMinutesLaterAfterStart);
+			_.forEach(later, function(element, index, list) {
+				totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
+				totalMinutesLateByDay.subtract(configStart);
+				totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
+			});
+			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart.minutes();
 
 			// // Total Extra Time
 			// // Extra time before start
