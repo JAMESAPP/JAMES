@@ -18,6 +18,11 @@ define([
             yearRange: (new Date().getFullYear() - 100) + ':' + (new Date().getFullYear() + 100)
 		}
 		, 'isProtected': false
+		, 'timesheet':{
+			id: 1
+			, startTime: '08:00'
+			, endTime: '14:00'
+		}
 	};
 	return config;
 });

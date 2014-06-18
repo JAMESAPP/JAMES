@@ -22,7 +22,8 @@
 <br />
 <div id="divPainel" class="row">
   <div class="span2">
-	Total Days Late to Work
+	Total Days Late to Work <br />
+	{{totalLater}}
   </div>
   <div class="span2">
 	Total Minutes After Start
