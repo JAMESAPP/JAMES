@@ -24,20 +24,18 @@ define([
 			// console.log(this.attributes);
 			// console.log(attrToView);
 
+			// Total Days Late to Work
 			var modelStart;
 			var configStart = Moment(Config.timesheet.startTime, 'HH:mm');
 			var later = _.filter(this.collection.toJSON(), function(model) {
 				modelStart = Moment(model.startTime, 'HH:mm');
 				return Moment(modelStart).isAfter(configStart);
 			});
-
-			// Total Days Late to Work
 			attrToView.totalLater = later.length;
 
 			// Total Minutes After Start
 			var totalMinutesLateByDay;
 			var totalMinutesLaterAfterStart = Moment('00:00', 'HH:mm');
-			console.log(totalMinutesLaterAfterStart);
 			_.forEach(later, function(element, index, list) {
 				totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
 				totalMinutesLateByDay.subtract(configStart);
@@ -45,22 +43,37 @@ define([
 			});
 			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart.minutes();
 
-			// // Total Extra Time
-			// // Extra time before start
-			// var daysWithExtraTimeBeforeStart = _.filter(this.collection.toJSON(), function(model) {
-			// 	return model.startTime < officialStartTime;
-			// });
-			// var totalExtraTimeBeforeStart;
-			// _.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
-			// 	console.log(element);
-			// 	console.log(index);
-			// 	console.log(list);
+			// Total Extra Time
+			// Extra time before start
+			var daysWithExtraTimeBeforeStart = _.filter(this.collection.toJSON(), function(model) {
+				modelStart = Moment(model.startTime, 'HH:mm');
+				return Moment(modelStart).isBefore(configStart);
+			});
+			var minutes;
+			var startTimeDay;
+			var totalExtraTimeBeforeStart = Moment('00:00', 'HH:mm');;
+			var officialStartTime = Moment(Config.timesheet.startTime, 'HH:mm');
+			_.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
+				startTimeDay = Moment(element.startTime, 'HH:mm');
+				officialStartTime.subtract(startTimeDay);
+
+				// TODO iterate through hours
+
+				if (officialStartTime.minutes() < 21)
+					minutes = 0;
+				else if (officialStartTime.minutes() < 41)
+					minutes = 30;
+				else
+					minutes = 60;
+
+				totalExtraTimeBeforeStart.add('minutes', minutes);
 				
-			// 	// TODO calculate extra time before start. Considering the folloow rule for each hour before:
-			// 	// 0..20 min before: 0 min;
-			// 	// 21..40 min before: 30 min;
-			// 	// 41..60 min before: 1 hour;
-			// });
+				// TODO calculate extra time before start. Considering the folloow rule for each hour before:
+				// 0..20 min before: 0 min;
+				// 21..40 min before: 30 min;
+				// 41..60 min before: 1 hour;
+			});
+
 			// // Extra time after end
 			// var daysWithExtraTimeAfterEnd = _.filter(this.collection.toJSON(), function(model) {
 			// 	return model.endTime > officialEndTime;
