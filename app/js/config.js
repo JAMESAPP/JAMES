@@ -22,6 +22,7 @@ define([
 			id: 1
 			, startTime: '08:00'
 			, endTime: '14:00'
+			, workload: '06:00'
 		}
 	};
 	return config;

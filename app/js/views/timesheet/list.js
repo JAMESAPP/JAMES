@@ -116,20 +116,22 @@ define([
 
 			attrToView.totalExtraTime = totalExtraTime + ':' + totalMinutes.minutes();
 
-			// // Total Leaving Early
-			// var daysWithLeavingEarly = _.filter(this.collection.toJSON(), function(model) {
-			// 	// TODO implement leaving early
-			// 	// if total hours worked <= workload then must discount those hours!
-			// 	return true;
-			// });
-			// var totalTimeLeavingEarly;
-			// _.forEach(daysWithLeavingEarly, function(element, index, list) {
-			// 	console.log(element);
-			// 	console.log(index);
-			// 	console.log(list);
+			// Total Leaving Early
+			var leavingEarly;
+			var daysWithLeavingEarly = _.filter(this.collection.toJSON(), function(model) {
+				// TODO if total hours worked <= workload then must discount those hours!
+				leavingEarly = Moment(model.date + ' ' + model.leavingEarly, 'DD-MM-YYYY HH:mm');
 
-			// 	// TODO implement it!
-			// });
+				return leavingEarly.hours() > 0 || leavingEarly.minutes() > 0;
+			});
+			var totalLE = Moment.duration(0, 'hours');
+			_.forEach(daysWithLeavingEarly, function(element, index, list) {
+				leavingEarly = Moment(element.date + ' ' + element.leavingEarly, 'DD-MM-YYYY HH:mm');
+
+				totalLE.add(leavingEarly.hours(), 'hours');
+				totalLE.add(leavingEarly.minutes(), 'minutes');
+			});
+			attrToView.totalLeavingEarly = totalLE.hours() + ':' + totalLE.minutes();
 
 			// // Balance
 			// var balance = totalExtraTime - totalTimeLeavingEarly;

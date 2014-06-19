@@ -34,7 +34,8 @@
 	{{totalExtraTime}}
   </div>
   <div class="span2">
-	Total Leaving Early
+	Total Leaving Early <br />
+	{{totalLeavingEarly}}
   </div>
   <div class="span2">
 	Balance
