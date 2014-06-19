@@ -30,7 +30,8 @@
 	{{totalMinutesLaterAfterStart}}
   </div>
   <div class="span2">
-	Total Extra Time
+	Total Extra Time <br />
+	{{totalExtraTime}}
   </div>
   <div class="span2">
 	Total Leaving Early
