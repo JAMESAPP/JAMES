@@ -38,10 +38,12 @@
 	{{totalLeavingEarly}}
   </div>
   <div class="span2">
-	Balance
+	Balance <br />
+	{{balance}}
   </div>
   <div class="span1">
-	Status
+	Status <br />
+	<span class="label label-{{status}}">{{status}}</span>
 	<!-- until 8 days late to work and less than 45 minutes total minutes after: good -->
 	<!-- else: bad -->
   </div>

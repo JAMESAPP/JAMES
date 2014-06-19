@@ -20,10 +20,6 @@ define([
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {};
 
-			// console.log(this.collection);
-			// console.log(this.attributes);
-			// console.log(attrToView);
-
 			// Total Days Late to Work
 			var modelStart;
 			var configStart = Moment(Config.timesheet.startTime, 'HH:mm');
@@ -124,21 +120,29 @@ define([
 
 				return leavingEarly.hours() > 0 || leavingEarly.minutes() > 0;
 			});
-			var totalLE = Moment.duration(0, 'hours');
+			var totalTimeLeavingEarly = Moment.duration(0, 'hours');
 			_.forEach(daysWithLeavingEarly, function(element, index, list) {
 				leavingEarly = Moment(element.date + ' ' + element.leavingEarly, 'DD-MM-YYYY HH:mm');
 
-				totalLE.add(leavingEarly.hours(), 'hours');
-				totalLE.add(leavingEarly.minutes(), 'minutes');
+				totalTimeLeavingEarly.add(leavingEarly.hours(), 'hours');
+				totalTimeLeavingEarly.add(leavingEarly.minutes(), 'minutes');
 			});
-			attrToView.totalLeavingEarly = totalLE.hours() + ':' + totalLE.minutes();
+			attrToView.totalLeavingEarly = totalTimeLeavingEarly.hours() + ':' + totalTimeLeavingEarly.minutes();
 
 			// // Balance
-			// var balance = totalExtraTime - totalTimeLeavingEarly;
+			// // TODO implment it!
+			// attrToView.balance = totalExtraTime.subtract(totalTimeLeavingEarly);
 
 			// // Status
 			// // TODO implement it!
 			// // until 8 days late to work and less than 45 minutes total minutes after: good else: bad
+			attrToView.status = 'success';
+
+			if (later.length > 8 || totalMinutesLaterAfterStart.minutes() > 45)
+				attrToView.status = 'important';
+
+			if (later.length > 0 && totalMinutesLaterAfterStart.minutes() <= 45)
+				attrToView.status = 'warning';
 
 			// TODO filter by month
 			attrToView.selectMonth = [
