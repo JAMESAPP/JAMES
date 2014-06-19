@@ -23,29 +23,27 @@
 <div id="divPainel" class="row">
   <div class="span2">
 	Total Days Late to Work <br />
-	{{totalLater}}
+	<span class="label label-{{status}}">{{totalLater}}</span>
   </div>
   <div class="span2">
 	Total Minutes After Start <br />
-	{{totalMinutesLaterAfterStart}}
+	<span class="label label-{{status}}">{{totalMinutesLaterAfterStart}}</span>
   </div>
   <div class="span2">
 	Total Extra Time <br />
-	{{totalExtraTime}}
+	<span class="label label-info">{{totalExtraTime}}</span>
   </div>
   <div class="span2">
 	Total Leaving Early <br />
-	{{totalLeavingEarly}}
+	<span class="label label-default">{{totalLeavingEarly}}</span>
   </div>
   <div class="span2">
 	Balance <br />
-	{{balance}}
+	<span class="label label-inverse">{{balance}}</span>
   </div>
   <div class="span1">
 	Status <br />
 	<span class="label label-{{status}}">{{status}}</span>
-	<!-- until 8 days late to work and less than 45 minutes total minutes after: good -->
-	<!-- else: bad -->
   </div>
 </div> 
 <table class="table table-striped table-bordered table-hover">

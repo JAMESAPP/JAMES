@@ -14,7 +14,7 @@
 				</li>
 			</a>
 		</ul>
-		<a class="brand" href="#about">YAEW</a>
+		<a class="brand" href="#about">James</a>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
 				<li class="dropdown">
@@ -27,6 +27,7 @@
 						<li class="dropdown"><a href="#motorcycles">Motorcycles</a></li>
 						<li class="dropdown"><a href="#gyms">Gym</a></li>
 						<li class="dropdown"><a href="#timesheets">Timesheets</a></li>
+						<li class="dropdown"><a href="#">Groceries</a></li>
 					</ul>
 				</li>
 				<li>
