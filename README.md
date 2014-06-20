@@ -1,6 +1,6 @@
 # JAMES
 
-Your personal assistent.
+Your personal assistant.
 
 # Features
 
@@ -19,4 +19,4 @@ Jefferson Campos - 2014 - Mozilla Public License, version 2.0
 
 Creative Commons – Attribution (CC BY 3.0)
 Waiter by Piotrek Chuchla from The Noun Project
-http://thenounproject.com/term/waiter/21573/
+Original was get here: http://thenounproject.com/term/waiter/21573/

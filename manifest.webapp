@@ -1,6 +1,6 @@
 {
-	"name": "YAEW",
-	"description": "Yet Another Eletronic Wallet",
+	"name": "JAMES",
+	"description": "JAMES - Your Personal Assistant",
 	"launch_path": "/index.html",
 	"icons": {
 		"128": "/app/img/logo.png"
