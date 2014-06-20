@@ -34,6 +34,9 @@
 					<a href="#timesheets">Timesheets</a>
 				</li>
 				<li>
+					<a href="#timesheet/new">NEW Timesheets</a>
+				</li>
+				<li>
 					<a href="#about">About</a>
 				</li>
 			</ul>
