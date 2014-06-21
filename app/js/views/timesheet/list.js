@@ -24,7 +24,6 @@ define([
 			var modelStart;
 			var configStart = Moment(Config.timesheet.startTime, 'HH:mm');
 
-			// FIXME not working anymore... I have no clue... :'(
 			var later = _.filter(this.collection.toJSON(), function(model) {
 				modelStart = Moment(model.startTime, 'HH:mm');
 				return Moment(modelStart).isAfter(configStart);
