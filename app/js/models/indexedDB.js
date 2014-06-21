@@ -9,7 +9,7 @@ define([
 		};
 		this.openDB = function() {
 			var self = this;
-			var request = window.indexedDB.open('yaew', 1);
+			var request = window.indexedDB.open('james', 1);
 
 			request.onsuccess = function(e) {
 				self.db = e.target.result;
@@ -31,8 +31,6 @@ define([
 
 			return request;
 		};
-		// , saveItem: function(model, objectStore){
-		// }
 
 		return this;
     };

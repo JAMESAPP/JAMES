@@ -30,22 +30,24 @@ define([
 			var date = this.$el.find('#inputDate').val();
 			var startTime = Moment(date + ' ' + this.$el.find('#inputStartTime').val(), 'DD-MM-YYYY HH:mm');
 			var endTime = Moment(date + ' ' + this.$el.find('#inputEndTime').val(), 'DD-MM-YYYY HH:mm');
-			var workload = Moment(date + ' ' + Config.timesheet.workload, 'DD-MM-YYYY HH:mm');
-
 			endTime.subtract(startTime);
-			console.log(endTime);
-			console.log(endTime.hours());
-			console.log(endTime.minutes());
 
-			console.log('===================');
+			var durationWorkDay = Moment.duration({minutes: endTime.minutes(), hours: endTime.hours()});
+			var workload = Moment.duration(Config.timesheet.workload);
+			durationWorkDay.subtract(workload);
 
-			endTime.subtract(workload);
-			console.log(endTime);
-			console.log(endTime.hours());
-			console.log(endTime.minutes());
+			if (durationWorkDay._milliseconds > 0) {
+				this.$el.find('#inputLeavingEarly').val('00:00');
+				this.$el.find('#txtLeavingEarlyMotive').fadeOut();
+			} else {
+				this.$el.find('#inputLeavingEarly').val(durationWorkDay.hours().toString().replace('-', '') + ':' + durationWorkDay.minutes().toString().replace('-', ''));
+				this.$el.find('#txtLeavingEarlyMotive').fadeIn();
 
-			// this.$el.find('#inputLeavingEarly').val((/*verify if endTime is negative*/)? '00:00' : endTime.hours() + ':' + endTime.minutes());
-			
+				// self.$el.find('#spanMessage').html('Ow boy! We got a error.. <strong>' + e.srcElement.error.message + '</strong>').fadeIn().delay(5000).fadeOut();
+			}
+
+			this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
+console.log(this.model.attributes);
 		}
 	});
 

@@ -3,6 +3,10 @@
 <div id="divRegister">
     <label for="inputDate">Date</label>
     <input type="text" id="inputDate" class="input-small dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
+	<label class="checkbox">
+	  <input type="checkbox" value="">
+	  Discount all day!
+	</label>
 
     <label for="inputStartTime">Start Time</label>
     <input type="text" id="inputStartTime" class="input-small timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
@@ -15,7 +19,7 @@
     <textarea type="text" id="txtEndTimeMotive" rows="10" class="input-xxlarge" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
 
     <label for="inputLeavingEarly">Leaving Early</label>
-    <input type="text" id="inputLeavingEarly" class="input-small" value="{{leavingEarly}}" placeholder="hh:mm" data-bind="value:leavingEarly,events:['keyup']" />
+    <input type="text" id="inputLeavingEarly" class="input-small" value="{{leavingEarly}}" placeholder="00:00" data-bind="value:leavingEarly,events:['keyup']" disabled />
     <label for="txtLeavingEarlyMotive">Leaving Early Motive</label>
     <textarea type="text" id="txtLeavingEarlyMotive" rows="10" class="input-xxlarge" placeholder="Motive to leaving early..." data-bind="value:leavingEarlyMotive,events:['keyup']">{{leavingEarlyMotive}}</textarea>
 

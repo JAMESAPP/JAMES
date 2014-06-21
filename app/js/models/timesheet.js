@@ -5,7 +5,7 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			// TODO implement today for date
-			date: null
+			date: App.dateFormat(new Date())
 			// TODO implement now for startTime
 			, startTime: null
 			, startTimeMotive: null
@@ -21,7 +21,7 @@ define([
 			if (attr.date == '')
 				return 'Date can\'t be empty';
 
-			if (attr.startTime == '' && attr.endTime == '' && attr.leavingEarly == '')
+			if (attr.startTime == '' && attr.endTime == '' && (attr.leavingEarly == '' || attr.leavingEarly == null))
 				return 'startTime && endTime && leavingEarly can\'t be empty!';
 		}
     });

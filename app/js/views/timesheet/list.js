@@ -23,6 +23,8 @@ define([
 			// Total Days Late to Work
 			var modelStart;
 			var configStart = Moment(Config.timesheet.startTime, 'HH:mm');
+
+			// FIXME not working anymore... I have no clue... :'(
 			var later = _.filter(this.collection.toJSON(), function(model) {
 				modelStart = Moment(model.startTime, 'HH:mm');
 				return Moment(modelStart).isAfter(configStart);
@@ -134,8 +136,6 @@ define([
 			// attrToView.balance = totalExtraTime.subtract(totalTimeLeavingEarly);
 
 			// // Status
-			// // TODO implement it!
-			// // until 8 days late to work and less than 45 minutes total minutes after: good else: bad
 			attrToView.status = 'success';
 
 			if (later.length > 8 || totalMinutesLaterAfterStart.minutes() > 45)
