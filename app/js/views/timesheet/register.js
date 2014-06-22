@@ -22,6 +22,7 @@ define([
 		, events: function() {
 			return _.extend({}, RegisterView.prototype.events, {
 				'change .timeMask': 'discountTime'
+				, 'click #inputDiscountAllDay': 'discountAllDay'
 			});
 		}
 		, discountTime: function(ev) {
@@ -38,16 +39,34 @@ define([
 
 			if (durationWorkDay._milliseconds > 0) {
 				this.$el.find('#inputLeavingEarly').val('00:00');
-				this.$el.find('#txtLeavingEarlyMotive').fadeOut();
+				this.$el.find('#divLeavingEarlyMotive').fadeOut();
 			} else {
 				this.$el.find('#inputLeavingEarly').val(durationWorkDay.hours().toString().replace('-', '') + ':' + durationWorkDay.minutes().toString().replace('-', ''));
-				this.$el.find('#txtLeavingEarlyMotive').fadeIn();
-
-				// self.$el.find('#spanMessage').html('Ow boy! We got a error.. <strong>' + e.srcElement.error.message + '</strong>').fadeIn().delay(5000).fadeOut();
+				this.$el.find('#divLeavingEarlyMotive').fadeIn();
 			}
 
 			this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
-console.log(this.model.attributes);
+		}
+		, discountAllDay: function(ev) {
+			if (this.$el.find('#inputDiscountAllDay').is(':checked')) {
+				this.$el.find('#divStartEndDay').fadeOut();
+
+				this.model.set('startTime', null);
+				this.model.set('startTimeMotive', null);
+				this.model.set('endTime', null);
+				this.model.set('endTimeMotive', null);
+
+				this.$el.find('#inputLeavingEarly').val(Config.timesheet.workload);
+				this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
+				this.$el.find('#txtLeavingEarlyMotive').val('Discounted all day.');
+				this.model.set('leavingEarlymotive', this.$el.find('#inputLeavingEarly').val());
+			} else {
+				this.$el.find('#divStartEndDay').fadeIn();
+				this.$el.find('#inputLeavingEarly').val('00:00');
+				this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
+				this.$el.find('#txtLeavingEarlyMotive').val('');
+				this.model.set('leavingEarlymotive', this.$el.find('#inputLeavingEarly').val());
+			}
 		}
 	});
 
