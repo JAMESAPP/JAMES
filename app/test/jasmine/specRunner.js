@@ -19,7 +19,7 @@ require.config({
 		// Test
 		, 'jasmine': '../test/jasmine/lib/jasmine-1.3.0/jasmine'
 		, 'jasmine-html': '../test/jasmine/lib/jasmine-1.3.0/jasmine-html'
-		, 'spec': 'spec/'
+		, 'spec': '../test/jasmine/spec'
 	},
 	shim: {
 		// LIBS
@@ -185,6 +185,14 @@ require([
 	, 'jquery'
 	, 'jasmine-html'
 	, '../test/jasmine/spec/appSpec'
+	, '../test/jasmine/spec/crudSpec'
+	, '../test/jasmine/spec/expenseSpec'
+	, '../test/jasmine/spec/foodSpec'
+	, '../test/jasmine/spec/googleDriveSpec'
+	, '../test/jasmine/spec/grocerySpec'
+	, '../test/jasmine/spec/gymSpec'
+	, '../test/jasmine/spec/motorcycleSpec'
+	, '../test/jasmine/spec/timesheetSpec'
 ], function(_, $, Jasmine){
     var jasmineEnv = Jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
