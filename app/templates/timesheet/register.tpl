@@ -11,11 +11,23 @@
 	<div id="divStartEndDay">
       <label for="inputStartTime">Start Time</label>
       <input type="text" id="inputStartTime" class="input-small timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
+      <label for="inputStartTimeMachine">Machine Start Time</label>
+      <select id="selectStartTimeMachine" data-bind="value:startTimeMachine,events:['change']">
+	    {{#each selectStartTimeMachine}}
+	    <option value="{{value}}">{{label}}</option>
+	    {{/each}}
+	  </select>
       <label for="txtStartTimeMotive">Start Time Motive</label>
       <textarea type="text" id="txtStartTimeMotive" rows="10" class="input-xxlarge" placeholder="Motive to start early..." data-bind="value:startTimeMotive,events:['keyup']">{{startTimeMotive}}</textarea>
 
       <label for="inputEndTime">End Time</label>
       <input type="text" id="inputEndTime" class="input-small timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
+      <label for="inputEndTimeMachine">Machine End Time</label>
+      <select id="selectEndTimeMachine" data-bind="value:endTimeMachine,events:['change']">
+	    {{#each selectEndTimeMachine}}
+	    <option value="{{value}}">{{label}}</option>
+	    {{/each}}
+	  </select>
       <label for="txtEndTimeMotive">End Time Motive</label>
       <textarea type="text" id="txtEndTimeMotive" rows="10" class="input-xxlarge" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
 	</div>

@@ -4,11 +4,12 @@ define([
 	, 'moment'
 	, 'app'
 	, 'config'
+	, 'collections/machines'
 	, 'views/register'
 	, 'text!../../../templates/timesheet/register.tpl'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, Moment, App, Config, RegisterView, Template) {
+], function (Marionette, _, Moment, App, Config, MachinesCollection, RegisterView, Template) {
 	var ItemView = RegisterView.extend({
 		template: Template
 		, objectStore: 'timesheets'
@@ -18,6 +19,27 @@ define([
 			this.$el.find('#inputStartTime').mask('##:##');
 			this.$el.find('#inputEndTime').mask('##:##');
 			this.$el.find('#inputLeavingEarly').mask('##:##');
+		}
+		, serializeData: function() {
+			var attrToView = _.clone(this.attributes) || {};
+
+			var machinesCollection = new MachinesCollection();
+			machinesCollection.fetch({async: false});
+
+			attrToView.selectStartTimeMachine = machinesCollection.toJSON();
+			// TODO implement add actual startTimeMachine to top of array!
+			// attrToView.selectStartTimeMachine.unshift(attrToView.startTimeMachine);
+
+			attrToView.selectEndTimeMachine = machinesCollection.toJSON();
+			// TODO implement add actual endTimeMachine to top of array!
+			// attrToView.selectEndTimeMachine.unshift(attrToView.endTimeMachine);
+
+			// TODO implement for edit
+			// console.log(attrToView);
+			// console.log(attrToView.selectStartTimeMachine);
+			// console.log(attrToView.selectEndTimeMachine);
+
+			return attrToView;
 		}
 		, events: function() {
 			return _.extend({}, RegisterView.prototype.events, {
