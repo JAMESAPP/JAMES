@@ -27,14 +27,21 @@ define([
 			machinesCollection.fetch({async: false});
 
 			attrToView.selectStartTimeMachine = machinesCollection.toJSON();
-			// TODO implement add actual startTimeMachine to top of array!
-			// attrToView.selectStartTimeMachine.unshift(attrToView.startTimeMachine);
+			var top = _.filter(machinesCollection.toJSON(), function(machine){
+				return machine.value == attrToView.startTimeMachine;
+			});
+			if (attrToView.startTimeMachine != undefined)
+				attrToView.selectStartTimeMachine.unshift(top[0]);
 
 			attrToView.selectEndTimeMachine = machinesCollection.toJSON();
-			// TODO implement add actual endTimeMachine to top of array!
-			// attrToView.selectEndTimeMachine.unshift(attrToView.endTimeMachine);
+			top = _.filter(machinesCollection.toJSON(), function(machine){
+				return machine.value == attrToView.endTimeMachine;
+			});
+			if (attrToView.endTimeMachine != undefined)
+				attrToView.selectEndTimeMachine.unshift(top[0]);
 
-			// TODO implement for edit
+			// TODO implement filter for repeated element in combo
+
 			// console.log(attrToView);
 			// console.log(attrToView.selectStartTimeMachine);
 			// console.log(attrToView.selectEndTimeMachine);

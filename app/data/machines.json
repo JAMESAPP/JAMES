@@ -1,7 +1,7 @@
 [
 	{"label": "PAÇO Downstairs Machine Left 01", "value": "PACO_FLOOR-00_LEFT-01"},
 	{"label": "PAÇO Downstairs Machine Right 01", "value": "PACO_FLOOR-00_RIGHT-01"},
-	{"label": "PAÇO 1st Floor Machine Left 01", "value": "PACO_FLOOR-00_LEFT-01"},
+	{"label": "PAÇO 1st Floor Machine Left 01", "value": "PACO_FLOOR-01_LEFT-01"},
 	{"label": "PAÇO 1st Floor Machine Right 01", "value": "PACO_FLOOR-01_RIGHT-01"},
 	{"label": "PAÇO 2nd Floor Machine Left 01", "value": "PACO_FLOOR-02_LEFT-01"},
 	{"label": "PAÇO 2nd Floor Machine Right 01", "value": "PACO_FLOOR-02_RIGHT-01"},
