@@ -1,8 +1,15 @@
 // define(['../../../../js/app'], function (App) {
-define(['app'
-], function (App) {
+define([
+	'app'
+	, 'collections/generic'
+	, 'text!../../../../../../../data/test/timesheet/noDaysLater.json'
+	, 'text!../../../../../../../data/test/timesheet/withDaysLater.json'
+], function (App, TimesheetCollection, NoDaysLater, WithDaysLater) {
 	return describe('Timesheet.', function() {
 		describe('View', function() {
+			var noDayLaterToWork = new TimesheetCollection(JSON.parse(NoDaysLater));
+			var withDayLaterToWork = new TimesheetCollection(JSON.parse(WithDaysLater));
+
 			it('Should return total days late to work.', function() {
 				return true;
 			});

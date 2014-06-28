@@ -173,18 +173,14 @@ define([
 		}
 		, balance: function(totalExtraTime, totalLeavingEarly) {
 			totalExtraTime.subtract(totalLeavingEarly);
-console.log(totalExtraTime.hours());
-console.log(totalExtraTime.minutes());
 			return totalExtraTime.hours() + ':' + totalExtraTime.minutes();
 		}
 		, status: function(daysLateToWork, totalMinutesLaterAfterStart) {
 			var status = 'success';
 
-			// if (later.length > 8 || totalMinutesLaterAfterStart.minutes() > 45)
 			if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
 				status = 'important';
 
-			// if (later.length > 0 && totalMinutesLaterAfterStart.minutes() <= 45)
 			if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
 				status = 'warning';
 
