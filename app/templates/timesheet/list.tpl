@@ -5,7 +5,7 @@
     </ul>
 </div>
 <div class="row">
-  <div class="span9">
+  <div class="span8">
 	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 	<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
   </div>
@@ -22,11 +22,11 @@
 <br />
 <div id="divPainel" class="row">
   <div class="span2">
-	Total Days Late to Work <br />
-	<span class="label label-{{status}}">{{totalLater}}</span>
+	Days Late to Work <br />
+	<span class="label label-{{status}}">{{totalDaysLateToWork}}</span>
   </div>
   <div class="span2">
-	Total Minutes After Start <br />
+	Minutes After Start <br />
 	<span class="label label-{{status}}">{{totalMinutesLaterAfterStart}}</span>
   </div>
   <div class="span2">

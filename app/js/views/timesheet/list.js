@@ -18,130 +18,32 @@ define([
 		itemView: itemView,
 		objectStore: 'timesheet'
 		, serializeData: function() {
-			var attrToView = _.clone(this.attributes) || {};
+			var attrToView = _.clone(this.attributes) || {},
+				modelStart,
+				configStartTime = Moment(Config.timesheet.startTime, 'HH:mm'),
+				configEndTime = Moment(Config.timesheet.endTime, 'HH:mm');
+			;
 
 			// Total Days Late to Work
-			var modelStart;
-			var configStart = Moment(Config.timesheet.startTime, 'HH:mm');
-
-			var later = _.filter(this.collection.toJSON(), function(model) {
-				modelStart = Moment(model.startTime, 'HH:mm');
-				return Moment(modelStart).isAfter(configStart);
-			});
-			attrToView.totalLater = later.length;
+			var daysLateToWork = this.daysLateToWork(this.collection.toJSON(), configStartTime);
+			attrToView.totalDaysLateToWork = daysLateToWork.length;
 
 			// Total Minutes After Start
-			var totalMinutesLateByDay;
-			var totalMinutesLaterAfterStart = Moment('00:00', 'HH:mm');
-			_.forEach(later, function(element, index, list) {
-				totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
-				totalMinutesLateByDay.subtract(configStart);
-				totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
-			});
-			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart.minutes();
+			var totalMinutesLaterAfterStart = this.totalMinutesLaterAfterStart(daysLateToWork, configStartTime);
+			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart;
 
 			// Total Extra Time
-			// Extra time before start
-			var daysWithExtraTimeBeforeStart = _.filter(this.collection.toJSON(), function(model) {
-				modelStart = Moment(model.startTime, 'HH:mm');
-				return Moment(modelStart).isBefore(configStart);
-			});
-			var hours;
-			var minutes;
-			var startTimeDay;
-			var officialStartTime;
-			var totalExtraTimeBeforeStart = Moment('00:00', 'HH:mm');
-			_.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
-				startTimeDay = Moment(element.date + ' ' + element.startTime, 'DD-MM-YYYY HH:mm');
-				officialStartTime = Moment(element.date + ' ' + Config.timesheet.startTime, 'DD-MM-YYYY HH:mm');
-				officialStartTime.subtract(startTimeDay);
-
-				hours = officialStartTime.hours();
-
-				minutes = officialStartTime.minutes();
-				if (minutes < 21)
-					minutes = 0;
-				else if (minutes < 41)
-					minutes = 30;
-				else
-					minutes = 60;
-
-				totalExtraTimeBeforeStart.add('hours', hours);
-				totalExtraTimeBeforeStart.add('minutes', minutes);
-			});
-
-			// console.log(totalExtraTimeBeforeStart.hours());
-			// console.log(totalExtraTimeBeforeStart.minutes());
-
-			// Extra time after end
-			var configEndTime = Moment(Config.timesheet.endTime, 'HH:mm');
-			var modelEnd;
-			var daysWithExtraTimeAfterEnd = _.filter(this.collection.toJSON(), function(model) {
-				modelEnd = Moment(model.endTime, 'HH:mm');
-				return Moment(modelEnd).isAfter(configEndTime);
-			});
-
-			var endTimeDay;
-			var officialEndTime;
-			var totalExtraTimeAfterEnd = Moment('00:00', 'HH:mm');
-			_.forEach(daysWithExtraTimeAfterEnd, function(element, index, list) {
-				endTimeDay = Moment(element.date + ' ' + element.endTime, 'DD-MM-YYYY HH:mm');
-				officialEndTime = Moment(element.date + ' ' + Config.timesheet.endTime, 'DD-MM-YYYY HH:mm');
-				endTimeDay.subtract(officialEndTime);
-
-				hours = endTimeDay.hours();
-
-				minutes = endTimeDay.minutes();
-				if (minutes < 21)
-					minutes = 0;
-				else if (minutes < 41)
-					minutes = 30;
-				else
-					minutes = 60;
-
-				totalExtraTimeAfterEnd.add('hours', hours);
-				totalExtraTimeAfterEnd.add('minutes', minutes);
-			});
-			// console.log(totalExtraTimeAfterEnd.hours());
-			// console.log(totalExtraTimeAfterEnd.minutes());
-
-			// Finally, the total of extra time!
-			var totalMinutes = Moment('00:00', 'HH:mm');
-			totalMinutes.add(totalExtraTimeBeforeStart.minutes(), 'minutes');
-			totalMinutes.add(totalExtraTimeAfterEnd.minutes(), 'minutes');
-			var totalExtraTime = totalExtraTimeBeforeStart.hours() + totalExtraTimeAfterEnd.hours() + totalMinutes.hours();
-
-			attrToView.totalExtraTime = totalExtraTime + ':' + totalMinutes.minutes();
+			// , totalExtraTime: function(timesheets, configStartTime, configEndTime) {
+			attrToView.totalExtraTime = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime);
 
 			// Total Leaving Early
-			var leavingEarly;
-			var daysWithLeavingEarly = _.filter(this.collection.toJSON(), function(model) {
-				// TODO if total hours worked <= workload then must discount those hours!
-				leavingEarly = Moment(model.date + ' ' + model.leavingEarly, 'DD-MM-YYYY HH:mm');
+			attrToView.totalLeavingEarly = this.totalTimeLeavingEarly(this.collection.toJSON());
 
-				return leavingEarly.hours() > 0 || leavingEarly.minutes() > 0;
-			});
-			var totalTimeLeavingEarly = Moment.duration(0, 'hours');
-			_.forEach(daysWithLeavingEarly, function(element, index, list) {
-				leavingEarly = Moment(element.date + ' ' + element.leavingEarly, 'DD-MM-YYYY HH:mm');
+			// Balance
+			attrToView.balance = this.balance(Moment.duration(attrToView.totalExtraTime), Moment.duration(attrToView.totalLeavingEarly));
 
-				totalTimeLeavingEarly.add(leavingEarly.hours(), 'hours');
-				totalTimeLeavingEarly.add(leavingEarly.minutes(), 'minutes');
-			});
-			attrToView.totalLeavingEarly = totalTimeLeavingEarly.hours() + ':' + totalTimeLeavingEarly.minutes();
-
-			// // Balance
-			// // TODO implment it!
-			// attrToView.balance = totalExtraTime.subtract(totalTimeLeavingEarly);
-
-			// // Status
-			attrToView.status = 'success';
-
-			if (later.length > 8 || totalMinutesLaterAfterStart.minutes() > 45)
-				attrToView.status = 'important';
-
-			if (later.length > 0 && totalMinutesLaterAfterStart.minutes() <= 45)
-				attrToView.status = 'warning';
+			// Status
+			attrToView.status = this.status(daysLateToWork, totalMinutesLaterAfterStart);
 
 			// TODO filter by month
 			attrToView.selectMonth = [
@@ -161,7 +63,133 @@ define([
 
 			return attrToView;
 		}
+		, daysLateToWork: function(timesheets, configStartTime) {
+			var modelStart;
+			var later = _.filter(this.collection.toJSON(), function(model) {
+				modelStart = Moment(model.startTime, 'HH:mm');
+				return Moment(modelStart).isAfter(configStartTime);
+			});
 
+			return later;
+		}
+		, totalMinutesLaterAfterStart: function(later, configStartTime) {
+			var totalMinutesLateByDay;
+			var totalMinutesLaterAfterStart = Moment('00:00', 'HH:mm');
+			_.forEach(later, function(element, index, list) {
+				totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
+				totalMinutesLateByDay.subtract(configStartTime);
+				totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
+			});
+			return totalMinutesLaterAfterStart.minutes();
+		}
+		, totalExtraTime: function(timesheets, configStartTime, configEndTime) {
+			var hours,
+				minutes,
+				checkin,
+				startTimeDay,
+				officialStartTime,
+
+				checkout,
+				endTimeDay,
+				officialEndTime
+			;
+
+			// Extra time before start
+			var totalExtraTimeBeforeStart = Moment('00:00', 'HH:mm');
+			var daysWithExtraTimeBeforeStart = _.filter(timesheets, function(timesheet) {
+				checkin = Moment(timesheet.startTime, 'HH:mm');
+				return Moment(checkin).isBefore(configStartTime);
+			});
+
+			_.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
+				startTimeDay = Moment(element.date + ' ' + element.startTime, 'DD-MM-YYYY HH:mm');
+				officialStartTime = Moment(element.date + ' ' + Config.timesheet.startTime, 'DD-MM-YYYY HH:mm');
+				officialStartTime.subtract(startTimeDay);
+
+				hours = officialStartTime.hours();
+
+				minutes = officialStartTime.minutes();
+				if (minutes < 21)
+					minutes = 0;
+				else if (minutes < 41)
+					minutes = 30;
+				else
+					minutes = 60;
+
+				totalExtraTimeBeforeStart.add('hours', hours);
+				totalExtraTimeBeforeStart.add('minutes', minutes);
+			});
+
+			// Extra time after end
+			var daysWithExtraTimeAfterEnd = _.filter(timesheets, function(timesheet) {
+				checkout = Moment(timesheet.endTime, 'HH:mm');
+				return Moment(checkout).isAfter(configEndTime);
+			});
+			var totalExtraTimeAfterEnd = Moment('00:00', 'HH:mm');
+			_.forEach(daysWithExtraTimeAfterEnd, function(element, index, list) {
+				endTimeDay = Moment(element.date + ' ' + element.endTime, 'DD-MM-YYYY HH:mm');
+				officialEndTime = Moment(element.date + ' ' + Config.timesheet.endTime, 'DD-MM-YYYY HH:mm');
+				endTimeDay.subtract(officialEndTime);
+
+				hours = endTimeDay.hours();
+
+				minutes = endTimeDay.minutes();
+				if (minutes < 21)
+					minutes = 0;
+				else if (minutes < 41)
+					minutes = 30;
+				else
+					minutes = 60;
+
+				totalExtraTimeAfterEnd.add('hours', hours);
+				totalExtraTimeAfterEnd.add('minutes', minutes);
+			});
+
+			// Finally, the total of extra time!
+			var totalMinutes = Moment('00:00', 'HH:mm');
+			totalMinutes.add(totalExtraTimeBeforeStart.minutes(), 'minutes');
+			totalMinutes.add(totalExtraTimeAfterEnd.minutes(), 'minutes');
+			var totalExtraTime = totalExtraTimeBeforeStart.hours() + totalExtraTimeAfterEnd.hours() + totalMinutes.hours();
+
+			return totalExtraTime + ':' + totalMinutes.minutes();
+		}
+		// TODO if total hours worked <= workload then must discount those hours!
+		, totalTimeLeavingEarly: function(timesheets) {
+			var leavingEarly,
+				daysWithLeavingEarly = _.filter(timesheets, function(timesheet) {
+				leavingEarly = Moment(timesheet.date + ' ' + timesheet.leavingEarly, 'DD-MM-YYYY HH:mm');
+
+				return leavingEarly.hours() > 0 || leavingEarly.minutes() > 0;
+			});
+			var totalTimeLeavingEarly = Moment.duration(0, 'hours');
+			_.forEach(daysWithLeavingEarly, function(element, index, list) {
+				leavingEarly = Moment(element.date + ' ' + element.leavingEarly, 'DD-MM-YYYY HH:mm');
+
+				totalTimeLeavingEarly.add(leavingEarly.hours(), 'hours');
+				totalTimeLeavingEarly.add(leavingEarly.minutes(), 'minutes');
+			});
+
+			return totalTimeLeavingEarly.hours() + ':' + totalTimeLeavingEarly.minutes();
+		}
+		, balance: function(totalExtraTime, totalLeavingEarly) {
+			totalExtraTime.subtract(totalLeavingEarly);
+console.log(totalExtraTime.hours());
+console.log(totalExtraTime.minutes());
+			return totalExtraTime.hours() + ':' + totalExtraTime.minutes();
+		}
+		, status: function(daysLateToWork, totalMinutesLaterAfterStart) {
+			var status = 'success';
+
+			// if (later.length > 8 || totalMinutesLaterAfterStart.minutes() > 45)
+			if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
+				status = 'important';
+
+			// if (later.length > 0 && totalMinutesLaterAfterStart.minutes() <= 45)
+			if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
+				status = 'warning';
+
+			return status;
+		}
 	});
 
 	return CompositeView;
