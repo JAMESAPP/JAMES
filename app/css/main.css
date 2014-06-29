@@ -1,10 +1,9 @@
-/* @import url('../js/libs/bootstrap/docs/assets/css/bootstrap.css'); */
-/*@import url('../js/libs/bootstrap/docs/assets/css/bootstrap-responsive.css');*/
+@import url('../js/libs/bower/bootstrap/dist/css/bootstrap.min.css');
+@import url('../js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css');
+/* @import url('bootstrap-min.css'); */
+/* @import url('bootstrap-responsive-min.css'); */
 
-@import url('bootstrap-min.css');
-@import url('bootstrap-responsive-min.css');
-
-/*BOOTSTRAP MODIFICATIONS*/
+BOOTSTRAP MODIFICATIONS
 ul, ol {
 		margin: 0;
 }
@@ -197,32 +196,32 @@ div.center {
 		width: 30em;
 }
 
-img.center {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-}
+/* img.center { */
+/* 		display: block; */
+/* 		margin-left: auto; */
+/* 		margin-right: auto; */
+/* } */
 
-.displayed {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		min-height: 10em;
-		display: table-cell;
-		vertical-align: middle;
-}
+/* .displayed { */
+/* 		display: block; */
+/* 		margin-left: auto; */
+/* 		margin-right: auto; */
+/* 		min-height: 10em; */
+/* 		display: table-cell; */
+/* 		vertical-align: middle; */
+/* } */
 
-.resultado {
-		font-size: 36px;
-}
+/* .resultado { */
+/* 		font-size: 36px; */
+/* } */
 
-.error-meme {
-		width: 200px;
-		height: 200px;
-		display: block;
-		margin-left: auto;
-		margin-right: auto
-}
+/* .error-meme { */
+/* 		width: 200px; */
+/* 		height: 200px; */
+/* 		display: block; */
+/* 		margin-left: auto; */
+/* 		margin-right: auto */
+/* } */
 /* END YAWECAPP */
 
 /* FOOTER */
@@ -237,6 +236,8 @@ img.center {
 	height: 100%;
 	margin-bottom: -71px;
 	padding: 0 !important;
+
+	/* width: 50%; */
 }
 
 /* END FOOTER */

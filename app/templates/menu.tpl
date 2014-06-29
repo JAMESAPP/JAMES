@@ -1,45 +1,25 @@
-<div class="navbar-inner">
-	<div class="container-fluid">
-		<a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</a>
-		<ul class="nav">
-			<a href="#">
-				<li>
-					<img src="app/img/logo.png" id="yawecapp_logo" width="40px"></img>
-				</li>
-			</a>
-		</ul>
-		<a class="brand" href="#about">James</a>
-		<div class="nav-collapse collapse">
-			<ul class="nav">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Daily Activity <b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="dropdown"><a href="#expenses">Expenses</a></li>
-						<li class="dropdown"><a href="#foods">Foods</a></li>
-						<li class="dropdown"><a href="#motorcycles">Motorcycles</a></li>
-						<li class="dropdown"><a href="#gyms">Gym</a></li>
-						<li class="dropdown"><a href="#timesheets">Timesheets</a></li>
-						<li class="dropdown"><a href="#">Groceries</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="#timesheets">Timesheets</a>
-				</li>
-				<li>
-					<a href="#timesheet/new">NEW Timesheets</a>
-				</li>
-				<li>
-					<a href="#about">About</a>
-				</li>
-			</ul>
-		</div><!--/.nav-collapse -->
-	</div>
-</div>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="app/img/logo.png" id="logo" width="35px"> James</img></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+		<li><a href="#expenses"><span class="glyphicon glyphicon-usd"></span></a></li>
+		<li><a href="#foods"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+		<li><a href="#groceries"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+		<li><a href="#gyms"><span class="glyphicon glyphicon-flag"></span></a></li>
+		<li><a href="#motorcycles"><span class="glyphicon glyphicon-road"></span></a></li>
+		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
