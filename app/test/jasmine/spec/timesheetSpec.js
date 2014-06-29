@@ -15,41 +15,40 @@ define([
 				;
 
 			describe('Painel', function() {
-
 				describe('Total Days Late To Work.', function() {
 				var noDayLaterToWork = new TimesheetCollection(JSON.parse(NoDaysLater))
 					, withDayLaterToWork = new TimesheetCollection(JSON.parse(WithDaysLater))
 					;
 
 					it('Should detect that has one or more day late to work.', function() {
-						return listView.daysLateToWork(withDayLaterToWork.toJSON(), configStartTime).length == 1;
+						expect(listView.daysLateToWork(withDayLaterToWork.toJSON(), configStartTime).length).toEqual(1);
 					});
 
 					it('Should return that has no day late to work.', function() {
-						return listView.daysLateToWork(noDayLaterToWork.toJSON(), configStartTime).length == 0;
+						expect(listView.daysLateToWork(noDayLaterToWork.toJSON(), configStartTime).length).toEqual(0);
 					});
 				});
 
 				describe('Total Minutes After Start.', function() {
-					it('Should return total minutes after start.', function() {
+					it('Should implement test!', function() {
 						return true;
 					});
 				});
 
 				describe('Total Extra Time.', function() {
-					it('Should return total extra time.', function() {
+					it('Should implement test!', function() {
 						return true;
 					});
 				});
 
 				describe('Total Leaving Early.', function() {
-					it('Should return total leaving early.', function() {
+					it('Should implement test!', function() {
 						return true;
 					});
 				});
 
 				describe('Status.', function() {
-					it('Should return status.', function() {
+					it('Should implement test!', function() {
 						return true;
 					});
 				});
