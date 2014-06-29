@@ -76,9 +76,7 @@ require.config({
 });
 
 require([
-	'require' // FIXME underscore instead?
-	, 'jquery'
-	, 'jasmine-html'
+	'jasmine-html'
 	, '../test/jasmine/spec/appSpec'
 	, '../test/jasmine/spec/crudSpec'
 	, '../test/jasmine/spec/expenseSpec'
@@ -88,7 +86,7 @@ require([
 	, '../test/jasmine/spec/gymSpec'
 	, '../test/jasmine/spec/motorcycleSpec'
 	, '../test/jasmine/spec/timesheetSpec'
-], function(_, $, Jasmine){
+], function(Jasmine) {
     var jasmineEnv = Jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
 

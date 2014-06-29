@@ -64,10 +64,10 @@ define([
 			return attrToView;
 		}
 		, daysLateToWork: function(timesheets, configStartTime) {
-			var modelStart;
-			var later = _.filter(this.collection.toJSON(), function(model) {
-				modelStart = Moment(model.startTime, 'HH:mm');
-				return Moment(modelStart).isAfter(configStartTime);
+			var checkin;
+			var later = _.filter(timesheets, function(timesheet) {
+				checkin = Moment(timesheet.startTime, 'HH:mm');
+				return Moment(checkin).isAfter(configStartTime);
 			});
 
 			return later;
