@@ -5,11 +5,11 @@
     </ul>
 </div>
 <div class="row">
-  <div class="span8">
+  <div class="col-md-8">
 	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 	<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
 	<!-- <label for="inputMonth">Month</label> -->
 	<select id="selectMonth" data-bind="value:category,events:['change']">
 	  {{#each selectMonth}}
@@ -21,27 +21,27 @@
 <br />
 <br />
 <div id="divPainel" class="row">
-  <div class="span2">
+  <div class="col-md-2">
 	Days Late to Work <br />
 	<span class="label label-{{status}}">{{totalDaysLateToWork}}</span>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
 	Minutes After Start <br />
 	<span class="label label-{{status}}">{{totalMinutesLaterAfterStart}}</span>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
 	Total Extra Time <br />
 	<span class="label label-info">{{totalExtraTime}}</span>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
 	Total Leaving Early <br />
 	<span class="label label-default">{{totalLeavingEarly}}</span>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
 	Balance <br />
 	<span class="label label-inverse">{{balance}}</span>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
 	Status <br />
 	<span class="label label-{{status}}">{{status}}</span>
   </div>

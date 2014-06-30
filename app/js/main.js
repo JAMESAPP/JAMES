@@ -85,5 +85,5 @@ require([
 	// Backbone.history.start({ pushState: true });
 
 	App.menuRegion.show(new MenuView());
-	// App.footerRegion.show(new FooterView());
+	App.footerRegion.show(new FooterView());
 });
