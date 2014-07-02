@@ -1,6 +1,4 @@
-<td>{{id}}</td>
 <td>{{date}}</td>
 <td>{{startTime}}</td>
 <td>{{endTime}}</td>
-<td>{{leavingEarly}}</td>
-<td><a href="#timesheet/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i></a>&nbsp;<a id="{{id}}" href="#" class="btn btn-danger" data-entity="{{id}}"><i class="icon-trash icon-white"></i></a></td>
+<td><a href="#timesheet/{{id}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;<a id="{{id}}" href="#" class="btn btn-danger" data-entity="{{id}}"><span class="glyphicon glyphicon-trash"></a></td>
