@@ -2,17 +2,23 @@
     <h1>Timesheet</h1>
     <div class="row">
         <label for="inputDate">Date</label><br />
-        <input type="text" id="inputDate" class="input-small dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
+        <input type="text" id="inputDate" class="col-xs-1 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']" />
     </div>
-    <label class="checkbox">
-        <input id="inputDiscountAllDay" type="checkbox" value=""> Discount all day!
-    </label>
+    <div class="checkbox">
+        <label>
+            <input id="inputDiscountAllDay" type="checkbox" value=""> Discount all day!
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input id="inputOfficialShift" type="checkbox" value="">Official Shift? 
+        </label>
+    </div>
     <hr />
 	<div id="divStartEndDay">
         <div class="row">
-            <label>Start Time<br />
-                <input type="text" id="inputStartTime" class="input-small timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
-            </label>
+            <label>Start Time</label><br />
+            <input type="text" id="inputStartTime" class="col-xs-1 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
         </div>
         <div class="row">
             <label for="inputStartTimeMachine">Machine Start Time</label><br />
@@ -29,7 +35,7 @@
 
         <div class="row">
             <label for="inputEndTime">End Time</label><br />
-            <input type="text" id="inputEndTime" class="input-small timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
+            <input type="text" id="inputEndTime" class="col-xs-1 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
         </div>
         <div class="row">
             <label for="inputEndTimeMachine">Machine End Time</label><br />
@@ -48,6 +54,7 @@
         <label for="inputLeavingEarly">Leaving Early</label><br />
     	<input type="text" id="inputLeavingEarly" class="input-small" value="{{leavingEarly}}" placeholder="00:00" data-bind="value:leavingEarly,events:['keyup']" disabled />
     </div>
+    <!-- TODO remove it &#45; no sense! Use end time motive... -->
 	<div id="divLeavingEarlyMotive">
         <div class="row">
             <label for="txtLeavingEarlyMotive">Leaving Early Motive</label><br />
