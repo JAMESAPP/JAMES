@@ -87,14 +87,10 @@ define([
 
 				this.$el.find('#inputLeavingEarly').val(Config.timesheet.workload);
 				this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
-				this.$el.find('#txtLeavingEarlyMotive').val('Discounted all day.');
-				this.model.set('leavingEarlymotive', this.$el.find('#inputLeavingEarly').val());
 			} else {
 				this.$el.find('#divStartEndDay').fadeIn();
 				this.$el.find('#inputLeavingEarly').val('00:00');
 				this.model.set('leavingEarly', this.$el.find('#inputLeavingEarly').val());
-				this.$el.find('#txtLeavingEarlyMotive').val('');
-				this.model.set('leavingEarlymotive', this.$el.find('#inputLeavingEarly').val());
 			}
 		}
 	});

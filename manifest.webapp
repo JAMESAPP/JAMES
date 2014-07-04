@@ -1,4 +1,5 @@
 {
+	"version": "0.0.2",
 	"name": "JAMES",
 	"description": "JAMES - Your Personal Assistant",
 	"launch_path": "/index.html",

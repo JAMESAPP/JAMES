@@ -14,6 +14,13 @@
 *** DONE Basic CRUD
 *** TODO Painel
 *** TODO calc for leaving early
+*** TODO filter by month
+*** TODO use input type time and date
+*** TODO implement official shift
+*** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Groceries
 * TODO Graphic Design
-** TODO Rename project to JAMES
+** DONE Rename project to JAMES
+** Migrate to bootstrap 3
+*** DONE Start use new lib
+*** TODO Fix layout errors

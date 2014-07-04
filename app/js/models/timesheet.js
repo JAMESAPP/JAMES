@@ -14,8 +14,7 @@ define([
 			, endTimeMachine: 'PACO_FLOOR-00_LEFT-01'
 			, endTimeMotive: null
 			, leavingEarly: null
-			, leavingEarlyMotive: null
-			, observation: null
+			, officialShift: true
 		}
 
 		, validade: function(attr, options) {

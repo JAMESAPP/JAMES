@@ -1,27 +1,40 @@
 <div id="divRegister" class="container">
     <h1>Timesheet</h1>
     <div class="row">
-        <label for="inputDate">Date</label><br />
-        <input type="text" id="inputDate" class="col-xs-1 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']" />
+        <div class="col-xs-6">
+            <label for="inputDate">Date</label><br />
+            <input type="text" id="inputDate" class="col-xs-12 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']" />
+        </div>
+        <div class="col-xs-6">
+            <label for="inputLeavingEarly">Leaving Early</label><br />
+        	<input type="text" id="inputLeavingEarly" class="col-xs-12" value="{{leavingEarly}}" placeholder="00:00" data-bind="value:leavingEarly,events:['keyup']" disabled />
+        </div>
     </div>
-    <div class="checkbox">
-        <label>
-            <input id="inputDiscountAllDay" type="checkbox" value=""> Discount all day!
-        </label>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input id="inputOfficialShift" type="checkbox" value="">Official Shift? 
-        </label>
+    <div id="row">
+        <div class="col-xs-6">
+            <div class="checkbox">
+                <label>
+                    <input id="inputDiscountAllDay" type="checkbox" value=""> Discount all day!
+                </label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="checkbox">
+                <label>
+                    <input id="inputOfficialShift" type="checkbox" value="">Official Shift? 
+                </label>
+            </div>
+        </div>
     </div>
     <hr />
 	<div id="divStartEndDay">
+        <h2>Check-in</h2>
         <div class="row">
-            <label>Start Time</label><br />
-            <input type="text" id="inputStartTime" class="col-xs-1 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
+            <label>Time</label><br />
+            <input type="text" id="inputStartTime" class="col-xs-3 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
         </div>
         <div class="row">
-            <label for="inputStartTimeMachine">Machine Start Time</label><br />
+            <label for="inputStartTimeMachine">Machine</label><br />
             <select id="selectStartTimeMachine" data-bind="value:startTimeMachine,events:['change']">
                 {{#each selectStartTimeMachine}}
                 <option value="{{value}}">{{label}}</option>
@@ -29,16 +42,17 @@
             </select>
         </div>
         <div class="row">
-            <label for="txtStartTimeMotive">Start Time Motive</label><br />
-            <textarea type="text" id="txtStartTimeMotive" rows="10" class="input-xxlarge" placeholder="Motive to start early..." data-bind="value:startTimeMotive,events:['keyup']">{{startTimeMotive}}</textarea>
+            <label for="txtStartTimeMotive">Motive</label><br />
+            <textarea type="text" id="txtStartTimeMotive" rows="10" class="col-xs-12" placeholder="Motive to start early..." data-bind="value:startTimeMotive,events:['keyup']">{{startTimeMotive}}</textarea>
         </div>
 
+        <h2>Check-out</h2>
         <div class="row">
-            <label for="inputEndTime">End Time</label><br />
-            <input type="text" id="inputEndTime" class="col-xs-1 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
+            <label for="inputEndTime">Time</label><br />
+            <input type="text" id="inputEndTime" class="col-xs-3 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
         </div>
         <div class="row">
-            <label for="inputEndTimeMachine">Machine End Time</label><br />
+            <label for="inputEndTimeMachine">Machine</label><br />
             <select id="selectEndTimeMachine" data-bind="value:endTimeMachine,events:['change']">
 	            {{#each selectEndTimeMachine}}
                 <option value="{{value}}">{{label}}</option>
@@ -46,25 +60,10 @@
             </select>
         </div>
         <div class="row">
-            <label for="txtEndTimeMotive">End Time Motive</label><br />
-            <textarea type="text" id="txtEndTimeMotive" rows="10" class="input-xxlarge" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
+            <label for="txtEndTimeMotive">Motive</label><br />
+            <textarea type="text" id="txtEndTimeMotive" rows="10" class="col-xs-12" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
         </div>
 	</div>
-    <div class="row">
-        <label for="inputLeavingEarly">Leaving Early</label><br />
-    	<input type="text" id="inputLeavingEarly" class="input-small" value="{{leavingEarly}}" placeholder="00:00" data-bind="value:leavingEarly,events:['keyup']" disabled />
-    </div>
-    <!-- TODO remove it &#45; no sense! Use end time motive... -->
-	<div id="divLeavingEarlyMotive">
-        <div class="row">
-            <label for="txtLeavingEarlyMotive">Leaving Early Motive</label><br />
-            <textarea type="text" id="txtLeavingEarlyMotive" rows="10" class="input-xxlarge" placeholder="Motive to leaving early..." data-bind="value:leavingEarlyMotive,events:['keyup']">{{leavingEarlyMotive}}</textarea>
-        </div>
-    </div>
-    <div class="row">
-        <label for="txtObservation">Observation</label><br />
-        <textarea type="text" id="txtObservation" rows="10" class="input-xxlarge" placeholder="Observation..." data-bind="value:observation,events:['keyup']">{{observation}}</textarea>
-    </div>
 </div>
 <br />
 <span id="spanMessage"></span>
