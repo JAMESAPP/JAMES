@@ -12,12 +12,13 @@ define([
 	, 'views/gym/list'
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
+	, 'views/backup'
 	, 'models/expense'
 	, 'models/food'
 	, 'models/motorcycle'
 	, 'models/gym'
 	, 'models/timesheet'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel) {
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -39,6 +40,8 @@ define([
 			'timesheets': 'timesheets',
 			'timesheet/new': 'timesheet',
 			'timesheet/:id': 'timesheet'
+
+			, 'backup': 'backup'
 		},
 
 		expenses: function() {
@@ -74,6 +77,10 @@ define([
 		},
 		timesheet: function(id) {
 			this.register(id, 'timesheets', TimesheetModel, TimesheetRegisterView);
+		},
+
+		backup: function() {
+			App.mainRegion.show(new BackupView());
 		},
 
 		list: function(entity, View) {

@@ -17,6 +17,7 @@
 		<li><a href="#gyms"><span class="glyphicon glyphicon-flag"></span></a></li>
 		<li><a href="#motorcycles"><span class="glyphicon glyphicon-road"></span></a></li>
 		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>
+		<li><a href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
       </ul>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
