@@ -148,7 +148,8 @@ define([
 			// 	}
 			// };
 
-			var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
+			// var transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
+			var transaction = App.indexedDB.db.transaction(['expenses'], 'readonly');
 
 			var keyRange = IDBKeyRange.lowerBound(0);
 
@@ -163,8 +164,16 @@ define([
 
 console.log(timesheetStore);
 
+			timesheetStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					timesheets.push(cursor.value);
+					cursor.continue();
+				} else {
+					App.mainRegion.show(new BackupView(expenses, timesheets));
+				}
+			};
 
-			App.mainRegion.show(new BackupView(expenses, timesheets));
 			// App.mainRegion.show(new BackupView(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations));
 		},
 
