@@ -15,4 +15,8 @@
         <br />
         <a id="btnSyncOnDisk" href="#" class="btn btn-info col-xs-12"><i class="glyphicon glyphicon-open"></i> Sync with Disk!</a>
     </div>
+    <br />
+    <div class="row">
+        <span id="spanMessage" class="col-xs-12 text-center"></span> 
+    </div>
 </div>

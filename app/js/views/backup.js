@@ -1,11 +1,10 @@
 define([
-	'underscore'
-	, 'marionette'
+	'marionette'
 	, 'firebase'
 	, 'app'
 	, 'views/bindingView'
 	, 'text!../../templates/backup.tpl'
-], function (_, Marionette, Firebase, App, BidingView, Template) {
+], function (Marionette, Firebase, App, BidingView, Template) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -17,11 +16,82 @@ define([
 		}
 		, template: Template
 
-		, initialize: function(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations) {
+		, initialize: function(/*expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations*/) {
 
-			this.jamesData = _.extend({}, expenses, foods, groceries, gyms, motorcycles, timesheets, configurations);
-			console.log('james data');
-			console.log(this.jamesData);
+			this.expenses = [];
+			this.foods = [];
+			this.groceries = [];
+			this.gyms = [];
+			this.motorcycles = [];
+			this.timesheets = [];
+			this.configurations = [];
+
+			var self = this,
+				transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly'),
+				expenseStore = transaction.objectStore('expenses').openCursor(),
+				foodStore = transaction.objectStore('foods').openCursor(),
+				groceryStore = transaction.objectStore('groceries').openCursor(),
+				gymStore = transaction.objectStore('gyms').openCursor(),
+				motorcycleStore = transaction.objectStore('motorcycles').openCursor(),
+				timesheetStore = transaction.objectStore('timesheets').openCursor(),
+				configurationsStore = transaction.objectStore('configurations').openCursor()
+			;			
+
+			expenseStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.expenses.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			foodStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.foods.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			groceryStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.groceries.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			gymStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.gyms.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			motorcycleStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.motorcycles.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			timesheetStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.timesheets.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			configurationsStore.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.configurations.push(cursor.value);
+					cursor.continue();
+				}
+			};
 
 
 
@@ -87,7 +157,18 @@ define([
 			ev.preventDefault();
 
 			var cloud = new Firebase('https://jamesapp.firebaseIO.com');
-			cloud.set(this.jamesData);
+			cloud.set({
+				expenses: this.expenses
+				, foods: this.foods
+				, groceries: this.groceries
+				, gyms: this.gyms
+				, motorcycles: this.motorcycles
+				, timesheets: this.timesheets
+				, configurations: this.configurations
+			});
+
+			this.$el.find('#spanMessage').addClass('alert alert-success');
+			this.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
 		}
 		, syncWithCloud: function(ev) {
 			ev.preventDefault();

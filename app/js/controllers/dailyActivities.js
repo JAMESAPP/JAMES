@@ -79,102 +79,93 @@ define([
 			this.register(id, 'timesheets', TimesheetModel, TimesheetRegisterView);
 		},
 
+		/*
+		 * First, I have to say sorry for your eyes. I know, this code bellow is ugly...
+		 * But, in my defense, I blame the indexedDB API.
+		 * Why? Because I can't use the synchronous API yet! So, just left me this option bellow...
+		 * If you know a way better to get all data without this workaround, drop me a line: foguinho.peruca@gmail.com
+		 *
+		 */
 		backup: function() {
+// 			var transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
 
-			// var expenses = [],
-			// 	foods = [],
-			// 	groceries = [],
-			// 	gyms = [],
-			// 	motorcycles = [],
-			// 	timesheets = [],
-			// 	configurations = []
-			// ;
+// 			var expenses = [], expenseStore = transaction.objectStore('expenses').openCursor(),
+// 				foods = [], foodStore = transaction.objectStore('foods').openCursor(),
+// 				groceries = [], groceryStore = transaction.objectStore('groceries').openCursor(),
+// 				gyms = [], gymStore = transaction.objectStore('gyms').openCursor(),
+// 				motorcycles = [], motorcycleStore = transaction.objectStore('motorcycles').openCursor(),
+// 				timesheets = [], timesheetStore = transaction.objectStore('timesheets').openCursor(),
+// 				configurations = [], configurationsStore = transaction.objectStore('configurations').openCursor()
+// 			;			
 
-			// 			App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
-			// 				var cursor = e.target.result;
-			// 				if (cursor) {
-			// 					expenses.push(cursor.value);
-			// 					cursor.continue();
-			// 				}
-			// 			};
+// 			expenseStore.onsuccess = function(e) {
+// 				var cursor = e.target.result;
+// 				if (cursor) {
+// 					expenses.push(cursor.value);
+// 					cursor.continue();
+// 				} else {
+// console.log('start food');
+// 					foodStore.onsuccess = function(e) {
+// 						var cursor = e.target.result;
+// 						if (cursor) {
+// 							foods.push(cursor.value);
+// 							cursor.continue();
+// 						} else {
+// console.log('start grocery');
+// 							groceryStore.onsuccess = function(e) {
+// 								var cursor = e.target.result;
+// 								if (cursor) {
+// 									groceries.push(cursor.value);
+// 									cursor.continue();
+// 								} else {
+// console.log('start gym');
+// 									gymStore.onsuccess = function(e) {
+// 										var cursor = e.target.result;
+// 										if (cursor) {
+// 											gyms.push(cursor.value);
+// 											cursor.continue();
+// 										} else {
+// console.log('start motorcycle');
+// 											motorcycleStore.onsuccess = function(e) {
+// 												var cursor = e.target.result;
+// 												if (cursor) {
+// 													motorcycles.push(cursor.value);
+// 													cursor.continue();
+// 												} else {
+// console.log('start timesheet');
+// 													timesheetStore.onsuccess = function(e) {
+// 														var cursor = e.target.result;
+// 														if (cursor) {
+// 															timesheets.push(cursor.value);
+// 															cursor.continue();
+// 														} else {
+// console.log('start configuration');
+// 															configurationsStore.onsuccess = function(e) {
+// 																var cursor = e.target.result;
+// console.log(cursor);
+// 																if (cursor) {
+// 																	configurations.push(cursor.value);
+// console.log('inside cursor conf');
+// 																	cursor.continue();
+// 																} else {
+// console.log('now need show backup view');
+// 																	App.mainRegion.show(new BackupView(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations));
+// 																}
+// 															};
+// 														}
+// 													};
+// 												}
+// 											};
+// 										}
+// 									};
+// 								}
+// 							};
+// 						}
+// 					};
+// 				}
+// 			};
 
-			// 			App.indexedDB.db.transaction(['foods'], 'readonly').objectStore('foods').openCursor().onsuccess = function(e) {
-			// 				var cursor = e.target.result;
-			// 				if (cursor) {
-			// 					foods.push(cursor.value);
-			// 					cursor.continue();
-			// 				}
-			// 			};
-
-			// 			// App.indexedDB.db.transaction(['groceries'], 'readonly').objectStore('groceries').openCursor().onsuccess = function(e) {
-			// 			// 	var cursor = e.target.result;
-			// 			// 	if (cursor) {
-			// 			// 		groceries.push(cursor.value);
-			// 			// 		cursor.continue();
-			// 			// 	}
-			// 			// };
-
-			// 			App.indexedDB.db.transaction(['gyms'], 'readonly').objectStore('gyms').openCursor().onsuccess = function(e) {
-			// 				var cursor = e.target.result;
-			// 				if (cursor) {
-			// 					gyms.push(cursor.value);
-			// 					cursor.continue();
-			// 				}
-			// 			};
-
-			// 			App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
-			// 				var cursor = e.target.result;
-			// 				if (cursor) {
-			// 					motorcycles.push(cursor.value);
-			// 					cursor.continue();
-			// 				}
-			// 			};
-
-			// 			App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
-			// 				var cursor = e.target.result;
-			// console.log(cursor);
-			// 				if (cursor) {
-			// 					timesheets.push(cursor.value);
-			// 					cursor.continue();
-			// 				}
-			// 			};
-
-
-			// App.indexedDB.db.transaction(['configurations'], 'readonly').objectStore('configurations').openCursor().onsuccess = function(e) {
-			// 	var cursor = e.target.result;
-			// 	if (cursor) {
-			// 		configurations.push(cursor.value);
-			// 		cursor.continue();
-			// 	}
-			// };
-
-			// var transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
-			var transaction = App.indexedDB.db.transaction(['expenses'], 'readonly');
-
-			var keyRange = IDBKeyRange.lowerBound(0);
-
-			var expenses = [], expenseStore = transaction.objectStore('expenses'),
-				// foods = [], foodStore = transaction.objectStore('foods'),
-				// groceries = [], grocerieStore = transaction.objectStore('groceries'),
-				// gyms = [], gymStore = transaction.objectStore('gyms'),
-				// motorcycles = [], motorcycleStore = transaction.objectStore('motorcycles'),
-				timesheets = [], timesheetStore = transaction.objectStore('timesheets').openCursor(keyRange)
-				// configurations = [], configurationsStore = transaction.objectStore('configurations')
-			;			
-
-console.log(timesheetStore);
-
-			timesheetStore.onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					timesheets.push(cursor.value);
-					cursor.continue();
-				} else {
-					App.mainRegion.show(new BackupView(expenses, timesheets));
-				}
-			};
-
-			// App.mainRegion.show(new BackupView(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations));
+			App.mainRegion.show(new BackupView());
 		},
 
 		list: function(entity, View) {
