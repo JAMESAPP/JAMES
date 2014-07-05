@@ -16,7 +16,7 @@ define([
 	var CompositeView = ListView.extend({
 		template: CompositeViewTemplate,
 		itemView: itemView,
-		objectStore: 'timesheet'
+		objectStore: 'timesheets'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
 				modelStart,

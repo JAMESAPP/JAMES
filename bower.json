@@ -1,18 +1,19 @@
 {
-	"name": "{%= name %}",
-	"version": "{%= version %}",
-	"description": "{%= description %}",
-	"dependencies": {
-		"jquery": "latest",
-		"requirejs": "latest",
-		"backbone": "latest",
-		"underscore": "latest",
-		"backbone.marionette": "~1.8.8",
-		"handlebars": "latest",
-		"bootstrap": "latest",
-		"jQuery-Mask-Plugin": "~1.6.4",
-		"backbone.epoxy": "latest",
-		"requirejs-text": "~2.0.12",
-		"moment": "~2.7.0"
-	}
+  "name": "{%= name %}",
+  "version": "{%= version %}",
+  "description": "{%= description %}",
+  "dependencies": {
+    "jquery": "latest",
+    "requirejs": "latest",
+    "backbone": "latest",
+    "underscore": "latest",
+    "backbone.marionette": "~1.8.8",
+    "handlebars": "latest",
+    "bootstrap": "latest",
+    "jQuery-Mask-Plugin": "~1.6.4",
+    "backbone.epoxy": "latest",
+    "requirejs-text": "~2.0.12",
+    "moment": "~2.7.0",
+    "firebase": "~1.0.17"
+  }
 }

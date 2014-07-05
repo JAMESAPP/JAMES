@@ -80,7 +80,92 @@ define([
 		},
 
 		backup: function() {
-			App.mainRegion.show(new BackupView());
+
+			// var expenses = [],
+			// 	foods = [],
+			// 	groceries = [],
+			// 	gyms = [],
+			// 	motorcycles = [],
+			// 	timesheets = [],
+			// 	configurations = []
+			// ;
+
+			// 			App.indexedDB.db.transaction(['expenses'], 'readonly').objectStore('expenses').openCursor().onsuccess = function(e) {
+			// 				var cursor = e.target.result;
+			// 				if (cursor) {
+			// 					expenses.push(cursor.value);
+			// 					cursor.continue();
+			// 				}
+			// 			};
+
+			// 			App.indexedDB.db.transaction(['foods'], 'readonly').objectStore('foods').openCursor().onsuccess = function(e) {
+			// 				var cursor = e.target.result;
+			// 				if (cursor) {
+			// 					foods.push(cursor.value);
+			// 					cursor.continue();
+			// 				}
+			// 			};
+
+			// 			// App.indexedDB.db.transaction(['groceries'], 'readonly').objectStore('groceries').openCursor().onsuccess = function(e) {
+			// 			// 	var cursor = e.target.result;
+			// 			// 	if (cursor) {
+			// 			// 		groceries.push(cursor.value);
+			// 			// 		cursor.continue();
+			// 			// 	}
+			// 			// };
+
+			// 			App.indexedDB.db.transaction(['gyms'], 'readonly').objectStore('gyms').openCursor().onsuccess = function(e) {
+			// 				var cursor = e.target.result;
+			// 				if (cursor) {
+			// 					gyms.push(cursor.value);
+			// 					cursor.continue();
+			// 				}
+			// 			};
+
+			// 			App.indexedDB.db.transaction(['motorcycles'], 'readonly').objectStore('motorcycles').openCursor().onsuccess = function(e) {
+			// 				var cursor = e.target.result;
+			// 				if (cursor) {
+			// 					motorcycles.push(cursor.value);
+			// 					cursor.continue();
+			// 				}
+			// 			};
+
+			// 			App.indexedDB.db.transaction(['timesheets'], 'readonly').objectStore('timesheets').openCursor().onsuccess = function(e) {
+			// 				var cursor = e.target.result;
+			// console.log(cursor);
+			// 				if (cursor) {
+			// 					timesheets.push(cursor.value);
+			// 					cursor.continue();
+			// 				}
+			// 			};
+
+
+			// App.indexedDB.db.transaction(['configurations'], 'readonly').objectStore('configurations').openCursor().onsuccess = function(e) {
+			// 	var cursor = e.target.result;
+			// 	if (cursor) {
+			// 		configurations.push(cursor.value);
+			// 		cursor.continue();
+			// 	}
+			// };
+
+			var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
+
+			var keyRange = IDBKeyRange.lowerBound(0);
+
+			var expenses = [], expenseStore = transaction.objectStore('expenses'),
+				// foods = [], foodStore = transaction.objectStore('foods'),
+				// groceries = [], grocerieStore = transaction.objectStore('groceries'),
+				// gyms = [], gymStore = transaction.objectStore('gyms'),
+				// motorcycles = [], motorcycleStore = transaction.objectStore('motorcycles'),
+				timesheets = [], timesheetStore = transaction.objectStore('timesheets').openCursor(keyRange)
+				// configurations = [], configurationsStore = transaction.objectStore('configurations')
+			;			
+
+console.log(timesheetStore);
+
+
+			App.mainRegion.show(new BackupView(expenses, timesheets));
+			// App.mainRegion.show(new BackupView(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations));
 		},
 
 		list: function(entity, View) {

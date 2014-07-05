@@ -1,19 +1,30 @@
 define([
-	'marionette'
+	'underscore'
+	, 'marionette'
+	, 'firebase'
 	, 'app'
 	, 'views/bindingView'
 	, 'text!../../templates/backup.tpl'
-], function (Marionette, App, BidingView, Template) {
+], function (_, Marionette, Firebase, App, BidingView, Template) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
 		, events: {
-			"click #btnPersist": 'persist'
+			'click #btnSaveOnCloud': 'saveOnCloud'
+			, 'click #btnSyncWithCloud': 'syncWithCloud'
+			, 'click #btnSaveOnDisk': 'saveOnDisk'
+			, 'click #btnSyncWithDisk': 'syncWithDisk'
 		}
 		, template: Template
-		, objectStore: undefined
 
-		, initialize: function(entity, objectStore) {
+		, initialize: function(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations) {
+
+			this.jamesData = _.extend({}, expenses, foods, groceries, gyms, motorcycles, timesheets, configurations);
+			console.log('james data');
+			console.log(this.jamesData);
+
+
+
 			// if (entity == undefined || entity == null)
 			// 	throw new Error('Must have: a model!!');
 
@@ -72,15 +83,29 @@ define([
 		// 	};
 		// }
 
-		, firebase: function(ev) {
+		, saveOnCloud: function(ev) {
 			ev.preventDefault();
+
+			var cloud = new Firebase('https://jamesapp.firebaseIO.com');
+			cloud.set(this.jamesData);
+		}
+		, syncWithCloud: function(ev) {
+			ev.preventDefault();
+
 			// TODO sync with firebase
 		}
 
 		, saveOnDisk: function(ev) {
 			ev.preventDefault();
-			// TODO saver on disk
+
+			// TODO save on disk
 		}
+		, syncWithDisk: function(ev) {
+			ev.preventDefault();
+
+			// TODO sync with disk
+		}
+
 	});
 
 	return ItemView;

@@ -13,7 +13,8 @@ require.config({
 		'jqueryui': 'libs/custom/jquery-ui-custom.min',
 		'text': 'libs/bower/requirejs-text/text',
 		'templates': '../templates/templates',
-		'moment': 'libs/bower/moment/min/moment-with-langs.min'
+		'moment': 'libs/bower/moment/min/moment-with-langs.min',
+		'firebase': 'libs/bower/firebase/firebase'
 	},
 	shim: {
 		// LIBS
@@ -52,6 +53,9 @@ require.config({
 		},
 		'moment': {
 			exports : 'Moment'
+		},
+		'firebase': {
+			exports: 'Firebase'
 		},
 
 		'templates': {
