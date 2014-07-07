@@ -19,7 +19,8 @@ define([
 	, 'models/motorcycle'
 	, 'models/gym'
 	, 'models/timesheet'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ConfigurationView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel) {
+	, 'models/configuration'
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ConfigurationView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel, ConfigurationModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -87,7 +88,11 @@ define([
 		},
 
 		configurations: function() {
-			App.mainRegion.show(new ConfigurationView());
+			// FIXME always will be id 1? How I can guarantee this?
+			var objectStore = App.indexedDB.db.transaction(['configurations']).objectStore('configurations').get(1);
+			objectStore.onsuccess = function(event) {
+				App.mainRegion.show(new ConfigurationView(new ConfigurationModel(event.target.result)));
+			};
 		},
 
 		list: function(entity, View) {
