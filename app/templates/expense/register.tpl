@@ -1,16 +1,12 @@
 <h1>Expenses</h1>
 <div id="divRegister" class="container">
     <div class="row">
-        <div class="col-xs-6">
-            <label for="inputDate">Date</label><br />
-            <input type="text" id="inputDate" class="col-xs-12 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
-        </div>
-        <div class="col-xs-6">
-            <label for="inputAmmount">Ammount</label><br />
-            <input type="text" id="inputAmmount" class="col-xs-12" value="{{ammount}}" placeholder="Ammount of transaction" data-bind="value:ammount,events:['keyup']" />
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row"> -->
+        <label for="inputDate">Date</label><br />
+        <input type="text" id="inputDate" class="col-xs-6 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
+    </div>
+    <div class="row">
+        <label for="inputAmmount">Ammount</label><br />
+        <input type="text" id="inputAmmount" class="col-xs-6" value="{{ammount}}" placeholder="Ammount of transaction" data-bind="value:ammount,events:['keyup']" />
     </div>
     <div class="row">
         <label for="inputCategory">Category</label>
