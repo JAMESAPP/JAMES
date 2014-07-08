@@ -8,6 +8,7 @@ define([
 			, KM: 0.0
 			, amount: 0.00
 			, price: 0.00
+			, gasStation: 'Auto Posto Compreto Rua Aparecida'
 			, observation: null
 		}
 

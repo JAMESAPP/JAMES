@@ -1,3 +1,3 @@
-<td>{{id}}</td>
 <td>{{date}}</td>
-<td><a href="#motorcycle/{{id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i></a>&nbsp;<a id="{{id}}" href="#" class="btn btn-danger" data-entity="{{id}}"><i class="icon-trash icon-white"></i></a></td>
+<td>{{KM}}</td>
+<td><a href="#motorcycle/{{id}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;<a id="{{id}}" href="#" class="btn btn-danger" data-entity="{{id}}"><span class="glyphicon glyphicon-trash"></a></td>

@@ -15,8 +15,8 @@
 	</caption>
 	<thead>
 	    <tr>
-		    <th>ID</th>
 			<th>Date</th>
+			<th>KM</th>
             <th>Action</th>
 		</tr>
 	</thead>
