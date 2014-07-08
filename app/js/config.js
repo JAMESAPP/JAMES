@@ -1,8 +1,8 @@
 define([
 ],function() {
 	var config = {
-		"env": 'local'
-		, "app": 'yaew'
+		env: 'local'
+		, app: 'james'
 		, backend: 'backend'
 		, datePickerConf: {
 			dateFormat: 'dd/mm/yy',

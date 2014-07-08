@@ -13,12 +13,14 @@ define([
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
 	, 'views/backup'
+	, 'views/configurations'
 	, 'models/expense'
 	, 'models/food'
 	, 'models/motorcycle'
 	, 'models/gym'
 	, 'models/timesheet'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel) {
+	, 'models/configuration'
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ConfigurationView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel, ConfigurationModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -42,6 +44,8 @@ define([
 			'timesheet/:id': 'timesheet'
 
 			, 'backup': 'backup'
+
+			, 'configurations': 'configurations'
 		},
 
 		expenses: function() {
@@ -79,93 +83,16 @@ define([
 			this.register(id, 'timesheets', TimesheetModel, TimesheetRegisterView);
 		},
 
-		/*
-		 * First, I have to say sorry for your eyes. I know, this code bellow is ugly...
-		 * But, in my defense, I blame the indexedDB API.
-		 * Why? Because I can't use the synchronous API yet! So, just left me this option bellow...
-		 * If you know a way better to get all data without this workaround, drop me a line: foguinho.peruca@gmail.com
-		 *
-		 */
 		backup: function() {
-// 			var transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
-
-// 			var expenses = [], expenseStore = transaction.objectStore('expenses').openCursor(),
-// 				foods = [], foodStore = transaction.objectStore('foods').openCursor(),
-// 				groceries = [], groceryStore = transaction.objectStore('groceries').openCursor(),
-// 				gyms = [], gymStore = transaction.objectStore('gyms').openCursor(),
-// 				motorcycles = [], motorcycleStore = transaction.objectStore('motorcycles').openCursor(),
-// 				timesheets = [], timesheetStore = transaction.objectStore('timesheets').openCursor(),
-// 				configurations = [], configurationsStore = transaction.objectStore('configurations').openCursor()
-// 			;			
-
-// 			expenseStore.onsuccess = function(e) {
-// 				var cursor = e.target.result;
-// 				if (cursor) {
-// 					expenses.push(cursor.value);
-// 					cursor.continue();
-// 				} else {
-// console.log('start food');
-// 					foodStore.onsuccess = function(e) {
-// 						var cursor = e.target.result;
-// 						if (cursor) {
-// 							foods.push(cursor.value);
-// 							cursor.continue();
-// 						} else {
-// console.log('start grocery');
-// 							groceryStore.onsuccess = function(e) {
-// 								var cursor = e.target.result;
-// 								if (cursor) {
-// 									groceries.push(cursor.value);
-// 									cursor.continue();
-// 								} else {
-// console.log('start gym');
-// 									gymStore.onsuccess = function(e) {
-// 										var cursor = e.target.result;
-// 										if (cursor) {
-// 											gyms.push(cursor.value);
-// 											cursor.continue();
-// 										} else {
-// console.log('start motorcycle');
-// 											motorcycleStore.onsuccess = function(e) {
-// 												var cursor = e.target.result;
-// 												if (cursor) {
-// 													motorcycles.push(cursor.value);
-// 													cursor.continue();
-// 												} else {
-// console.log('start timesheet');
-// 													timesheetStore.onsuccess = function(e) {
-// 														var cursor = e.target.result;
-// 														if (cursor) {
-// 															timesheets.push(cursor.value);
-// 															cursor.continue();
-// 														} else {
-// console.log('start configuration');
-// 															configurationsStore.onsuccess = function(e) {
-// 																var cursor = e.target.result;
-// console.log(cursor);
-// 																if (cursor) {
-// 																	configurations.push(cursor.value);
-// console.log('inside cursor conf');
-// 																	cursor.continue();
-// 																} else {
-// console.log('now need show backup view');
-// 																	App.mainRegion.show(new BackupView(expenses, foods,	groceries, gyms, motorcycles, timesheets, configurations));
-// 																}
-// 															};
-// 														}
-// 													};
-// 												}
-// 											};
-// 										}
-// 									};
-// 								}
-// 							};
-// 						}
-// 					};
-// 				}
-// 			};
-
 			App.mainRegion.show(new BackupView());
+		},
+
+		configurations: function() {
+			// FIXME always will be id 1? How I can guarantee this?
+			var objectStore = App.indexedDB.db.transaction(['configurations']).objectStore('configurations').get(1);
+			objectStore.onsuccess = function(event) {
+				App.mainRegion.show(new ConfigurationView(new ConfigurationModel(event.target.result)));
+			};
 		},
 
 		list: function(entity, View) {
