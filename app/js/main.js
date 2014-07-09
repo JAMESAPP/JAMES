@@ -14,7 +14,8 @@ require.config({
 		'text': 'libs/bower/requirejs-text/text',
 		'templates': '../templates/templates',
 		'moment': 'libs/bower/moment/min/moment-with-langs.min',
-		'firebase': 'libs/bower/firebase/firebase'
+		'firebase': 'libs/bower/firebase/firebase',
+		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login'
 	},
 	shim: {
 		// LIBS
@@ -56,6 +57,9 @@ require.config({
 		},
 		'firebase': {
 			exports: 'Firebase'
+		},
+		'firebaseSimpleLogin': {
+			exports: 'FirebaseSimpleLogin'
 		},
 
 		'templates': {

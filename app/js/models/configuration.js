@@ -20,14 +20,19 @@ define([
 				changeYear: true,
 				yearRange: (new Date().getFullYear() - 100) + ':' + (new Date().getFullYear() + 100)
 			}
-			, 'isProtected': false
-			, 'timesheet':{
+			, isProtected: false
+			, timesheet: {
 				id: 1
 				, startTime: '08:00'
 				, endTime: '14:00'
 				, workload: '06:00'
 			}
+			, cloudAuth: {
+				email: '<YOUR_EMAIL_HERE>@<SOME_DOMAIN>'
+				, password: '<YOUR_PASSWORD_HERE>'
+			}
 		}
+
 
 		// TODO implement it!
 		, validade: function(attr, options) {

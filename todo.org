@@ -19,6 +19,10 @@
 *** TODO implement official shift
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Groceries
+** TODO Configuration
+*** TODO timesheet
+**** TODO Implement timesheet handler
+*** TODO datetime picker
 * TODO Graphic Design
 ** DONE Rename project to JAMES
 ** Migrate to bootstrap 3
