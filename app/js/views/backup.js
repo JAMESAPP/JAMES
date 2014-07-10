@@ -100,7 +100,8 @@ define([
 				auth = new FirebaseSimpleLogin(cloud, function(error, user) {
 					if (error) {
 						console.error(error);
-						self.$el.find('#spanMessage').addClass('alert alert-danger');
+						self.$el.find('#spanMessage').removeClass();
+						self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
 						self.$el.find('#spanMessage').html('[AUTH ERROR] code: ' + error.code + ' message: ' + error.message).fadeIn().delay(5000).fadeOut();
 					} else if (user) {
 						cloud.set({
@@ -113,11 +114,13 @@ define([
 							, configurations: self.configurations
 						});
 
-						self.$el.find('#spanMessage').addClass('alert alert-success');
+						self.$el.find('#spanMessage').removeClass();
+						self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
 						self.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
 					} else {
 						console.log('user logout');
-						self.$el.find('#spanMessage').addClass('alert alert-info');
+						self.$el.find('#spanMessage').removeClass();
+						self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-info');
 						self.$el.find('#spanMessage').html('user logout!').fadeIn().delay(5000).fadeOut();
 					}
 				});
@@ -132,17 +135,26 @@ define([
 			ev.preventDefault();
 
 			// TODO sync with firebase
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
 		}
 
 		, saveOnDisk: function(ev) {
 			ev.preventDefault();
 
 			// TODO save on disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
 		}
 		, syncWithDisk: function(ev) {
 			ev.preventDefault();
 
 			// TODO sync with disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
 		}
 
 	});
