@@ -20,10 +20,6 @@ define([
 		, initialize: function() {
 
 			var self = this;
-			var objectStore = App.indexedDB.db.transaction(['configurations']).objectStore('configurations').get(1);
-			objectStore.onsuccess = function(event) {
-				self.configurations = event.target.result;
-			};
 
 			this.expenses = [];
 			this.foods = [];
@@ -40,8 +36,8 @@ define([
 				gymStore = transaction.objectStore('gyms').openCursor(),
 				motorcycleStore = transaction.objectStore('motorcycles').openCursor(),
 				timesheetStore = transaction.objectStore('timesheets').openCursor(),
-				configurationsStore = transaction.objectStore('configurations').openCursor()
-			;			
+				configurationsStore = transaction.objectStore('configurations').get(1)
+			;
 
 			expenseStore.onsuccess = function(e) {
 				var cursor = e.target.result;
@@ -92,12 +88,7 @@ define([
 			};
 
 			configurationsStore.onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					// FIXME what's wrong?
-					self.configurations.push(cursor.value);
-					cursor.continue();
-				}
+				self.configurations = e.target.result;
 			};
 		}
 
@@ -107,32 +98,35 @@ define([
 			var self = this,
 				cloud = new Firebase('https://jamesapp.firebaseIO.com'),
 				auth = new FirebaseSimpleLogin(cloud, function(error, user) {
-				if (error) {
-					console.error(error);
-					self.$el.find('#spanMessage').addClass('alert alert-warning');
-					self.$el.find('#spanMessage').html('[AUTH ERROR] code: ' + error.code + ' message: ' + error.message).fadeIn().delay(5000).fadeOut();
-				} else if (user) {
-					cloud.set({
-						expenses: this.expenses
-						, foods: this.foods
-						, groceries: this.groceries
-						, gyms: this.gyms
-						, motorcycles: this.motorcycles
-						, timesheets: this.timesheets
-						, configurations: this.configurations
-					});	
-				} else {
-					console.log('user logout');
-				}
-			});
+					if (error) {
+						console.error(error);
+						self.$el.find('#spanMessage').addClass('alert alert-danger');
+						self.$el.find('#spanMessage').html('[AUTH ERROR] code: ' + error.code + ' message: ' + error.message).fadeIn().delay(5000).fadeOut();
+					} else if (user) {
+						cloud.set({
+							expenses: self.expenses
+							, foods: self.foods
+							, groceries: self.groceries
+							, gyms: self.gyms
+							, motorcycles: self.motorcycles
+							, timesheets: self.timesheets
+							, configurations: self.configurations
+						});
+
+						self.$el.find('#spanMessage').addClass('alert alert-success');
+						self.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
+					} else {
+						console.log('user logout');
+						self.$el.find('#spanMessage').addClass('alert alert-info');
+						self.$el.find('#spanMessage').html('user logout!').fadeIn().delay(5000).fadeOut();
+					}
+				});
 
 			auth.login('password', {
-				email: this.configuration.cloudAuth.email
-				, password: this.configuration.cloudAuth.password
+				email: self.configurations.cloudAuth.email
+				, password: self.configurations.cloudAuth.password
+				, rememberMe: true
 			});
-
-			this.$el.find('#spanMessage').addClass('alert alert-success');
-			this.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
 		}
 		, syncWithCloud: function(ev) {
 			ev.preventDefault();
