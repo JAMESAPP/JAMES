@@ -5,22 +5,20 @@ define([
 	var BindingView = Backbone.Epoxy.View.extend({
 		bindingHandlers: {
 			objectHandler: {
+				set: function($element, value) {
+					$element.val(value[$element.attr('data-property')]);
+				},
 				get: function($element, value, event) {
-					var member = event.currentTarget.getAttribute('data-bind').split(',')[0].split(':')[1];
-					var obj = {};
-					var property = member.split('.')[1];
-					obj[property] = {id: parseInt($element.val())};
+					var obj = value,
+						result = {},
+						property = event.currentTarget.getAttribute('data-property'),
+						container = event.currentTarget.getAttribute('data-bind').split(',')[0].split(':')[1]
+					;
 
-					return obj;
-				}
-			}
-			, timesheetHandler: {
-				get: function($element, value, event) {
-					var timesheet;
-					var property = event.currentTarget.getAttribute('data-bind').split(',')[0].split(':')[1].split('.')[1];
-					timesheet[property] = value;
-console.log(timesheet);
-					return timesheet;
+					obj[property] = $element.val();
+					result[container] = obj;
+
+					return result;
 				}
 			}
 		}

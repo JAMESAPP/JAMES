@@ -15,7 +15,8 @@ require.config({
 		'templates': '../templates/templates',
 		'moment': 'libs/bower/moment/min/moment-with-langs.min',
 		'firebase': 'libs/bower/firebase/firebase',
-		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login'
+		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
+		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 	},
 	shim: {
 		// LIBS
@@ -60,6 +61,10 @@ require.config({
 		},
 		'firebaseSimpleLogin': {
 			exports: 'FirebaseSimpleLogin'
+		},
+		'hideShowPassword': {
+			deps: ['jquery'],
+			exports : 'HideShowPassword'
 		},
 
 		'templates': {

@@ -1,9 +1,9 @@
 * TODO Environment
-** TODO Bower
-** TODO Grunt
-** TODO YAWECAPP
-** TODO Firefox OS emulator
-** TODO Deploy at my own phone
+** DONE Bower
+** DONE Grunt
+** DONE YAWECAPP
+** DONE Firefox OS emulator
+** DONE Deploy at my own phone
 ** TODO Deploy at https://marketplace.firefox.com/
 * TODO Function
 ** DONE Generic CRUD
@@ -20,11 +20,12 @@
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Groceries
 ** TODO Configuration
-*** TODO timesheet
-**** TODO Implement timesheet handler
+*** DONE timesheet
+**** DONE Implement timesheet handler
 *** TODO datetime picker
 * TODO Graphic Design
 ** DONE Rename project to JAMES
+** TODO Implement wink button (password field - configurations)
 ** Migrate to bootstrap 3
 *** DONE Start use new lib
 *** TODO Fix layout errors

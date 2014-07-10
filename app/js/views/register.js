@@ -44,7 +44,6 @@ define([
 		 * By convention, will use onShow() to instantiate BindingView and use onReder() to configure custom behavior.
 		 * By the way, is possible to use RegisterView.prototype.onShow.call(this, args) to call the super behavior.
 		 */
-		, onRender: function(){console.log('Not specific logic implemented here. Make your own implementation!');}
 		, onShow: function() {
 			this.bindView = new BidingView({
 				el: this.$el.find('#divRegister')

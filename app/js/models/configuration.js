@@ -4,7 +4,8 @@ define([
 ], function (Backbone, App) {
     var Model = Backbone.Model.extend({
 		defaults: {
-			env: 'local'
+			id: 1
+			, env: 'local'
 			, app: 'james'
 			, backend: 'backend'
 			, datePickerConf: {
@@ -22,7 +23,7 @@ define([
 			}
 			, isProtected: false
 			, timesheet: {
-				id: 1
+				id: 1 // FIXME is used?
 				, startTime: '08:00'
 				, endTime: '14:00'
 				, workload: '06:00'
