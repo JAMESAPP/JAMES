@@ -38,3 +38,5 @@ app/js/libs/bower
 *.swp
 *.swo
 *.swn
+# build for deploy in firefoxos
+myapp.zip
