@@ -28,7 +28,7 @@ define([
 			this.configurations = [];
 
 			var self = this,
-				transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readonly');
+				transaction = App.indexedDB.db.transaction(['configurations', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets'], 'readonly');
 			var	expenseCursor = transaction.objectStore('expenses').openCursor(),
 				foodCursor = transaction.objectStore('foods').openCursor(),
 				groceryCursor = transaction.objectStore('groceries').openCursor(),
@@ -120,8 +120,6 @@ define([
 					});
 				}
 			};
-
-// transaction.objectStore('configurations').clear();
 		}
 
 		, onShow: function() {
@@ -151,49 +149,63 @@ define([
 		, syncWithCloud: function(ev) {
 			ev.preventDefault();
 
-			// FIXME add to all entities and put code inside onsuccess - error with async request
-			var self = this,
-				transaction = App.indexedDB.db.transaction(['timesheets', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readwrite')
-			;
-
-
-			// this.transaction.objectStore('foods').clear().onsuccess = function(event) {
-			// 	console.log('Foods cleared...');
-			// };
-			// this.transaction.objectStore('groceries').clear().onsuccess = function(event) {
-			// 	console.log('Groceries cleared...');
-			// };
-			// this.transaction.objectStore('gyms').clear().onsuccess = function(event) {
-			// 	console.log('Gyms cleared...');
-			// };
-			// this.transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
-			// 	console.log('Motorcycles cleared...');
-			// };
-			// this.transaction.objectStore('timesheets').clear().onsuccess = function(event) {
-			// 	console.log('Timesheets cleared...');
-			// };
-			// this.transaction.objectStore('configurations').clear().onsuccess = function(event) {
-			// 	console.log('Configurations cleared...');
-			// };
-
 			this.cloud.on('value', function(snapshot) {
+				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readwrite');
+
 				if (snapshot.val() !== null) {
-					// expenses: self.expenses
+					transaction.objectStore('configurations').clear().onsuccess = function(event) {
+						transaction.objectStore('configurations').put(snapshot.val().configurations).onsuccess = function (event) {
+							console.log('Re-added configuration id #' + snapshot.val().configurations.id);
+						};
+					};
+
 					transaction.objectStore('expenses').clear().onsuccess = function(event) {
-						console.log('Expenses cleared...');
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
 							transaction.objectStore('expenses').add(element).onsuccess = function (event) {
-								console.log('Re-added expenses id #' + element.id);
+								console.log('Re-added expense id #' + element.id);
 							};
 						});
 					};
-					
-					// , foods: self.foods
-					// , groceries: self.groceries
-					// , gyms: self.gyms
-					// , motorcycles: self.motorcycles
-					// , timesheets: self.timesheets
-					// , configurations: self.configurations
+
+					transaction.objectStore('foods').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().foods, function(element, index, list) {
+							transaction.objectStore('foods').add(element).onsuccess = function (event) {
+								console.log('Re-added food id #' + element.id);
+							};
+						});
+					};
+
+					transaction.objectStore('groceries').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().groceries, function(element, index, list) {
+							transaction.objectStore('groceries').add(element).onsuccess = function (event) {
+								console.log('Re-added grocery id #' + element.id);
+							};
+						});
+					};
+
+					transaction.objectStore('gyms').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().gyms, function(element, index, list) {
+							transaction.objectStore('gyms').add(element).onsuccess = function (event) {
+								console.log('Re-added gym id #' + element.id);
+							};
+						});
+					};
+
+					transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().motorcycles, function(element, index, list) {
+							transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
+								console.log('Re-added motorcycle id #' + element.id);
+							};
+						});
+					};
+
+					transaction.objectStore('timesheets').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().timesheets, function(element, index, list) {
+							transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
+								console.log('Re-added timesheet id #' + element.id);
+							};
+						});
+					};
 				}
 			});
 		}
