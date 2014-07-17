@@ -1,6 +1,15 @@
 * TODO Environment
 ** DONE Bower
-** DONE Grunt
+** TODO Grunt
+*** TODO Implement a process to deploy app
+**** TODO usemin
+**** TODO cssmin
+**** TODO htmlmin
+**** TODO compress
+**** DONE requirejs uglify
+*** TODO implement a process to dev
+**** TODO grunt watch (with live-reload)
+**** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
 ** DONE YAWECAPP
 ** DONE Firefox OS emulator
 ** DONE Deploy at my own phone
@@ -23,6 +32,7 @@
 *** DONE timesheet
 **** DONE Implement timesheet handler
 *** TODO datetime picker
+*** TODO Replace app/js/config.js by app/js/models/configuration
 * TODO Graphic Design
 ** DONE Rename project to JAMES
 ** TODO Implement wink button (password field - configurations)
