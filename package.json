@@ -1,6 +1,6 @@
 {
   "name": "JAMES",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": {
     "name": "Jefferson Campos",
     "email": "jefferson@jeffersoncampos.eti.br",
@@ -9,9 +9,8 @@
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-requirejs": "^0.4.3"
+    "grunt-contrib-requirejs": "^0.4.3",
+    "grunt-usemin": "^2.3.0"
   }
 }

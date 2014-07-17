@@ -12,11 +12,12 @@ require.config({
 		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
 		'jqueryui': 'libs/custom/jquery-ui-custom.min',
 		'text': 'libs/bower/requirejs-text/text',
-		'templates': '../templates/templates',
 		'moment': 'libs/bower/moment/min/moment-with-langs.min',
 		'firebase': 'libs/bower/firebase/firebase',
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
+
+		// , 'templates': '../templates/templates'
 	},
 	shim: {
 		// LIBS
@@ -65,11 +66,11 @@ require.config({
 		'hideShowPassword': {
 			deps: ['jquery'],
 			exports : 'HideShowPassword'
-		},
-
-		'templates': {
-			deps: ['handlebars']
 		}
+
+		// , 'templates': {
+		// 	deps: ['handlebars']
+		// }
 	}
 });
 
