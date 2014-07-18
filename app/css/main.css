@@ -1,9 +1,52 @@
-@import url('../js/libs/bower/bootstrap/dist/css/bootstrap.min.css');
-@import url('../js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css');
-@import url('jquery-ui/jquery-ui.min.css');
+/* @import url('../../app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css'); */
+/* @import url('../../app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css'); */
+/* @import url('jquery-ui/jquery-ui.min.css'); */
 /* @import url('malachite.css'); */
 /* @import url('darkening.css'); */
 /* @import url('bootstrap.min.css'); */
+
+/************************************/
+/************************************/
+/**                                **/
+/**           General              **/
+/**                                **/
+/************************************/
+/************************************/
+
+html, body {
+	height: 100%;
+}
+
+div.center {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30em;
+}
+
+/* body { */
+/* 	background: #002210 */
+/* } */
+
+#main {
+	padding-top: 20px;
+	height: 90%;
+}
+
+.box {
+	min-height: 90%;
+	padding: 10px;
+	/* background: #ffffff; */
+	border: 1px solid #d4d4d4;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin-bottom: -71px;
+	padding: 0 !important;
+}
 
 /* TODO implement wink button */
 /**************************************/
@@ -50,46 +93,3 @@
 /*   border-color: #0088cc; */
 /*   outline: transparent; */
 /* } */
-
-/************************************/
-/************************************/
-/**                                **/
-/**           General              **/
-/**                                **/
-/************************************/
-/************************************/
-
-html, body {
-	height: 100%;
-}
-
-div.center {
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-	width: 30em;
-}
-
-/* body { */
-/* 	background: #002210 */
-/* } */
-
-#main {
-	padding-top: 20px;
-	height: 90%;
-}
-
-.box {
-	min-height: 90%;
-	padding: 10px;
-	/* background: #ffffff; */
-	border: 1px solid #d4d4d4;
-}
-
-.wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin-bottom: -71px;
-	padding: 0 !important;
-}
