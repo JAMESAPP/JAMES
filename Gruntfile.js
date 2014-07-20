@@ -1,7 +1,9 @@
 'use strict';
 
 module.exports = function(grunt) {
-	require('jit-grunt')(grunt);
+	require('jit-grunt')(grunt, {
+		useminPrepare: 'grunt-useminPrepare'
+	});
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -47,9 +49,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+		'useminPrepare': {
+			html: 'index.html'
+			, options: {
+				dest: 'dist'
+			}
+		},
+		// use the copy in dist folder as this is where it replace the path to file relative to the passed file
 		usemin: {
-            html: ['dist/index.html']
-        },
+			html: ['dist/index.html']
+			// , css: ['dist/*.css']
+		},
 
 		clean: {
 			options: {
@@ -158,6 +168,8 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'htmlmin']);
+
+	grunt.registerTask('tooling', ['useminPrepare', 'usemin']);
 
 	// FIXME fix compress task
 	// grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);

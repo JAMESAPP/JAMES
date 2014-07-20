@@ -45,9 +45,10 @@
 *** TODO datetime picker
 *** TODO Replace app/js/config.js by app/js/models/configuration
 * TODO Graphic Design
-** DONE Rename project to JAMES
-** TODO Implement wink button (password field - configurations)
 ** TODO Migrate to bootstrap 3
 *** TODO Fix build process (separate fonts, img, lib, etc)
 *** TODO Fix layout errors
 *** DONE Start use new lib
+** TODO create favicon
+** TODO Implement wink button (password field - configurations)
+** DONE Rename project to JAMES
