@@ -47,13 +47,25 @@ module.exports = function(grunt) {
 		// 	}
 		// },
 
-		requirejs: {
+		clean: {
+			options: {
+				force: true
+			},
+			dist: {
+				expand: true,
+				cwd: 'dist/',
+				src: '**',
+				flatten: false
+			}
+		}
+
+		, requirejs: {
 			compile: {
 				options: {
 					baseUrl: "app/js",
 					mainConfigFile: "app/js/main.js",
 					name: "main",
-					out: "dist/<%= pkg.name %>.min.js"
+					out: "dist/js/main.min.js"
 				}
 			}
 		}
@@ -65,6 +77,10 @@ module.exports = function(grunt) {
 					// 	src: 'index.html',
 					// 	dest: 'dist/index.html'
 					// },
+					{
+						src: 'app/js/libs/bower/requirejs/require.js',
+						dest: 'dist/js/require.js'
+					},
 					{
 						expand: true,
 						cwd: 'app/js/libs/bower/bootstrap/fonts',
@@ -79,8 +95,8 @@ module.exports = function(grunt) {
 		, cssmin: {
 			combine: {
 				files: {
-					// 'dist/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css'],
-					'dist/css/main.min.css': ['app/css/main.css'],
+					'dist/css/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css'],
+					// 'dist/css/main.min.css': ['app/css/main.css'],
 					options: {
 						keepSpecialComments: 0
 					}
@@ -96,6 +112,6 @@ module.exports = function(grunt) {
 	// grunt.loadNpmTasks('grunt-contrib-copy');
 
 	// grunt.registerTask('default', ['jshint', 'requirejs']);
-	grunt.registerTask('firefoxos', ['requirejs', 'copy', 'cssmin']);
+	grunt.registerTask('firefoxos', ['clean', 'requirejs', 'copy', 'cssmin']);
 
 };
