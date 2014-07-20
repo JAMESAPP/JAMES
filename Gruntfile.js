@@ -47,6 +47,10 @@ module.exports = function(grunt) {
 			}
 		},
 
+		usemin: {
+            html: ['dist/index.html']
+        },
+
 		clean: {
 			options: {
 				force: true
@@ -59,6 +63,18 @@ module.exports = function(grunt) {
 			},
 			zip: {
 				src: '<%= pkg.name %>.zip'
+			}
+		}
+
+		, htmlmin: {
+			dist: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
+				files: {
+					'dist/index.html': 'index.html'
+				}
 			}
 		}
 
@@ -86,6 +102,13 @@ module.exports = function(grunt) {
 						cwd: 'app/js/libs/bower/bootstrap/fonts',
 						src: '**',
 						dest: 'dist/fonts',
+						flatten: false
+					},
+					{
+						expand: true,
+						cwd: 'app/img',
+						src: '**',
+						dest: 'dist/img',
 						flatten: false
 					}
 				]
@@ -126,14 +149,16 @@ module.exports = function(grunt) {
 		}
 
 		, exec: {
-			deploy_ffoxos: {
-				cwd: '../ffoxos',
+			deploy_ffxos: {
+				cwd: '../ffxos',
 				cmd: 'git commit -am "Deploy JAMES version <%= pkg.version %>" && git push github gh-pages'
 			}
 			
 		}
 	});
 
-	grunt.registerTask('firefoxos', ['clean', 'requirejs', 'copy', 'cssmin', 'compress']);
-	grunt.registerTask('deploy', ['firefoxos', 'exec:deploy_ffoxos']);
+	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'htmlmin']);
+
+	// FIXME fix compress task
+	// grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
 };

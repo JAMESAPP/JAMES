@@ -2,11 +2,22 @@
 ** DONE Bower
 ** TODO Grunt
 *** TODO Implement a process to deploy app
-**** TODO usemin
-**** TODO cssmin
-**** TODO htmlmin
-**** TODO compress
-**** DONE requirejs uglify
+**** TODO grunt-contrib-compress
+***** TODO replace index.html with index.html from htmlmin
+***** DONE compress
+**** TODO grunt-contrib-copy
+***** TODO data
+***** TODO img
+***** DONE fonts
+***** DONE requirejs
+**** TODO grunt-contrib-imagemin
+**** TODO grunt-contrib-usemin
+**** TODO grunt-contrib-jasmine
+**** TODO grunt-contrib-handlebars
+**** DONE grunt-contrib-htmlmin
+**** DONE grunt-contrib-cssmin
+**** DONE grunt-contrib-requirejs
+**** DONE deploy to firefoxos
 *** TODO implement a process to dev
 **** TODO grunt watch (with live-reload)
 **** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
@@ -36,6 +47,7 @@
 * TODO Graphic Design
 ** DONE Rename project to JAMES
 ** TODO Implement wink button (password field - configurations)
-** Migrate to bootstrap 3
-*** DONE Start use new lib
+** TODO Migrate to bootstrap 3
+*** TODO Fix build process (separate fonts, img, lib, etc)
 *** TODO Fix layout errors
+*** DONE Start use new lib

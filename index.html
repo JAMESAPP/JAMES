@@ -3,20 +3,24 @@
   <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="UTF-8" />
-	<title>JAMES - Your Personal Assistant.</title>
-	<link rel=”icon” href=”app/img/favicon.ico” type=”image/x-icon”>
-	<link rel=”shortcut icon” href=”app/img/favicon.ico” type=”image/x-icon”>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="JAMES" />
 	<meta name="author" content="Jefferson Campos" />
+	<title>JAMES - Your Personal Assistant.</title>
 
-	<!-- DEVELOPMENT -->
-	<!-- <link rel="stylesheet" href="app/css/main.css"> -->
-	<!-- <link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css"> -->
-	<!-- <link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css"> -->
-	<!-- <link rel="stylesheet" href="app/css/jquery-ui/jquery-ui.min.css"> -->
-	<!-- PRODUCTION -->
-	<link rel="stylesheet" href="dist/css/main.min.css">
+	<!-- FIXME implement custom usemin to handle this -->
+	<link rel="icon" href="app/img/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="app/img/favicon.ico" type="image/x-icon">
+	<!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
+	<!-- <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"> -->
+
+	<!-- build:css dist/css/main.min.css -->
+	<link rel="stylesheet" href="app/css/main.css">
+	<link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="app/css/jquery-ui/jquery-ui.min.css">
+	<!-- endbuild -->
+	<link rel="stylesheet" href="css/main.min.css" />
   </head>
   <body>
 	<div class="wrapper">
@@ -27,10 +31,7 @@
 	</div>
 	<div id="footer"></div>
 
-	<!-- DEVELOPMENT -->
-	<!-- <script data-main="app/js/main.js" src="app/js/libs/bower/requirejs/require.js"></script> -->
-
-	<!-- PRODUCTION -->
-	<script data-main="dist/js/main.min.js" src="dist/js/require.js"></script>
+	<script data-main="app/js/main.js" src="app/js/libs/bower/requirejs/require.js"></script>
+	<!-- <script data-main="js/main.min.js" src="js/require.js"></script> -->
   </body>
 </html>
