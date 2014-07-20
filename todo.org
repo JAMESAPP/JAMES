@@ -8,12 +8,12 @@
 **** TODO grunt-contrib-copy
 ***** TODO data
 ***** TODO img
+***** TODO css img
 ***** DONE fonts
 ***** DONE requirejs
 **** TODO grunt-contrib-imagemin
-**** TODO grunt-contrib-usemin
-**** TODO grunt-contrib-jasmine
 **** TODO grunt-contrib-handlebars
+**** DONE grunt-processhtml
 **** DONE grunt-contrib-htmlmin
 **** DONE grunt-contrib-cssmin
 **** DONE grunt-contrib-requirejs
