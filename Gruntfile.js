@@ -49,18 +49,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		'useminPrepare': {
-			html: 'index.html'
-			, options: {
-				dest: 'dist'
-			}
-		},
-		// use the copy in dist folder as this is where it replace the path to file relative to the passed file
-		usemin: {
-			html: ['dist/index.html']
-			// , css: ['dist/*.css']
-		},
-
 		clean: {
 			options: {
 				force: true
@@ -75,19 +63,6 @@ module.exports = function(grunt) {
 				src: '<%= pkg.name %>.zip'
 			}
 		}
-
-		, htmlmin: {
-			dist: {
-				options: {
-					removeComments: true,
-					collapseWhitespace: true
-				},
-				files: {
-					'dist/index.html': 'index.html'
-				}
-			}
-		}
-
 		, requirejs: {
 			compile: {
 				options: {
@@ -165,11 +140,36 @@ module.exports = function(grunt) {
 			}
 			
 		}
+
+		, processhtml: {
+			options: {
+				data: {
+					jsBuildScript: '<script data-main="js/main.min.js" src="js/require.js"></script>'
+				}
+			},
+			dist: {
+				files: {
+					'dist/index.html': ['index.html']
+				}
+			}
+		}
+
+		, htmlmin: {
+			dist: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
+				files: {
+					'dist/index.html': 'dist/index.html'
+				}
+			}
+		}
 	});
 
-	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'htmlmin']);
+	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
 
-	grunt.registerTask('tooling', ['useminPrepare', 'usemin']);
+	grunt.registerTask('tooling', ['processhtml', 'htmlmin']);
 
 	// FIXME fix compress task
 	// grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);

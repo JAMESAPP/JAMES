@@ -8,19 +8,17 @@
 	<meta name="author" content="Jefferson Campos" />
 	<title>JAMES - Your Personal Assistant.</title>
 
-	<!-- FIXME implement custom usemin to handle this -->
-	<link rel="icon" href="app/img/favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="app/img/favicon.ico" type="image/x-icon">
-	<!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
-	<!-- <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"> -->
+	<!-- build:[href] img/favicon.ico -->
+	<link rel="icon" type="image/x-icon" href="app/img/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="app/img/favicon.ico">
+	<!-- /build -->
 
-	<!-- build:css dist/css/main.min.css -->
+	<!-- build:css css/main.min.css -->
 	<link rel="stylesheet" href="app/css/main.css">
 	<link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="app/css/jquery-ui/jquery-ui.min.css">
-	<!-- endbuild -->
-	<!-- <link rel="stylesheet" href="css/main.min.css" /> -->
+	<!-- /build -->
   </head>
   <body>
 	<div class="wrapper">
@@ -31,9 +29,11 @@
 	</div>
 	<div id="footer"></div>
 
-	<!-- build:js dist/js/main.min.js -->
+	<!-- build:template
+		 <%= jsBuildScript %>
+		 /build -->
+	<!-- build:remove -->
 	<script data-main="app/js/main.js" src="app/js/libs/bower/requirejs/require.js"></script>
-	<!-- endbuild -->
-	<!-- <script data-main="js/main.min.js" src="js/require.js"></script> -->
+	<!-- /build -->
   </body>
 </html>
