@@ -18,8 +18,5 @@
     "firebase-simple-login": "~1.6.1",
     "hideShowPassword": "~2.0.3",
     "backfire": "~0.3.0"
-  },
-  "devDependencies": {
-    "grunt-usemin": "~2.3.0"
   }
 }

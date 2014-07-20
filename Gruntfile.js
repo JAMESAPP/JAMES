@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function(grunt) {
+	require('jit-grunt')(grunt);
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
@@ -56,11 +58,29 @@ module.exports = function(grunt) {
 			}
 		}
 
+		, copy: {
+			dist: {
+				files: [
+					// {
+					// 	src: 'index.html',
+					// 	dest: 'dist/index.html'
+					// },
+					{
+						expand: true,
+						cwd: 'app/js/libs/bower/bootstrap/fonts',
+						src: '**',
+						dest: 'dist/fonts',
+						flatten: false
+					}
+				]
+			}
+		}
+
 		, cssmin: {
 			combine: {
 				files: {
 					// 'dist/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css'],
-					'dist/main.min.css': ['app/css/main.css'],
+					'dist/css/main.min.css': ['app/css/main.css'],
 					options: {
 						keepSpecialComments: 0
 					}
@@ -71,10 +91,11 @@ module.exports = function(grunt) {
 
 	// grunt.loadNpmTasks('grunt-contrib-jshint');
 	// grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	// grunt.loadNpmTasks('grunt-contrib-requirejs');
+	// grunt.loadNpmTasks('grunt-contrib-cssmin');
+	// grunt.loadNpmTasks('grunt-contrib-copy');
 
 	// grunt.registerTask('default', ['jshint', 'requirejs']);
-	grunt.registerTask('build', ['requirejs', 'cssmin']);
+	grunt.registerTask('firefoxos', ['requirejs', 'copy', 'cssmin']);
 
 };

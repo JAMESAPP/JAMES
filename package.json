@@ -1,17 +1,20 @@
 {
-  "name": "JAMES",
-  "version": "0.0.4",
-  "author": {
-    "name": "Jefferson Campos",
-    "email": "jefferson@jeffersoncampos.eti.br",
-    "url": "http://jeffersoncampos.eti.br"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-requirejs": "^0.4.3",
-    "grunt-usemin": "^2.3.0",
-    "grunt-contrib-cssmin": "^0.10.0"
-  }
+	"name": "JAMES",
+	"version": "0.0.4",
+	"repository": "git@github.com:foguinhoperuca/JAMES.git",
+	"author": {
+		"name": "Jefferson Campos",
+		"email": "jefferson@jeffersoncampos.eti.br",
+		"url": "http://jeffersoncampos.eti.br"
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-contrib-jshint": "^0.10.0",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-contrib-requirejs": "^0.4.3",
+		"grunt-usemin": "^2.3.0",
+		"grunt-contrib-cssmin": "^0.10.0",
+		"jit-grunt": "^0.7.0",
+		"grunt-contrib-copy": "^0.5.0"
+	}
 }
