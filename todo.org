@@ -1,5 +1,4 @@
 * TODO Environment
-** DONE Bower
 ** TODO Grunt
 *** TODO Implement a process to deploy app
 **** TODO grunt-contrib-compress
@@ -22,6 +21,8 @@
 *** TODO implement a process to dev
 **** TODO grunt watch (with live-reload)
 **** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
+** TODO Merge all json files inside data? It is a good ideia?
+** DONE Bower
 ** DONE YAWECAPP
 ** DONE Firefox OS emulator
 ** DONE Deploy at my own phone
