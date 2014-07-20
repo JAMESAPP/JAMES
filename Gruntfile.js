@@ -58,9 +58,6 @@ module.exports = function(grunt) {
 				cwd: 'dist/',
 				src: '**',
 				flatten: false
-			},
-			zip: {
-				src: '<%= pkg.name %>.zip'
 			}
 		}
 		, requirejs: {
@@ -69,7 +66,7 @@ module.exports = function(grunt) {
 					baseUrl: "app/js",
 					mainConfigFile: "app/js/main.js",
 					name: "main",
-					out: "dist/js/main.min.js",
+					out: "dist/app/js/main.min.js",
 					preserveLicenseComments: false
 				}
 			}
@@ -80,20 +77,20 @@ module.exports = function(grunt) {
 				files: [
 					{
 						src: 'app/js/libs/bower/requirejs/require.js',
-						dest: 'dist/js/require.js'
+						dest: 'dist/app/js/require.js'
 					},
 					{
 						expand: true,
 						cwd: 'app/js/libs/bower/bootstrap/fonts',
 						src: '**',
-						dest: 'dist/fonts',
+						dest: 'dist/app/fonts',
 						flatten: false
 					},
 					{
 						expand: true,
 						cwd: 'app/img',
 						src: '**',
-						dest: 'dist/img',
+						dest: 'dist/app/img',
 						flatten: false
 					}
 				]
@@ -103,10 +100,35 @@ module.exports = function(grunt) {
 		, cssmin: {
 			combine: {
 				files: {
-					'dist/css/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css']
+					'dist/app/css/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css']
 				}
 				, options: {
 					keepSpecialComments: 0
+				}
+			}
+		}
+
+		, processhtml: {
+			options: {
+				data: {
+					jsBuildScript: '<script data-main="app/js/main.min.js" src="app/js/require.js"></script>'
+				}
+			},
+			dist: {
+				files: {
+					'dist/index.html': ['index.html']
+				}
+			}
+		}
+
+		, htmlmin: {
+			dist: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
+				files: {
+					'dist/index.html': 'dist/index.html'
 				}
 			}
 		}
@@ -139,31 +161,6 @@ module.exports = function(grunt) {
 				cmd: 'git commit -am "Deploy JAMES version <%= pkg.version %>" && git push github gh-pages'
 			}
 			
-		}
-
-		, processhtml: {
-			options: {
-				data: {
-					jsBuildScript: '<script data-main="js/main.min.js" src="js/require.js"></script>'
-				}
-			},
-			dist: {
-				files: {
-					'dist/index.html': ['index.html']
-				}
-			}
-		}
-
-		, htmlmin: {
-			dist: {
-				options: {
-					removeComments: true,
-					collapseWhitespace: true
-				},
-				files: {
-					'dist/index.html': 'dist/index.html'
-				}
-			}
 		}
 	});
 
