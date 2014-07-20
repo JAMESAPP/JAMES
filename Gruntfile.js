@@ -11,27 +11,6 @@ module.exports = function(grunt) {
 			'* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
 			' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 
-		// jshint: {
-		// 	options: {
-		// 		jshintrc: '.jshintrc'
-		// 	},
-		// 	gruntfile: {
-		// 		src: 'Gruntfile.js'
-		// 	},
-		// 	lib: {
-		// 		options: {
-		// 			jshintrc: '.jshintrc'
-		// 		},
-		// 		src: [
-		// 			'app/js/**/*.js'
-		// 			, '!app/js/libs/**/*.js'
-		// 		]
-		// 	},
-		// 	test: {
-		// 		src: ['app/test/**/*.js']
-		// 	}
-		// },
-
 		// watch: {
 		// 	gruntfile: {
 		// 		files: '<%= jshint.gruntfile.src %>',
@@ -46,6 +25,27 @@ module.exports = function(grunt) {
 		// 		tasks: ['jshint:test', 'nodeunit']
 		// 	}
 		// },
+
+		jshint: {
+			lib: {
+				options: {
+					jshintrc: '.jshintrc'
+				},
+				src: [
+					'app/js/**/*.js'
+					, '!app/js/libs/**/*.js'
+				]
+			}
+			, test: {
+				options: {
+					jshintrc: '.jshintrc'
+				},
+				src: [
+					'app/test/jasmine/**/*.js'
+					, '!app/test/jasmine/lib/**/*.js'
+				]
+			}
+		},
 
 		clean: {
 			options: {

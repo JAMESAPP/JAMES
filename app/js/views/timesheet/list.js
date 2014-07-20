@@ -1,12 +1,12 @@
 define([
-	'underscore'
-	, 'marionette'
-	, 'moment'
-	, 'config'
-	, 'models/expense'
-	, 'views/list'
-	, 'text!../../../templates/timesheet/list.tpl'
-	, 'text!../../../templates/timesheet/list-item.tpl'
+	'underscore',
+	'marionette',
+	'moment',
+	'config',
+	'models/expense',
+	'views/list',
+	'text!../../../templates/timesheet/list.tpl',
+	'text!../../../templates/timesheet/list-item.tpl'
 ], function (_, Marionette, Moment, Config, ExpenseModel, ListView, CompositeViewTemplate, ItemViewTemplate) {
 	var itemView = Marionette.ItemView.extend({
 		template: ItemViewTemplate,
@@ -21,7 +21,7 @@ define([
 			var attrToView = _.clone(this.attributes) || {},
 				modelStart,
 				configStartTime = Moment(Config.timesheet.startTime, 'HH:mm'),
-				configEndTime = Moment(Config.timesheet.endTime, 'HH:mm');
+				configEndTime = Moment(Config.timesheet.endTime, 'HH:mm')
 			;
 
 			// Total Days Late to Work
