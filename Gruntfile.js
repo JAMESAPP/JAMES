@@ -56,6 +56,9 @@ module.exports = function(grunt) {
 				cwd: 'dist/',
 				src: '**',
 				flatten: false
+			},
+			zip: {
+				src: '<%= pkg.name %>.zip'
 			}
 		}
 
@@ -65,7 +68,8 @@ module.exports = function(grunt) {
 					baseUrl: "app/js",
 					mainConfigFile: "app/js/main.js",
 					name: "main",
-					out: "dist/js/main.min.js"
+					out: "dist/js/main.min.js",
+					preserveLicenseComments: false
 				}
 			}
 		}
@@ -73,10 +77,6 @@ module.exports = function(grunt) {
 		, copy: {
 			dist: {
 				files: [
-					// {
-					// 	src: 'index.html',
-					// 	dest: 'dist/index.html'
-					// },
 					{
 						src: 'app/js/libs/bower/requirejs/require.js',
 						dest: 'dist/js/require.js'
@@ -95,23 +95,45 @@ module.exports = function(grunt) {
 		, cssmin: {
 			combine: {
 				files: {
-					'dist/css/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css'],
-					// 'dist/css/main.min.css': ['app/css/main.css'],
-					options: {
-						keepSpecialComments: 0
-					}
+					'dist/css/main.min.css': ['app/css/main.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap.min.css', 'app/js/libs/bower/bootstrap/dist/css/bootstrap-theme.min.css', 'app/css/jquery-ui/jquery-ui.min.css']
+				}
+				, options: {
+					keepSpecialComments: 0
 				}
 			}
 		}
+
+		, compress : {
+			main : {
+				options : {
+					archive : "../ffoxos/james/<%= pkg.name %>.zip"
+				},
+				files : [
+					{
+						expand: true,
+						src: "**/*",
+						cwd: "dist/"
+					}, 
+					{
+						src: [
+							'index.html',
+							'manifest.webapp'
+						],
+						dest: ''
+					}
+				]
+			}
+		}
+
+		, exec: {
+			deploy_ffoxos: {
+				cwd: '../ffoxos',
+				cmd: 'git commit -am "Deploy JAMES version <%= pkg.version %>" && git push github gh-pages'
+			}
+			
+		}
 	});
 
-	// grunt.loadNpmTasks('grunt-contrib-jshint');
-	// grunt.loadNpmTasks('grunt-contrib-watch');
-	// grunt.loadNpmTasks('grunt-contrib-requirejs');
-	// grunt.loadNpmTasks('grunt-contrib-cssmin');
-	// grunt.loadNpmTasks('grunt-contrib-copy');
-
-	// grunt.registerTask('default', ['jshint', 'requirejs']);
-	grunt.registerTask('firefoxos', ['clean', 'requirejs', 'copy', 'cssmin']);
-
+	grunt.registerTask('firefoxos', ['clean', 'requirejs', 'copy', 'cssmin', 'compress']);
+	grunt.registerTask('deploy', ['firefoxos', 'exec:deploy_ffoxos']);
 };
