@@ -92,6 +92,13 @@ module.exports = function(grunt) {
 						src: '**',
 						dest: 'dist/app/img',
 						flatten: false
+					},
+					{
+						expand: true,
+						cwd: 'app/data',
+						src: ['**/*.json', '!test/'],
+						dest: 'dist/app/data',
+						flatten: false
 					}
 				]
 			}
@@ -166,7 +173,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
 
-	grunt.registerTask('tooling', ['processhtml', 'htmlmin']);
+	grunt.registerTask('tooling', ['clean', 'copy']);
 
 	// FIXME fix compress task
 	// grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);

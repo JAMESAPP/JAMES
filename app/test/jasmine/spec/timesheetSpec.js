@@ -4,8 +4,8 @@ define([
 	, 'app'
 	, 'collections/generic'
 	, 'views/timesheet/list'
-	, 'text!../../../../../../../data/test/timesheet/noDaysLater.json'
-	, 'text!../../../../../../../data/test/timesheet/withDaysLater.json'
+	, 'text!../../../../../../../test/data/timesheet/noDaysLater.json'
+	, 'text!../../../../../../../test/data/timesheet/withDaysLater.json'
 ], function (Moment, Config, App, TimesheetCollection, TimesheetListView, NoDaysLater, WithDaysLater) {
 	return describe('Timesheet.', function() {
 		describe('View', function() {

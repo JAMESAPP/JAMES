@@ -6,11 +6,12 @@
 ***** TODO replace index.html with index.html from htmlmin
 ***** DONE compress
 **** TODO grunt-contrib-copy
-***** TODO data
 ***** TODO img
 ***** TODO css img
+***** DONE data
 ***** DONE fonts
 ***** DONE requirejs
+**** TODO grunt-jsonmin https://www.npmjs.org/package/grunt-jsonmin
 **** TODO grunt-contrib-imagemin
 **** TODO grunt-contrib-handlebars
 **** DONE grunt-processhtml
