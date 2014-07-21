@@ -99,7 +99,16 @@ module.exports = function(grunt) {
 						src: ['**/*.json', '!test/'],
 						dest: 'dist/app/data',
 						flatten: false
+					},
+					// FIXME use jquery-ui via bower instead!!!
+					{
+						expand: true,
+						cwd: 'app/css/jquery-ui/images',
+						src: ['**'],
+						dest: 'dist/app/css/images',
+						flatten: false
 					}
+
 				]
 			}
 		}

@@ -6,34 +6,26 @@
 ***** DONE compress
 **** TODO grunt-contrib-copy
 ***** TODO img
-***** TODO css img
+***** DONE css img (jquery-ui)
 ***** DONE data
 ***** DONE fonts
 ***** DONE requirejs
 **** TODO grunt-jsonmin https://www.npmjs.org/package/grunt-jsonmin
 **** TODO grunt-contrib-imagemin
 **** TODO grunt-contrib-handlebars
-**** DONE grunt-processhtml
-**** DONE grunt-contrib-htmlmin
-**** DONE grunt-contrib-cssmin
-**** DONE grunt-contrib-requirejs
-**** DONE deploy to firefoxos
+**** TODO Fix deploy to firefoxos
 *** TODO implement a process to dev
 **** TODO grunt watch (with live-reload)
 **** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
 ** TODO Merge all json files inside data? It is a good ideia?
-** DONE Bower
-** DONE YAWECAPP
-** DONE Firefox OS emulator
-** DONE Deploy at my own phone
+** TODO Bower
+*** TODO jquery-ui
 ** TODO Deploy at https://marketplace.firefox.com/
 * TODO Function
-** DONE Generic CRUD
 ** TODO Export to QIF
 ** TODO Clear all entries
 ** TODO Sync
 ** TODO Timesheet
-*** DONE Basic CRUD
 *** TODO Painel
 *** TODO calc for leaving early
 *** TODO filter by month
@@ -42,15 +34,11 @@
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Groceries
 ** TODO Configuration
-*** DONE timesheet
-**** DONE Implement timesheet handler
 *** TODO datetime picker
 *** TODO Replace app/js/config.js by app/js/models/configuration
 * TODO Graphic Design
 ** TODO Migrate to bootstrap 3
 *** TODO Fix build process (separate fonts, img, lib, etc)
 *** TODO Fix layout errors
-*** DONE Start use new lib
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
-** DONE Rename project to JAMES
