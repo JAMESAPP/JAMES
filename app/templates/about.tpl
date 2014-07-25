@@ -59,11 +59,11 @@ Use the menu above with shortcuts. For all functions, check:
   <div class="tab-pane" id="backup">
 	<h2>Backup</h2>
 	<p class="text-danger">Take control of your data. Make an backup in cloud or export your data to disk.</p>
-	<a href="#backups" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Take Control of Your Data</a>
+	<a href="#backup" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Take Control of Your Data</a>
   </div>
   <div class="tab-pane" id="settings">
 	<h2>Settings</h2>
 	<p class="text-danger">Setup app.</p>
-	<a href="#configurations" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-wrench"></span> Setup your app</a>
+	<a href="#settings" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-wrench"></span> Setup your app</a>
   </div>
 </div>

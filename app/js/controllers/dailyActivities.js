@@ -13,14 +13,14 @@ define([
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
 	, 'views/backup'
-	, 'views/configurations'
+	, 'views/settings'
 	, 'models/expense'
 	, 'models/food'
 	, 'models/motorcycle'
 	, 'models/gym'
 	, 'models/timesheet'
-	, 'models/configuration'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, ConfigurationView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel, ConfigurationModel) {
+	, 'models/setting'
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -45,7 +45,7 @@ define([
 
 			, 'backup': 'backup'
 
-			, 'configurations': 'configurations'
+			, 'settings': 'settings'
 		},
 
 		expenses: function() {
@@ -87,11 +87,11 @@ define([
 			App.mainRegion.show(new BackupView());
 		},
 
-		configurations: function() {
+		settings: function() {
 			// FIXME always will be id 1? How I can guarantee this?
-			var objectStore = App.indexedDB.db.transaction(['configurations']).objectStore('configurations').get(1);
+			var objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1);
 			objectStore.onsuccess = function(event) {
-				App.mainRegion.show(new ConfigurationView(new ConfigurationModel(event.target.result)));
+				App.mainRegion.show(new SettingsView(new SettingModel(event.target.result)));
 			};
 		},
 

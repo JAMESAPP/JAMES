@@ -28,14 +28,14 @@ define([
 			this.configurations = [];
 
 			var self = this,
-				transaction = App.indexedDB.db.transaction(['configurations', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets'], 'readonly');
+				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets'], 'readonly');
 			var	expenseCursor = transaction.objectStore('expenses').openCursor(),
 				foodCursor = transaction.objectStore('foods').openCursor(),
 				groceryCursor = transaction.objectStore('groceries').openCursor(),
 				gymCursor = transaction.objectStore('gyms').openCursor(),
 				motorcycleCursor = transaction.objectStore('motorcycles').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
-				configurationsObject = transaction.objectStore('configurations').get(1)
+				configurationsObject = transaction.objectStore('settings').get(1)
 			;
 
 			expenseCursor.onsuccess = function(e) {

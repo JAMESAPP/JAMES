@@ -1,5 +1,5 @@
 <div id="divRegister" class="container">
-    <h1>Configurations</h1>
+    <h1>Settings</h1>
     <div class="row">
         <label for="inputEnvironment">Environment</label>
         <input type="text" id="inputEnvironment" class="col-xs-12" value="{{env}}" placeholder="[local|test|homolog|prod]" data-bind="value:env,events:['keyup']"/>
