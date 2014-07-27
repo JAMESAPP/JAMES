@@ -30,9 +30,7 @@ define([
 						expect(listView.daysLateToWork(noDayLaterToWork.toJSON(), configStartTime).length).toEqual(0);
 					});
 
-console.log(july2014.toJSON());
-
-					it('Should return 4 days late. Must not compute July/01', function() {
+					it('Should return 4 days late in july/2014. Must not compute July/01', function() {
 						expect(listView.daysLateToWork(july2014.toJSON(), configStartTime).length).toEqual(4);
 					});
 				});

@@ -161,8 +161,8 @@ define([
 
 				if (snapshot.val() !== null) {
 					transaction.objectStore('settings').clear().onsuccess = function(event) {
-						transaction.objectStore('settings').put(snapshot.val().configurations).onsuccess = function (event) {
-							console.log('Re-added configuration id #' + snapshot.val().configurations.id);
+						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
+							console.log('Re-added setting id #' + snapshot.val().settings.id);
 						};
 					};
 

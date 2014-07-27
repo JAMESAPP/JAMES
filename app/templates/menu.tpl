@@ -19,7 +19,7 @@
 		<li><a href="#motorcycles"><span class="glyphicon glyphicon-road"></span></a></li>
 		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>
 		<li><a href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
-		<li><a href="#configurations"><span class="glyphicon glyphicon-wrench"></span></a></li>
+		<li><a href="#settings"><span class="glyphicon glyphicon-wrench"></span></a></li>
       </ul>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -66,6 +66,9 @@ define([
 		, daysLateToWork: function(timesheets, configStartTime) {
 			var checkin;
 			var later = _.filter(timesheets, function(timesheet) {
+				if (!timesheet.officialShift)
+					return false;
+
 				checkin = Moment(timesheet.startTime, 'HH:mm');
 				return Moment(checkin).isAfter(configStartTime);
 			});
