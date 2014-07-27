@@ -116,9 +116,16 @@ define([
 					self.auth.login('password', {
 						email: self.configurations.cloudAuth.email
 						, password: self.configurations.cloudAuth.password
-						, rememberMe: true
+						, rememberMe: false
 					});
 				}
+			};
+
+			configurationsObject.onerror = function(event) {
+				console.error(event);
+				self.$el.find('#spanMessage').removeClass();
+				self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+				self.$el.find('#spanMessage').html('[SETTINGS ERROR] a bizare error has occurred!!!!').fadeIn().delay(5000).fadeOut();
 			};
 		}
 
@@ -150,11 +157,11 @@ define([
 			ev.preventDefault();
 
 			this.cloud.on('value', function(snapshot) {
-				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'configurations'], 'readwrite');
+				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
 
 				if (snapshot.val() !== null) {
-					transaction.objectStore('configurations').clear().onsuccess = function(event) {
-						transaction.objectStore('configurations').put(snapshot.val().configurations).onsuccess = function (event) {
+					transaction.objectStore('settings').clear().onsuccess = function(event) {
+						transaction.objectStore('settings').put(snapshot.val().configurations).onsuccess = function (event) {
 							console.log('Re-added configuration id #' + snapshot.val().configurations.id);
 						};
 					};
