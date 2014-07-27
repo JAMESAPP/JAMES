@@ -21,7 +21,7 @@
         <div class="col-xs-6">
             <div class="checkbox">
                 <label>
-                    <input id="inputOfficialShift" type="checkbox" value="">Official Shift? 
+                    <input id="inputOfficialShift" type="checkbox" data-bind="checked:officialShift" />Official Shift? 
                 </label>
             </div>
         </div>
