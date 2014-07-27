@@ -152,7 +152,7 @@ module.exports = function(grunt) {
 		, compress : {
 			main : {
 				options : {
-					archive : "../ffoxos/james/<%= pkg.name %>.zip"
+					archive : "../ffxos/james/<%= pkg.name %>.zip"
 				},
 				files : [
 					{
@@ -162,7 +162,6 @@ module.exports = function(grunt) {
 					}, 
 					{
 						src: [
-							'index.html',
 							'manifest.webapp'
 						],
 						dest: ''
@@ -182,8 +181,6 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
 
-	grunt.registerTask('tooling', ['clean', 'copy']);
-
 	// FIXME fix compress task
-	// grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
+	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
 };
