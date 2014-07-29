@@ -75,13 +75,18 @@ define([
 
 			return later;
 		}
+		/**
+		 *
+		 * Only owrks with array of late days.
+		 *
+		 */
 		, totalMinutesLaterAfterStart: function(later, configStartTime) {
 			var totalMinutesLateByDay;
 			var totalMinutesLaterAfterStart = Moment('00:00', 'HH:mm');
 			_.forEach(later, function(element, index, list) {
-				totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
-				totalMinutesLateByDay.subtract(configStartTime);
-				totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
+					totalMinutesLateByDay = Moment(element.startTime, 'HH:mm');
+					totalMinutesLateByDay.subtract(configStartTime);
+					totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
 			});
 			return totalMinutesLaterAfterStart.minutes();
 		}
