@@ -10,18 +10,16 @@ define([
 ], function (Moment, Config, App, TimesheetCollection, TimesheetListView, NoDaysLater, WithDaysLater, July2014) {
 	return describe('Timesheet.', function() {
 		describe('View', function() {
-			var listView = new TimesheetListView(new TimesheetCollection())
-				, configStartTime = Moment(Config.timesheet.startTime, 'HH:mm')
-				, configEndTime = Moment(Config.timesheet.endTime, 'HH:mm')
-				;
+			var listView = new TimesheetListView(new TimesheetCollection()),
+				configStartTime = Moment(Config.timesheet.startTime, 'HH:mm'),
+				configEndTime = Moment(Config.timesheet.endTime, 'HH:mm'),
+				noDayLaterToWork = new TimesheetCollection(JSON.parse(NoDaysLater)),
+				withDayLaterToWork = new TimesheetCollection(JSON.parse(WithDaysLater)),
+				july2014 = new TimesheetCollection(JSON.parse(July2014))
+			;
 
 			describe('Painel', function() {
 				describe('Total Days Late To Work.', function() {
-				var noDayLaterToWork = new TimesheetCollection(JSON.parse(NoDaysLater))
-					, withDayLaterToWork = new TimesheetCollection(JSON.parse(WithDaysLater))
-					, july2014 = new TimesheetCollection(JSON.parse(July2014))
-					;
-
 					it('Should detect that has one or more day late to work.', function() {
 						expect(listView.daysLateToWork(withDayLaterToWork.toJSON(), configStartTime).length).toEqual(1);
 					});
@@ -36,8 +34,9 @@ define([
 				});
 
 				describe('Total Minutes After Start.', function() {
-					it('Should implement test!', function() {
-						return true;
+					it('Should return 45 min in july/2014', function() {
+						var later = listView.daysLateToWork(july2014.toJSON(), configStartTime);
+						expect(listView.totalMinutesLaterAfterStart(later, configStartTime)).toEqual(45);
 					});
 				});
 
