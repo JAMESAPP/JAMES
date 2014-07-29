@@ -35,7 +35,7 @@ define([
 				gymCursor = transaction.objectStore('gyms').openCursor(),
 				motorcycleCursor = transaction.objectStore('motorcycles').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
-				configurationsObject = transaction.objectStore('settings').get(1)
+				settingsObject = transaction.objectStore('settings').get(1)
 			;
 
 			expenseCursor.onsuccess = function(e) {
@@ -86,13 +86,13 @@ define([
 				}
 			};
 
-			configurationsObject.onsuccess = function(e) {
+			settingsObject.onsuccess = function(e) {
 				if (e.target.result == undefined) {
 					self.$el.find('#spanMessage').removeClass();
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
 					self.$el.find('#spanMessage').html('[ERROR] Need save information about configuration before sync data.').fadeIn();
 				} else {
-					self.configurations = e.target.result;
+					self.settings = e.target.result;
 					self.cloud = new Firebase('https://jamesapp.firebaseIO.com');
 					self.auth = new FirebaseSimpleLogin(self.cloud, function(error, user) {
 						if (error) {
@@ -114,18 +114,18 @@ define([
 					});
 
 					self.auth.login('password', {
-						email: self.configurations.cloudAuth.email
-						, password: self.configurations.cloudAuth.password
+						email: self.settings.cloudAuth.email
+						, password: self.settings.cloudAuth.password
 						, rememberMe: false
 					});
 				}
 			};
 
-			configurationsObject.onerror = function(event) {
+			settingsObject.onerror = function(event) {
 				console.error(event);
 				self.$el.find('#spanMessage').removeClass();
 				self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-				self.$el.find('#spanMessage').html('[SETTINGS ERROR] a bizare error has occurred!!!!').fadeIn().delay(5000).fadeOut();
+				self.$el.find('#spanMessage').html('[SETTINGS ERROR] a bizarre error has occurred!!!!').fadeIn().delay(5000).fadeOut();
 			};
 		}
 
