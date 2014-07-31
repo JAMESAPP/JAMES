@@ -58,3 +58,4 @@
 <br />
 <a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Send</a>
 <a href="#" id="btnHideShowPassword" class="btn btn-warning"><i class="glyphicon glyphicon-warning-sign"></i> Show Password</a>
+<a href="#" id="btnDeleteSettings" class="btn btn-danger"><i class="glyphicon glyphicon-trash-sign"></i> Delete</a>

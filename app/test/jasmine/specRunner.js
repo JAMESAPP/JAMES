@@ -13,8 +13,10 @@ require.config({
 		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
 		'jqueryui': 'libs/custom/jquery-ui-custom.min',
 		'text': 'libs/bower/requirejs-text/text',
-		'templates': '../../templates/templates', // FIXME need it?
-		'moment': 'libs/bower/moment/min/moment-with-langs.min'
+		'moment': 'libs/bower/moment/min/moment-with-langs.min',
+		'firebase': 'libs/bower/firebase/firebase',
+		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
+		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 
 		// Test
 		, 'jasmine': '../test/jasmine/lib/jasmine-1.3.0/jasmine'
@@ -59,9 +61,15 @@ require.config({
 		'moment': {
 			exports : 'Moment'
 		},
-
-		'templates': {
-			deps: ['handlebars']
+		'firebase': {
+			exports: 'Firebase'
+		},
+		'firebaseSimpleLogin': {
+			exports: 'FirebaseSimpleLogin'
+		},
+		'hideShowPassword': {
+			deps: ['jquery'],
+			exports : 'HideShowPassword'
 		}
 
 		// Test
@@ -86,6 +94,7 @@ require([
 	, '../test/jasmine/spec/gymSpec'
 	, '../test/jasmine/spec/motorcycleSpec'
 	, '../test/jasmine/spec/timesheetSpec'
+	, '../test/jasmine/spec/settingsSpec'
 ], function(Jasmine) {
     var jasmineEnv = Jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
