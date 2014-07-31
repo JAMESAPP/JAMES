@@ -21,6 +21,10 @@
 ** TODO Bower
 *** TODO jquery-ui
 ** TODO Deploy at https://marketplace.firefox.com/
+** TODO Google chrome
+*** TODO Build template with handlebars
+*** Suport window.localstorage
+**** Support for firebase
 * TODO Function
 ** TODO Export to QIF
 ** TODO Clear all entries

@@ -75,6 +75,17 @@ module.exports = function(grunt) {
 		, copy: {
 			dist: {
 				files: [
+
+					// chrome
+					{
+						src: 'app/js/chrome.js',
+						dest: 'dist/app/js/chrome.js'
+					},
+					{
+						src: 'manifest.json',
+						dest: 'dist/'
+					},
+
 					{
 						src: 'app/js/libs/bower/requirejs/require.js',
 						dest: 'dist/app/js/require.js'

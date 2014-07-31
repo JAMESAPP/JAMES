@@ -88,11 +88,11 @@ require([
 		this.unbind();
 	};
 
-	App.initializeDB();
+	// App.initializeDB();
 
 	// start routers
 	new HomeController();
-	new DailyActivitiesController();
+	// new DailyActivitiesController();
 
 	Backbone.history.start();
 	// FIXME not working out of box! Need use jquery to trigger url change! :(

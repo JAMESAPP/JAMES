@@ -2,14 +2,15 @@ define([
 ], function () {
 	var IndexedDB = function () {
 		this.db =  function() {
-			if (!window.indexedDB)
-				console.error('[WARNING] No indexedDB API to start app. Is your browser supported?');
+			// if (!window.indexedDB)
+			// 	console.error('[WARNING] No indexedDB API to start app. Is your browser supported?');
 
 			return null;
 		};
 		this.openDB = function() {
 			var self = this;
-			var request = window.indexedDB.open('james', 1);
+			// var request = window.indexedDB.open('james', 1);
+			var request = BrowserBase.indexedDB.open('james', 1);
 
 			request.onsuccess = function(e) {
 				self.db = e.target.result;
