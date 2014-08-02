@@ -11,24 +11,24 @@ module.exports = function(grunt) {
 			'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
 			'<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
 			'* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-			' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+			' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
+		, livereloadPort : 4000
 
-		// watch: {
-		// 	gruntfile: {
-		// 		files: '<%= jshint.gruntfile.src %>',
-		// 		tasks: ['jshint:gruntfile']
-		// 	}
-		// 	, lib: {
-		// 		files: '<%= jshint.lib.src %>',
-		// 		tasks: ['jshint:lib', 'nodeunit']
-		// 	}
-		// 	, test: {
-		// 		files: '<%= jshint.test.src %>',
-		// 		tasks: ['jshint:test', 'nodeunit']
-		// 	}
-		// },
+		, watch: {
+			templates: {
+				files: ['app/templates/**/*.tpl'],
+				tasks: ['handlebars']
+			}
+			// , reload: {
+			// 	files: ['templates.js'],
+			// 	options: {
+			// 		livereload: '<%= livereloadPort %>',
+			// 		interval: 700
+			// 	}
+			// }
+		}
 
-		jshint: {
+		, jshint: {
 			lib: {
 				options: {
 					jshintrc: '.jshintrc'
@@ -212,7 +212,6 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('build', ['clean', 'copy', 'handlebars', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
-
-	// FIXME fix compress task
 	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
+	grunt.registerTask('dev', ['handlebars', 'watch']);
 };
