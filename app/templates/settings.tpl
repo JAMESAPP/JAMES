@@ -42,6 +42,10 @@
         <label for="inputWorkload">Workload</label>
         <input type="text" id="inputWorkload" class="col-xs-12" placeholder="06:00" data-bind="objectHandler:timesheet,events:['keyup']" data-property="workload" />
     </div>
+    <div class="row">
+        <label for="inputTimesheetBackendURL">Timesheet Backend URL</label>
+        <input type="text" id="inputTimesheetBackendURL" class="col-xs-12" placeholder="TIMESHEET BACKEND URL" data-bind="objectHandler:timesheet,events:['keyup']" data-property="timesheetBackendURL" />
+    </div>
     <h2>Cloud Auth</h2>
     <div class="row">
         <label for="inputCloudAuthEmail">E-mail</label>

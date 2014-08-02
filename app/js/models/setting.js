@@ -26,6 +26,7 @@ define([
 				, startTime: '08:00'
 				, endTime: '14:00'
 				, workload: '06:00'
+				, timesheetBackendURL: 'BACKEND_HERE'
 			}
 			, cloudAuth: {
 				email: '<YOUR_EMAIL_HERE>@<SOME_DOMAIN>'
