@@ -5,16 +5,14 @@ define([
 	'config',
 	'models/expense',
 	'views/list',
-	'text!../../../templates/timesheet/list.tpl',
-	'text!../../../templates/timesheet/list-item.tpl'
-], function (_, Marionette, Moment, Config, ExpenseModel, ListView, CompositeViewTemplate, ItemViewTemplate) {
+], function (_, Marionette, Moment, Config, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
-		template: ItemViewTemplate,
+		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
 	});
 
 	var CompositeView = ListView.extend({
-		template: CompositeViewTemplate,
+		template: 'app/templates/timesheet/list.tpl',
 		itemView: itemView,
 		objectStore: 'timesheets'
 		, serializeData: function() {

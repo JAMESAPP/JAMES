@@ -5,8 +5,7 @@ define([
 	, 'firebaseSimpleLogin'
 	, 'app'
 	, 'views/bindingView'
-	, 'text!../../templates/backup.tpl'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, Template) {
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -16,7 +15,7 @@ define([
 			, 'click #btnSaveOnDisk': 'saveOnDisk'
 			, 'click #btnSyncWithDisk': 'syncWithDisk'
 		}
-		, template: Template
+		, template: 'app/templates/backup.tpl'
 
 		, initialize: function() {
 			this.expenses = [];

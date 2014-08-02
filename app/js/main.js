@@ -1,14 +1,13 @@
 require.config({
 	baseUrl: 'app/js',
 	paths: {
-		// LIBS
 		'underscore': 'libs/bower/underscore/underscore',
 		'jquery': 'libs/bower/jquery/dist/jquery.min',
 		'backbone': 'libs/bower/backbone/backbone',
-		'bootstrap': 'libs/bower/bootstrap/dist/js/bootstrap.min',
 		'marionette': 'libs/bower/backbone.marionette/lib/backbone.marionette.min',
+		'handlebars': 'libs/bower/handlebars/handlebars.runtime.min',
+		'bootstrap': 'libs/bower/bootstrap/dist/js/bootstrap.min',
 		'epoxy': 'libs/bower/backbone.epoxy/backbone.epoxy.min',
-		'handlebars': 'libs/bower/handlebars/handlebars.min',
 		'jquerymask': 'libs/bower/jQuery-Mask-Plugin/jquery.mask.min',
 		'jqueryui': 'libs/custom/jquery-ui-custom.min',
 		'text': 'libs/bower/requirejs-text/text',
@@ -17,16 +16,10 @@ require.config({
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 
-		// , 'templates': '../templates/templates'
 	},
 	shim: {
-		// LIBS
 		'jquery': {
 			exports: '$'
-		},
-		'bootstrap': {
-			deps: ['jquery'],
-			exports : 'bootstrap'
 		},
 		'underscore': {
 			exports: '_'
@@ -41,6 +34,10 @@ require.config({
 		},
 		'handlebars': {
 			exports: 'Handlebars'
+		},
+		'bootstrap': {
+			deps: ['jquery'],
+			exports : 'bootstrap'
 		},
 		'epoxy': {
 			deps: ['jquery', 'underscore', 'backbone'],
@@ -67,10 +64,6 @@ require.config({
 			deps: ['jquery'],
 			exports : 'HideShowPassword'
 		}
-
-		// , 'templates': {
-		// 	deps: ['handlebars']
-		// }
 	}
 });
 
@@ -80,24 +73,21 @@ require([
 	, 'controllers/home'
 	, 'controllers/dailyActivities'
 	, 'views/menu'
-	, 'views/footer'
-], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, FooterView) {
+], function(Backbone, App, HomeController, DailyActivitiesController, MenuView) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
 		this.unbind();
 	};
 
-	// App.initializeDB();
+	App.initializeDB();
 
-	// start routers
 	new HomeController();
-	// new DailyActivitiesController();
+	new DailyActivitiesController();
 
 	Backbone.history.start();
 	// FIXME not working out of box! Need use jquery to trigger url change! :(
 	// Backbone.history.start({ pushState: true });
 
 	App.menuRegion.show(new MenuView());
-	// App.footerRegion.show(new FooterView());
 });

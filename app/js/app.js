@@ -6,8 +6,8 @@ define([
 	, 'moment'
 	, 'config'
 	, 'models/indexedDB'
-	, 'handlebars'
-], function ($, Bootstrap, Backbone, Marionette, Moment, Config, IndexedDB, Handlebars){
+	, 'templates'
+], function ($, Bootstrap, Backbone, Marionette, Moment, Config, IndexedDB, Templates) {
 	var app = new Marionette.Application();
 
 	// FIXME Bootstrap var is in memory but i cant access it!
@@ -19,8 +19,7 @@ define([
 	});
 
 	Marionette.Renderer.render = function(template, data) {
-		var compiled = Handlebars.compile(template);
-		return compiled(data);
+		return Templates[template](data);
 	};
 
 	app.dateFormat = function(date, format, lang) {

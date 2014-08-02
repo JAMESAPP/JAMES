@@ -1,13 +1,14 @@
 define([
-		'marionette'
-		, 'app'
-		, 'text!../../templates/menu.tpl'
+	'marionette'
+	, 'app'
+	, 'text!../../templates/menu.tpl'
 ], function (Marionette, App, Template){
-		var ItemView = Marionette.ItemView.extend({
-				template: Template,
-				tagName: 'div',
-				className: 'navbar navbar-inverse navbar-static-top'
-		});
+	var ItemView = Marionette.ItemView.extend({
+		// template: Template,
+		template: 'app/templates/menu.tpl',
+		tagName: 'div',
+		className: 'navbar navbar-inverse navbar-static-top'
+	});
 
-		return ItemView;
+	return ItemView;
 });

@@ -2,16 +2,14 @@ define([
 	'marionette'
 	, 'models/gym'
 	, 'views/list'
-	, 'text!../../../templates/gym/list.tpl'
-	, 'text!../../../templates/gym/list-item.tpl'
-], function (Marionette, ExpenseModel, ListView, CompositeViewTemplate, ItemViewTemplate) {
+], function (Marionette, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
-		template: ItemViewTemplate,
+		template: 'app/templates/gym/list-item.tpl',
 		tagName: 'tr'
 	});
 
 	var CompositeView = ListView.extend({
-		template: CompositeViewTemplate,
+		template: 'app/templates/gym/list.tpl',
 		itemView: itemView,
 		objectStore: 'gym'
 	});

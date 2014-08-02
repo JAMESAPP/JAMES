@@ -10,7 +10,8 @@ define([
 	var ItemView = RegisterView.extend({
 		tagName: 'div',
 		className: 'box'
-		, template: Template
+		// , template: Template
+		, template: 'app/templates/settings.tpl'
 		, objectStore: 'settings'
 		, events: function() {
 			return _.extend({}, RegisterView.prototype.events, {

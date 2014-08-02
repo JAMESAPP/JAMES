@@ -188,9 +188,30 @@ module.exports = function(grunt) {
 			}
 			
 		}
+
+		, handlebars: {
+			compile: {
+				src: ['app/templates/**/*.tpl'],
+				dest: 'app/js/templates.js',
+				options: {
+					simple: true,
+					amd: true
+					// namespace: false,
+					// processName: function(filePath) {
+					// 	filePath = filePath.split('templates/');
+					// 	return filePath[1];
+					// },
+					// processPartialName: function(filePath) {
+					// 	filePath = filePath.split('templates/');
+					// 	return filePath[1];
+					// }
+				}
+			}
+		}
+
 	});
 
-	grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
+	grunt.registerTask('build', ['clean', 'copy', 'handlebars', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
 
 	// FIXME fix compress task
 	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);

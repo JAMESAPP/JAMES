@@ -6,12 +6,11 @@ define([
 	, 'config'
 	, 'collections/machines'
 	, 'views/register'
-	, 'text!../../../templates/timesheet/register.tpl'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, Moment, App, Config, MachinesCollection, RegisterView, Template) {
+], function (Marionette, _, Moment, App, Config, MachinesCollection, RegisterView) {
 	var ItemView = RegisterView.extend({
-		template: Template
+		template: 'app/templates/timesheet/register.tpl'
 		, objectStore: 'timesheets'
 		, onRender: function() {
 			this.$el.find('#inputDate').datepicker(Config.datePickerConf);

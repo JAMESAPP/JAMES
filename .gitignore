@@ -30,6 +30,7 @@ node_modules
 
 dist
 app/js/libs/bower
+app/js/templates.js
 
 *~
 *#

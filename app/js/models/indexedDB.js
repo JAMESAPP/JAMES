@@ -9,8 +9,7 @@ define([
 		};
 		this.openDB = function() {
 			var self = this;
-			// var request = window.indexedDB.open('james', 1);
-			var request = BrowserBase.indexedDB.open('james', 1);
+			var request = window.indexedDB.open('james', 1);
 
 			request.onsuccess = function(e) {
 				self.db = e.target.result;

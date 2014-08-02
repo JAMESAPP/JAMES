@@ -4,12 +4,11 @@ define([
 	, 'app'
 	, 'config'
 	, 'views/register'
-	, 'text!../../../templates/motorcycle/register.tpl'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, Config, RegisterView, Template) {
+], function (Marionette, _, App, Config, RegisterView) {
 	var ItemView = RegisterView.extend({
-		template: Template
+		template: 'app/templates/motorcycle/register.tpl'
 		, objectStore: 'motorcycles'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
