@@ -1,0 +1,60 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/jefferson/universal/projects/james/todo.org
+
+
+* DONE grunt watch (with live-reload)
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:57
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt/implement a process to dev
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Fix deploy to firefoxos
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:57
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt/Implement a process to deploy app
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* TODO implement a process to dev
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:57
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: TODO
+  :END:
+** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
+
+* DONE grunt-contrib-handlebars
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:58
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt/Implement a process to deploy app
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Fix deploy to firefoxos
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:58
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt/Implement a process to deploy app
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE [#B] grunt watch (with live-reload)
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-08-03 Sun 01:58
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Environment/Grunt/Implement a process to deploy app
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:

@@ -12,10 +12,6 @@
 ***** DONE requirejs
 **** TODO grunt-jsonmin https://www.npmjs.org/package/grunt-jsonmin
 **** TODO grunt-contrib-imagemin
-**** TODO grunt-contrib-handlebars
-**** TODO Fix deploy to firefoxos
-*** TODO implement a process to dev
-**** TODO grunt watch (with live-reload)
 **** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
 ** TODO Merge all json files inside data? It is a good ideia?
 ** TODO Bower
@@ -47,3 +43,5 @@
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
 ** Add group button to about page - shortcut to all function (behave like a menu)
+* TODO BUG
+** Not sync timesheet after JUL/30 neither  expense above id#1

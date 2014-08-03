@@ -24,7 +24,7 @@ define([
 			this.gyms = [];
 			this.motorcycles = [];
 			this.timesheets = [];
-			this.configurations = [];
+			this.settings = [];
 
 			var self = this,
 				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets'], 'readonly');
@@ -145,7 +145,7 @@ define([
 				, gyms: self.gyms
 				, motorcycles: self.motorcycles
 				, timesheets: self.timesheets
-				, configurations: self.configurations
+				, settings: self.settings
 			});
 
 			this.$el.find('#spanMessage').removeClass();
