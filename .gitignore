@@ -41,3 +41,5 @@ app/js/templates.js
 *.swn
 # build for deploy in firefoxos
 myapp.zip
+
+app/data/secrets.json
