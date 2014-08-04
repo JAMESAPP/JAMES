@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-xs-6">
 	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
-	<a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
+	<a id="btnSync" href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
   </div>
   <div class="col-xs-6">
 	<!-- <label for="inputMonth">Month</label> -->

@@ -1,11 +1,12 @@
 define([
 	'underscore',
+	'jquery',
 	'marionette',
 	'moment',
 	'config',
 	'models/expense',
-	'views/list',
-], function (_, Marionette, Moment, Config, ExpenseModel, ListView) {
+	'views/list'
+], function (_, $, Marionette, Moment, Config, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
@@ -15,6 +16,11 @@ define([
 		template: 'app/templates/timesheet/list.tpl',
 		itemView: itemView,
 		objectStore: 'timesheets'
+		, events: function() {
+			return _.extend({}, ListView.prototype.events, {
+				'click #btnSync': 'sync'
+			});
+		}
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
 				modelStart,
@@ -191,6 +197,15 @@ define([
 				status = 'warning';
 
 			return status;
+		}
+
+		, sync: function(ev) {
+			ev.preventDefault();
+
+			console.log('sync data with google spreadsheet');
+			$.getJSON('https://spreadsheets.google.com/feeds/list/0Asmw_pkOiLj-dDVvTUJGa0FFX0JuUlA2aEV3VldDaXc/od6/public/values?alt=json', function(data) {
+				console.log(data);
+			});
 		}
 	});
 
