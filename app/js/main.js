@@ -16,6 +16,8 @@ require.config({
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 
+		, 'gdapi': 'libs/custom/goog-api.min'
+
 	},
 	shim: {
 		'jquery': {
@@ -64,6 +66,11 @@ require.config({
 			deps: ['jquery'],
 			exports : 'HideShowPassword'
 		}
+
+		// , 'goog-api': {
+		// 	deps: ['underscore', 'jquery'],
+		// 	exports: 'goog-api'
+		// }
 	}
 });
 
