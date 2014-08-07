@@ -1,6 +1,4 @@
 define([
-	'gdapi',
-
 	'underscore',
 	'jquery',
 	'marionette',
@@ -8,7 +6,7 @@ define([
 	'config',
 	'models/expense',
 	'views/list'
-], function (GDAPI, _, $, Marionette, Moment, Config, ExpenseModel, ListView) {
+], function (_, $, Marionette, Moment, Config, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
@@ -204,14 +202,7 @@ define([
 		, sync: function(ev) {
 			ev.preventDefault();
 
-			// console.log('sync data with google spreadsheet');
-			// $.getJSON('https://spreadsheets.google.com/feeds/list/0Asmw_pkOiLj-dDVvTUJGa0FFX0JuUlA2aEV3VldDaXc/od6/public/values?alt=json', function(data) {
-			// 	console.log(data);
-			// });
-
-console.log('test gdapi...');
-console.log(GDAPI);
-console.log(GDAPI.spreadsheet.sayHello('Jefferson'));
+			console.log(GOOGAPI.spreadsheet.sayHello('James'));
 		}
 	});
 
