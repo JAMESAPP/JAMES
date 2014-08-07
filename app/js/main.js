@@ -16,7 +16,8 @@ require.config({
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 
-		, 'GOOGAPI': 'libs/custom/goog-api.min'
+		// , 'GOOGAPI': 'libs/custom/goog-api.min'
+		, 'GOOGAPI': 'libs/bower/goog-api/dist/goog-api.min'
 
 	},
 	shim: {
