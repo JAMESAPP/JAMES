@@ -43,3 +43,5 @@ app/js/templates.js
 myapp.zip
 
 app/data/secrets.json
+app/js/libs/custom/goog-api.min.js
+

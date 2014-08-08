@@ -16,8 +16,8 @@ require.config({
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
 
-		// , 'GOOGAPI': 'libs/custom/goog-api.min'
-		, 'GOOGAPI': 'libs/bower/goog-api/dist/goog-api.min'
+		, 'GOOGAPI': 'libs/custom/goog-api.min'
+		// , 'GOOGAPI': 'libs/bower/goog-api/dist/goog-api.min'
 
 	},
 	shim: {
@@ -77,7 +77,7 @@ require([
 	, 'controllers/dailyActivities'
 	, 'views/menu'
 	, 'GOOGAPI'
-], function(Backbone, App, HomeController, DailyActivitiesController, MenuView) {
+], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, GOOG) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
@@ -85,6 +85,7 @@ require([
 	};
 
 	// FIXME GOOGAPI is global. Make it more amd friendly!!
+	console.log(GOOG);
 	console.log(GOOGAPI.VERSION);
 
 	App.initializeDB();
