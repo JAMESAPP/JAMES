@@ -202,7 +202,7 @@ define([
 		, sync: function(ev) {
 			ev.preventDefault();
 
-			console.log(GOOGAPI.spreadsheet.sayHello('James'));
+			console.error('TODO');
 		}
 	});
 

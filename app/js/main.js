@@ -14,11 +14,8 @@ require.config({
 		'moment': 'libs/bower/moment/min/moment-with-langs.min',
 		'firebase': 'libs/bower/firebase/firebase',
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
-		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min'
-
-		, 'GOOGAPI': 'libs/custom/goog-api.min'
-		// , 'GOOGAPI': 'libs/bower/goog-api/dist/goog-api.min'
-
+		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
+		'spreadsheet': 'libs/bower/goog-api/dist/spreadsheet.min'
 	},
 	shim: {
 		'jquery': {
@@ -76,17 +73,16 @@ require([
 	, 'controllers/home'
 	, 'controllers/dailyActivities'
 	, 'views/menu'
-	, 'GOOGAPI'
-], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, GOOG) {
+	, 'spreadsheet'
+], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, GoogSpreadsheet) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
 		this.unbind();
 	};
 
-	// FIXME GOOGAPI is global. Make it more amd friendly!!
-	console.log(GOOG);
-	console.log(GOOGAPI.VERSION);
+	console.log(GoogSpreadsheet.sayHello('James'));
+
 
 	App.initializeDB();
 
