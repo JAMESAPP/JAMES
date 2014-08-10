@@ -81,8 +81,7 @@ require([
 		this.unbind();
 	};
 
-	console.log(Googapi.version);
-
+	console.log(Googapi.VERSION);
 
 	App.initializeDB();
 
