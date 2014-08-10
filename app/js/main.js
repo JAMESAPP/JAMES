@@ -15,7 +15,7 @@ require.config({
 		'firebase': 'libs/bower/firebase/firebase',
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
-		'spreadsheet': 'libs/bower/goog-api/dist/spreadsheet.min'
+		'goog-api': 'libs/bower/goog-api/dist/goog-api.min'
 	},
 	shim: {
 		'jquery': {
@@ -73,15 +73,15 @@ require([
 	, 'controllers/home'
 	, 'controllers/dailyActivities'
 	, 'views/menu'
-	, 'spreadsheet'
-], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, GoogSpreadsheet) {
+	, 'goog-api'
+], function(Backbone, App, HomeController, DailyActivitiesController, MenuView, Googapi) {
 	// solve multiple events problem
 	Backbone.View.prototype.close = function () {
 		this.remove();
 		this.unbind();
 	};
 
-	console.log(GoogSpreadsheet.sayHello('James'));
+	console.log(Googapi.version);
 
 
 	App.initializeDB();
