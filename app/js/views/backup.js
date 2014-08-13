@@ -137,8 +137,8 @@ define([
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
 
-			var self = this;
-			this.cloud.set({
+			var self = this,
+				data = {
 				expenses: self.expenses
 				, foods: self.foods
 				, groceries: self.groceries
@@ -146,14 +146,45 @@ define([
 				, motorcycles: self.motorcycles
 				, timesheets: self.timesheets
 				, settings: self.settings
-			});
+			};
+			this.cloud.set(data, function(error) {
+				if (error) {
+					this.$el.find('#spanMessage').removeClass();
+					this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-error');
+					this.$el.find('#spanMessage').html('Error saving data! ' + error).fadeIn().delay(5000).fadeOut();
+					console.error(error);
+				} else {
+					if (data.settings != undefined)
+						self.$el.find('#tdSettingsUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
-			this.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
+					if (data.expenses != undefined)
+						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.foods != undefined)
+						self.$el.find('#tdFoodUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.groceries != undefined)
+						self.$el.find('#tdGroceryUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.gyms != undefined)
+						self.$el.find('#tdGymUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.motorcycles != undefined)
+						self.$el.find('#tdMotorcycleUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.timesheets != undefined)
+						self.$el.find('#tdTimesheetUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					self.$el.find('#spanMessage').removeClass();
+					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
+					self.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
+				}
+			});
 		}
 		, syncWithCloud: function(ev) {
 			ev.preventDefault();
+
+			var self = this;
 
 			this.cloud.on('value', function(snapshot) {
 				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
@@ -162,6 +193,7 @@ define([
 					transaction.objectStore('settings').clear().onsuccess = function(event) {
 						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
 							console.log('Re-added setting id #' + snapshot.val().settings.id);
+							self.$el.find('#tdSettingsDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 						};
 					};
 
@@ -169,6 +201,7 @@ define([
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
 							transaction.objectStore('expenses').add(element).onsuccess = function (event) {
 								console.log('Re-added expense id #' + element.id);
+								self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -177,6 +210,7 @@ define([
 						_.forEach(snapshot.val().foods, function(element, index, list) {
 							transaction.objectStore('foods').add(element).onsuccess = function (event) {
 								console.log('Re-added food id #' + element.id);
+								self.$el.find('#tdFoodDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -185,6 +219,7 @@ define([
 						_.forEach(snapshot.val().groceries, function(element, index, list) {
 							transaction.objectStore('groceries').add(element).onsuccess = function (event) {
 								console.log('Re-added grocery id #' + element.id);
+								self.$el.find('#tdGroceryDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -193,6 +228,7 @@ define([
 						_.forEach(snapshot.val().gyms, function(element, index, list) {
 							transaction.objectStore('gyms').add(element).onsuccess = function (event) {
 								console.log('Re-added gym id #' + element.id);
+								self.$el.find('#tdGymDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -201,6 +237,7 @@ define([
 						_.forEach(snapshot.val().motorcycles, function(element, index, list) {
 							transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
 								console.log('Re-added motorcycle id #' + element.id);
+								self.$el.find('#tdMotorcycleDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -209,6 +246,7 @@ define([
 						_.forEach(snapshot.val().timesheets, function(element, index, list) {
 							transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
 								console.log('Re-added timesheet id #' + element.id);
+								self.$el.find('#tdTimesheetDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
