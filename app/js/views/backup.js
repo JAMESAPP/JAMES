@@ -17,7 +17,12 @@ define([
 		}
 		, template: 'app/templates/backup.tpl'
 
-		, initialize: function() {
+		// , initialize: function() {
+		, onShow: function() {
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
+			this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
+
 			this.expenses = [];
 			this.foods = [];
 			this.groceries = [];
@@ -85,12 +90,27 @@ define([
 				}
 			};
 
+			var authRef = new Firebase("https://jamesapp.firebaseio.com/.info/authenticated");
 			settingsObject.onsuccess = function(e) {
 				if (e.target.result == undefined) {
 					self.$el.find('#spanMessage').removeClass();
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-					self.$el.find('#spanMessage').html('[ERROR] Need save information about configuration before sync data.').fadeIn();
+					self.$el.find('#spanMessage').html('[ERROR] Need save information about settings before sync data.').fadeIn();
 				} else {
+					authRef.on("value", function(snap) {
+						if (snap.val() === true) {
+							console.log("authenticated");
+							self.$el.find('#spanMessage').removeClass();
+							self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
+							self.$el.find('#spanMessage').html('authenticated').fadeIn().delay(5000).fadeOut();
+						} else {
+							console.log("not authenticated");
+							self.$el.find('#spanMessage').removeClass();
+							self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+							self.$el.find('#spanMessage').html('NOT authenticated.').fadeIn().delay(5000).fadeOut();
+						}
+					});
+
 					self.settings = e.target.result;
 					self.cloud = new Firebase('https://jamesapp.firebaseIO.com');
 					self.auth = new FirebaseSimpleLogin(self.cloud, function(error, user) {
@@ -104,6 +124,7 @@ define([
 							self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
 							self.$el.find('#spanMessage').html('User is logged: ' + user.email).fadeIn().delay(5000).fadeOut();
 							self.$el.find('.disabled').removeClass('disabled');
+							console.log('User is logged: ' + user.email);
 						} else {
 							console.log('user logout');
 							self.$el.find('#spanMessage').removeClass();
@@ -128,11 +149,11 @@ define([
 			};
 		}
 
-		, onShow: function() {
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
-			this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
-		}
+		// , onShow: function() {
+		// 	this.$el.find('#spanMessage').removeClass();
+		// 	this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
+		// 	this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
+		// }
 
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
