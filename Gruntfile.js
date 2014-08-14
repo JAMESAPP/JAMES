@@ -107,7 +107,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: 'app/data',
-						src: ['**/*.json', '!test/'],
+						src: ['**/*.json', '!test/', '!secrets.json'],
 						dest: 'dist/app/data',
 						flatten: false
 					},
