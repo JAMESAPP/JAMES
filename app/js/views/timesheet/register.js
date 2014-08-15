@@ -3,21 +3,30 @@ define([
 	, 'underscore'
 	, 'moment'
 	, 'app'
-	, 'config'
 	, 'collections/machines'
 	, 'views/register'
+	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, Moment, App, Config, MachinesCollection, RegisterView) {
+], function (Marionette, _, Moment, App, MachinesCollection, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/timesheet/register.tpl'
 		, objectStore: 'timesheets'
 		, onRender: function() {
-			this.$el.find('#inputDate').datepicker(Config.datePickerConf);
-			this.$el.find('#inputDate').datepicker('option', 'yearRange', Config.datePickerConf.yearRange);
-			this.$el.find('#inputStartTime').mask('##:##');
-			this.$el.find('#inputEndTime').mask('##:##');
-			this.$el.find('#inputLeavingEarly').mask('##:##');
+			var self = this,
+				setting = new SettingModel(),
+				conf = setting.defaults()
+			;
+			setting.getInfo(function(event) {
+				if (event.target.result != undefined)
+					conf = event.target.result;
+
+				self.$el.find('#inputDate').datepicker(conf.datePickerConf);
+				self.$el.find('#inputDate').datepicker('option', 'yearRange', conf.datePickerConf.yearRange);
+				self.$el.find('#inputStartTime').mask('##:##');
+				self.$el.find('#inputEndTime').mask('##:##');
+				self.$el.find('#inputLeavingEarly').mask('##:##');
+			});
 		}
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {};

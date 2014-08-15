@@ -2,11 +2,11 @@ define([
 	'marionette'
 	, 'underscore'
 	, 'app'
-	, 'config'
 	, 'views/register'
+	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, Config, RegisterView) {
+], function (Marionette, _, App, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/motorcycle/register.tpl'
 		, objectStore: 'motorcycles'
@@ -38,9 +38,18 @@ define([
 			return attrToView;
 		}
 		, onRender: function() {
-			this.$el.find('#inputDate').datepicker(Config.datePickerConf);
-			this.$el.find('#inputDate').datepicker('option', 'yearRange', Config.datePickerConf.yearRange);
-			this.$el.find('#inputAmmount').mask('###00,00', {reverse: true});
+			var self = this,
+				setting = new SettingModel(),
+				conf = setting.defaults()
+			;
+			setting.getInfo(function(event) {
+				if (event.target.result != undefined)
+					conf = event.target.result;
+
+				self.$el.find('#inputDate').datepicker(conf.datePickerConf);
+				self.$el.find('#inputDate').datepicker('option', 'yearRange', conf.datePickerConf.yearRange);
+				self.$el.find('#inputAmmount').mask('###00,00', {reverse: true});
+			});
 		}
 	});
 

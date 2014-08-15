@@ -3,10 +3,10 @@ define([
 	'jquery',
 	'marionette',
 	'moment',
-	'config',
 	'models/expense',
-	'views/list'
-], function (_, $, Marionette, Moment, Config, ExpenseModel, ListView) {
+	'views/list',
+	'models/setting'
+], function (_, $, Marionette, Moment, ExpenseModel, ListView, SettingModel) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
@@ -21,11 +21,13 @@ define([
 				'click #btnSync': 'sync'
 			});
 		}
+		// FIXME retrieve data from setting - in offline storage
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
+				config = new SettingModel().defaults(),
 				modelStart,
-				configStartTime = Moment(Config.timesheet.startTime, 'HH:mm'),
-				configEndTime = Moment(Config.timesheet.endTime, 'HH:mm')
+				configStartTime = Moment(config.timesheet.startTime, 'HH:mm'),
+				configEndTime = Moment(config.timesheet.endTime, 'HH:mm')
 			;
 
 			// Total Days Late to Work
@@ -100,6 +102,7 @@ define([
 				checkin,
 				startTimeDay,
 				officialStartTime,
+				config = new SettingModel().defaults(),
 
 				checkout,
 				endTimeDay,
@@ -115,7 +118,7 @@ define([
 
 			_.forEach(daysWithExtraTimeBeforeStart, function(element, index, list) {
 				startTimeDay = Moment(element.date + ' ' + element.startTime, 'DD-MM-YYYY HH:mm');
-				officialStartTime = Moment(element.date + ' ' + Config.timesheet.startTime, 'DD-MM-YYYY HH:mm');
+				officialStartTime = Moment(element.date + ' ' + config.timesheet.startTime, 'DD-MM-YYYY HH:mm');
 				officialStartTime.subtract(startTimeDay);
 
 				hours = officialStartTime.hours();
@@ -140,7 +143,7 @@ define([
 			var totalExtraTimeAfterEnd = Moment('00:00', 'HH:mm');
 			_.forEach(daysWithExtraTimeAfterEnd, function(element, index, list) {
 				endTimeDay = Moment(element.date + ' ' + element.endTime, 'DD-MM-YYYY HH:mm');
-				officialEndTime = Moment(element.date + ' ' + Config.timesheet.endTime, 'DD-MM-YYYY HH:mm');
+				officialEndTime = Moment(element.date + ' ' + config.timesheet.endTime, 'DD-MM-YYYY HH:mm');
 				endTimeDay.subtract(officialEndTime);
 
 				hours = endTimeDay.hours();

@@ -4,10 +4,9 @@ define([
 	, 'backbone'
 	, 'marionette'
 	, 'moment'
-	, 'config'
 	, 'models/indexedDB'
 	, 'templates'
-], function ($, Bootstrap, Backbone, Marionette, Moment, Config, IndexedDB, Templates) {
+], function ($, Bootstrap, Backbone, Marionette, Moment, IndexedDB, Templates) {
 	var app = new Marionette.Application();
 
 	// FIXME Bootstrap var is in memory but i cant access it!
@@ -41,13 +40,6 @@ define([
 			url: "app/templates/" + template + ".tpl",
 			async: false
 		}).responseText;
-	};
-
-	app.getBaseURL = function(app) {
-		if (app == undefined)
-			app = Config.app;
-
-		return "http://local." + app + "/" + Config.backend + "/";
 	};
 
 	app.ConfigureAjaxBackbone = function () {

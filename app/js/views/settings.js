@@ -4,13 +4,11 @@ define([
 	, 'app'
 	, 'views/bindingView'
 	, 'views/register'
-	, 'text!../../templates/settings.tpl'
 	, 'hideShowPassword'
-], function (_, Marionette, App, BidingView, RegisterView, Template) {
+], function (_, Marionette, App, BidingView, RegisterView) {
 	var ItemView = RegisterView.extend({
 		tagName: 'div',
 		className: 'box'
-		// , template: Template
 		, template: 'app/templates/settings.tpl'
 		, objectStore: 'settings'
 		, events: function() {
