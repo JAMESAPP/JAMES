@@ -14,9 +14,9 @@
 	</caption>
 	<thead>
 	    <tr>
-			<th>Date</th>
-			<th>Ammount</th>
-            <th>Action</th>
+			<th>Expense</th>
+            <th>Edit</th>
+            <th>Delete</th>
 		</tr>
 	</thead>
 	<tbody id="tbodyItem"></tbody>
