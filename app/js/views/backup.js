@@ -5,6 +5,7 @@ define([
 	, 'firebaseSimpleLogin'
 	, 'app'
 	, 'views/bindingView'
+	, 'models/setting'
 ], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
@@ -14,10 +15,11 @@ define([
 			, 'click #btnSyncWithCloud': 'syncWithCloud'
 			, 'click #btnSaveOnDisk': 'saveOnDisk'
 			, 'click #btnSyncWithDisk': 'syncWithDisk'
+			, 'click #btnLogin': 'login'
+			, 'click #btnHideShowPassword': 'hideShowPassword'
 		}
 		, template: 'app/templates/backup.tpl'
 
-		// , initialize: function() {
 		, onShow: function() {
 			this.$el.find('#spanMessage').removeClass();
 			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
@@ -112,6 +114,10 @@ define([
 					});
 
 					self.settings = e.target.result;
+
+					self.$el.find('#inputEmail').val(self.settings.cloudAuth.email);
+					self.$el.find('#inputPassword').val(self.settings.cloudAuth.password);
+
 					self.cloud = new Firebase('https://jamesapp.firebaseIO.com');
 					self.auth = new FirebaseSimpleLogin(self.cloud, function(error, user) {
 						if (error) {
@@ -133,11 +139,11 @@ define([
 						}
 					});
 
-					self.auth.login('password', {
-						email: self.settings.cloudAuth.email
-						, password: self.settings.cloudAuth.password
-						, rememberMe: false
-					});
+					// self.auth.login('password', {
+					// 	email: self.settings.cloudAuth.email
+					// 	, password: self.settings.cloudAuth.password
+					// 	, rememberMe: false
+					// });
 				}
 			};
 
@@ -148,12 +154,6 @@ define([
 				self.$el.find('#spanMessage').html('[SETTINGS ERROR] a bizarre error has occurred!!!!').fadeIn().delay(5000).fadeOut();
 			};
 		}
-
-		// , onShow: function() {
-		// 	this.$el.find('#spanMessage').removeClass();
-		// 	this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
-		// 	this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
-		// }
 
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
@@ -292,6 +292,18 @@ define([
 			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
 		}
 
+		, login: function(ev) {
+			ev.preventDefault();
+			this.auth.login('password', {
+				email: this.$el.find('#inputEmail').val()
+				, password: this.$el.find('#inputPassword').val()
+				, rememberMe: false
+			});
+		}
+		, hideShowPassword: function(ev) {
+			ev.preventDefault();
+			this.$el.find('#inputPassword').togglePassword();
+		}
 	});
 
 	return ItemView;

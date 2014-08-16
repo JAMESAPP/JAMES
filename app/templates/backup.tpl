@@ -58,6 +58,23 @@
         <br />
         <a id="btnSyncWithDisk" href="#" class="btn btn-info col-xs-12"><i class="glyphicon glyphicon-open"></i> Sync with Disk!</a>
     </div>
+    <hr />
+    <h2>Login</h2>
+    <div class="row">
+        <label for="inputEmail">E-mail</label><br />
+        <input type="text" id="inputEmail" class="col-xs-12" placeholder="your_email@jeffersoncampos.eti.br" />
+    </div>
+    <div class="row">
+        <label for="inputPassword">Password</label><br />
+        <input type="password" id="inputPassword" class="col-xs-12" placeholder="your_secret" />
+    </div>
+    <br />
+    <div class="row">
+        <a id="btnLogin" href="#" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-user"></i> Login</a>
+        <br />
+        <br />
+        <a href="#" id="btnHideShowPassword" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-warning-sign"></i> Show Password</a>
+    </div>
     <br />
     <div class="row">
         <span id="spanMessage" class="col-xs-12 text-center"></span> 
