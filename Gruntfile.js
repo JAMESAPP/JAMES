@@ -75,8 +75,6 @@ module.exports = function(grunt) {
 		, copy: {
 			dist: {
 				files: [
-
-					// chrome
 					{
 						src: 'app/js/chrome.js',
 						dest: 'dist/app/js/chrome.js'
@@ -186,7 +184,6 @@ module.exports = function(grunt) {
 				cwd: '../ffxos',
 				cmd: 'git commit -am "Deploy JAMES version <%= pkg.version %>" && git push github gh-pages'
 			}
-			
 		}
 
 		, handlebars: {
