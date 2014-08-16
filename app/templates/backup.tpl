@@ -73,7 +73,7 @@
         <a id="btnLogin" href="#" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-user"></i> Login</a>
         <br />
         <br />
-        <a href="#" id="btnHideShowPassword" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-warning-sign"></i> Show Password</a>
+        <a href="#" id="btnHideShowPassword" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-eye-close"></i> Password</a>
     </div>
     <br />
     <div class="row">
