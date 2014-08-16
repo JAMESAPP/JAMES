@@ -39,7 +39,6 @@ define([
 			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart;
 
 			// Total Extra Time
-			// , totalExtraTime: function(timesheets, configStartTime, configEndTime) {
 			attrToView.totalExtraTime = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime);
 
 			// Total Leaving Early
