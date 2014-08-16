@@ -68,7 +68,6 @@ define([
 			}).responseText;
 		}
 
-		// TODO What to do if has no settings in storage?
 		, getInfo: function(onSuccess) {
 			var settings,
 				objectStore = App.indexedDB.db.transaction(['settings'], 'readonly').objectStore('settings').get(1)
