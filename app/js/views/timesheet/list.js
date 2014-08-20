@@ -69,8 +69,8 @@ define([
 			return attrToView;
 		}
 		, daysLateToWork: function(timesheets, configStartTime) {
-			var checkin;
-			var later = _.filter(timesheets, function(timesheet) {
+			var checkin,
+				later = _.filter(timesheets, function(timesheet) {
 				if (!timesheet.officialShift)
 					return false;
 
@@ -193,7 +193,7 @@ define([
 			var status = 'success';
 
 			if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
-				status = 'important';
+				status = 'danger';
 
 			if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
 				status = 'warning';
