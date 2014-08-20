@@ -175,6 +175,8 @@ define([
 					this.$el.find('#spanMessage').html('Error saving data! ' + error).fadeIn().delay(5000).fadeOut();
 					console.error(error);
 				} else {
+					console.log(data);
+
 					if (data.settings != undefined)
 						self.$el.find('#tdSettingsUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
@@ -211,6 +213,8 @@ define([
 				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
 
 				if (snapshot.val() !== null) {
+					console.log(snapshot.val());
+
 					transaction.objectStore('settings').clear().onsuccess = function(event) {
 						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
 							console.log('Re-added setting id #' + snapshot.val().settings.id);
@@ -220,7 +224,7 @@ define([
 
 					transaction.objectStore('expenses').clear().onsuccess = function(event) {
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
-							transaction.objectStore('expenses').add(element).onsuccess = function (event) {
+							transaction.objectStore('expenses').add(element).onsuccess = function(event) {
 								console.log('Re-added expense id #' + element.id);
 								self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
@@ -294,9 +298,19 @@ define([
 
 		, login: function(ev) {
 			ev.preventDefault();
+
+			var email = this.$el.find('#inputEmail').val(),
+				password = this.$el.find('#inputPassword').val()
+			;
+
+			console.log('Data used to auth: email -> ' + email + ' password: ' + password);
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
+			this.$el.find('#spanMessage').html('Data used to auth: email -> ' + email + ' password: ' + password).fadeIn().delay(5000).fadeOut();
+
 			this.auth.login('password', {
-				email: this.$el.find('#inputEmail').val()
-				, password: this.$el.find('#inputPassword').val()
+				email: email
+				, password: password
 				, rememberMe: false
 			});
 		}
