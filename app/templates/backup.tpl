@@ -74,6 +74,9 @@
         <br />
         <br />
         <a href="#" id="btnHideShowPassword" class="btn btn-warning col-xs-12"><i class="glyphicon glyphicon-eye-close"></i> Password</a>
+        <br />
+        <br />
+        <a href="#" id="btnEnable" class="btn btn-danger col-xs-12"><i class="glyphicon glyphicon-exclamation-sign"></i> Force Enable</a>
     </div>
     <br />
     <div class="row">

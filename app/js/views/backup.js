@@ -17,6 +17,7 @@ define([
 			, 'click #btnSyncWithDisk': 'syncWithDisk'
 			, 'click #btnLogin': 'login'
 			, 'click #btnHideShowPassword': 'hideShowPassword'
+			, 'click #btnEnable': 'enable'
 		}
 		, template: 'app/templates/backup.tpl'
 
@@ -317,6 +318,10 @@ define([
 		, hideShowPassword: function(ev) {
 			ev.preventDefault();
 			this.$el.find('#inputPassword').togglePassword();
+		}
+		, enable: function(ev) {
+			ev.preventDefault();
+			this.$el.find('.disabled').removeClass('disabled');
 		}
 	});
 
