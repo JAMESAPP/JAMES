@@ -5,6 +5,7 @@ define([
 	, 'firebaseSimpleLogin'
 	, 'app'
 	, 'views/bindingView'
+	, 'models/setting'
 ], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
@@ -14,10 +15,12 @@ define([
 			, 'click #btnSyncWithCloud': 'syncWithCloud'
 			, 'click #btnSaveOnDisk': 'saveOnDisk'
 			, 'click #btnSyncWithDisk': 'syncWithDisk'
+			, 'click #btnLogin': 'login'
+			, 'click #btnHideShowPassword': 'hideShowPassword'
+			, 'click #btnEnable': 'enable'
 		}
 		, template: 'app/templates/backup.tpl'
 
-		// , initialize: function() {
 		, onShow: function() {
 			this.$el.find('#spanMessage').removeClass();
 			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
@@ -112,6 +115,10 @@ define([
 					});
 
 					self.settings = e.target.result;
+
+					self.$el.find('#inputEmail').val(self.settings.cloudAuth.email);
+					self.$el.find('#inputPassword').val(self.settings.cloudAuth.password);
+
 					self.cloud = new Firebase('https://jamesapp.firebaseIO.com');
 					self.auth = new FirebaseSimpleLogin(self.cloud, function(error, user) {
 						if (error) {
@@ -133,11 +140,11 @@ define([
 						}
 					});
 
-					self.auth.login('password', {
-						email: self.settings.cloudAuth.email
-						, password: self.settings.cloudAuth.password
-						, rememberMe: false
-					});
+					// self.auth.login('password', {
+					// 	email: self.settings.cloudAuth.email
+					// 	, password: self.settings.cloudAuth.password
+					// 	, rememberMe: false
+					// });
 				}
 			};
 
@@ -148,12 +155,6 @@ define([
 				self.$el.find('#spanMessage').html('[SETTINGS ERROR] a bizarre error has occurred!!!!').fadeIn().delay(5000).fadeOut();
 			};
 		}
-
-		// , onShow: function() {
-		// 	this.$el.find('#spanMessage').removeClass();
-		// 	this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
-		// 	this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
-		// }
 
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
@@ -175,6 +176,8 @@ define([
 					this.$el.find('#spanMessage').html('Error saving data! ' + error).fadeIn().delay(5000).fadeOut();
 					console.error(error);
 				} else {
+					console.log(data);
+
 					if (data.settings != undefined)
 						self.$el.find('#tdSettingsUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
@@ -211,6 +214,8 @@ define([
 				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
 
 				if (snapshot.val() !== null) {
+					console.log(snapshot.val());
+
 					transaction.objectStore('settings').clear().onsuccess = function(event) {
 						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
 							console.log('Re-added setting id #' + snapshot.val().settings.id);
@@ -220,7 +225,7 @@ define([
 
 					transaction.objectStore('expenses').clear().onsuccess = function(event) {
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
-							transaction.objectStore('expenses').add(element).onsuccess = function (event) {
+							transaction.objectStore('expenses').add(element).onsuccess = function(event) {
 								console.log('Re-added expense id #' + element.id);
 								self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
@@ -292,6 +297,32 @@ define([
 			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
 		}
 
+		, login: function(ev) {
+			ev.preventDefault();
+
+			var email = this.$el.find('#inputEmail').val(),
+				password = this.$el.find('#inputPassword').val()
+			;
+
+			console.log('Data used to auth: email -> ' + email + ' password: ' + password);
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-warning');
+			this.$el.find('#spanMessage').html('Data used to auth: email -> ' + email + ' password: ' + password).fadeIn().delay(5000).fadeOut();
+
+			this.auth.login('password', {
+				email: email
+				, password: password
+				, rememberMe: false
+			});
+		}
+		, hideShowPassword: function(ev) {
+			ev.preventDefault();
+			this.$el.find('#inputPassword').togglePassword();
+		}
+		, enable: function(ev) {
+			ev.preventDefault();
+			this.$el.find('.disabled').removeClass('disabled');
+		}
 	});
 
 	return ItemView;

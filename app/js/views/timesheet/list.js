@@ -39,7 +39,6 @@ define([
 			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart;
 
 			// Total Extra Time
-			// , totalExtraTime: function(timesheets, configStartTime, configEndTime) {
 			attrToView.totalExtraTime = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime);
 
 			// Total Leaving Early
@@ -70,8 +69,8 @@ define([
 			return attrToView;
 		}
 		, daysLateToWork: function(timesheets, configStartTime) {
-			var checkin;
-			var later = _.filter(timesheets, function(timesheet) {
+			var checkin,
+				later = _.filter(timesheets, function(timesheet) {
 				if (!timesheet.officialShift)
 					return false;
 
@@ -194,7 +193,7 @@ define([
 			var status = 'success';
 
 			if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
-				status = 'important';
+				status = 'danger';
 
 			if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
 				status = 'warning';
