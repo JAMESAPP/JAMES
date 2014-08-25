@@ -1,8 +1,7 @@
 define([
 	'marionette'
-	, 'models/food'
 	, 'views/list'
-], function (Marionette, ExpenseModel, ListView) {
+], function (Marionette, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/food/list-item.tpl',
 		tagName: 'tr'
