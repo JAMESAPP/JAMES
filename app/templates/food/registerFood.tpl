@@ -3,7 +3,7 @@
 <div id="divRegister">
     <label for="inputDate">Date</label>
     <input type="text" id="inputDate" class="input-small dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
-
+    <br />
     <label for="inputMeal">Meal</label>
     <select id="selectMeal" data-bind="value:meal,events:['change']">
         <option value="breakfast">breakfast</option>
@@ -13,7 +13,7 @@
         <option value="lateNightSnack">late night snack</option>
         <option value="Other">Other</option>
     </select>
-
+    <br />
     <label for="inputFood">Food</label>
     <select id="selectFood" data-bind="value:food,events:['change']">
         {{#each selectFood}}
