@@ -1,0 +1,36 @@
+@startuml
+
+note as database
+Databases:
+http://www.skopein.com/creativenutri/index.php?menu=2
+http://www.unicamp.br/nepa/taco/tabela.php?ativo=tabela
+http://www.ibge.gov.br/home/estatistica/populacao/condicaodevida/pof/2008_2009_composicao_nutricional/
+http://ndb.nal.usda.gov/ndb/foods
+end note
+
+class Food {
+	String groupFood
+	Float calories
+	Float points
+	Food[] foods
+}
+
+class Meal {
+	Food [] food
+	Date date
+	MealType type
+}
+
+class FoodGroup {
+	String name
+	Food[] foods
+}
+
+enum MealType {
+	BREAKFAST
+	LUNCH
+	SNACK
+	DINNER
+	OTHER
+}
+@enduml

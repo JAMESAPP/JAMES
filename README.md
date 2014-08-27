@@ -11,6 +11,10 @@ Your personal assistant.
 * Help you manage your timesheet;
 * Help you buy groceries;
 
+# Docs
+
+The .uml file can be rendered with [plantuml](http://plantuml.sourceforge.net).
+
 # Credits
 
 Jefferson Campos - 2014 - Mozilla Public License, version 2.0

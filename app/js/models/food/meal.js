@@ -4,10 +4,11 @@ define([
 ], function (Backbone, App) {
     var Model = Backbone.Model.extend({
 		defaults: {
-			date: null
-			, time: null
-			, meal: null
-			, food: null
+			id: null
+			, date: App.dateFormat(new Date())
+			, time: App.dateFormat(new Date(), 'HH:mm')
+			, type: 'breakfast'
+			, foods: []
 		}
 
 		, validade: function(attr, options) {
