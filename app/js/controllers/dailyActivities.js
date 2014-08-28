@@ -30,12 +30,12 @@ define([
 			'expense/new': 'expense',
 			'expense/:id': 'expense',
 
-			'foods': 'foods',
-			'food/new': 'food',
-			'food/:id': 'food',
 			'food/meals': 'meals',
 			'food/meal/new': 'meal',
 			'food/meal/:id': 'meal',
+			'foods': 'foods',
+			'food/new': 'food',
+			'food/:id': 'food',
 
 			'motorcycles': 'motorcycles',
 			'motorcycle/new': 'motorcycle',
@@ -68,6 +68,7 @@ define([
 			this.register(id, 'foods', FoodModel, FoodRegisterView);
 		},
 		meals: function() {
+console.log('mealS');
 			this.list('meals', MealsListView);
 		},
 		meal: function(id) {

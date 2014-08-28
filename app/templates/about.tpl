@@ -30,6 +30,9 @@ Use the menu above with shortcuts. For all functions, check:
 	<p class="text-danger">Help you manage your eating habits.</p>
 	<a href="#foods" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List and Manage Foods</a>
 	<a href="#food/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Food</a>
+    <h2>Meals</h2>
+	<a href="#food/meals" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List and Manage Meals</a>
+	<a href="#food/meal/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Meal</a>
   </div>
   <div class="tab-pane" id="grocery">
 	<h2>Groceries</h2>
