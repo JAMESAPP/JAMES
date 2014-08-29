@@ -33,4 +33,10 @@ enum MealType {
 	DINNER
 	OTHER
 }
+
+Food -- Food
+Food -- Meal
+FoodGroup -- food
+Meal -- MealType
+
 @enduml
