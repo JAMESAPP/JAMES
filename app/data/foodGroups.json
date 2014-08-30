@@ -1,0 +1,9 @@
+[
+	{"label":"Dairy","value":"dairy"},
+	{"label":"Fruits","value":"fruits"},
+	{"label":"Grains","value":"grains"},
+	{"label":"Meat","value":"meat"},
+	{"label":"Sweets","value":"sweets"},
+	{"label":"Vegetables","value":"vegetables"},
+	{"label":"Water","value":"water"}
+]

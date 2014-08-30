@@ -2,24 +2,24 @@ define([
 	'marionette'
 	, 'underscore'
 	, 'app'
-	, 'collections/foods'
+	, 'collections/foodGroups'
 	, 'views/register'
 	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, FoodCollection, RegisterView, SettingModel) {
+], function (Marionette, _, App, FoodGroupCollection, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/food/registerFood.tpl'
 		, objectStore: 'foods'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 
-			var foodCollection = new FoodCollection();
-			foodCollection.fetch({async: false});
-			attrToView.selectFood = foodCollection.toJSON();
+			var foodGroupCollection = new FoodGroupCollection();
+			foodGroupCollection.fetch({async: false});
+			attrToView.selectFoodGroups = foodGroupCollection.toJSON();
 
 			if (attrToView.id != undefined) {
-				attrToView.selectFood.unshift(attrToView.food);
+				attrToView.selectFoodGroups.unshift(attrToView.food);
 			}
 
 			return attrToView;
