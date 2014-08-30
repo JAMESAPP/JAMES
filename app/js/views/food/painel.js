@@ -3,14 +3,12 @@ define([
 	, 'underscore'
 	, 'app'
 	, 'collections/foods'
-	, 'views/register'
 	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, FoodCollection, RegisterView, SettingModel) {
-	var ItemView = RegisterView.extend({
+], function (Marionette, _, App, FoodCollection, SettingModel) {
+	var ItemView = Marionette.ItemView.extend({
 		template: 'app/templates/food/painel.tpl'
-		, objectStore: 'foods'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 
@@ -36,6 +34,15 @@ define([
 			// 	self.$el.find('#inputDate').datepicker(conf.datePickerConf);
 			// 	self.$el.find('#inputDate').datepicker('option', 'yearRange', conf.datePickerConf.yearRange);
 			// });
+		}
+
+		, caloriesBuget: function(totalCalories, totalExercice) {
+			
+
+		}
+
+		, nutrientsBuget: function(ev) {
+			ev.preventDefault();
 		}
 	});
 

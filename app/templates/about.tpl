@@ -26,6 +26,8 @@ Use the menu above with shortcuts. For all functions, check:
 	<a href="#expenses" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> Budget</a>
   </div>
   <div class="tab-pane" id="food">
+    <h2>Painel</h2>
+	<a href="#food/painel" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> Painel</a>
 	<h2>Foods</h2>
 	<p class="text-danger">Help you manage your eating habits.</p>
 	<a href="#foods" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List and Manage Foods</a>
