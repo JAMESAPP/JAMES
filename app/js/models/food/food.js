@@ -5,10 +5,8 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			id: null
-			, description: null
+			, name: null
 			, group: null
-			, foods: []
-			, points: 0
 			, calories: 0
 		}
 
