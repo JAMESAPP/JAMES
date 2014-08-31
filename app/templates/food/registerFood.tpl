@@ -1,22 +1,20 @@
 <h1>Custom Food Register</h1>
 <div id="divRegister" class="container">
+   <div class="row">
+        <label for="inputName">Name</label><br />
+        <input type="text" id="inputName" class="input-small" value="{{name}}" placeholder="e.g. parmegiana" data-bind="value:name,events:['keyup']"/>
+    </div>
     <div class="row">
-        <div class=col-xs-3">
-            <label for="inputName">Name</label><br />
-            <input type="text" id="inputName" class="input-small" value="{{name}}" placeholder="e.g. parmegiana" data-bind="value:calories,events:['keyup']"/>
-        </div>
-        <div class=col-xs-3">
-            <label for="inputCalories">Calories</label><br />
-            <input type="text" id="inputCalories" class="input-small" value="{{calories}}" placeholder="100" data-bind="value:calories,events:['keyup']"/>
-        </div>
-        <div class="col-xs-3">
-            <label for="selectFoodGroups">Food Group</label><br />
-            <select id="selectFoodGroups" data-bind="value:group,events:['change']">
-            {{#each selectFoodGroups}}
-                <option value="{{value}}">{{label}}</option>
-            {{/each}}
-            </select>
-        </div>
+        <label for="inputCalories">Calories</label><br />
+        <input type="text" id="inputCalories" class="input-small" value="{{calories}}" placeholder="100" data-bind="value:calories,events:['keyup']"/>
+    </div>
+    <div class="row">
+        <label for="selectFoodGroups">Food Group</label><br />
+        <select id="selectFoodGroups" data-bind="value:group,events:['change']">
+        {{#each selectFoodGroups}}
+            <option value="{{value}}">{{label}}</option>
+        {{/each}}
+        </select>
     </div>
 </div>
 <br />

@@ -15,9 +15,9 @@
 	</caption>
 	<thead>
 	    <tr>
-		    <th>ID</th>
-			<th>Date</th>
-            <th>Action</th>
+		    <th>Name</th>
+			<th>Edit</th>
+            <th>Delete</th>
 		</tr>
 	</thead>
 	<tbody id="tbodyItem"></tbody>
