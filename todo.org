@@ -21,8 +21,9 @@
 *** Suport window.localstorage
 **** Support for firebase
 * TODO Function
+** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
-** TODO Clear all entries
+** DONE Clear all entries
 ** TODO Sync
 ** TODO Timesheet
 *** TODO Painel
