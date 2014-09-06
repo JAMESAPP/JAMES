@@ -1,8 +1,5 @@
 <div>
     <h1>Timesheets</h1>
-    <ul class="breadcrumb">
-        <li class="active">Timesheets<span class="divider">/</span></li>
-    </ul>
 </div>
 <div class="row">
   <div class="col-xs-6">
@@ -26,7 +23,7 @@
 	<span class="label label-{{status}}">{{totalDaysLateToWork}}</span>
   </div>
   <div class="col-xs-6">
-	Minutes After Start <br />
+	Time After Start <br />
 	<span class="label label-{{status}}">{{totalMinutesLaterAfterStart}}</span>
   </div>
 </div> 

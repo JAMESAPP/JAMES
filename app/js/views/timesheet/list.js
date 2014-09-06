@@ -82,7 +82,7 @@ define([
 		}
 		/**
 		 *
-		 * Only owrks with array of late days.
+		 * Only works with array of late days.
 		 *
 		 */
 		, totalMinutesLaterAfterStart: function(later, configStartTime) {
@@ -93,7 +93,7 @@ define([
 					totalMinutesLateByDay.subtract(configStartTime);
 					totalMinutesLaterAfterStart.add(totalMinutesLateByDay);
 			});
-			return totalMinutesLaterAfterStart.minutes();
+			return totalMinutesLaterAfterStart.hours() + ':' + totalMinutesLaterAfterStart.minutes();
 		}
 		, totalExtraTime: function(timesheets, configStartTime, configEndTime) {
 			var hours,
@@ -189,14 +189,32 @@ define([
 			totalExtraTime.subtract(totalLeavingEarly);
 			return totalExtraTime.hours() + ':' + totalExtraTime.minutes();
 		}
+		/*
+		 * Expect that time[0] is >= 0
+		 *
+		 */
 		, status: function(daysLateToWork, totalMinutesLaterAfterStart) {
-			var status = 'success';
+			var status = 'success',
+				time = totalMinutesLaterAfterStart.split(':')
+			;
 
-			if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
-				status = 'danger';
+			try {
+				if (time[0] < 0)
+					throw new Exception('');
 
-			if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
-				status = 'warning';
+				// if (daysLateToWork.length > 8 || totalMinutesLaterAfterStart > 45)
+				if (daysLateToWork.length > 8 || parseInt(time[0]) > 0 || (parseInt(time[0]) == 0 && parseInt(time[1]) > 45))
+					status = 'danger';
+
+				// if (daysLateToWork.length > 0 && totalMinutesLaterAfterStart <= 45)
+				if (daysLateToWork.length > 0 && (parseInt(time[0]) == 0 && parseInt(time[1]) <= 45))
+					status = 'warning';
+
+			} catch (Error) {
+				console.log(Error);
+				console.log('Error with status');
+				status = 'default';
+			}
 
 			return status;
 		}
