@@ -1,11 +1,4 @@
-<h1>JAMES.</h1>
-<p class="text-success">
-    JAMES - Your Personal Assistant.<br />
-    Contact developer: <a href="mailto:jefferson@jeffersoncampos.eti.br">Jefferson Campos (http://jeffersoncampos.eti.br)</a>.
-</p>
-<h1>Features</h1>
-Use the menu above with shortcuts. For all functions, check:
-
+<h1>JAMES <small>http://jamesapp.jeffersoncampos.eti.br</small></h1>
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
   <li><a href="#food" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cutlery"></span></a></li>
