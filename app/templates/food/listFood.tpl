@@ -1,8 +1,5 @@
 <div>
     <h1>Foods</h1>
-    <ul class="breadcrumb">
-        <li class="active">Food<span class="divider">/</span></li>
-    </ul>
 </div>
 </div>
 <a href="#food/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
