@@ -3,10 +3,11 @@ define([
 	'jquery',
 	'marionette',
 	'moment',
+	'james-data',
 	'models/expense',
 	'views/list',
 	'models/setting'
-], function (_, $, Marionette, Moment, ExpenseModel, ListView, SettingModel) {
+], function (_, $, Marionette, Moment, JAMES_DATA, ExpenseModel, ListView, SettingModel) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
@@ -51,20 +52,7 @@ define([
 			attrToView.status = this.status(daysLateToWork, totalMinutesLaterAfterStart);
 
 			// TODO filter by month
-			attrToView.selectMonth = [
-				{label: 'January', value: 0}
-				, {label: 'February', value: 1}
-				, {label: 'March', value: 2}
-				, {label: 'April', value: 3}
-				, {label: 'May', value: 4}
-				, {label: 'June', value: 5}
-				, {label: 'July', value: 6}
-				, {label: 'August', value: 7}
-				, {label: 'September', value: 8}
-				, {label: 'October', value: 9}
-				, {label: 'November', value: 10}
-				, {label: 'December', value: 11}
-			];
+			attrToView.selectMonth = JAMES_DATA.Parser.getMonths();
 
 			return attrToView;
 		}

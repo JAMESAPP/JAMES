@@ -18,6 +18,7 @@
     "firebase-simple-login": "~1.6.1",
     "hideShowPassword": "~2.0.3",
     "backfire": "~0.3.0",
-    "goog-api": "~0.0.1"
+    "goog-api": "latest",
+    "james-data": "latest"
   }
 }

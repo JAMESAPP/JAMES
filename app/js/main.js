@@ -15,7 +15,8 @@ require.config({
 		'firebase': 'libs/bower/firebase/firebase',
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
-		'goog-api': 'libs/bower/goog-api/dist/goog-api.min'
+		'goog-api': 'libs/bower/goog-api/dist/goog-api.min',
+		'james-data': 'libs/bower/james-data/dist/james-data.min'
 	},
 	shim: {
 		'jquery': {
