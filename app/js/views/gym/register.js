@@ -2,25 +2,24 @@ define([
 	'marionette'
 	, 'underscore'
 	, 'app'
-	, 'collections/categories'
 	, 'views/register'
 	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, CategoriesCollection, RegisterView, SettingModel) {
+], function (Marionette, _, App, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/gym/register.tpl'
 		, objectStore: 'gyms'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 
-			var categoriesCollection = new CategoriesCollection();
-			categoriesCollection.fetch({async: false});
-			attrToView.selectCategory = categoriesCollection.toJSON();
+			// var categoriesCollection = new CategoriesCollection();
+			// categoriesCollection.fetch({async: false});
+			// attrToView.selectCategory = categoriesCollection.toJSON();
 
-			if (attrToView.id != undefined) {
-				attrToView.selectCategory.unshift(attrToView.category);
-			}
+			// if (attrToView.id != undefined) {
+			// 	attrToView.selectCategory.unshift(attrToView.category);
+			// }
 
 			return attrToView;
 		}

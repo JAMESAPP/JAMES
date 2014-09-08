@@ -2,22 +2,19 @@ define([
 	'marionette'
 	, 'underscore'
 	, 'app'
-	, 'collections/categories'
+	, 'james-data'
 	, 'views/register'
 	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, App, CategoriesCollection, RegisterView, SettingModel) {
+], function (Marionette, _, App, JAMES_DATA, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/expense/register.tpl'
 		, objectStore: 'expenses'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 
-			var categoriesCollection = new CategoriesCollection();
-			categoriesCollection.fetch({async: false});
-			attrToView.selectCategory = categoriesCollection.toJSON();
-
+			attrToView.selectCategory = JAMES_DATA.Financial.getChartOfAccounts();
 			if (attrToView.id != undefined) {
 				attrToView.selectCategory.unshift(attrToView.category);
 			}
