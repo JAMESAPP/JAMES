@@ -16,7 +16,9 @@ require.config({
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
 		'goog-api': 'libs/bower/goog-api/dist/goog-api.min',
-		'james-data': 'libs/bower/james-data/dist/james-data.min'
+		// FIXME update path when 0.0.7 or above is out!
+		// 'james-data': 'libs/bower/james-data/dist/james-data.min'
+		'james-data': 'libs/custom/test-dev/james-data/james-data.min'
 	},
 	shim: {
 		'jquery': {
