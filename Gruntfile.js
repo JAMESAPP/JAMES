@@ -58,6 +58,18 @@ module.exports = function(grunt) {
 				cwd: 'dist/',
 				src: '**',
 				flatten: false
+			},
+			'goog-api': {
+				expand: true,
+				cwd: 'app/js/libs/custom/test-dev/goog-api/',
+				src: '**',
+				flatten: false
+			},
+			'james-data': {
+				expand: true,
+				cwd: 'app/js/libs/custom/test-dev/james-data/',
+				src: '**',
+				flatten: false
 			}
 		}
 		, requirejs: {
@@ -211,4 +223,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['clean', 'copy', 'handlebars', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
 	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
 	grunt.registerTask('dev', ['handlebars', 'watch']);
+	grunt.registerTask('clean-custom-libs', ['clean:goog-api', 'clean:james-data']);
 };
