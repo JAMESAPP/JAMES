@@ -2,13 +2,13 @@ define([
 	'marionette'
 	, 'underscore'
 	, 'moment'
+	, 'james-data'
 	, 'app'
-	, 'collections/machines'
 	, 'views/register'
 	, 'models/setting'
 	, 'jquerymask'
 	, 'jqueryui'
-], function (Marionette, _, Moment, App, MachinesCollection, RegisterView, SettingModel) {
+], function (Marionette, _, Moment, JAMES_DATA, App, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/timesheet/register.tpl'
 		, objectStore: 'timesheets'
@@ -29,20 +29,19 @@ define([
 			});
 		}
 		, serializeData: function() {
-			var attrToView = _.clone(this.attributes) || {};
+			var attrToView = _.clone(this.attributes) || {},
+				top
+			;
 
-			var machinesCollection = new MachinesCollection();
-			machinesCollection.fetch({async: false});
-
-			attrToView.selectStartTimeMachine = machinesCollection.toJSON();
-			var top = _.filter(machinesCollection.toJSON(), function(machine){
+			attrToView.selectStartTimeMachine = JAMES_DATA.Timesheet.getMachines();
+			top = _.filter(JAMES_DATA.Timesheet.getMachines(), function(machine){
 				return machine.value == attrToView.startTimeMachine;
 			});
 			if (attrToView.startTimeMachine != undefined)
 				attrToView.selectStartTimeMachine.unshift(top[0]);
 
-			attrToView.selectEndTimeMachine = machinesCollection.toJSON();
-			top = _.filter(machinesCollection.toJSON(), function(machine){
+			attrToView.selectEndTimeMachine = JAMES_DATA.Timesheet.getMachines();
+			top = _.filter(JAMES_DATA.Timesheet.getMachines(), function(machine){
 				return machine.value == attrToView.endTimeMachine;
 			});
 			if (attrToView.endTimeMachine != undefined)
