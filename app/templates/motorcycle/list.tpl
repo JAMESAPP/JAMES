@@ -1,8 +1,5 @@
 <div>
     <h1>Motorcycles</h1>
-    <ul class="breadcrumb">
-        <li class="active">Motorcycles<span class="divider">/</span></li>
-    </ul>
 </div>
 </div>
 <a href="#motorcycle/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
@@ -15,9 +12,9 @@
 	</caption>
 	<thead>
 	    <tr>
-			<th>Date</th>
 			<th>KM</th>
-            <th>Action</th>
+            <th>Edit</th>
+            <th>Delete</th>
 		</tr>
 	</thead>
 	<tbody id="tbodyItem"></tbody>
