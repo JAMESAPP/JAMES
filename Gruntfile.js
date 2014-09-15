@@ -221,7 +221,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('build', ['clean:dist', 'copy', 'handlebars', 'requirejs', 'cssmin', 'processhtml', 'htmlmin']);
-	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffoxos']);
+	grunt.registerTask('ffxos', ['build', 'compress', 'exec:deploy_ffxos']);
 	grunt.registerTask('dev', ['handlebars', 'watch']);
 	grunt.registerTask('clean-custom-libs', ['clean:goog-api', 'clean:james-data']);
 };
