@@ -1,4 +1,3 @@
-<h1>JAMES <small>http://jamesapp.jeffersoncampos.eti.br</small></h1>
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
   <li><a href="#food" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cutlery"></span></a></li>
@@ -13,8 +12,7 @@
 <div class="tab-content">
   <div class="tab-pane active" id="expense">
 	<h2>Expenses</h2>
-	<p class="text-danger">Register and manage your expenses. Export to QIF and integrate with GNUCash.</p>
-	<a href="#expenses" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> List and Manage Expenses</a>
+	<a href="#expenses" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> List/Manage Expenses</a>
 	<a href="#expense/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> New Expense</a>
 	<a href="#expenses" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> Budget</a>
   </div>
@@ -22,11 +20,10 @@
     <h2>Painel</h2>
 	<a href="#food/painel" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> Painel</a>
 	<h2>Foods</h2>
-	<p class="text-danger">Help you manage your eating habits.</p>
-	<a href="#foods" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List and Manage Foods</a>
+	<a href="#foods" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List/Manage Foods</a>
 	<a href="#food/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Food</a>
     <h2>Meals</h2>
-	<a href="#food/meals" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List and Manage Meals</a>
+	<a href="#food/meals" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List/Manage Meals</a>
 	<a href="#food/meal/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Meal</a>
   </div>
   <div class="tab-pane" id="grocery">
@@ -35,33 +32,27 @@
   </div>
   <div class="tab-pane" id="gym">
 	<h2>Gym - Workouts</h2>
-	<p class="text-danger">Track your workout.</p>
-	<a href="#gyms" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> List and Manage Workouts</a>
+	<a href="#gyms" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> List/Manage Workouts</a>
 	<a href="#gym/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> New Workout</a>
   </div>
   <div class="tab-pane" id="motorcycle">
 	<h2>Motorcycles</h2>
-	<p class="text-danger">Track all expenses with gas and oil of your motorcycle.</p>
-	<a href="#motorcycles" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List and Manage Refuel</a>
+	<a href="#motorcycles" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List/Manage Refuel</a>
 	<a href="#motorcycle/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> New Refuel</a>
 	<a href="#timesheets" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> Sync</a>
-
   </div>
   <div class="tab-pane" id="timesheet">
 	<h2>Timesheet</h2>
-	<p class="text-danger">Track your time in PMS.</p>
-	<a href="#timesheets" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> List and Manage Timesheets</a>
+	<a href="#timesheets" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> List/Manage Timesheets</a>
 	<a href="#timesheet/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> New Timesheet</a>
 	<a href="#timesheets" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> Sync</a>
   </div>
   <div class="tab-pane" id="backup">
 	<h2>Backup</h2>
-	<p class="text-danger">Take control of your data. Make an backup in cloud or export your data to disk.</p>
 	<a href="#backup" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Take Control of Your Data</a>
   </div>
   <div class="tab-pane" id="settings">
 	<h2>Settings</h2>
-	<p class="text-danger">Setup app.</p>
 	<a href="#settings" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-wrench"></span> Setup your app</a>
   </div>
 </div>
