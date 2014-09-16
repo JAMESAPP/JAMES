@@ -7,7 +7,6 @@
 	<a id="btnSync" href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
   </div>
   <div class="col-xs-6">
-	<!-- <label for="inputMonth">Month</label> -->
 	<select id="selectMonth" data-bind="value:category,events:['change']">
 	  {{#each selectMonth}}
 	  <option value="{{value}}">{{label}}</option>

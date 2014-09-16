@@ -26,51 +26,46 @@
             </div>
         </div>
     </div>
-    <hr />
-
 	<div id="divStartEndDay" class="tab-content">
         <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#checkin" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-play"> Chekin</span></a></li>
             <li><a href="#checkout" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stop"> Checkout</span></a></li>
         </ul>
         <div id="checkin" class="tab-pane active">
-            <h2>Check-in</h2>
-            <div class="row">
-                <label>Time</label><br />
-                <input type="text" id="inputStartTime" class="col-xs-3 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
-            </div>
-            <div class="row">
-                <label for="inputStartTimeMachine">Machine</label><br />
-                <select id="selectStartTimeMachine" data-bind="value:startTimeMachine,events:['change']">
-                    {{#each selectStartTimeMachine}}
-                    <option value="{{value}}">{{label}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="row">
-                <label for="txtStartTimeMotive">Motive</label><br />
-                <textarea type="text" id="txtStartTimeMotive" rows="10" class="col-xs-12" placeholder="Motive to start early..." data-bind="value:startTimeMotive,events:['keyup']">{{startTimeMotive}}</textarea>
-            </div>
+          <div class="row">
+            <label>Checkin Time</label><br />
+            <input type="text" id="inputStartTime" class="col-xs-3 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/>
+          </div>
+          <div class="row">
+            <label for="inputStartTimeMachine">Checkin Machine</label><br />
+            <select id="selectStartTimeMachine" data-bind="value:startTimeMachine,events:['change']">
+              {{#each selectStartTimeMachine}}
+              <option value="{{value}}">{{label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="row">
+            <label for="txtStartTimeMotive">Chekin Motive</label><br />
+            <textarea type="text" id="txtStartTimeMotive" rows="5" class="col-xs-12" placeholder="Motive to start early..." data-bind="value:startTimeMotive,events:['keyup']">{{startTimeMotive}}</textarea>
+          </div>
         </div>
-
         <div id="checkout" class="tab-pane">
-            <h2>Check-out</h2>
-            <div class="row">
-                <label for="inputEndTime">Time</label><br />
-                <input type="text" id="inputEndTime" class="col-xs-3 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
-            </div>
-            <div class="row">
-                <label for="inputEndTimeMachine">Machine</label><br />
-                <select id="selectEndTimeMachine" data-bind="value:endTimeMachine,events:['change']">
-	                {{#each selectEndTimeMachine}}
-                    <option value="{{value}}">{{label}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="row">
-                <label for="txtEndTimeMotive">Motive</label><br />
-                <textarea type="text" id="txtEndTimeMotive" rows="10" class="col-xs-12" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
-            </div>
+          <div class="row">
+            <label for="inputEndTime">Chekout Time</label><br />
+            <input type="text" id="inputEndTime" class="col-xs-3 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" />
+          </div>
+          <div class="row">
+            <label for="inputEndTimeMachine">Chekout Machine</label><br />
+            <select id="selectEndTimeMachine" data-bind="value:endTimeMachine,events:['change']">
+	          {{#each selectEndTimeMachine}}
+              <option value="{{value}}">{{label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="row">
+            <label for="txtEndTimeMotive">Chekout Motive</label><br />
+            <textarea type="text" id="txtEndTimeMotive" rows="5" class="col-xs-12" placeholder="Motive to stay latter..." data-bind="value:endTimeMotive,events:['keyup']">{{endTimeMotive}}</textarea>
+          </div>
         </div>
 	</div>
 </div>
