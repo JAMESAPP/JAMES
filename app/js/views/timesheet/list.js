@@ -20,6 +20,7 @@ define([
 		, events: function() {
 			return _.extend({}, ListView.prototype.events, {
 				'click #btnSync': 'sync'
+				, 'click .edit-td': 'edit'
 			});
 		}
 		// FIXME retrieve data from setting - in offline storage
@@ -205,6 +206,12 @@ define([
 			}
 
 			return status;
+		}
+
+		, edit: function(ev) {
+			ev.preventDefault();
+
+			window.location = '#timesheet/' + ev.currentTarget.getAttribute('id');
 		}
 
 		, sync: function(ev) {

@@ -59,11 +59,10 @@
 	  <thead>
 		<tr>
 		  <th>Date</th>
-		  <th>Edit</th>
+		  <!-- <th>Edit</th> -->
 		  <th>Delete</th>
 		  <!-- <th>Time Start</th> -->
           <!-- <th>Time End</th> -->
-          <!-- <th>Action</th> -->
 		</tr>
 	  </thead>
 	  <tbody id="tbodyItem"></tbody>
