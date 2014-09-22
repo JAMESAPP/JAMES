@@ -84,4 +84,4 @@
 <br />
 <a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Send</a>
 <a href="#" id="btnDeleteSettings" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-<a href="#" id="btnCleanLocalStorage" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> LocalStorage</a>
+<a href="#" id="btnCleanLocalStorage" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Local Data</a>
