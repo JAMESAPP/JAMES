@@ -1,9 +1,4 @@
-<div>
-    <h1>Expenses</h1>
-    <ul class="breadcrumb">
-        <li class="active">Expenses<span class="divider">/</span></li>
-    </ul>
-</div>
+<h1>Expenses</h1>
 <a href="#expense/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 <a href="#expense/budget" class="btn btn-info"><i class="icon-eye-open icon-white"></i> Budget</a>
 <br />
