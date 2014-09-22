@@ -1,8 +1,9 @@
 define([
-	'marionette'
+	'underscore'
+	, 'marionette'
 	, 'models/expense'
 	, 'views/list'
-], function (Marionette, ExpenseModel, ListView) {
+], function (_, Marionette, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/motorcycle/list-item.tpl',
 		tagName: 'tr'
@@ -12,6 +13,15 @@ define([
 		template: 'app/templates/motorcycle/list.tpl',
 		itemView: itemView,
 		objectStore: 'motorcycles'
+		, events: function() {
+			return _.extend({}, ListView.prototype.events, {
+				'click .edit-td': 'edit'
+			});
+		}
+		, edit: function(ev) {
+			ev.preventDefault();
+			window.location = '#motorcycle/' + ev.currentTarget.getAttribute('id');
+		}
 	});
 
 	return CompositeView;

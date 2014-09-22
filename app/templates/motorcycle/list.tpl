@@ -1,7 +1,4 @@
-<div>
-    <h1>Motorcycles</h1>
-</div>
-</div>
+<h1>Motorcycles</h1>
 <a href="#motorcycle/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 <a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
 <br />
@@ -13,7 +10,6 @@
 	<thead>
 	    <tr>
 			<th>KM</th>
-            <th>Edit</th>
             <th>Delete</th>
 		</tr>
 	</thead>
