@@ -42,7 +42,7 @@
 *** TODO Fix layout errors
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
-** Add group button to about page - shortcut to all function (behave like a menu)
+** DONE Add group button to about page - shortcut to all function (behave like a menu)
 * TODO BUG
 ** TODO [#C] config.js
 *** TODO timesheet/list.js
