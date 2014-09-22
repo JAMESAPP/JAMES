@@ -1,8 +1,9 @@
 define([
-	'marionette'
+	'underscore'
+	, 'marionette'
 	, 'models/expense'
 	, 'views/list'
-], function (Marionette, ExpenseModel, ListView) {
+], function (_, Marionette, ExpenseModel, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/expense/list-item.tpl',
 		tagName: 'tr'
@@ -12,6 +13,15 @@ define([
 		template: 'app/templates/expense/list.tpl',
 		itemView: itemView,
 		objectStore: 'expenses'
+		, events: function() {
+			return _.extend({}, ListView.prototype.events, {
+				'click .edit-td': 'edit'
+			});
+		}
+		, edit: function(ev) {
+			ev.preventDefault();
+			window.location = '#expense/' + ev.currentTarget.getAttribute('id');
+		}
 	});
 
 	return CompositeView;

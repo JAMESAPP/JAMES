@@ -15,7 +15,6 @@
 	<thead>
 	    <tr>
 			<th>Expense</th>
-            <th>Edit</th>
             <th>Delete</th>
 		</tr>
 	</thead>
