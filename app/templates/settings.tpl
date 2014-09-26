@@ -4,7 +4,7 @@
   <li><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
   <li><a href="#cloudAuth" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cloud"></span></a></li>
 </ul>
-
+<div id="divRegister">
   <div class="tab-content">
 	<div id="basic" class="tab-pane active">
       <h1>Settings</h1>
@@ -77,7 +77,7 @@
 	  </div>
 	</div>
   </div>
-<!-- </div> -->
+</div>
 <br />
 <span id="spanMessage"></span>
 <br />

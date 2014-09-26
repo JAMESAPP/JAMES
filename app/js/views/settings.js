@@ -5,7 +5,7 @@ define([
 	, 'views/bindingView'
 	, 'views/register'
 	, 'hideShowPassword'
-], function (_, Marionette, App, BidingView, RegisterView) {
+], function (_, Marionette, App, BindingView, RegisterView) {
 	var ItemView = RegisterView.extend({
 		tagName: 'div',
 		className: 'box'
