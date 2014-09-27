@@ -17,8 +17,11 @@ define([
 			if (attr.ammount == '')
 				return 'Ammount can\'t be empty!';
 
-			if (attr.category == '')
-				return 'Category can\'t be empty!';
+			if (attr.accountFrom == '')
+				return 'Account FROM can\'t be empty!';
+
+			if (attr.accountTo == '')
+				return 'Account TO  can\'t be empty!';
 
 			if (attr.memo == '')
 				return 'Memo can\'t be empty!';

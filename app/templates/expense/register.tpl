@@ -9,8 +9,16 @@
         <input type="text" id="inputAmmount" class="col-xs-6" value="{{ammount}}" placeholder="Ammount of transaction" data-bind="value:ammount,events:['keyup']" />
     </div>
     <div class="row">
-        <label for="inputCategory">Category</label>
-        <select id="selectCategory" class="col-xs-12" data-bind="value:category,events:['change']">
+        <label for="inputCategoryFrom">Category From</label>
+        <select id="selectCategoryFrom" class="col-xs-12" data-bind="value:accountFrom,events:['change']">
+            {{#each selectCategory}}
+            <option value="{{value}}">{{label}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="row">
+        <label for="inputCategoryTo">Category To</label>
+        <select id="selectCategoryTo" class="col-xs-12" data-bind="value:accountTo,events:['change']">
             {{#each selectCategory}}
             <option value="{{value}}">{{label}}</option>
             {{/each}}
