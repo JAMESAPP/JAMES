@@ -6,7 +6,8 @@ define([
 		defaults: {
 			date: null
 			, ammount: 0.00
-			, category: null
+			, accountFrom: null
+			, accountTo: null
 			, memo: null
 		}
 

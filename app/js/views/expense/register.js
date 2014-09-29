@@ -12,11 +12,20 @@ define([
 		template: 'app/templates/expense/register.tpl'
 		, objectStore: 'expenses'
 		, serializeData: function() {
-			var attrToView = _.clone(this.attributes);
+			var attrToView = _.clone(this.attributes),
+				accountFrom,
+				accountTo
+			;
 
-			attrToView.selectCategory = JAMES_DATA.Financial.getChartOfAccounts();
+			// attrToView.selectCategory = JAMES_DATA.Financial.getChartOfAccounts();
+			attrToView.accountFrom = JAMES_DATA.Financial.getChartOfAccounts();
+			attrToView.accountTo = JAMES_DATA.Financial.getChartOfAccounts();
+
 			if (attrToView.id != undefined) {
-				attrToView.selectCategory.unshift(attrToView.category);
+				attrToView.accountFrom.unshift(attrToView.accountFrom);
+				attrToView.accountTo.unshift(attrToView.accountTo);
+
+				// attrToView.selectCategory.unshift(attrToView.category);
 			}
 
 			return attrToView;
