@@ -1,5 +1,5 @@
 <td id="{{id}}" class="edit-td">
-  <div class="container">
+  <div class="container-fluid">
 	<div class="col-xs-11">
 	  {{date}}
 	</div>
