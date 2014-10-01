@@ -84,8 +84,6 @@ require([
 		this.unbind();
 	};
 
-	console.log(Googapi.VERSION);
-
 	App.initializeDB();
 
 	new HomeController();
