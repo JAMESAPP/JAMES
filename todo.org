@@ -1,5 +1,6 @@
 * TODO Environment
 ** TODO Grunt
+*** TODO private build
 *** TODO Implement a process to deploy app
 **** TODO grunt-contrib-compress
 ***** TODO replace index.html with index.html from htmlmin
@@ -39,10 +40,6 @@
 * TODO Graphic Design
 ** TODO Migrate to bootstrap 3
 *** TODO Fix build process (separate fonts, img, lib, etc)
-*** TODO Fix layout errors
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
-** DONE Add group button to about page - shortcut to all function (behave like a menu)
 * TODO BUG
-** TODO [#C] config.js
-*** TODO timesheet/list.js
