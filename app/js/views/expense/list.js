@@ -21,7 +21,12 @@ define([
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {};
 
+			// TODO implement it!
+			attrToView.totalPlanned = 0.00;
+
 			attrToView.totalExpended = this.totalExpended();
+
+			attrToView.balance = this.balance(attrToView.totalPlanned, attrToView.totalExpended);
 
 			return attrToView;
 		}
@@ -41,6 +46,9 @@ define([
 			});
 
 			return total;
+		}
+		, balance: function(totalPlanned, totalExpended) {
+			return totalPlanned - totalExpended;
 		}
 	});
 

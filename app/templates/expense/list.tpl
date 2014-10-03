@@ -13,7 +13,7 @@
 	<div id="divPainel01" class="row">
 	  <div class="col-xs-6">
 		Total Planned <br />
-		<span class="label label-{{status}}">{{totalDaysLateToWork}}</span>
+		<span class="label label-info">{{totalPlanned}}</span>
 	  </div>
 	  <div class="col-xs-6">
 		Total Expended <br />
@@ -23,7 +23,7 @@
 	<div id="divPainel02" class="row">
 	  <div class="col-xs-6">
 		Balance <br />
-		<span class="label label-primary">{{balance}}</span>
+		<span class="label label-{{status}}">R$ {{balance}}</span>
 	  </div>
 	  <div class="col-xs-6">
 		Status <br />
