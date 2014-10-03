@@ -17,7 +17,7 @@
 	  </div>
 	  <div class="col-xs-6">
 		Total Expended <br />
-		<span class="label label-{{status}}">{{totalMinutesLaterAfterStart}}</span>
+		<span class="label label-{{status}}">R$ {{totalExpended}}</span>
 	  </div>
 	</div> 
 	<div id="divPainel02" class="row">

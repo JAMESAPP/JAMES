@@ -18,9 +18,29 @@ define([
 				'click .edit-td': 'edit'
 			});
 		}
+		, serializeData: function() {
+			var attrToView = _.clone(this.attributes) || {};
+
+			attrToView.totalExpended = this.totalExpended();
+
+			return attrToView;
+		}
 		, edit: function(ev) {
 			ev.preventDefault();
 			window.location = '#expense/' + ev.currentTarget.getAttribute('id');
+		}
+		, totalExpended: function() {
+			var expenses = this.collection.toJSON(),
+				ammount = 0.00,
+				total = 0.00
+			;
+
+			_.forEach(expenses, function(element, index, list) {
+				ammount = element.ammount.replace(',', '.');
+				total += parseFloat(ammount);
+			});
+
+			return total;
 		}
 	});
 
