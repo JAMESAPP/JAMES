@@ -25,8 +25,8 @@ define([
 			attrToView.totalPlanned = 0.00;
 
 			attrToView.totalExpended = this.totalExpended();
-
 			attrToView.balance = this.balance(attrToView.totalPlanned, attrToView.totalExpended);
+			attrToView.status = this.status(attrToView.balance);
 
 			return attrToView;
 		}
@@ -34,6 +34,7 @@ define([
 			ev.preventDefault();
 			window.location = '#expense/' + ev.currentTarget.getAttribute('id');
 		}
+		// FIXME round precision: 0.060000000000002274 with test 63.00
 		, totalExpended: function() {
 			var expenses = this.collection.toJSON(),
 				ammount = 0.00,
@@ -49,6 +50,15 @@ define([
 		}
 		, balance: function(totalPlanned, totalExpended) {
 			return totalPlanned - totalExpended;
+		}
+		, status: function(balance) {
+			var status = 'danger';
+			if (balance > 0)
+				status = 'success';
+			else if (balance == 0)
+				status = 'info';
+
+			return status;
 		}
 	});
 
