@@ -9,6 +9,8 @@ define([
 	, 'views/food/registerMeal'
 	, 'views/food/listMeal'
 	, 'views/food/painel'
+	, 'views/motorcycle/oil/register'
+	, 'views/motorcycle/oil/list'
 	, 'views/motorcycle/register'
 	, 'views/motorcycle/list'
 	, 'views/gym/register'
@@ -20,11 +22,12 @@ define([
 	, 'models/expense'
 	, 'models/food/food'
 	, 'models/food/meal'
+	, 'models/oil'
 	, 'models/motorcycle'
 	, 'models/gym'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, MotorcycleRegisterView, MotorcyclesListView, OilRegisterView, OilsListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -39,6 +42,9 @@ define([
 			'food/new': 'food',
 			'food/:id': 'food',
 
+			'motorcycles/oil': 'oils',
+			'motorcycle/oil/new': 'oil',
+			'motorcycle/oil/:id': 'oil',
 			'motorcycles': 'motorcycles',
 			'motorcycle/new': 'motorcycle',
 			'motorcycle/:id': 'motorcycle',
@@ -79,6 +85,12 @@ define([
 			this.register(id, 'meals', MealModel, MealRegisterView);
 		},
 
+		oils: function() {
+			this.list('oils', OilsListView);
+		},
+		oil: function(id) {
+			this.register(id, 'oils', OilModel, OilRegisterView);
+		},
 		motorcycles: function() {
 			this.list('motorcycles', MotorcyclesListView);
 		},
