@@ -36,10 +36,13 @@
 	<a href="#gym/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> New Workout</a>
   </div>
   <div class="tab-pane" id="motorcycle">
+	<a href="#timesheets" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> Sync</a>
 	<h2>Motorcycles</h2>
 	<a href="#motorcycles" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List/Manage Refuel</a>
 	<a href="#motorcycle/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> New Refuel</a>
-	<a href="#timesheets" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> Sync</a>
+	<h2>Oil Exchange</h2>
+	<a href="#motorcycle/oils" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List/Manage Oil Exchange</a>
+	<a href="#motorcycle/oil/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> New Oil Exchange</a>
   </div>
   <div class="tab-pane" id="timesheet">
 	<h2>Timesheet</h2>

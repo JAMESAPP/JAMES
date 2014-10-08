@@ -22,12 +22,6 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label for="inputGasStation">Gas Station</label><br />
-            <input type="text" id="inputGasStation" class="col-xs-12" value="{{gasStation}}" placeholder="Auto Posto Compreto Rua Aparecida" data-bind="value:gasStation,events:['keyup']" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
             <label for="inputObservation">Observation</label>
             <textarea type="text" id="txtObservation" rows="10" class="col-xs-12" placeholder="Something unusual?" data-bind="value:observation,events:['keyup']">{{observation}}</textarea>
         </div>

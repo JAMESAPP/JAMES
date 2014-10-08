@@ -42,7 +42,7 @@ define([
 			'food/new': 'food',
 			'food/:id': 'food',
 
-			'motorcycles/oil': 'oils',
+			'motorcycle/oils': 'oils',
 			'motorcycle/oil/new': 'oil',
 			'motorcycle/oil/:id': 'oil',
 			'motorcycles': 'motorcycles',
@@ -89,6 +89,7 @@ define([
 			this.list('oils', OilsListView);
 		},
 		oil: function(id) {
+console.log('oil register');
 			this.register(id, 'oils', OilModel, OilRegisterView);
 		},
 		motorcycles: function() {
