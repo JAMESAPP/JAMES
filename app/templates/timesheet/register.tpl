@@ -1,4 +1,4 @@
-<div id="divRegister" class="container">
+g<div id="divRegister" class="container">
   <h1>Timesheet</h1>
   <div class="row">
     <div class="col-xs-6">
@@ -34,7 +34,7 @@
     <div id="checkin" class="tab-pane active">
       <div class="form-group">
         <label>Checkin Time</label><br />
-        <input type="text" id="inputStartTime" class="col-xs-3 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/><br />
+        <input type="text" id="inputStartTime" class="col-xs-4 timeMask" value="{{startTime}}" placeholder="hh:mm" data-bind="value:startTime,events:['keyup']"/><br />
       </div>
       <div class="form-group">
         <label for="selectStartTimeMachine">Checkin Machine</label><br />
@@ -52,7 +52,7 @@
     <div id="checkout" class="tab-pane">
       <div class="form-group">
         <label for="inputEndTime">Chekout Time</label><br />
-        <input type="text" id="inputEndTime" class="col-xs-3 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" /><br />
+        <input type="text" id="inputEndTime" class="col-xs-4 timeMask" value="{{endTime}}" placeholder="hh:mm" data-bind="value:endTime,events:['keyup']" /><br />
       </div>
       <div class="form-group">
         <label for="selectEndTimeMachine">Chekout Machine</label><br />
