@@ -1,4 +1,4 @@
-g<div id="divRegister" class="container">
+<div id="divRegister" class="container">
   <h1>Timesheet</h1>
   <div class="row">
     <div class="col-xs-6">
