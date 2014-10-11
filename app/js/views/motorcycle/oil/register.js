@@ -9,7 +9,7 @@ define([
 ], function (Marionette, _, App, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/motorcycle/oil/register.tpl'
-		, objectStore: 'motorcycles'
+		, objectStore: 'oils'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
 

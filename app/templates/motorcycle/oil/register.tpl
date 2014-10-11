@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-xs-6">
-            <label for="inputAmount">Amount</label><br />
+            <label for="inputAmount">Amount (LT)</label><br />
             <input type="text" id="inputAmount" class="col-xs-12" value="{{amount}}" placeholder="gas (liter)" data-bind="value:amount,events:['keyup']" />
         </div>
         <div class="col-xs-6">
