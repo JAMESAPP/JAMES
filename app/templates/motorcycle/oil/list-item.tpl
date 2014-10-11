@@ -1,7 +1,7 @@
 <td id="{{id}}" class="edit-td">
   <div class="container-fluid">
 	<div class="col-xs-11">
-	  {{KM}}
+        [{{date}}] - {{KM}}
 	</div>
 	<div class="col-xs-1 text-right">
 	  <span class="glyphicon glyphicon-chevron-right"></span>
