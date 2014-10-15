@@ -22,6 +22,7 @@
 *** Suport window.localstorage
 **** Support for firebase
 * TODO Function
+** Implement decreto 21404/2014
 ** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
 ** DONE Clear all entries
