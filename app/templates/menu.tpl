@@ -14,7 +14,6 @@
       <ul class="navbar-nav list-inline">
 		<li><a href="#expenses"><span class="glyphicon glyphicon-usd"></span></a></li>
 		<li><a href="#food/meals"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-		<li><a href="#groceries"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 		<li><a href="#gyms"><span class="glyphicon glyphicon-flag"></span></a></li>
 		<li><a href="#motorcycles"><span class="glyphicon glyphicon-road"></span></a></li>
 		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>

@@ -1,7 +1,6 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
   <li><a href="#food" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-  <li><a href="#grocery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
   <li><a href="#gym" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-flag"></span></a></li>
   <li><a href="#motorcycle" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road"></span></a></li>
   <li><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
@@ -25,10 +24,6 @@
     <h2>Meals</h2>
 	<a href="#food/meals" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List/Manage Meals</a>
 	<a href="#food/meal/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Meal</a>
-  </div>
-  <div class="tab-pane" id="grocery">
-	<h2>Groceries</h2>
-	<p class="text-danger">Help you to you buy your gorcery.</p>
   </div>
   <div class="tab-pane" id="gym">
 	<h2>Gym - Workouts</h2>
