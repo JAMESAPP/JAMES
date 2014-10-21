@@ -7,12 +7,14 @@ define([
 
 			return null;
 		};
-		this.openDB = function() {
+		// TODO implement with a function in arg
+		this.openDB = function(action) {
 			var self = this;
 			var request = window.indexedDB.open('james', 1);
 
 			request.onsuccess = function(e) {
 				self.db = e.target.result;
+				// action();
 			};
 
 			request.onerror = function(err) {

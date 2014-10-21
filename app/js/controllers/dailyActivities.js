@@ -1,6 +1,7 @@
 define([
 	'backbone'
 	, 'app'
+	, 'models/indexedDB'
 	, 'collections/generic'
 	, 'views/expense/register'
 	, 'views/expense/list'
@@ -27,7 +28,7 @@ define([
 	, 'models/gym'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -127,6 +128,10 @@ console.log('oil register');
 
 		list: function(entity, View) {
 			var entities = [];
+
+			// var indexedDB = new IndexedDB();
+			// indexedDB.openDB();
+			// indexedDB.db.transaction([entity], 'readonly').objectStore(entity).openCursor().onsuccess = function(e) {
 			App.indexedDB.db.transaction([entity], 'readonly').objectStore(entity).openCursor().onsuccess = function(e) {
 				var cursor = e.target.result;
 				if (cursor) {
@@ -147,6 +152,9 @@ console.log('oil register');
 			// 	App.initializeDB();
 			// }
 
+			// var indexedDB = new IndexedDB();
+			// indexedDB.openDB();
+			// var objectStore = indexedDB.db.transaction([entity]).objectStore(entity).get(id != undefined ? parseInt(id) : 0);
 			var objectStore = App.indexedDB.db.transaction([entity]).objectStore(entity).get(id != undefined ? parseInt(id) : 0);
 			objectStore.onsuccess = function(event) {
 				var model = new Model(event.target.result);
