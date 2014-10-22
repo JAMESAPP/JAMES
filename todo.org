@@ -16,6 +16,7 @@
 **** TODO grunt-contrib-jasmine - https://github.com/gruntjs/grunt-contrib-jasmine
 ** TODO Bower
 *** TODO jquery-ui
+** TODO Implement using https://github.com/mozilla/localForage
 ** TODO Deploy at https://marketplace.firefox.com/
 ** TODO Google chrome
 *** TODO Build template with handlebars
@@ -25,7 +26,6 @@
 ** Implement decreto 21404/2014
 ** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
-** DONE Clear all entries
 ** TODO Sync
 ** TODO Timesheet
 *** TODO Painel

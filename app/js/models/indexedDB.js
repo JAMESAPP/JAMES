@@ -40,6 +40,8 @@ define([
 		/*
 		 * callback must receive e.target.result as arg[0]
 		 */
+		// FIXME open and close tx: http://www.w3.org/TR/IndexedDB/#database-closing-steps
+		// TODo migrate to https://github.com/mozilla/localForage
 		this.transaction = function(callback) {
 			var self = this,
 				request = window.indexedDB.open('james', 1)
