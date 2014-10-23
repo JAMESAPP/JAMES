@@ -19,6 +19,7 @@
     "hideShowPassword": "~2.0.3",
     "backfire": "~0.3.0",
     "goog-api": "latest",
-    "james-data": "latest"
+    "james-data": "latest",
+    "localforage": "~1.1.1"
   }
 }

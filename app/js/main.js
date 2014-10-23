@@ -15,6 +15,7 @@ require.config({
 		'firebase': 'libs/bower/firebase/firebase',
 		'firebaseSimpleLogin': 'libs/bower/firebase-simple-login/firebase-simple-login',
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
+		'localforage': 'libs/bower/localforage/dist/localforage.min',
 		'goog-api': 'libs/bower/goog-api/dist/goog-api.min',
 		// FIXME update path when 0.0.7 or above is out!
 		// 'james-data': 'libs/bower/james-data/dist/james-data.min'
@@ -67,6 +68,10 @@ require.config({
 			deps: ['jquery'],
 			exports : 'HideShowPassword'
 		}
+		// , 'localforage': {
+		// 	deps: ['jquery'],
+		// 	exports : 'localforage'
+		// }
 	}
 });
 
