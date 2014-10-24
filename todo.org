@@ -23,7 +23,8 @@
 *** Suport window.localstorage
 **** Support for firebase
 * TODO Function
-** Implement decreto 21404/2014
+** TODO Implement decreto 21404/2014
+** TODO Create backend app
 ** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
 ** TODO Sync
