@@ -45,6 +45,9 @@ define([
 					email: (secrets && typeof secrets === 'object') ? secrets.cloudAuth.email : '<YOUR_EMAIL_HERE>@<SOME_DOMAIN>'
 					, password: (secrets && typeof secrets === 'object') ? secrets.cloudAuth.password : '<YOUR_PASSWORD_HERE>'
 				}
+				, motorcycle: {
+					KM: 0.0
+				}
 			};
 		}
 
