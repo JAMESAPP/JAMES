@@ -3,6 +3,7 @@
   <li><a href="#dateTimePicker" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span></a></li>
   <li><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
   <li><a href="#cloudAuth" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cloud"></span></a></li>
+  <li><a href="#motorcycle" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road"></span></a></li>
 </ul>
 <div id="divRegister">
   <div class="tab-content">
@@ -74,6 +75,14 @@
 	  <br />
 	  <div class="form-group">
 		<a href="#" id="btnHideShowPassword" class="btn btn-warning"><i class="glyphicon glyphicon-eye-close"></i> Passwd</a>
+	  </div>
+	</div>
+
+	<div id="motorcycle" class="tab-pane">
+	  <h2>Motorcycle</h2>
+	  <div class="form-group">
+	    <label for="inputKM">Actual KM</label>
+	    <input type="text" id="inputKM" class="col-xs-12" placeholder="12345.6" data-bind="objectHandler:motorcycle,events:['keyup']" data-property="KM" />
 	  </div>
 	</div>
   </div>

@@ -97,7 +97,17 @@ console.log('oil register');
 			this.list('motorcycles', MotorcyclesListView);
 		},
 		motorcycle: function(id) {
-			this.register(id, 'motorcycles', MotorcycleModel, MotorcycleRegisterView);
+			// this.register(id, 'motorcycles', MotorcycleModel, MotorcycleRegisterView);
+			var settingsObjectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1);
+			settingsObjectStore.onsuccess = function(event) {
+				var motorcycleDefaults = event.target.result.motorcycle,
+					motorcycleObjectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(1)
+				;
+				motorcycleObjectStore.onsuccess = function(event) {
+					var model = new MotorcycleModel(motorcycleDefaults);
+					App.mainRegion.show(new MotorcycleRegisterView(model));
+				};
+			};
 		},
 
 		gyms: function() {

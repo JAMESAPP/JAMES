@@ -4,10 +4,10 @@ define([
 ], function (Backbone, App) {
     var Model = Backbone.Model.extend({
 		defaults: {
-			date: null
+			date: App.dateFormat(new Date())
 			, KM: 0.0
-			, amount: 0.00
-			, price: 0.00
+			, amount: 20.00
+			, price: 2.62
 			, gasStation: 'Auto Posto Compreto Rua Aparecida'
 			, observation: null
 		}
