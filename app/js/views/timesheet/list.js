@@ -112,12 +112,17 @@ define([
 				hours = officialStartTime.hours();
 
 				minutes = officialStartTime.minutes();
-				if (minutes < 21)
+				// if (minutes < 21)
+				// 	minutes = 0;
+				// else if (minutes < 41)
+				// 	minutes = 30;
+				// else
+				// 	minutes = 60;
+				// New rule: 30/30 min
+				if (minutes < 30)
 					minutes = 0;
-				else if (minutes < 41)
-					minutes = 30;
 				else
-					minutes = 60;
+					minutes = 30;
 
 				totalExtraTimeBeforeStart.add('hours', hours);
 				totalExtraTimeBeforeStart.add('minutes', minutes);
@@ -137,12 +142,17 @@ define([
 				hours = endTimeDay.hours();
 
 				minutes = endTimeDay.minutes();
-				if (minutes < 21)
+				// if (minutes < 21)
+				// 	minutes = 0;
+				// else if (minutes < 41)
+				// 	minutes = 30;
+				// else
+				// 	minutes = 60;
+				// New rule: 30/30 min
+				if (minutes < 30)
 					minutes = 0;
-				else if (minutes < 41)
-					minutes = 30;
 				else
-					minutes = 60;
+					minutes = 30;
 
 				totalExtraTimeAfterEnd.add('hours', hours);
 				totalExtraTimeAfterEnd.add('minutes', minutes);
