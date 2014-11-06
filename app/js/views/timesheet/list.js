@@ -41,7 +41,8 @@ define([
 			attrToView.totalMinutesLaterAfterStart = totalMinutesLaterAfterStart;
 
 			// Total Extra Time
-			attrToView.totalExtraTime = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime);
+			attrToView.totalExtraTime = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime, this.model.originalRule);
+			attrToView.totalExtraTimeRule30 = this.totalExtraTime(this.collection.toJSON(), configStartTime, configEndTime, this.model.rule30);
 
 			// Total Leaving Early
 			attrToView.totalLeavingEarly = this.totalTimeLeavingEarly(this.collection.toJSON());
@@ -84,7 +85,7 @@ define([
 			});
 			return totalMinutesLaterAfterStart.hours() + ':' + totalMinutesLaterAfterStart.minutes();
 		}
-		, totalExtraTime: function(timesheets, configStartTime, configEndTime) {
+		, totalExtraTime: function(timesheets, configStartTime, configEndTime, rule) {
 			var hours,
 				minutes,
 				checkin,
@@ -111,18 +112,7 @@ define([
 
 				hours = officialStartTime.hours();
 
-				minutes = officialStartTime.minutes();
-				// if (minutes < 21)
-				// 	minutes = 0;
-				// else if (minutes < 41)
-				// 	minutes = 30;
-				// else
-				// 	minutes = 60;
-				// New rule: 30/30 min
-				if (minutes < 30)
-					minutes = 0;
-				else
-					minutes = 30;
+				minutes = rule(officialStartTime.minutes());
 
 				totalExtraTimeBeforeStart.add('hours', hours);
 				totalExtraTimeBeforeStart.add('minutes', minutes);
@@ -141,18 +131,7 @@ define([
 
 				hours = endTimeDay.hours();
 
-				minutes = endTimeDay.minutes();
-				// if (minutes < 21)
-				// 	minutes = 0;
-				// else if (minutes < 41)
-				// 	minutes = 30;
-				// else
-				// 	minutes = 60;
-				// New rule: 30/30 min
-				if (minutes < 30)
-					minutes = 0;
-				else
-					minutes = 30;
+				minutes = rule(endTimeDay.minutes());
 
 				totalExtraTimeAfterEnd.add('hours', hours);
 				totalExtraTimeAfterEnd.add('minutes', minutes);

@@ -31,8 +31,8 @@
 	</div> 
 	<div id="divPainel02" class="row">
 	  <div class="col-xs-6">
-		Total Extra Time <br />
-		<span class="label label-info">{{totalExtraTime}}</span>
+		Total Extra Time / Rule 30<br />
+		<span class="label label-info">{{totalExtraTime}}</span> / <span class="label label-info">{{totalExtraTimeRule30}}</span>
 	  </div>
 	  <div class="col-xs-6">
 		Leaving Early <br />

@@ -24,11 +24,11 @@
 **** Support for firebase
 * TODO Function
 ** TODO Implement decreto 21404/2014
-*** TODO Upgrade algorythm of xtra time
-**** TODO Move actual calc to model or other reusable component
+*** TODO Upgrade algorythm of extra time
 **** TODO Implement new rule: 30/30
 ***** TODO test
 ***** DONE Implement
+**** DONE Move actual calc to model or other reusable component
 ** TODO Create backend app
 ** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF

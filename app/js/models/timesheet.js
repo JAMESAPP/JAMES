@@ -25,6 +25,26 @@ define([
 			// if (attr.startTime == '' && attr.endTime == '' && (attr.leavingEarly == '' || attr.leavingEarly == null))
 			// 	return 'startTime && endTime && leavingEarly can\'t be empty!';
 		}
+
+		, rule30: function(minutes) {
+			if (minutes < 30)
+				minutes = 0;
+			else
+				minutes = 30;
+
+			return minutes;
+		}
+
+		, originalRule: function(minutes) {
+			if (minutes < 21)
+				minutes = 0;
+			else if (minutes < 41)
+				minutes = 30;
+			else
+				minutes = 60;
+
+			return minutes;
+		}
     });
 
     return Model;

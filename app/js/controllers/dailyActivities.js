@@ -118,7 +118,7 @@ console.log('oil register');
 		},
 
 		timesheets: function() {
-			this.list('timesheets', TimesheetsListView);
+			this.list('timesheets', TimesheetsListView, new TimesheetModel);
 		},
 		timesheet: function(id) {
 			this.register(id, 'timesheets', TimesheetModel, TimesheetRegisterView);
@@ -136,7 +136,7 @@ console.log('oil register');
 			};
 		},
 
-		list: function(entity, View) {
+		list: function(entity, View, model) {
 			var entities = [];
 
 			// var indexedDB = new IndexedDB();
@@ -149,7 +149,7 @@ console.log('oil register');
 					cursor.continue();
 				} else {
 					var collection = new Collection(entities);
-					App.mainRegion.show(new View(collection));
+					App.mainRegion.show(new View(collection, model));
 				}
 			};
 		},

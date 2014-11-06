@@ -15,10 +15,12 @@ define([
 		className: 'box',
 		tagName: 'div',
 
-		initialize: function(coll) {
+		initialize: function(coll, model) {
 			this.collection = coll;
+
 			// Fix default behavior of marionette.js when receive a collection constructor
-			this.model = undefined;
+			// this.model = undefined;
+			this.model = model;
 		}
 
 		, events: {
