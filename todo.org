@@ -29,10 +29,13 @@
 ***** TODO test
 ***** DONE Implement
 **** DONE Move actual calc to model or other reusable component
-** TODO Create backend app
 ** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
 ** TODO Sync
+*** Custom backend
+**** TODO entities
+**** TODO authentication
+**** TODO adapt james client
 ** TODO Timesheet
 *** TODO Painel
 *** TODO calc for leaving early
