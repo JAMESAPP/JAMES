@@ -5,6 +5,7 @@ define([
 	, 'collections/generic'
 	, 'views/expense/register'
 	, 'views/expense/list'
+	, 'views/expense/credit/list'
 	, 'views/food/registerFood'
 	, 'views/food/listFood'
 	, 'views/food/registerMeal'
@@ -28,7 +29,7 @@ define([
 	, 'models/gym'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expenses': 'expenses',
@@ -68,6 +69,34 @@ define([
 		},
 		expense: function(id) {
 			this.register(id, 'expenses', ExpenseModel, ExpenseRegisterView);
+		},
+
+		credits: function() {
+			var entities = [],
+				owners,
+				credits
+			;
+
+			App.indexedDB.db.transaction(['owners'], 'readonly').objectStore('credits').openCursor().onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					entities.push(cursor.value);
+					cursor.continue();
+				} else {
+					owners = new Collection(entities);
+
+					App.indexedDB.db.transaction(['credits'], 'readonly').objectStore('credits').openCursor().onsuccess = function(e) {
+						var cursor = e.target.result;
+						if (cursor) {
+							entities.push(cursor.value);
+							cursor.continue();
+						} else {
+							credits = new Collection(entities);
+							App.mainRegion.show(new CreditsListView(owners, credits));
+						}
+					};
+				}
+			};
 		},
 
 		foodPainel: function() {

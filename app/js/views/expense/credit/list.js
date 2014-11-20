@@ -13,12 +13,12 @@ define([
 		}
 		, initialize: function(params) {
 			switch (params) {
-				case 'owners':
-					this.template = 'app/templates/expense/credit/list-item-owner.tpl';
-					break;
-				case 'credit':
-					this.template = 'app/templates/expense/credit/list-item-credit.tpl';
-					break;
+			case 'owners':
+				this.template = 'app/templates/expense/credit/list-item-owner.tpl';
+				break;
+			case 'credit':
+				this.template = 'app/templates/expense/credit/list-item-credit.tpl';
+				break;
 			}
 		}
 	});
@@ -39,8 +39,8 @@ define([
 			"click .btn-danger": "delete"
 		}
         , initialize: function(coll, model, objectStore) {
-		this.collection = coll;
-		this.model = model;
+			this.collection = coll;
+			this.model = model;
 			// this.itemViewOptions = {entity: entity};
 			// if (turma.id != undefined) {
 			// 	switch (entity) {
