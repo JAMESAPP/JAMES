@@ -5,6 +5,7 @@ define([
 	, 'collections/generic'
 	, 'views/expense/register'
 	, 'views/expense/list'
+	, 'views/expense/credit/register'
 	, 'views/expense/credit/list'
 	, 'views/food/registerFood'
 	, 'views/food/listFood'
@@ -29,9 +30,14 @@ define([
 	, 'models/gym'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
+			'expense/credits': 'credits',
+			'expense/credit/owner/new': 'owner',
+			'expense/credit/owner/:id': 'owner',
+			'expense/credit/new': 'credit',
+			'expense/credit/:id': 'credit',
 			'expenses': 'expenses',
 			'expense/new': 'expense',
 			'expense/:id': 'expense',
@@ -69,6 +75,14 @@ define([
 		},
 		expense: function(id) {
 			this.register(id, 'expenses', ExpenseModel, ExpenseRegisterView);
+		},
+
+		owner: function(id) {
+			this.register(id, 'owners', ExpenseModel, ExpenseRegisterView);
+		},
+
+		credit: function(id) {
+			this.register(id, 'credtis', ExpenseModel, ExpenseRegisterView);
 		},
 
 		credits: function() {
