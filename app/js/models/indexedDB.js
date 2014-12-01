@@ -32,6 +32,9 @@ define([
 				db.createObjectStore('groceries', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('settings', { keyPath: 'id', autoIncrement: true});
+
+				db.createObjectStore('credits', { keyPath: 'id', autoIncrement: true});
+				db.createObjectStore('owners', { keyPath: 'id', autoIncrement: true});
 			};
 
 			return request;
