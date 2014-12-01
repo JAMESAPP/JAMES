@@ -19,6 +19,7 @@ define([
 			, 'click #btnHideShowPassword': 'hideShowPassword'
 			, 'click #btnEnable': 'enable'
 		}
+		// TODO adapt html
 		, template: 'app/templates/backup.tpl'
 
 		, onShow: function() {
@@ -33,16 +34,20 @@ define([
 			this.motorcycles = [];
 			this.timesheets = [];
 			this.settings = [];
+			this.owners = [];
+			this.credits = [];
 
 			var self = this,
-				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets'], 'readonly');
+				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'credits', 'owners'], 'readonly');
 			var	expenseCursor = transaction.objectStore('expenses').openCursor(),
 				foodCursor = transaction.objectStore('foods').openCursor(),
 				groceryCursor = transaction.objectStore('groceries').openCursor(),
 				gymCursor = transaction.objectStore('gyms').openCursor(),
 				motorcycleCursor = transaction.objectStore('motorcycles').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
-				settingsObject = transaction.objectStore('settings').get(1)
+				settingsObject = transaction.objectStore('settings').get(1),
+				ownerCursor = transaction.objectStore('timesheets').openCursor(),
+				creditCursor = transaction.objectStore('timesheets').openCursor()
 			;
 
 			expenseCursor.onsuccess = function(e) {
@@ -89,6 +94,22 @@ define([
 				var cursor = e.target.result;
 				if (cursor) {
 					self.timesheets.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			ownerCursor.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.owners.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			creditCursor.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.credits.push(cursor.value);
 					cursor.continue();
 				}
 			};
@@ -168,6 +189,9 @@ define([
 				, motorcycles: self.motorcycles
 				, timesheets: self.timesheets
 				, settings: self.settings
+				, owners: self.owners
+				, credits: self.credits
+
 			};
 			this.cloud.set(data, function(error) {
 				if (error) {
@@ -199,6 +223,12 @@ define([
 					if (data.timesheets != undefined)
 						self.$el.find('#tdTimesheetUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
+					if (data.owners != undefined)
+						self.$el.find('#tdOwnerUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.credits != undefined)
+						self.$el.find('#tdCreditUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
 					self.$el.find('#spanMessage').removeClass();
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
 					self.$el.find('#spanMessage').html('Data was saved on cloud successfully!').fadeIn().delay(5000).fadeOut();
@@ -211,7 +241,7 @@ define([
 			var self = this;
 
 			this.cloud.on('value', function(snapshot) {
-				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
+				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
@@ -273,6 +303,24 @@ define([
 							transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
 								console.log('Re-added timesheet id #' + element.id);
 								self.$el.find('#tdTimesheetDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});
+					};
+
+					transaction.objectStore('owners').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().owners, function(element, index, list) {
+							transaction.objectStore('owners').add(element).onsuccess = function (event) {
+								console.log('Re-added owner id #' + element.id);
+								self.$el.find('#tdOwnerDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});
+					};
+
+					transaction.objectStore('credits').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().credits, function(element, index, list) {
+							transaction.objectStore('credits').add(element).onsuccess = function (event) {
+								console.log('Re-added credit id #' + element.id);
+								self.$el.find('#tdCreditDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
