@@ -44,6 +44,8 @@
 *** TODO implement official shift
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Groceries
+** TODO Implement MET calc
+*** [(MET value) x 3.5 x (weight in kg)]/200 = calories burned per minute
 ** TODO Configuration
 *** TODO datetime picker
 *** TODO Replace app/js/config.js by app/js/models/configuration
