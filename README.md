@@ -9,7 +9,6 @@ Your personal assistant.
 * Help you manage your vehicle;
 * Help you manage your workout;
 * Help you manage your timesheet;
-* Help you buy groceries;
 
 # Docs
 
