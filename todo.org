@@ -23,6 +23,11 @@
 *** Suport window.localstorage
 **** Support for firebase
 * TODO Function
+** TODO Split app
+*** expenses
+*** vehicle
+*** workout + eating habits
+*** timesheet
 ** TODO Implement decreto 21404/2014
 *** TODO Upgrade algorythm of extra time
 **** TODO Implement new rule: 30/30
