@@ -56,3 +56,5 @@
 ** TODO Implement wink button (password field - configurations)
 * TODO BUG
 ** fix precision in view/expense/list.js:totalExpended() --> 0.060000000000002274
+* Competition
+** http://kcals.net/
