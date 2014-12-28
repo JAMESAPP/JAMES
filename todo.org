@@ -24,10 +24,10 @@
 **** Support for firebase
 * TODO Function
 ** TODO Split app
-*** expenses
-*** vehicle
-*** workout + eating habits
-*** timesheet
+*** expenses (gnucash for firefox os)
+*** vehicle (integrate with gnucash)
+*** workout + eating habits (implement in wger and inspiration on KCals.net)
+*** timesheet (integrate with redmine and emacs org mode and other tool for timesheet management)
 ** TODO Implement decreto 21404/2014
 *** TODO Upgrade algorythm of extra time
 **** TODO Implement new rule: 30/30
