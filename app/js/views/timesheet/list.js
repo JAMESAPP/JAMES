@@ -22,6 +22,7 @@ define([
 			return _.extend({}, ListView.prototype.events, {
 				'click #btnSync': 'sync'
 				, 'click .edit-td': 'edit'
+				, 'click #deleteAll': 'deleteAll'
 			});
 		}
 		// FIXME retrieve data from setting - in offline storage
