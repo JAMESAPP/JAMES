@@ -3,11 +3,12 @@ define([
 	'jquery',
 	'marionette',
 	'moment',
+	'app',
 	'james-data',
 	'models/expense',
 	'views/list',
 	'models/setting'
-], function (_, $, Marionette, Moment, JAMES_DATA, ExpenseModel, ListView, SettingModel) {
+], function (_, $, Marionette, Moment, App, JAMES_DATA, ExpenseModel, ListView, SettingModel) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/timesheet/list-item.tpl',
 		tagName: 'tr'
@@ -207,6 +208,24 @@ define([
 			ev.preventDefault();
 
 			console.error('TODO');
+		}
+
+		, deleteAll: function(ev) {
+			var i = 0, 
+				self = this
+			;
+
+			ev.preventDefault();
+
+			// console.log(this.collection);
+
+			for (i = 0; i < this.collection.length; i++) {
+				App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).delete(i).onsuccess = function(e) {
+					self.$el.find('#spanMessage').removeClass();
+					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+					self.$el.find('#spanMessage').html('Cleaned all timesheets!!!').fadeIn().delay(5000).fadeOut();
+				};
+			}			
 		}
 	});
 

@@ -2,6 +2,7 @@
   <div class="col-xs-6">
 	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 	<a id="btnSync" href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
+	<a id="btnDeleteAll" href="#" class="btn btn-danger"><i class="icon-refresh icon-white"></i> Del All</a>
   </div>
   <div class="col-xs-6">
 	<select id="selectMonth" data-bind="value:category,events:['change']">
