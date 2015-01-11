@@ -1,7 +1,6 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
   <li><a href="#food" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-  <li><a href="#gym" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-flag"></span></a></li>
   <li><a href="#motorcycle" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road"></span></a></li>
   <li><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
   <li><a href="#backup" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
@@ -24,11 +23,6 @@
     <h2>Meals</h2>
 	<a href="#food/meals" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> List/Manage Meals</a>
 	<a href="#food/meal/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-cutlery"></span> New Meal</a>
-  </div>
-  <div class="tab-pane" id="gym">
-	<h2>Gym - Workouts</h2>
-	<a href="#gyms" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> List/Manage Workouts</a>
-	<a href="#gym/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-flag"></span> New Workout</a>
   </div>
   <div class="tab-pane" id="motorcycle">
 	<a href="#timesheets" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> Sync</a>

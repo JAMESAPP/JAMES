@@ -16,8 +16,6 @@ define([
 	, 'views/motorcycle/oil/list'
 	, 'views/motorcycle/register'
 	, 'views/motorcycle/list'
-	, 'views/gym/register'
-	, 'views/gym/list'
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
 	, 'views/backup'
@@ -27,10 +25,9 @@ define([
 	, 'models/food/meal'
 	, 'models/oil'
 	, 'models/motorcycle'
-	, 'models/gym'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, GymRegisterView, GymsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, GymModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expense/credits': 'credits',
@@ -151,13 +148,6 @@ console.log('oil register');
 					App.mainRegion.show(new MotorcycleRegisterView(model));
 				};
 			};
-		},
-
-		gyms: function() {
-			this.list('gyms', GymsListView);
-		},
-		gym: function(id) {
-			this.register(id, 'gyms', GymModel, GymRegisterView);
 		},
 
 		timesheets: function() {
