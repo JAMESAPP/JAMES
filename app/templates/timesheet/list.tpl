@@ -52,6 +52,11 @@
 	</div>
   </div>
 
+  <div id="messages">
+	<span id="spanMessages">
+	</span>
+  </div>
+
   <div id="timesheets" class="tab-pane">
 	<table class="table table-striped table-bordered table-hover">
       <caption>
