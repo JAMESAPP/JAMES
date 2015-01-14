@@ -7,11 +7,11 @@ define([
 			date: App.dateFormat(new Date())
 			// TODO implement now for startTime
 			, startTime: null
-			, startTimeMachine: 'PACO_FLOOR-00_RIGHT-01'
+			, startTimeMachine: 'PACO_FLOOR-00_LEFT-01'
 			, startTimeMotive: null
 			// TODO implement now for endTime
 			, endTime: null
-			, endTimeMachine: 'PACO_FLOOR-00_RIGHT-01'
+			, endTimeMachine: 'PACO_FLOOR-00_LEFT-01'
 			, endTimeMotive: null
 			, leavingEarly: null
 			, officialShift: true
