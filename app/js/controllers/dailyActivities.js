@@ -7,11 +7,6 @@ define([
 	, 'views/expense/list'
 	, 'views/expense/credit/register'
 	, 'views/expense/credit/list'
-	, 'views/food/registerFood'
-	, 'views/food/listFood'
-	, 'views/food/registerMeal'
-	, 'views/food/listMeal'
-	, 'views/food/painel'
 	, 'views/motorcycle/oil/register'
 	, 'views/motorcycle/oil/list'
 	, 'views/motorcycle/register'
@@ -21,13 +16,11 @@ define([
 	, 'views/backup'
 	, 'views/settings'
 	, 'models/expense'
-	, 'models/food/food'
-	, 'models/food/meal'
 	, 'models/oil'
 	, 'models/motorcycle'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, FoodRegisterView, FoodsListView, MealRegisterView, MealsListView, FoodPainelView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, FoodModel, MealModel, OilModel, MotorcycleModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, MotorcycleModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expense/credits': 'credits',
@@ -38,14 +31,6 @@ define([
 			'expenses': 'expenses',
 			'expense/new': 'expense',
 			'expense/:id': 'expense',
-
-			'food/painel': 'foodPainel',
-			'food/meals': 'meals',
-			'food/meal/new': 'meal',
-			'food/meal/:id': 'meal',
-			'foods': 'foods',
-			'food/new': 'food',
-			'food/:id': 'food',
 
 			'motorcycle/oils': 'oils',
 			'motorcycle/oil/new': 'oil',
@@ -104,22 +89,6 @@ define([
 					};
 				}
 			};
-		},
-
-		foodPainel: function() {
-			App.mainRegion.show(new FoodPainelView());
-		},
-		foods: function() {
-			this.list('foods', FoodsListView);
-		},
-		food: function(id) {
-			this.register(id, 'foods', FoodModel, FoodRegisterView);
-		},
-		meals: function() {
-			this.list('meals', MealsListView);
-		},
-		meal: function(id) {
-			this.register(id, 'meals', MealModel, MealRegisterView);
 		},
 
 		oils: function() {
