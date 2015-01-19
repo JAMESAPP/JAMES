@@ -95,7 +95,6 @@ define([
 			this.list('oils', OilsListView);
 		},
 		oil: function(id) {
-console.log('oil register');
 			this.register(id, 'oils', OilModel, OilRegisterView);
 		},
 		motorcycles: function() {
