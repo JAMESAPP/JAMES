@@ -38,7 +38,7 @@ define([
 			console.log('clean local storage');
 
 			// TODO implement [] app.getEntities();
-			var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
+			var transaction = App.indexedDB.db.transaction(['expenses', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
 
 			transaction.objectStore('settings').clear().onsuccess = function(event) {
 				console.log('Cleaned settings');
@@ -46,10 +46,6 @@ define([
 
 			transaction.objectStore('expenses').clear().onsuccess = function(event) {
 				console.log('Cleaned expenses');
-			};
-
-			transaction.objectStore('foods').clear().onsuccess = function(event) {
-				console.log('Cleaned foods');
 			};
 
 			transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
