@@ -34,9 +34,6 @@ define([
 		}
 		, cleanLocalStorage: function(ev) {
 			ev.preventDefault();
-
-			console.log('clean local storage');
-
 			// TODO implement [] app.getEntities();
 			var transaction = App.indexedDB.db.transaction(['expenses', 'motorcycles', 'timesheets', 'settings'], 'readwrite');
 
