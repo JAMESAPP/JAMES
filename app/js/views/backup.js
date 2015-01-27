@@ -28,9 +28,6 @@ define([
 			this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
 
 			this.expenses = [];
-			this.foods = [];
-			this.groceries = [];
-			this.gyms = [];
 			this.motorcycles = [];
 			this.timesheets = [];
 			this.settings = [];
@@ -38,46 +35,19 @@ define([
 			this.credits = [];
 
 			var self = this,
-				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'credits', 'owners'], 'readonly');
+				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'motorcycles', 'timesheets', 'credits', 'owners'], 'readonly');
 			var	expenseCursor = transaction.objectStore('expenses').openCursor(),
-				foodCursor = transaction.objectStore('foods').openCursor(),
-				groceryCursor = transaction.objectStore('groceries').openCursor(),
-				gymCursor = transaction.objectStore('gyms').openCursor(),
 				motorcycleCursor = transaction.objectStore('motorcycles').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
 				settingsObject = transaction.objectStore('settings').get(1),
-				ownerCursor = transaction.objectStore('timesheets').openCursor(),
-				creditCursor = transaction.objectStore('timesheets').openCursor()
+				ownerCursor = transaction.objectStore('timesheets').openCursor(), // FIXME use owner
+				creditCursor = transaction.objectStore('timesheets').openCursor() // FIXME use credit
 			;
 
 			expenseCursor.onsuccess = function(e) {
 				var cursor = e.target.result;
 				if (cursor) {
 					self.expenses.push(cursor.value);
-					cursor.continue();
-				}
-			};
-
-			foodCursor.onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					self.foods.push(cursor.value);
-					cursor.continue();
-				}
-			};
-
-			groceryCursor.onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					self.groceries.push(cursor.value);
-					cursor.continue();
-				}
-			};
-
-			gymCursor.onsuccess = function(e) {
-				var cursor = e.target.result;
-				if (cursor) {
-					self.gyms.push(cursor.value);
 					cursor.continue();
 				}
 			};
@@ -208,15 +178,6 @@ define([
 					if (data.expenses != undefined)
 						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
-					if (data.foods != undefined)
-						self.$el.find('#tdFoodUpload').html('<span class="glyphicon glyphicon-ok"></span>');
-
-					if (data.groceries != undefined)
-						self.$el.find('#tdGroceryUpload').html('<span class="glyphicon glyphicon-ok"></span>');
-
-					if (data.gyms != undefined)
-						self.$el.find('#tdGymUpload').html('<span class="glyphicon glyphicon-ok"></span>');
-
 					if (data.motorcycles != undefined)
 						self.$el.find('#tdMotorcycleUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
@@ -241,7 +202,7 @@ define([
 			var self = this;
 
 			this.cloud.on('value', function(snapshot) {
-				var transaction = App.indexedDB.db.transaction(['expenses', 'foods', 'groceries', 'gyms', 'motorcycles', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
+				var transaction = App.indexedDB.db.transaction(['expenses', 'motorcycles', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
@@ -258,33 +219,6 @@ define([
 							transaction.objectStore('expenses').add(element).onsuccess = function(event) {
 								console.log('Re-added expense id #' + element.id);
 								self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('foods').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().foods, function(element, index, list) {
-							transaction.objectStore('foods').add(element).onsuccess = function (event) {
-								console.log('Re-added food id #' + element.id);
-								self.$el.find('#tdFoodDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('groceries').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().groceries, function(element, index, list) {
-							transaction.objectStore('groceries').add(element).onsuccess = function (event) {
-								console.log('Re-added grocery id #' + element.id);
-								self.$el.find('#tdGroceryDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('gyms').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().gyms, function(element, index, list) {
-							transaction.objectStore('gyms').add(element).onsuccess = function (event) {
-								console.log('Re-added gym id #' + element.id);
-								self.$el.find('#tdGymDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
