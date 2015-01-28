@@ -19,21 +19,6 @@
                 <td id="tdExpenseDownload"><span class="glyphicon glyphicon-minus"</span></td>
             </tr>
             <tr>
-                <td><span class="glyphicon glyphicon-cutlery"></span></td>
-                <td id="tdFoodUpload"><span class="glyphicon glyphicon-minus"</span></td>
-                <td id="tdFoodDownload"><span class="glyphicon glyphicon-minus"</span></td>
-            </tr>
-            <tr>
-                <td><span class="glyphicon glyphicon-shopping-cart"></span></td>
-                <td id="tdGroceryUpload"><span class="glyphicon glyphicon-minus"</span></td>
-                <td id="tdGroceryDownload"><span class="glyphicon glyphicon-minus"</span></td>
-            </tr>
-            <tr>
-                <td><span class="glyphicon glyphicon-flag"></span></td>
-                <td id="tdGymUpload"><span class="glyphicon glyphicon-minus"</span></td>
-                <td id="tdGymDownload"><span class="glyphicon glyphicon-minus"</span></td>
-            </tr>
-            <tr>
                 <td><span class="glyphicon glyphicon-road"></span></td>
                 <td id="tdMotorcycleUpload"><span class="glyphicon glyphicon-minus"</span></td>
                 <td id="tdMotorcycleDownload"><span class="glyphicon glyphicon-minus"</span></td>
