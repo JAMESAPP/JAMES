@@ -18,6 +18,7 @@ define([
 			, 'click #btnLogin': 'login'
 			, 'click #btnHideShowPassword': 'hideShowPassword'
 			, 'click #btnEnable': 'enable'
+			, 'click #btnSaveOnCustomBackend': 'saveOnCustomBackend'
 		}
 		// TODO adapt html
 		, template: 'app/templates/backup.tpl'
@@ -304,6 +305,72 @@ define([
 		, enable: function(ev) {
 			ev.preventDefault();
 			this.$el.find('.disabled').removeClass('disabled');
+		}
+
+		, saveOnCustomBackend: function(ev) {
+console.log('save custom backend');
+			ev.preventDefault();
+
+			var self = this,
+				objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1)
+			;
+
+			objectStore.onsuccess = function(event) {
+				// var model = new Model(event.target.result);
+
+console.log(event.target.result);
+				var url = event.target.result.backend;
+
+				_.foreach(self.expenses, function(element, index, list) {
+console.log('expenses:');
+console.log(element);
+console.log(index);
+console.log(list);
+console.log('-----------');
+					element.url = url + '/expense/new';
+					element.save({
+						succes: function(model, response, error) {
+							console.log('Saved expense #' + model.id + 'with sucess!');
+						}, 
+						error: function(model, response, error) {
+							console.log('Failed to save expense #' + model.id + 'with sucess!');
+						}
+					});
+				});
+				
+				// _.foreach(this.motorcycles, function(element, index, list) {
+				// 	element.url = url + '/motorcycle/new';
+				// 	element.save({
+				// 		succes: function(model, response, error) {
+				// 			console.log('Saved motorcycle #' + model.id + 'with sucess!');
+				// 		}, 
+				// 		error: function(model, response, error) {
+				// 			console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
+				// 		}
+				// 	});
+				// });
+
+				// _.foreach(this.timesheets, function(element, index, list) {
+				// 	element.url = url + '/timesheet/new';
+				// 	element.save({
+				// 		succes: function(model, response, error) {
+				// 			console.log('Saved timesheet #' + model.id + 'with sucess!');
+				// 		}, 
+				// 		error: function(model, response, error) {
+				// 			console.log('Failed to save timesheet #' + model.id + 'with sucess!');
+				// 		}
+				// 	});
+				// });
+
+				// this.settings.save({
+				// 	succes: function(model, response, error) {
+				// 		console.log('Saved setting #' + model.id + 'with sucess!');
+				// 	}, 
+				// 	error: function(model, response, error) {
+				// 		console.log('Failed to save settings #' + model.id + 'with sucess!');
+				// 	}
+				// });
+			};
 		}
 	});
 

@@ -54,6 +54,13 @@
                 <br />
                 <a id="btnSyncWithCloud" href="#" class="btn btn-primary col-xs-12 disabled"><i class="glyphicon glyphicon-cloud-download"></i> Sync with Cloud!</a>
             </div>
+            <hr />
+            <div class="row">
+                <a id="btnSaveOnCustomBackend" href="#" class="btn btn-primary col-xs-12"><i class="glyphicon glyphicon-cloud-upload"></i> Save on Custom Backend!</a>
+                <br />
+                <br />
+                <a id="btnSyncWithCustomBackend" href="#" class="btn btn-primary col-xs-12"><i class="glyphicon glyphicon-cloud-download"></i> Sync with Custom Backend!</a>
+            </div>
         </div>
     </div>
     <div id="disk" class="tab-pane">
