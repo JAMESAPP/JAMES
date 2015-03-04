@@ -6,7 +6,10 @@ define([
 	, 'app'
 	, 'views/bindingView'
 	, 'models/setting'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView) {
+	, 'models/expense'
+	, 'models/motorcycle'
+	, 'models/timesheet'
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleModel, TimesheetModel) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -308,7 +311,6 @@ define([
 		}
 
 		, saveOnCustomBackend: function(ev) {
-console.log('save custom backend');
 			ev.preventDefault();
 
 			var self = this,
@@ -316,19 +318,17 @@ console.log('save custom backend');
 			;
 
 			objectStore.onsuccess = function(event) {
-				// var model = new Model(event.target.result);
+				var url = event.target.result.backend,
+					expense,
+					motorcycle,
+					timesheet,
+					settings
+					;
 
-console.log(event.target.result);
-				var url = event.target.result.backend;
-
-				_.foreach(self.expenses, function(element, index, list) {
-console.log('expenses:');
-console.log(element);
-console.log(index);
-console.log(list);
-console.log('-----------');
-					element.url = url + '/expense/new';
-					element.save({
+				_.forEach(self.expenses, function(element, index, list) {
+					expense = new ExpenseModel(element);
+					expense.url = url + '/expense/new';
+					expense.save({
 						succes: function(model, response, error) {
 							console.log('Saved expense #' + model.id + 'with sucess!');
 						}, 
@@ -338,38 +338,42 @@ console.log('-----------');
 					});
 				});
 				
-				// _.foreach(this.motorcycles, function(element, index, list) {
-				// 	element.url = url + '/motorcycle/new';
-				// 	element.save({
-				// 		succes: function(model, response, error) {
-				// 			console.log('Saved motorcycle #' + model.id + 'with sucess!');
-				// 		}, 
-				// 		error: function(model, response, error) {
-				// 			console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
-				// 		}
-				// 	});
-				// });
+				_.forEach(this.motorcycles, function(element, index, list) {
+					motorcycle = new MotorcycleModel(element);
+					element.url = url + '/motorcycle/new';
+					element.save({
+						succes: function(model, response, error) {
+							console.log('Saved motorcycle #' + model.id + 'with sucess!');
+						}, 
+						error: function(model, response, error) {
+							console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
+						}
+					});
+				});
 
-				// _.foreach(this.timesheets, function(element, index, list) {
-				// 	element.url = url + '/timesheet/new';
-				// 	element.save({
-				// 		succes: function(model, response, error) {
-				// 			console.log('Saved timesheet #' + model.id + 'with sucess!');
-				// 		}, 
-				// 		error: function(model, response, error) {
-				// 			console.log('Failed to save timesheet #' + model.id + 'with sucess!');
-				// 		}
-				// 	});
-				// });
+				_.forEach(this.timesheets, function(element, index, list) {
+					timesheet = new TimesheetModel(element);
+					element.url = url + '/timesheet/new';
+					element.save({
+						succes: function(model, response, error) {
+							console.log('Saved timesheet #' + model.id + 'with sucess!');
+						}, 
+						error: function(model, response, error) {
+							console.log('Failed to save timesheet #' + model.id + 'with sucess!');
+						}
+					});
+				});
 
-				// this.settings.save({
-				// 	succes: function(model, response, error) {
-				// 		console.log('Saved setting #' + model.id + 'with sucess!');
-				// 	}, 
-				// 	error: function(model, response, error) {
-				// 		console.log('Failed to save settings #' + model.id + 'with sucess!');
-				// 	}
-				// });
+				settings = new SettingsModel(this.settings);
+				settings.url = url + '/settings/new';
+				settings.save({
+					succes: function(model, response, error) {
+						console.log('Saved setting #' + model.id + 'with sucess!');
+					}, 
+					error: function(model, response, error) {
+						console.log('Failed to save settings #' + model.id + 'with sucess!');
+					}
+				});
 			};
 		}
 	});
