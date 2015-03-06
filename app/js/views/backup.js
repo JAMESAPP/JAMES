@@ -327,22 +327,24 @@ define([
 
 				_.forEach(self.expenses, function(element, index, list) {
 					expense = new ExpenseModel(element);
-					expense.url = url + '/expense/new';
-					expense.save({
-						succes: function(model, response, error) {
-							console.log('Saved expense #' + model.id + 'with sucess!');
+					delete expense.id;
+					expense.url = url + '/expenses';
+					expense.save(null, {
+						success: function(model, response, error) {
+							console.log('SAVED expense #' + model.id + ' with sucess!');
 						}, 
 						error: function(model, response, error) {
-							console.log('Failed to save expense #' + model.id + 'with sucess!');
+							console.log('FAILED to save expense #' + model.id + ' !!!');
 						}
 					});
 				});
-				
+
 				_.forEach(this.motorcycles, function(element, index, list) {
 					motorcycle = new MotorcycleModel(element);
-					element.url = url + '/motorcycle/new';
-					element.save({
-						succes: function(model, response, error) {
+					delete motorcycle.id;
+					motorcycle.url = url + '/motorcycles';
+					motorcycle.save(null, {
+						success: function(model, response, error) {
 							console.log('Saved motorcycle #' + model.id + 'with sucess!');
 						}, 
 						error: function(model, response, error) {
@@ -353,9 +355,10 @@ define([
 
 				_.forEach(this.timesheets, function(element, index, list) {
 					timesheet = new TimesheetModel(element);
-					element.url = url + '/timesheet/new';
-					element.save({
-						succes: function(model, response, error) {
+					delete timesheet.id;
+					timesheet.url = url + '/timesheets';
+					timesheet.save(null, {
+						success: function(model, response, error) {
 							console.log('Saved timesheet #' + model.id + 'with sucess!');
 						}, 
 						error: function(model, response, error) {
@@ -364,16 +367,16 @@ define([
 					});
 				});
 
-				settings = new SettingsModel(this.settings);
-				settings.url = url + '/settings/new';
-				settings.save({
-					succes: function(model, response, error) {
-						console.log('Saved setting #' + model.id + 'with sucess!');
-					}, 
-					error: function(model, response, error) {
-						console.log('Failed to save settings #' + model.id + 'with sucess!');
-					}
-				});
+				// settings = new SettingsModel(this.settings);
+				// settings.url = url + '/settings/new';
+				// settings.save({
+				// 	succes: function(model, response, error) {
+				// 		console.log('Saved setting #' + model.id + 'with sucess!');
+				// 	}, 
+				// 	error: function(model, response, error) {
+				// 		console.log('Failed to save settings #' + model.id + 'with sucess!');
+				// 	}
+				// });
 			};
 		}
 	});
