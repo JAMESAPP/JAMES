@@ -113,3 +113,30 @@ Archived entries from file /home/jefferson/universal/projects/james/todo.org
   :ARCHIVE_CATEGORY: todo
   :ARCHIVE_TODO: DONE
   :END:
+
+* DONE Custom backend
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-03-08 Sun 18:25
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Function/Sync
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Custom backend
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-03-08 Sun 18:26
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Function/Sync
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Painel
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-03-08 Sun 18:27
+  :ARCHIVE_FILE: ~/universal/projects/james/todo.org
+  :ARCHIVE_OLPATH: Function/Timesheet
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
