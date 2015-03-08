@@ -8,7 +8,7 @@ define([
 	, 'jqueryui'
 ], function (Marionette, _, App, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
-		template: 'app/templates/motorcycle/register.tpl'
+		template: 'app/templates/motorcycle/refuel/register.tpl'
 		, objectStore: 'motorcycles'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes);
