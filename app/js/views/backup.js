@@ -7,9 +7,10 @@ define([
 	, 'views/bindingView'
 	, 'models/setting'
 	, 'models/expense'
-	, 'models/motorcycle'
+	, 'models/motorcycle/refuel'
+	, 'models/motorcycle/oil'
 	, 'models/timesheet'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleModel, TimesheetModel) {
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -320,7 +321,8 @@ define([
 			objectStore.onsuccess = function(event) {
 				var url = event.target.result.backend,
 					expense,
-					motorcycle,
+					oil,
+					refuel,
 					timesheet,
 					settings
 					;
@@ -339,16 +341,30 @@ define([
 					});
 				});
 
-				_.forEach(this.motorcycles, function(element, index, list) {
-					motorcycle = new MotorcycleModel(element);
-					delete motorcycle.id;
-					motorcycle.url = url + '/motorcycles';
-					motorcycle.save(null, {
+				_.forEach(this.oils, function(element, index, list) {
+					oil = new MotorcycleOilModel(element);
+					delete oil.id;
+					oil.url = url + '/oil';
+					oil.save(null, {
 						success: function(model, response, error) {
-							console.log('Saved motorcycle #' + model.id + 'with sucess!');
+							console.log('Saved oil #' + model.id + 'with sucess!');
 						}, 
 						error: function(model, response, error) {
-							console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
+							console.log('Failed to save oil #' + model.id + 'with sucess!');
+						}
+					});
+				});
+
+				_.forEach(this.refuels, function(element, index, list) {
+					refuel = new MotorcycleRefuelModel(element);
+					delete refuel.id;
+					refuel.url = url + '/refuel';
+					refuel.save(null, {
+						success: function(model, response, error) {
+							console.log('Saved refuel #' + model.id + 'with sucess!');
+						}, 
+						error: function(model, response, error) {
+							console.log('Failed to save refuel #' + model.id + 'with sucess!');
 						}
 					});
 				});

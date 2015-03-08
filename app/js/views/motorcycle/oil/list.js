@@ -1,9 +1,8 @@
 define([
 	'underscore'
 	, 'marionette'
-	, 'models/expense'
 	, 'views/list'
-], function (_, Marionette, ExpenseModel, ListView) {
+], function (_, Marionette, ListView) {
 	var itemView = Marionette.ItemView.extend({
 		template: 'app/templates/motorcycle/oil/list-item.tpl',
 		tagName: 'tr'
@@ -12,7 +11,7 @@ define([
 	var CompositeView = ListView.extend({
 		template: 'app/templates/motorcycle/oil/list.tpl',
 		itemView: itemView,
-		objectStore: 'motorcycles'
+		objectStore: 'oils'
 		, events: function() {
 			return _.extend({}, ListView.prototype.events, {
 				'click .edit-td': 'edit'

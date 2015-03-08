@@ -17,7 +17,7 @@ define([
 	, 'views/settings'
 	, 'models/expense'
 	, 'models/motorcycle/oil'
-	, 'models/notorcycle/refuel'
+	, 'models/motorcycle/refuel'
 	, 'models/timesheet'
 	, 'models/setting'
 ], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
@@ -35,7 +35,7 @@ define([
 			'motorcycle/oils': 'oils',
 			'motorcycle/oil/new': 'oil',
 			'motorcycle/oil/:id': 'oil',
-			'motorcycles/refuel': 'refuels',
+			'motorcycle/refuels': 'refuels',
 			'motorcycle/refuel/new': 'refuel',
 			'motorcycle/refuel/:id': 'refuel',
 
@@ -101,14 +101,13 @@ define([
 			this.list('refuels', RefuelsListView);
 		},
 		refuel: function(id) {
-			// this.register(id, 'motorcycles', MotorcycleModel, MotorcycleRegisterView);
 			var settingsObjectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1);
 			settingsObjectStore.onsuccess = function(event) {
-				var refuelDefaults = event.target.result.motorcycle,
-					refuelObjectStore = App.indexedDB.db.transaction(['refuels']).objectStore('refuels').get(1)
+				var motorcycleDefaults = event.target.result.motorcycle,
+					refuelObjectStore = App.indexedDB.db.transaction(['refuels']).objectStore('refuels').get(id != undefined ? parseInt(id) : 0)
 				;
 				refuelObjectStore.onsuccess = function(event) {
-					var model = new RefuelModel(refuelDefaults);
+					var	model = new RefuelModel(event.target.result || motorcycleDefaults);
 					App.mainRegion.show(new RefuelRegisterView(model));
 				};
 			};

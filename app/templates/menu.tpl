@@ -13,9 +13,8 @@
       <!-- <a class="navbar&#45;brand" href="#"><span class="glyphicon glyphicon&#45;info&#45;sign"></span></a> -->
       <ul class="navbar-nav list-inline">
 		<li><a href="#expenses"><span class="glyphicon glyphicon-usd"></span></a></li>
-		<li><a href="#food/meals"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-		<li><a href="#gyms"><span class="glyphicon glyphicon-flag"></span></a></li>
-		<li><a href="#motorcycles"><span class="glyphicon glyphicon-road"></span></a></li>
+		<li><a href="#motorcycle/oils"><span class="glyphicon glyphicon-tint"></span></a></li>
+		<li><a href="#motorcycle/refuels"><span class="glyphicon glyphicon-road"></span></a></li>
 		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>
 		<li><a href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
 		<li><a href="#settings"><span class="glyphicon glyphicon-wrench"></span></a></li>
