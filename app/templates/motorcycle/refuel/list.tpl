@@ -1,4 +1,4 @@
-<h1>Motorcycle's Refuel</h1>
+<h1>Refuel</h1>
 <a href="#motorcycle/refuel/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
 <a href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
 <br />
