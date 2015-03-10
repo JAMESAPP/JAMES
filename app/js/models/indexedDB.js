@@ -24,12 +24,8 @@ define([
 			request.onupgradeneeded = function(event) { 
 				var db = event.target.result;
 				db.createObjectStore('expenses', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('foods', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('meals', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('oils', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('motorcycles', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('gyms', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('groceries', { keyPath: 'id', autoIncrement: true});
+				db.createObjectStore('refuels', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('settings', { keyPath: 'id', autoIncrement: true});
 
@@ -62,12 +58,8 @@ define([
 			request.onupgradeneeded = function(event) { 
 				var db = event.target.result;
 				db.createObjectStore('expenses', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('foods', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('meals', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('oils', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('motorcycles', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('gyms', { keyPath: 'id', autoIncrement: true});
-				db.createObjectStore('groceries', { keyPath: 'id', autoIncrement: true});
+				db.createObjectStore('refuels', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('settings', { keyPath: 'id', autoIncrement: true});
 			};

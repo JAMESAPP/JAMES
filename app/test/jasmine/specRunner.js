@@ -89,9 +89,10 @@ require([
 	, '../test/jasmine/spec/crudSpec'
 	, '../test/jasmine/spec/expenseSpec'
 	, '../test/jasmine/spec/googleDriveSpec'
-	, '../test/jasmine/spec/motorcycleSpec'
-	, '../test/jasmine/spec/timesheetSpec'
+	, '../test/jasmine/spec/oilSpec'
+	, '../test/jasmine/spec/refuelSpec'
 	, '../test/jasmine/spec/settingsSpec'
+	, '../test/jasmine/spec/timesheetSpec'
 ], function(Jasmine) {
     var jasmineEnv = Jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;

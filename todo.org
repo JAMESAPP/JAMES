@@ -34,32 +34,27 @@
 ***** TODO test
 ***** DONE Implement
 **** DONE Move actual calc to model or other reusable component
-** TODO [#A] Integrate with wger - https://github.com/rolandgeider/wger
 ** TODO Export to QIF
 ** TODO Sync
-*** Custom backend
-**** TODO entities
-**** TODO authentication
-**** TODO adapt james client
+*** TODO FIX sync with firebase
 ** TODO Timesheet
-*** TODO Painel
 *** TODO calc for leaving early
 *** TODO filter by month
 *** TODO use input type time and date
 *** TODO implement official shift
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
-** TODO Groceries
-** TODO Implement MET calc
-*** [(MET value) x 3.5 x (weight in kg)]/200 = calories burned per minute
 ** TODO Configuration
 *** TODO datetime picker
 *** TODO Replace app/js/config.js by app/js/models/configuration
+*** TODO Add specific refuel configuration
+*** TODO Add specific oil configuration
 * TODO Graphic Design
 ** TODO Migrate to bootstrap 3
 *** TODO Fix build process (separate fonts, img, lib, etc)
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
 * TODO BUG
-** fix precision in view/expense/list.js:totalExpended() --> 0.060000000000002274
+** TODO fix precision in view/expense/list.js:totalExpended() --> 0.060000000000002274
+** TODO fix load KM from settings for oil
 * Competition
 ** http://kcals.net/

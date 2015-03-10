@@ -1,15 +1,14 @@
 <div class="row">
   <div class="col-xs-6">
-	<a href="#timesheet/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
-	<a id="btnSync" href="#" class="btn btn-warning"><i class="icon-refresh icon-white"></i> Sync</a>
-	<a id="btnDeleteAll" href="#" class="btn btn-danger"><i class="icon-refresh icon-white"></i> Del All</a>
+	    <a href="#timesheet/new" class="btn btn-success btn-xm"><i class="icon-plus icon-white"></i> New</a>
   </div>
   <div class="col-xs-6">
-	<select id="selectMonth" data-bind="value:category,events:['change']">
+    <a id="btnDeleteAll" href="#" class="btn btn-danger btn-xm"><i class="icon-refresh icon-white"></i> Del All</a>
+    <!--	<select id="selectMonth" data-bind="value:category,events:['change']"> -->
 	  {{#each selectMonth}}
-	  <option value="{{value}}">{{label}}</option>
+<!--      <option value="{{value}}">{{label}}</option> -->
 	  {{/each}}
-	</select>
+      <!--	</select> -->
   </div>
 </div>
 <br />

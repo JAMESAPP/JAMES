@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "James",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"description": "JAMES - Your Personal Assistant",
 	"icons": {
 		"128": "/app/img/logo.png"

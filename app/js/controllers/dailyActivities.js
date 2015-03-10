@@ -9,18 +9,18 @@ define([
 	, 'views/expense/credit/list'
 	, 'views/motorcycle/oil/register'
 	, 'views/motorcycle/oil/list'
-	, 'views/motorcycle/register'
-	, 'views/motorcycle/list'
+	, 'views/motorcycle/refuel/register'
+	, 'views/motorcycle/refuel/list'
 	, 'views/timesheet/register'
 	, 'views/timesheet/list'
 	, 'views/backup'
 	, 'views/settings'
 	, 'models/expense'
-	, 'models/oil'
-	, 'models/motorcycle'
+	, 'models/motorcycle/oil'
+	, 'models/motorcycle/refuel'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, MotorcycleRegisterView, MotorcyclesListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, MotorcycleModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
 			'expense/credits': 'credits',
@@ -35,9 +35,9 @@ define([
 			'motorcycle/oils': 'oils',
 			'motorcycle/oil/new': 'oil',
 			'motorcycle/oil/:id': 'oil',
-			'motorcycles': 'motorcycles',
-			'motorcycle/new': 'motorcycle',
-			'motorcycle/:id': 'motorcycle',
+			'motorcycle/refuels': 'refuels',
+			'motorcycle/refuel/new': 'refuel',
+			'motorcycle/refuel/:id': 'refuel',
 
 			'timesheets': 'timesheets',
 			'timesheet/new': 'timesheet',
@@ -97,19 +97,18 @@ define([
 		oil: function(id) {
 			this.register(id, 'oils', OilModel, OilRegisterView);
 		},
-		motorcycles: function() {
-			this.list('motorcycles', MotorcyclesListView);
+		refuels: function() {
+			this.list('refuels', RefuelsListView);
 		},
-		motorcycle: function(id) {
-			// this.register(id, 'motorcycles', MotorcycleModel, MotorcycleRegisterView);
+		refuel: function(id) {
 			var settingsObjectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1);
 			settingsObjectStore.onsuccess = function(event) {
 				var motorcycleDefaults = event.target.result.motorcycle,
-					motorcycleObjectStore = App.indexedDB.db.transaction(['motorcycles']).objectStore('motorcycles').get(1)
+					refuelObjectStore = App.indexedDB.db.transaction(['refuels']).objectStore('refuels').get(id != undefined ? parseInt(id) : 0)
 				;
-				motorcycleObjectStore.onsuccess = function(event) {
-					var model = new MotorcycleModel(motorcycleDefaults);
-					App.mainRegion.show(new MotorcycleRegisterView(model));
+				refuelObjectStore.onsuccess = function(event) {
+					var	model = new RefuelModel(event.target.result || motorcycleDefaults);
+					App.mainRegion.show(new RefuelRegisterView(model));
 				};
 			};
 		},

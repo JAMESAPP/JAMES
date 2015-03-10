@@ -1,4 +1,4 @@
-<h1>Motorcycle</h1>
+<h1>Refuel</h1>
 <div id="divRegister" class="">
     <div class="row">
         <div class="col-xs-6">
@@ -50,5 +50,5 @@
 <span id="spanMessage"></span>
 <br />
 <br />
-<a href="#motorcycles" class="btn btn-default"><i class="icon-home icon-white"></i> Go Back!</a>
+<a href="#motorcycle/refuels" class="btn btn-default"><i class="icon-home icon-white"></i> Go Back!</a>
 <a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Send</a>
