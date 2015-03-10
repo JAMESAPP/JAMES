@@ -339,19 +339,20 @@ define([
 					});
 				});
 
-				_.forEach(this.motorcycles, function(element, index, list) {
-					motorcycle = new MotorcycleModel(element);
-					delete motorcycle.id;
-					motorcycle.url = url + '/motorcycles';
-					motorcycle.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved motorcycle #' + model.id + 'with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
-						}
-					});
-				});
+				// TODO Split into refuel and oil
+				// _.forEach(this.motorcycles, function(element, index, list) {
+				// 	motorcycle = new MotorcycleModel(element);
+				// 	delete motorcycle.id;
+				// 	motorcycle.url = url + '/motorcycles';
+				// 	motorcycle.save(null, {
+				// 		success: function(model, response, error) {
+				// 			console.log('Saved motorcycle #' + model.id + 'with sucess!');
+				// 		}, 
+				// 		error: function(model, response, error) {
+				// 			console.log('Failed to save motorcycle #' + model.id + 'with sucess!');
+				// 		}
+				// 	});
+				// });
 
 				_.forEach(this.timesheets, function(element, index, list) {
 					timesheet = new TimesheetModel(element);
@@ -367,6 +368,7 @@ define([
 					});
 				});
 
+				// FIXME simplify the model
 				// settings = new SettingsModel(this.settings);
 				// settings.url = url + '/settings/new';
 				// settings.save({
