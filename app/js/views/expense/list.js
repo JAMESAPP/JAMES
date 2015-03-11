@@ -37,13 +37,13 @@ define([
 		// FIXME round precision: 0.060000000000002274 with test 63.00
 		, totalExpended: function() {
 			var expenses = this.collection.toJSON(),
-				ammount = 0.00,
+				amount = 0.00,
 				total = 0.00
 			;
 
 			_.forEach(expenses, function(element, index, list) {
-				ammount = element.ammount.replace(',', '.');
-				total += parseFloat(ammount);
+				amount = element.amount.replace(',', '.');
+				total += parseFloat(amount);
 			});
 
 			return total;

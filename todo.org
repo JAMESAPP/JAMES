@@ -54,6 +54,9 @@
 ** TODO create favicon
 ** TODO Implement wink button (password field - configurations)
 * TODO BUG
+** Backup's error with data type
+*** TODO EXPENSES: amount is null
+*** TODO TIMESHEET: all fields are null
 ** TODO fix precision in view/expense/list.js:totalExpended() --> 0.060000000000002274
 ** TODO fix load KM from settings for oil
 * Competition

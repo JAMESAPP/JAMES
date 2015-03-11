@@ -33,16 +33,18 @@ define([
 			this.$el.find('#spanMessage').html('Contacting cloud...').fadeIn();
 
 			this.expenses = [];
-			this.motorcycles = [];
+			this.oils = [];
+			this.refuels = [];
 			this.timesheets = [];
 			this.settings = [];
 			this.owners = [];
 			this.credits = [];
 
 			var self = this,
-				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'motorcycles', 'timesheets', 'credits', 'owners'], 'readonly');
+				transaction = App.indexedDB.db.transaction(['settings', 'expenses', 'refuels', 'oils', 'timesheets', 'credits', 'owners'], 'readonly');
 			var	expenseCursor = transaction.objectStore('expenses').openCursor(),
-				motorcycleCursor = transaction.objectStore('motorcycles').openCursor(),
+				oilCursor = transaction.objectStore('oils').openCursor(),
+				refuelCursor = transaction.objectStore('refuels').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
 				settingsObject = transaction.objectStore('settings').get(1),
 				ownerCursor = transaction.objectStore('timesheets').openCursor(), // FIXME use owner
@@ -57,10 +59,18 @@ define([
 				}
 			};
 
-			motorcycleCursor.onsuccess = function(e) {
+			oilCursor.onsuccess = function(e) {
 				var cursor = e.target.result;
 				if (cursor) {
-					self.motorcycles.push(cursor.value);
+					self.oils.push(cursor.value);
+					cursor.continue();
+				}
+			};
+
+			refuelCursor.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					self.refuels.push(cursor.value);
 					cursor.continue();
 				}
 			};
@@ -314,6 +324,14 @@ define([
 		, saveOnCustomBackend: function(ev) {
 			ev.preventDefault();
 
+			console.log('saving in a custom backend');
+
+console.log(this.expenses);
+console.log(this.oils);
+console.log(this.refuels);
+console.log(this.timesheets);
+console.log('-------------------------------');
+
 			var self = this,
 				objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1)
 			;
@@ -328,6 +346,7 @@ define([
 					;
 
 				_.forEach(self.expenses, function(element, index, list) {
+					element.amount = element.amount.replace(',', '.');
 					expense = new ExpenseModel(element);
 					delete expense.id;
 					expense.url = url + '/expenses';
@@ -341,24 +360,26 @@ define([
 					});
 				});
 
-				_.forEach(this.oils, function(element, index, list) {
+				_.forEach(self.oils, function(element, index, list) {
 					oil = new MotorcycleOilModel(element);
 					delete oil.id;
-					oil.url = url + '/oil';
+console.log(oil);
+					oil.url = url + '/oil_exchanges';
 					oil.save(null, {
 						success: function(model, response, error) {
-							console.log('Saved oil #' + model.id + 'with sucess!');
+							console.log('Saved oil #' + model.id + ' with sucess!');
 						}, 
 						error: function(model, response, error) {
-							console.log('Failed to save oil #' + model.id + 'with sucess!');
+							console.log('Failed to save oil #' + model.id + ' with sucess!');
 						}
 					});
 				});
 
-				_.forEach(this.refuels, function(element, index, list) {
+				_.forEach(self.refuels, function(element, index, list) {
 					refuel = new MotorcycleRefuelModel(element);
 					delete refuel.id;
-					refuel.url = url + '/refuel';
+console.log(refuel);
+					refuel.url = url + '/refuels';
 					refuel.save(null, {
 						success: function(model, response, error) {
 							console.log('Saved refuel #' + model.id + 'with sucess!');
@@ -369,16 +390,17 @@ define([
 					});
 				});
 
-				_.forEach(this.timesheets, function(element, index, list) {
+				_.forEach(self.timesheets, function(element, index, list) {
 					timesheet = new TimesheetModel(element);
 					delete timesheet.id;
+console.log(timesheet);
 					timesheet.url = url + '/timesheets';
 					timesheet.save(null, {
 						success: function(model, response, error) {
-							console.log('Saved timesheet #' + model.id + 'with sucess!');
+							console.log('Saved timesheet #' + model.id + ' with sucess!');
 						}, 
 						error: function(model, response, error) {
-							console.log('Failed to save timesheet #' + model.id + 'with sucess!');
+							console.log('Failed to save timesheet #' + model.id + ' with sucess!');
 						}
 					});
 				});

@@ -5,8 +5,8 @@
         <input type="text" id="inputDate" class="col-xs-6 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
     </div>
     <div class="row">
-        <label for="inputAmmount">Ammount</label><br />
-        <input type="text" id="inputAmmount" class="col-xs-6" value="{{ammount}}" placeholder="Ammount of transaction" data-bind="value:ammount,events:['keyup']" />
+        <label for="inputAmount">Amount</label><br />
+        <input type="text" id="inputAmount" class="col-xs-6" value="{{amount}}" placeholder="Amount of transaction" data-bind="value:amount,events:['keyup']" />
     </div>
     <div class="row">
         <label for="inputAccountFrom">Account From</label>

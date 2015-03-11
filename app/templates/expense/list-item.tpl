@@ -2,7 +2,7 @@
   <div class="container-fluid">
 	<div class="col-xs-11">
 	  [{{date}}]<br />
-      ${{ammount}}
+      ${{amount}}
 	</div>
 	<div class="col-xs-1 text-right">
 	  <span class="glyphicon glyphicon-chevron-right"></span>

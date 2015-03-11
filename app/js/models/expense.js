@@ -5,7 +5,7 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
-			, ammount: 0.00
+			, amount: 0.00
 			, accountFrom: null
 			, accountTo: null
 			, memo: null
@@ -15,7 +15,7 @@ define([
 			if (attr.date == '')
 				return 'Date can\'t be empty';
 
-			if (attr.ammount == '')
+			if (attr.amount == '')
 				return 'Ammount can\'t be empty!';
 
 			if (attr.accountFrom == '')
