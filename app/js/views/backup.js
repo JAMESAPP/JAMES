@@ -10,7 +10,8 @@ define([
 	, 'models/motorcycle/refuel'
 	, 'models/motorcycle/oil'
 	, 'models/timesheet'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel) {
+	, 'collections/generic'
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Collection) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -23,6 +24,7 @@ define([
 			, 'click #btnHideShowPassword': 'hideShowPassword'
 			, 'click #btnEnable': 'enable'
 			, 'click #btnSaveOnCustomBackend': 'saveOnCustomBackend'
+			, 'click #btnSyncWithCustomBackend': 'syncWithCustomBackend'
 		}
 		// TODO adapt html
 		, template: 'app/templates/backup.tpl'
@@ -417,6 +419,90 @@ console.log(timesheet);
 				// 	}
 				// });
 			};
+		}
+
+		, syncWithCustomBackend: function(ev) {
+			ev.preventDefault();
+
+			var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite'),
+				url,
+				settings = transaction.objectStore('settings').get(1),
+				expenses,
+				oil,
+				refuel,
+				timesheet
+			;
+
+			settings.onsuccess = function(event) {
+				url = event.target.result.backend;
+
+				transaction.objectStore('expenses').clear().onsuccess = function(event) {
+					expenses = new Collection();
+					expenses.url = url + '/expenses';
+					expenses.fetch({
+						async: false
+						, success: function(collection, response, options) {
+							_.forEach(collection.toJSON(), function(element, index, list) {
+								transaction.objectStore('expenses').add(element).onsuccess = function(event) {
+									console.log('Re-added expense id #' + element.id);
+									self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+								};
+							});	
+						}
+						, error: function(coolection, reposnse, options) {
+							// TODO handle error
+						}
+					});
+				};
+			};
+
+			// transaction.objectStore('settings').clear().onsuccess = function(event) {
+			// 	settings = new SettingsModel();
+			// 	settings.url = '';
+
+			// 	transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
+			// 		console.log('Re-added setting id #' + snapshot.val().settings.id);
+			// 		self.$el.find('#tdSettingsDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+			// 	};
+			// };
+
+			// TODO implement as refuels and oils
+			// transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
+			// 	_.forEach(snapshot.val().motorcycles, function(element, index, list) {
+			// 		transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
+			// 			console.log('Re-added motorcycle id #' + element.id);
+			// 			self.$el.find('#tdMotorcycleDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+			// 		};
+			// 	});
+			// };
+
+			// TODO implement me!
+			// transaction.objectStore('timesheets').clear().onsuccess = function(event) {
+			// 	_.forEach(snapshot.val().timesheets, function(element, index, list) {
+			// 		transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
+			// 			console.log('Re-added timesheet id #' + element.id);
+			// 			self.$el.find('#tdTimesheetDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+			// 		};
+			// 	});
+			// };
+
+			// TODO implement me!
+			// transaction.objectStore('owners').clear().onsuccess = function(event) {
+			// 	_.forEach(snapshot.val().owners, function(element, index, list) {
+			// 		transaction.objectStore('owners').add(element).onsuccess = function (event) {
+			// 			console.log('Re-added owner id #' + element.id);
+			// 			self.$el.find('#tdOwnerDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+			// 		};
+			// 	});
+			// };
+			// transaction.objectStore('credits').clear().onsuccess = function(event) {
+			// 	_.forEach(snapshot.val().credits, function(element, index, list) {
+			// 		transaction.objectStore('credits').add(element).onsuccess = function (event) {
+			// 			console.log('Re-added credit id #' + element.id);
+			// 			self.$el.find('#tdCreditDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+			// 		};
+			// 	});
+			// };
 		}
 	});
 
