@@ -175,7 +175,6 @@ define([
 				, gyms: self.gyms
 				, motorcycles: self.motorcycles
 				, timesheets: self.timesheets
-				, settings: self.settings
 				, owners: self.owners
 				, credits: self.credits
 
@@ -188,9 +187,6 @@ define([
 					console.error(error);
 				} else {
 					console.log(data);
-
-					if (data.settings != undefined)
-						self.$el.find('#tdSettingsUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
 					if (data.expenses != undefined)
 						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
@@ -223,13 +219,6 @@ define([
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
-
-					transaction.objectStore('settings').clear().onsuccess = function(event) {
-						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
-							console.log('Re-added setting id #' + snapshot.val().settings.id);
-							self.$el.find('#tdSettingsDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-						};
-					};
 
 					transaction.objectStore('expenses').clear().onsuccess = function(event) {
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
@@ -406,18 +395,6 @@ console.log(timesheet);
 						}
 					});
 				});
-
-				// FIXME simplify the model
-				// settings = new SettingsModel(this.settings);
-				// settings.url = url + '/settings/new';
-				// settings.save({
-				// 	succes: function(model, response, error) {
-				// 		console.log('Saved setting #' + model.id + 'with sucess!');
-				// 	}, 
-				// 	error: function(model, response, error) {
-				// 		console.log('Failed to save settings #' + model.id + 'with sucess!');
-				// 	}
-				// });
 			};
 		}
 

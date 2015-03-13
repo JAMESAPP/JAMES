@@ -29,11 +29,6 @@
                 <td id="tdTimesheetDownload"><span class="glyphicon glyphicon-minus"</span></td>
             </tr>
             <tr>
-                <td><span class="glyphicon glyphicon-wrench"></span></td>
-                <td id="tdSettingsUpload"><span class="glyphicon glyphicon-minus"</span></td>
-                <td id="tdSettingsDownload"><span class="glyphicon glyphicon-minus"</span></td>
-            </tr>
-            <tr>
                 <td><span class="glyphicon glyphicon-euro"></span></td>
                 <td id="tdOwnerUpload"><span class="glyphicon glyphicon-minus"</span></td>
                 <td id="tdOwnerDownload"><span class="glyphicon glyphicon-minus"</span></td>
