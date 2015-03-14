@@ -170,10 +170,8 @@ define([
 			var self = this,
 				data = {
 				expenses: self.expenses
-				, foods: self.foods
-				, groceries: self.groceries
-				, gyms: self.gyms
-				, motorcycles: self.motorcycles
+				, oils: self.refuels
+				, refuels: self.refuels
 				, timesheets: self.timesheets
 				, owners: self.owners
 				, credits: self.credits
@@ -191,8 +189,11 @@ define([
 					if (data.expenses != undefined)
 						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
-					if (data.motorcycles != undefined)
-						self.$el.find('#tdMotorcycleUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+					if (data.oils != undefined)
+						self.$el.find('#tdOilUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.refuels != undefined)
+						self.$el.find('#tdRefuelUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
 					if (data.timesheets != undefined)
 						self.$el.find('#tdTimesheetUpload').html('<span class="glyphicon glyphicon-ok"></span>');
@@ -215,7 +216,7 @@ define([
 			var self = this;
 
 			this.cloud.on('value', function(snapshot) {
-				var transaction = App.indexedDB.db.transaction(['expenses', 'motorcycles', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
+				var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
@@ -229,11 +230,20 @@ define([
 						});
 					};
 
-					transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().motorcycles, function(element, index, list) {
-							transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
-								console.log('Re-added motorcycle id #' + element.id);
-								self.$el.find('#tdMotorcycleDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+					transaction.objectStore('oils').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().oils, function(element, index, list) {
+							transaction.objectStore('oils').add(element).onsuccess = function (event) {
+								console.log('Re-added oil id #' + element.id);
+								self.$el.find('#tdOilDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});
+					};
+
+					transaction.objectStore('refuels').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().refuels, function(element, index, list) {
+							transaction.objectStore('refuels').add(element).onsuccess = function (event) {
+								console.log('Re-added refuel id #' + element.id);
+								self.$el.find('#tdRefuelDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
