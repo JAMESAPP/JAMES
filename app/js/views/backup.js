@@ -10,8 +10,9 @@ define([
 	, 'models/motorcycle/refuel'
 	, 'models/motorcycle/oil'
 	, 'models/timesheet'
+	, 'models/generic'
 	, 'collections/generic'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Collection) {
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Model, Collection) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -164,6 +165,23 @@ define([
 			};
 		}
 
+		, saveOnDisk: function(ev) {
+			ev.preventDefault();
+
+			// TODO save on disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
+		}
+		, syncWithDisk: function(ev) {
+			ev.preventDefault();
+
+			// TODO sync with disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
+		}
+
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
 
@@ -278,23 +296,6 @@ define([
 			});
 		}
 
-		, saveOnDisk: function(ev) {
-			ev.preventDefault();
-
-			// TODO save on disk
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
-		}
-		, syncWithDisk: function(ev) {
-			ev.preventDefault();
-
-			// TODO sync with disk
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
-		}
-
 		, login: function(ev) {
 			ev.preventDefault();
 
@@ -325,87 +326,59 @@ define([
 		, saveOnCustomBackend: function(ev) {
 			ev.preventDefault();
 
-			console.log('saving in a custom backend');
+			var self = this,
+				settings = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1),
+				backendAddress
+			;
 
+console.log('saving in a custom backend');
 console.log(this.expenses);
 console.log(this.oils);
 console.log(this.refuels);
 console.log(this.timesheets);
 console.log('-------------------------------');
 
-			var self = this,
-				objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1)
-			;
+			settings.onsuccess = function(event) {
+				backendAddress = event.target.result.backend;
 
-			objectStore.onsuccess = function(event) {
-				var url = event.target.result.backend,
-					expense,
-					oil,
-					refuel,
-					timesheet,
-					settings
-					;
-
-				_.forEach(self.expenses, function(element, index, list) {
-					element.amount = element.amount.replace(',', '.');
-					expense = new ExpenseModel(element);
-					delete expense.id;
-					expense.url = url + '/expenses';
-					expense.save(null, {
-						success: function(model, response, error) {
-							console.log('SAVED expense #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('FAILED to save expense #' + model.id + ' !!!');
-						}
-					});
-				});
-
-				_.forEach(self.oils, function(element, index, list) {
-					oil = new MotorcycleOilModel(element);
-					delete oil.id;
-console.log(oil);
-					oil.url = url + '/oil_exchanges';
-					oil.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved oil #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save oil #' + model.id + ' with sucess!');
-						}
-					});
-				});
-
-				_.forEach(self.refuels, function(element, index, list) {
-					refuel = new MotorcycleRefuelModel(element);
-					delete refuel.id;
-console.log(refuel);
-					refuel.url = url + '/refuels';
-					refuel.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved refuel #' + model.id + 'with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save refuel #' + model.id + 'with sucess!');
-						}
-					});
-				});
-
-				_.forEach(self.timesheets, function(element, index, list) {
-					timesheet = new TimesheetModel(element);
-					delete timesheet.id;
-console.log(timesheet);
-					timesheet.url = url + '/timesheets';
-					timesheet.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved timesheet #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save timesheet #' + model.id + ' with sucess!');
-						}
-					});
-				});
+				this.saveModelOnBackend(this.expenses, 'expenses', backendAddress + '/expenses');
+				this.saveModelOnBackend(this.expenses, 'oils', backendAddress + '/oils');
+				this.saveModelOnBackend(this.expenses, 'refuels', backendAddress + '/refuels');
+				this.saveModelOnBackend(this.expenses, 'timesheets', backendAddress + '/timesheets');
 			};
+		}
+		, saveModelOnBackend: function(coll, en, url) {
+			var entity;
+			_.forEach(coll, function(element, index, list) {
+				entity = new Model(element);
+				delete entity.id;
+				// console.log(entity);
+				entity.url = url;
+				entity.save(null, {
+					success: function(model, response, error) {
+						console.log('Saved ' + en + ' #' + model.id + ' with sucess!');
+					}, 
+					error: function(model, response, error) {
+						console.log('Failed to save ' + en + ' #' + model.id + ' with sucess!');
+					}
+				});
+			});
+
+// 				_.forEach(self.expenses, function(element, index, list) {
+// 					element.amount = element.amount.replace(',', '.');
+// 					expense = new ExpenseModel(element);
+// 					delete expense.id;
+// 					expense.url = url + '/expenses';
+// 					expense.save(null, {
+// 						success: function(model, response, error) {
+// 							console.log('SAVED expense #' + model.id + ' with sucess!');
+// 						}, 
+// 						error: function(model, response, error) {
+// 							console.log('FAILED to save expense #' + model.id + ' !!!');
+// 						}
+// 					});
+// 				});
+
 		}
 
 		, syncWithCustomBackend: function(ev) {
