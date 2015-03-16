@@ -341,10 +341,10 @@ console.log('-------------------------------');
 			settings.onsuccess = function(event) {
 				backendAddress = event.target.result.backend;
 
-				this.saveModelOnBackend(this.expenses, 'expenses', backendAddress + '/expenses');
-				this.saveModelOnBackend(this.expenses, 'oils', backendAddress + '/oils');
-				this.saveModelOnBackend(this.expenses, 'refuels', backendAddress + '/refuels');
-				this.saveModelOnBackend(this.expenses, 'timesheets', backendAddress + '/timesheets');
+				this.saveModelOnBackend(self.expenses, 'expenses', backendAddress + '/expenses');
+				this.saveModelOnBackend(self.oils, 'oils', backendAddress + '/oils');
+				this.saveModelOnBackend(self.refuels, 'refuels', backendAddress + '/refuels');
+				this.saveModelOnBackend(self.timesheets, 'timesheets', backendAddress + '/timesheets');
 			};
 		}
 		, saveModelOnBackend: function(coll, en, url) {
@@ -396,7 +396,8 @@ console.log('-------------------------------');
 				self.repopulate('oils', transaction, url, '#tdOilDownload');
 				self.repopulate('refuels', transaction, url, '#tdRefuelDownload');
 				self.repopulate('timesheets', transaction, url, '#tdTimesheetDownload');
-				// TODO implement owner and credits
+				self.repopulate('owners', transaction, url, '#tdOwnerDownload');
+				self.repopulate('credits', transaction, url, '#tdCreditDownload');
 			};
 		}
 
