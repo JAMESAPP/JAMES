@@ -101,7 +101,7 @@ define([
 				}
 			};
 
-			var authRef = new Firebase("https://jamesapp.firebaseio.com/.info/authenticated");
+			// var authRef = new Firebase("https://jamesapp.firebaseio.com/.info/authenticated");
 			settingsObject.onsuccess = function(e) {
 				if (e.target.result == undefined) {
 					self.$el.find('#spanMessage').removeClass();
@@ -170,10 +170,8 @@ define([
 			var self = this,
 				data = {
 				expenses: self.expenses
-				, foods: self.foods
-				, groceries: self.groceries
-				, gyms: self.gyms
-				, motorcycles: self.motorcycles
+				, oils: self.oils
+				, refuels: self.refuels
 				, timesheets: self.timesheets
 				, settings: self.settings
 				, owners: self.owners
@@ -195,8 +193,11 @@ define([
 					if (data.expenses != undefined)
 						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
-					if (data.motorcycles != undefined)
-						self.$el.find('#tdMotorcycleUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+					if (data.oils != undefined)
+						self.$el.find('#tdOilUpload').html('<span class="glyphicon glyphicon-ok"></span>');
+
+					if (data.refuels != undefined)
+						self.$el.find('#tdRefuelUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
 					if (data.timesheets != undefined)
 						self.$el.find('#tdTimesheetUpload').html('<span class="glyphicon glyphicon-ok"></span>');
@@ -219,7 +220,7 @@ define([
 			var self = this;
 
 			this.cloud.on('value', function(snapshot) {
-				var transaction = App.indexedDB.db.transaction(['expenses', 'motorcycles', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
+				var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
@@ -240,11 +241,20 @@ define([
 						});
 					};
 
-					transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().motorcycles, function(element, index, list) {
-							transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
-								console.log('Re-added motorcycle id #' + element.id);
-								self.$el.find('#tdMotorcycleDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+					transaction.objectStore('oils').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().oils, function(element, index, list) {
+							transaction.objectStore('oils').add(element).onsuccess = function (event) {
+								console.log('Re-added oil id #' + element.id);
+								self.$el.find('#tdOilDownload').html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});
+					};
+
+					transaction.objectStore('refuels').clear().onsuccess = function(event) {
+						_.forEach(snapshot.val().refuels, function(element, index, list) {
+							transaction.objectStore('refuels').add(element).onsuccess = function (event) {
+								console.log('Re-added refuel id #' + element.id);
+								self.$el.find('#tdRefuelDownload').html('<span class="glyphicon glyphicon-ok"></span>');
 							};
 						});
 					};
@@ -326,14 +336,6 @@ define([
 		, saveOnCustomBackend: function(ev) {
 			ev.preventDefault();
 
-			console.log('saving in a custom backend');
-
-console.log(this.expenses);
-console.log(this.oils);
-console.log(this.refuels);
-console.log(this.timesheets);
-console.log('-------------------------------');
-
 			var self = this,
 				objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1)
 			;
@@ -365,7 +367,6 @@ console.log('-------------------------------');
 				_.forEach(self.oils, function(element, index, list) {
 					oil = new MotorcycleOilModel(element);
 					delete oil.id;
-console.log(oil);
 					oil.url = url + '/oil_exchanges';
 					oil.save(null, {
 						success: function(model, response, error) {
@@ -380,7 +381,6 @@ console.log(oil);
 				_.forEach(self.refuels, function(element, index, list) {
 					refuel = new MotorcycleRefuelModel(element);
 					delete refuel.id;
-console.log(refuel);
 					refuel.url = url + '/refuels';
 					refuel.save(null, {
 						success: function(model, response, error) {
@@ -395,7 +395,6 @@ console.log(refuel);
 				_.forEach(self.timesheets, function(element, index, list) {
 					timesheet = new TimesheetModel(element);
 					delete timesheet.id;
-console.log(timesheet);
 					timesheet.url = url + '/timesheets';
 					timesheet.save(null, {
 						success: function(model, response, error) {
