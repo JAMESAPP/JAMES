@@ -10,8 +10,9 @@ define([
 	, 'models/motorcycle/refuel'
 	, 'models/motorcycle/oil'
 	, 'models/timesheet'
+	, 'models/generic'
 	, 'collections/generic'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Collection) {
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Model, Collection) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -164,16 +165,33 @@ define([
 			};
 		}
 
+		, saveOnDisk: function(ev) {
+			ev.preventDefault();
+
+			// TODO save on disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
+		}
+		, syncWithDisk: function(ev) {
+			ev.preventDefault();
+
+			// TODO sync with disk
+			this.$el.find('#spanMessage').removeClass();
+			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
+		}
+
 		, saveOnCloud: function(ev) {
 			ev.preventDefault();
 
 			var self = this,
 				data = {
 				expenses: self.expenses
+
 				, oils: self.oils
 				, refuels: self.refuels
 				, timesheets: self.timesheets
-				, settings: self.settings
 				, owners: self.owners
 				, credits: self.credits
 
@@ -186,9 +204,6 @@ define([
 					console.error(error);
 				} else {
 					console.log(data);
-
-					if (data.settings != undefined)
-						self.$el.find('#tdSettingsUpload').html('<span class="glyphicon glyphicon-ok"></span>');
 
 					if (data.expenses != undefined)
 						self.$el.find('#tdExpenseUpload').html('<span class="glyphicon glyphicon-ok"></span>');
@@ -224,13 +239,6 @@ define([
 
 				if (snapshot.val() !== null) {
 					console.log(snapshot.val());
-
-					transaction.objectStore('settings').clear().onsuccess = function(event) {
-						transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
-							console.log('Re-added setting id #' + snapshot.val().settings.id);
-							self.$el.find('#tdSettingsDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-						};
-					};
 
 					transaction.objectStore('expenses').clear().onsuccess = function(event) {
 						_.forEach(snapshot.val().expenses, function(element, index, list) {
@@ -289,23 +297,6 @@ define([
 			});
 		}
 
-		, saveOnDisk: function(ev) {
-			ev.preventDefault();
-
-			// TODO save on disk
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
-		}
-		, syncWithDisk: function(ev) {
-			ev.preventDefault();
-
-			// TODO sync with disk
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
-		}
-
 		, login: function(ev) {
 			ev.preventDefault();
 
@@ -337,87 +328,49 @@ define([
 			ev.preventDefault();
 
 			var self = this,
-				objectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1)
+				settings = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1),
+				backendAddress
 			;
 
-			objectStore.onsuccess = function(event) {
-				var url = event.target.result.backend,
-					expense,
-					oil,
-					refuel,
-					timesheet,
-					settings
-					;
+			settings.onsuccess = function(event) {
+				backendAddress = event.target.result.backend;
 
-				_.forEach(self.expenses, function(element, index, list) {
-					element.amount = element.amount.replace(',', '.');
-					expense = new ExpenseModel(element);
-					delete expense.id;
-					expense.url = url + '/expenses';
-					expense.save(null, {
-						success: function(model, response, error) {
-							console.log('SAVED expense #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('FAILED to save expense #' + model.id + ' !!!');
-						}
-					});
-				});
-
-				_.forEach(self.oils, function(element, index, list) {
-					oil = new MotorcycleOilModel(element);
-					delete oil.id;
-					oil.url = url + '/oil_exchanges';
-					oil.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved oil #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save oil #' + model.id + ' with sucess!');
-						}
-					});
-				});
-
-				_.forEach(self.refuels, function(element, index, list) {
-					refuel = new MotorcycleRefuelModel(element);
-					delete refuel.id;
-					refuel.url = url + '/refuels';
-					refuel.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved refuel #' + model.id + 'with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save refuel #' + model.id + 'with sucess!');
-						}
-					});
-				});
-
-				_.forEach(self.timesheets, function(element, index, list) {
-					timesheet = new TimesheetModel(element);
-					delete timesheet.id;
-					timesheet.url = url + '/timesheets';
-					timesheet.save(null, {
-						success: function(model, response, error) {
-							console.log('Saved timesheet #' + model.id + ' with sucess!');
-						}, 
-						error: function(model, response, error) {
-							console.log('Failed to save timesheet #' + model.id + ' with sucess!');
-						}
-					});
-				});
-
-				// FIXME simplify the model
-				// settings = new SettingsModel(this.settings);
-				// settings.url = url + '/settings/new';
-				// settings.save({
-				// 	succes: function(model, response, error) {
-				// 		console.log('Saved setting #' + model.id + 'with sucess!');
-				// 	}, 
-				// 	error: function(model, response, error) {
-				// 		console.log('Failed to save settings #' + model.id + 'with sucess!');
-				// 	}
-				// });
+				this.saveModelOnBackend(self.expenses, 'expenses', backendAddress + '/expenses');
+				this.saveModelOnBackend(self.oils, 'oils', backendAddress + '/oils');
+				this.saveModelOnBackend(self.refuels, 'refuels', backendAddress + '/refuels');
+				this.saveModelOnBackend(self.timesheets, 'timesheets', backendAddress + '/timesheets');
 			};
+		}
+		, saveModelOnBackend: function(coll, en, url) {
+			var entity;
+			_.forEach(coll, function(element, index, list) {
+				entity = new Model(element);
+				delete entity.id;
+				entity.url = url;
+				entity.save(null, {
+					success: function(model, response, error) {
+						console.log('Saved ' + en + ' #' + model.id + ' with sucess!');
+					}, 
+					error: function(model, response, error) {
+						console.log('Failed to save ' + en + ' #' + model.id + ' with sucess!');
+					}
+				});
+			});
+
+// 				_.forEach(self.expenses, function(element, index, list) {
+// 					element.amount = element.amount.replace(',', '.');
+// 					expense = new ExpenseModel(element);
+// 					delete expense.id;
+// 					expense.url = url + '/expenses';
+// 					expense.save(null, {
+// 						success: function(model, response, error) {
+// 							console.log('SAVED expense #' + model.id + ' with sucess!');
+// 						}, 
+// 						error: function(model, response, error) {
+// 							console.log('FAILED to save expense #' + model.id + ' !!!');
+// 						}
+// 					});
+// 				});
 		}
 
 		, syncWithCustomBackend: function(ev) {
@@ -425,83 +378,42 @@ define([
 
 			var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite'),
 				url,
-				settings = transaction.objectStore('settings').get(1),
-				expenses,
-				oil,
-				refuel,
-				timesheet
+				settings = transaction.objectStore('settings').get(1)
 			;
 
 			settings.onsuccess = function(event) {
 				url = event.target.result.backend;
 
-				transaction.objectStore('expenses').clear().onsuccess = function(event) {
-					expenses = new Collection();
-					expenses.url = url + '/expenses';
-					expenses.fetch({
-						async: false
-						, success: function(collection, response, options) {
-							_.forEach(collection.toJSON(), function(element, index, list) {
-								transaction.objectStore('expenses').add(element).onsuccess = function(event) {
-									console.log('Re-added expense id #' + element.id);
-									self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-								};
-							});	
-						}
-						, error: function(coolection, reposnse, options) {
-							// TODO handle error
-						}
-					});
-				};
+				self.repopulate('expenses', transaction, url, '#tdExpenseDownload');
+				self.repopulate('oils', transaction, url, '#tdOilDownload');
+				self.repopulate('refuels', transaction, url, '#tdRefuelDownload');
+				self.repopulate('timesheets', transaction, url, '#tdTimesheetDownload');
+				self.repopulate('owners', transaction, url, '#tdOwnerDownload');
+				self.repopulate('credits', transaction, url, '#tdCreditDownload');
 			};
+		}
 
-			// transaction.objectStore('settings').clear().onsuccess = function(event) {
-			// 	settings = new SettingsModel();
-			// 	settings.url = '';
+		, repopulate: function(entity, transaction, url, el) {
+			var coll;
 
-			// 	transaction.objectStore('settings').put(snapshot.val().settings).onsuccess = function (event) {
-			// 		console.log('Re-added setting id #' + snapshot.val().settings.id);
-			// 		self.$el.find('#tdSettingsDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-			// 	};
-			// };
-
-			// TODO implement as refuels and oils
-			// transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
-			// 	_.forEach(snapshot.val().motorcycles, function(element, index, list) {
-			// 		transaction.objectStore('motorcycles').add(element).onsuccess = function (event) {
-			// 			console.log('Re-added motorcycle id #' + element.id);
-			// 			self.$el.find('#tdMotorcycleDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-			// 		};
-			// 	});
-			// };
-
-			// TODO implement me!
-			// transaction.objectStore('timesheets').clear().onsuccess = function(event) {
-			// 	_.forEach(snapshot.val().timesheets, function(element, index, list) {
-			// 		transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
-			// 			console.log('Re-added timesheet id #' + element.id);
-			// 			self.$el.find('#tdTimesheetDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-			// 		};
-			// 	});
-			// };
-
-			// TODO implement me!
-			// transaction.objectStore('owners').clear().onsuccess = function(event) {
-			// 	_.forEach(snapshot.val().owners, function(element, index, list) {
-			// 		transaction.objectStore('owners').add(element).onsuccess = function (event) {
-			// 			console.log('Re-added owner id #' + element.id);
-			// 			self.$el.find('#tdOwnerDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-			// 		};
-			// 	});
-			// };
-			// transaction.objectStore('credits').clear().onsuccess = function(event) {
-			// 	_.forEach(snapshot.val().credits, function(element, index, list) {
-			// 		transaction.objectStore('credits').add(element).onsuccess = function (event) {
-			// 			console.log('Re-added credit id #' + element.id);
-			// 			self.$el.find('#tdCreditDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-			// 		};
-			// 	});
-			// };
+			transaction.objectStore(entity).clear().onsuccess = function(event) {
+				coll = new Collection();
+				coll.url = url + '/' + entity;
+				coll.fetch({
+					async: false
+					, success: function(collection, response, options) {
+						_.forEach(collection.toJSON(), function(element, index, list) {
+							transaction.objectStore(entity).add(element).onsuccess = function(event) {
+								console.log('Re-added ' + entity + ' id #' + element.id);
+								self.$el.find(el).html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});	
+					}
+					, error: function(coolection, response, options) {
+						// TODO handle error
+					}
+				});
+			};
 		}
 	});
 
