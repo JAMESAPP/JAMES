@@ -50,8 +50,8 @@ define([
 				refuelCursor = transaction.objectStore('refuels').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
 				settingsObject = transaction.objectStore('settings').get(1),
-				ownerCursor = transaction.objectStore('timesheets').openCursor(), // FIXME use owner
-				creditCursor = transaction.objectStore('timesheets').openCursor() // FIXME use credit
+				ownerCursor = transaction.objectStore('owners').openCursor(), // FIXME use owner
+				creditCursor = transaction.objectStore('credits').openCursor() // FIXME use credit
 			;
 
 			expenseCursor.onsuccess = function(e) {
