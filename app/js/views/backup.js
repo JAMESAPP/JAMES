@@ -10,9 +10,10 @@ define([
 	, 'models/motorcycle/refuel'
 	, 'models/motorcycle/oil'
 	, 'models/timesheet'
+	, 'models/backup'
 	, 'models/generic'
 	, 'collections/generic'
-], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, Model, Collection) {
+], function (_, Marionette, Firebase, FirebaseSimpleLogin, App, BidingView, SettingsModel, ExpenseModel, MotorcycleRefuelModel, MotorcycleOilModel, TimesheetModel, BackupModel, Model, Collection) {
 	var ItemView = Marionette.ItemView.extend({
 		tagName: 'div',
 		className: 'box'
@@ -329,48 +330,18 @@ define([
 
 			var self = this,
 				settings = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1),
-				backendAddress
+				backendAddress,
+				backup = new BackupModel()
 			;
 
 			settings.onsuccess = function(event) {
 				backendAddress = event.target.result.backend;
 
-				this.saveModelOnBackend(self.expenses, 'expenses', backendAddress + '/expenses');
-				this.saveModelOnBackend(self.oils, 'oils', backendAddress + '/oils');
-				this.saveModelOnBackend(self.refuels, 'refuels', backendAddress + '/refuels');
-				this.saveModelOnBackend(self.timesheets, 'timesheets', backendAddress + '/timesheets');
+				backup.saveModelOnBackend(self.expenses, 'expenses', backendAddress + '/expenses');
+				backup.saveModelOnBackend(self.oils, 'oils', backendAddress + '/oils');
+				backup.saveModelOnBackend(self.refuels, 'refuels', backendAddress + '/refuels');
+				backup.saveModelOnBackend(self.timesheets, 'timesheets', backendAddress + '/timesheets');
 			};
-		}
-		, saveModelOnBackend: function(coll, en, url) {
-			var entity;
-			_.forEach(coll, function(element, index, list) {
-				entity = new Model(element);
-				delete entity.id;
-				entity.url = url;
-				entity.save(null, {
-					success: function(model, response, error) {
-						console.log('Saved ' + en + ' #' + model.id + ' with sucess!');
-					}, 
-					error: function(model, response, error) {
-						console.log('Failed to save ' + en + ' #' + model.id + ' with sucess!');
-					}
-				});
-			});
-
-// 				_.forEach(self.expenses, function(element, index, list) {
-// 					element.amount = element.amount.replace(',', '.');
-// 					expense = new ExpenseModel(element);
-// 					delete expense.id;
-// 					expense.url = url + '/expenses';
-// 					expense.save(null, {
-// 						success: function(model, response, error) {
-// 							console.log('SAVED expense #' + model.id + ' with sucess!');
-// 						}, 
-// 						error: function(model, response, error) {
-// 							console.log('FAILED to save expense #' + model.id + ' !!!');
-// 						}
-// 					});
-// 				});
 		}
 
 		, syncWithCustomBackend: function(ev) {
@@ -378,41 +349,19 @@ define([
 
 			var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite'),
 				url,
-				settings = transaction.objectStore('settings').get(1)
+				settings = transaction.objectStore('settings').get(1),
+				backup = new BackupModel();
 			;
 
 			settings.onsuccess = function(event) {
 				url = event.target.result.backend;
 
-				self.repopulate('expenses', transaction, url, '#tdExpenseDownload');
-				self.repopulate('oils', transaction, url, '#tdOilDownload');
-				self.repopulate('refuels', transaction, url, '#tdRefuelDownload');
-				self.repopulate('timesheets', transaction, url, '#tdTimesheetDownload');
-				self.repopulate('owners', transaction, url, '#tdOwnerDownload');
-				self.repopulate('credits', transaction, url, '#tdCreditDownload');
-			};
-		}
-
-		, repopulate: function(entity, transaction, url, el) {
-			var coll;
-
-			transaction.objectStore(entity).clear().onsuccess = function(event) {
-				coll = new Collection();
-				coll.url = url + '/' + entity;
-				coll.fetch({
-					async: false
-					, success: function(collection, response, options) {
-						_.forEach(collection.toJSON(), function(element, index, list) {
-							transaction.objectStore(entity).add(element).onsuccess = function(event) {
-								console.log('Re-added ' + entity + ' id #' + element.id);
-								self.$el.find(el).html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});	
-					}
-					, error: function(coolection, response, options) {
-						// TODO handle error
-					}
-				});
+				backup.repopulate('expenses', transaction, url, '#tdExpenseDownload');
+				backup.repopulate('oils', transaction, url, '#tdOilDownload');
+				backup.repopulate('refuels', transaction, url, '#tdRefuelDownload');
+				backup.repopulate('timesheets', transaction, url, '#tdTimesheetDownload');
+				backup.repopulate('owners', transaction, url, '#tdOwnerDownload');
+				backup.repopulate('credits', transaction, url, '#tdCreditDownload');
 			};
 		}
 	});
