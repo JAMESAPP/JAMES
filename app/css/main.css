@@ -21,13 +21,14 @@ div.center {
 	width: 30em;
 }
 
-body {
-	background: #002210
-}
+/* body { */
+/* 	/\* background: #002210 *\/ */
+/* 	background: #B90000; */
+/* } */
 
 #main {
 	padding-top: 20px;
-	height: 90%;
+	height: 00%;
 }
 
 .wrapper {
@@ -42,7 +43,7 @@ body {
 	min-height: 90%;
 	padding: 10px;
 	/* background: #ffffff; */
-	border: 1px solid #d4d4d4;
+	border: 1px solid #F4F4F4
 }
 
 /* TODO implement wink button */

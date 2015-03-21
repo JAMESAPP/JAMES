@@ -341,6 +341,8 @@ define([
 				backup.saveModelOnBackend(self.oils, 'oils', backendAddress + '/oils');
 				backup.saveModelOnBackend(self.refuels, 'refuels', backendAddress + '/refuels');
 				backup.saveModelOnBackend(self.timesheets, 'timesheets', backendAddress + '/timesheets');
+				backup.saveModelOnBackend(self.timesheets, 'owners', backendAddress + '/owners');
+				backup.saveModelOnBackend(self.timesheets, 'credits', backendAddress + '/credits');
 			};
 		}
 
