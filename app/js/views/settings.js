@@ -45,8 +45,12 @@ define([
 				console.log('Cleaned expenses');
 			};
 
-			transaction.objectStore('motorcycles').clear().onsuccess = function(event) {
-				console.log('Cleaned motorcycles');
+			transaction.objectStore('oils').clear().onsuccess = function(event) {
+				console.log('Cleaned oils');
+			};
+
+			transaction.objectStore('refuels').clear().onsuccess = function(event) {
+				console.log('Cleaned refuels');
 			};
 
 			transaction.objectStore('timesheets').clear().onsuccess = function(event) {
