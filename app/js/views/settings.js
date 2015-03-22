@@ -56,6 +56,14 @@ define([
 			transaction.objectStore('timesheets').clear().onsuccess = function(event) {
 				console.log('Cleaned timesheets');
 			};
+
+			transaction.objectStore('owners').clear().onsuccess = function(event) {
+				console.log('Cleaned owners');
+			};
+
+			transaction.objectStore('credits').clear().onsuccess = function(event) {
+				console.log('Cleaned credits');
+			};
 		}
 	});
 
