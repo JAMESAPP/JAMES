@@ -110,22 +110,23 @@ define([
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
 					self.$el.find('#spanMessage').html('[ERROR] Need save information about settings before sync data.').fadeIn();
 				} else {
-					authRef.on("value", function(snap) {
-						if (snap.val() === true) {
-							console.log("authenticated");
-							self.$el.find('#spanMessage').removeClass();
-							self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
-							self.$el.find('#spanMessage').html('authenticated').fadeIn().delay(5000).fadeOut();
-						} else {
-							console.log("not authenticated");
-							self.$el.find('#spanMessage').removeClass();
-							self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-							self.$el.find('#spanMessage').html('NOT authenticated.').fadeIn().delay(5000).fadeOut();
-						}
-					});
+					// authRef.on("value", function(snap) {
+					// 	if (snap.val() === true) {
+					// 		console.log("authenticated");
+					// 		self.$el.find('#spanMessage').removeClass();
+					// 		self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-success');
+					// 		self.$el.find('#spanMessage').html('authenticated').fadeIn().delay(5000).fadeOut();
+					// 	} else {
+					// 		console.log("not authenticated");
+					// 		self.$el.find('#spanMessage').removeClass();
+					// 		self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+					// 		self.$el.find('#spanMessage').html('NOT authenticated.').fadeIn().delay(5000).fadeOut();
+					// 	}
+					// });
 
 					self.settings = e.target.result;
 
+					//FIXME why using it? Don't use this in any other place. Do not store any value anywhere...
 					self.$el.find('#inputEmail').val(self.settings.cloudAuth.email);
 					self.$el.find('#inputPassword').val(self.settings.cloudAuth.password);
 
