@@ -20,8 +20,13 @@
             </tr>
             <tr>
                 <td><span class="glyphicon glyphicon-road"></span></td>
-                <td id="tdMotorcycleUpload"><span class="glyphicon glyphicon-minus"</span></td>
-                <td id="tdMotorcycleDownload"><span class="glyphicon glyphicon-minus"</span></td>
+                <td id="tdOilUpload"><span class="glyphicon glyphicon-minus"</span></td>
+                <td id="tdOilDownload"><span class="glyphicon glyphicon-minus"</span></td>
+            </tr>
+            <tr>
+                <td><span class="glyphicon glyphicon-road"></span></td>
+                <td id="tdRefuelUpload"><span class="glyphicon glyphicon-minus"</span></td>
+                <td id="tdRefuelDownload"><span class="glyphicon glyphicon-minus"</span></td>
             </tr>
             <tr>
                 <td><span class="glyphicon glyphicon-time"></span></td>

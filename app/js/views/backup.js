@@ -28,7 +28,6 @@ define([
 			, 'click #btnSaveOnCustomBackend': 'saveOnCustomBackend'
 			, 'click #btnSyncWithCustomBackend': 'syncWithCustomBackend'
 		}
-		// TODO adapt html
 		, template: 'app/templates/backup.tpl'
 
 		, onShow: function() {
