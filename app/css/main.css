@@ -46,6 +46,10 @@ div.center {
 	border: 1px solid #F4F4F4
 }
 
+div#menu {
+	background: #F4F4F4;
+}
+
 /* TODO implement wink button */
 /**************************************/
 /**************************************/
