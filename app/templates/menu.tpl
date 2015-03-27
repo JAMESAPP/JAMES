@@ -6,7 +6,7 @@
       <a class="navbar-brand" href="#"><img src="app/img/logo.png" id="logo" width="35px"></img></a>
       <ul class="nav navbar-nav list-inline">
 		<li><a href="#expenses"><span class="glyphicon glyphicon-usd"></span></a></li>
-		<li><a href="#motorcycle/oils"><span class="glyphicon glyphicon-tint"></span></a></li>
+		<li><a href="#motorcycle/oils"><span class="glyphicon glyphicon-oil"></span></a></li>
 		<li><a href="#motorcycle/refuels"><span class="glyphicon glyphicon-road"></span></a></li>
 		<li><a href="#timesheets"><span class="glyphicon glyphicon-time"></span></a></li>
 		<li><a href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>

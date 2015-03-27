@@ -50,8 +50,8 @@ define([
 				refuelCursor = transaction.objectStore('refuels').openCursor(),
 				timesheetCursor = transaction.objectStore('timesheets').openCursor(),
 				settingsObject = transaction.objectStore('settings').get(1),
-				ownerCursor = transaction.objectStore('owners').openCursor(), // FIXME use owner
-				creditCursor = transaction.objectStore('credits').openCursor() // FIXME use credit
+				ownerCursor = transaction.objectStore('owners').openCursor(),
+				creditCursor = transaction.objectStore('credits').openCursor()
 			;
 
 			expenseCursor.onsuccess = function(e) {
@@ -170,14 +170,15 @@ define([
 			ev.preventDefault();
 
 			// TODO save on disk
-			this.$el.find('#spanMessage').removeClass();
-			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
+			this.notImplementedYet();
 		}
 		, syncWithDisk: function(ev) {
 			ev.preventDefault();
 
 			// TODO sync with disk
+			this.notImplementedYet();
+		}
+		, notImplementedYet: function() {
 			this.$el.find('#spanMessage').removeClass();
 			this.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
 			this.$el.find('#spanMessage').html('Not implemented yet!!').fadeIn().delay(5000).fadeOut();
@@ -189,7 +190,6 @@ define([
 			var self = this,
 				data = {
 				expenses: self.expenses
-
 				, oils: self.oils
 				, refuels: self.refuels
 				, timesheets: self.timesheets
@@ -233,71 +233,24 @@ define([
 		, syncWithCloud: function(ev) {
 			ev.preventDefault();
 
-			var self = this;
+			var self = this,
+				backup = new BackupModel()
+			;
 
 			this.cloud.on('value', function(snapshot) {
 				var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings', 'owners', 'credits'], 'readwrite');
 
 				if (snapshot.val() !== null) {
-					console.log(snapshot.val());
-
-					transaction.objectStore('expenses').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().expenses, function(element, index, list) {
-							transaction.objectStore('expenses').add(element).onsuccess = function(event) {
-								console.log('Re-added expense id #' + element.id);
-								self.$el.find('#tdExpenseDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('oils').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().oils, function(element, index, list) {
-							transaction.objectStore('oils').add(element).onsuccess = function (event) {
-								console.log('Re-added oil id #' + element.id);
-								self.$el.find('#tdOilDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('refuels').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().refuels, function(element, index, list) {
-							transaction.objectStore('refuels').add(element).onsuccess = function (event) {
-								console.log('Re-added refuel id #' + element.id);
-								self.$el.find('#tdRefuelDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('timesheets').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().timesheets, function(element, index, list) {
-							transaction.objectStore('timesheets').add(element).onsuccess = function (event) {
-								console.log('Re-added timesheet id #' + element.id);
-								self.$el.find('#tdTimesheetDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('owners').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().owners, function(element, index, list) {
-							transaction.objectStore('owners').add(element).onsuccess = function (event) {
-								console.log('Re-added owner id #' + element.id);
-								self.$el.find('#tdOwnerDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
-
-					transaction.objectStore('credits').clear().onsuccess = function(event) {
-						_.forEach(snapshot.val().credits, function(element, index, list) {
-							transaction.objectStore('credits').add(element).onsuccess = function (event) {
-								console.log('Re-added credit id #' + element.id);
-								self.$el.find('#tdCreditDownload').html('<span class="glyphicon glyphicon-ok"></span>');
-							};
-						});
-					};
+					backup.repopulateFromCloud(transaction, 'expenses', snapshot.val().expenses, '#tdExpenseDownload');
+					backup.repopulateFromCloud(transaction, 'oils', snapshot.val().expenses, '#tdOilDownload');
+					backup.repopulateFromCloud(transaction, 'refuels', snapshot.val().expenses, '#tdRefuelDownload');
+					backup.repopulateFromCloud(transaction, 'timesheets', snapshot.val().expenses, '#tdTimesheetDownload');
+					backup.repopulateFromCloud(transaction, 'settings', snapshot.val().expenses, '#tdSettingsDownload');
+					backup.repopulateFromCloud(transaction, 'owners', snapshot.val().expenses, '#tdOwnerDownload');
+					backup.repopulateFromCloud(transaction, 'credits', snapshot.val().expenses, '#tdCreditDownload');
 				}
 			});
 		}
-
 		, login: function(ev) {
 			ev.preventDefault();
 
@@ -345,7 +298,6 @@ define([
 				backup.saveModelOnBackend(self.timesheets, 'credits', backendAddress + '/credits');
 			};
 		}
-
 		, syncWithCustomBackend: function(ev) {
 			ev.preventDefault();
 

@@ -46,6 +46,18 @@ define([
 				});
 			});
 		}
+
+		, repopulateFromCloud: function(transaction, entity, values, el) {
+
+			transaction.objectStore(entity).clear().onsuccess = function(event) {
+						_.forEach(values, function(element, index, list) {
+							transaction.objectStore(entity).add(element).onsuccess = function(event) {
+								console.log('Re-added ' + entity + ' id #' + element.id);
+								self.$el.find(el).html('<span class="glyphicon glyphicon-ok"></span>');
+							};
+						});
+					};
+		}
     });
 
     return Model;

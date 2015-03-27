@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#status" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats"></span></a></li>
   <li><a href="#cloud" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cloud"></span></a></li>
+  <li><a href="#customBackend" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-console"></span></a></li>
   <li><a href="#disk" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
   <li><a href="#login" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span></a></li>
 </ul>
@@ -19,7 +20,7 @@
                 <td id="tdExpenseDownload"><span class="glyphicon glyphicon-minus"</span></td>
             </tr>
             <tr>
-                <td><span class="glyphicon glyphicon-road"></span></td>
+                <td><span class="glyphicon glyphicon-oil"></span></td>
                 <td id="tdOilUpload"><span class="glyphicon glyphicon-minus"</span></td>
                 <td id="tdOilDownload"><span class="glyphicon glyphicon-minus"</span></td>
             </tr>
@@ -54,7 +55,11 @@
                 <br />
                 <a id="btnSyncWithCloud" href="#" class="btn btn-primary col-xs-12 disabled"><i class="glyphicon glyphicon-cloud-download"></i> Sync with Cloud!</a>
             </div>
-            <hr />
+        </div>
+    </div>
+    <div id="customBackend" class="tab-pane">
+        <h2>Custom Backend</h2>
+        <div class="container-fluid">
             <div class="row">
                 <a id="btnSaveOnCustomBackend" href="#" class="btn btn-primary col-xs-12"><i class="glyphicon glyphicon-cloud-upload"></i> Save on Custom Backend!</a>
                 <br />
