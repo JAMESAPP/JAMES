@@ -14,12 +14,12 @@
 	<a href="#expenses" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> Budget</a>
   </div>
   <div class="tab-pane" id="motorcycle">
-	<h2>Motorcycles</h2>
+	<h2>Refuel Gas</h2>
 	<a href="#motorcycle/refuels" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List/Manage Refuel</a>
 	<a href="#motorcycle/refuel/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> New Refuel</a>
 	<h2>Oil Exchange</h2>
-	<a href="#motorcycle/oils" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> List/Manage Oil Exchange</a>
-	<a href="#motorcycle/oil/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-road"></span> New Oil Exchange</a>
+	<a href="#motorcycle/oils" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-oil"></span> List/Manage Oil Exchange</a>
+	<a href="#motorcycle/oil/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-oil"></span> New Oil Exchange</a>
   </div>
   <div class="tab-pane" id="timesheet">
 	<h2>Timesheet</h2>
