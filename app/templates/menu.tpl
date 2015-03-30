@@ -10,8 +10,8 @@
       <a class="navbar-brand" href="#"><img src="app/img/logo.png" id="logo" width="35px"></img></a>
 	  <a class="navbar-brand" href="#expenses"><span class="glyphicon glyphicon-usd"></span></a>
 	  <a class="navbar-brand" href="#timesheets"><span class="glyphicon glyphicon-time"></span></a>
-      <a class="navbar-brand" href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
-	  <a class="navbar-brand" href="#settings"><span class="glyphicon glyphicon-wrench"></span></a></li>
+      <a class="navbar-brand" href="#backup"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+	  <a class="navbar-brand" href="#settings"><span class="glyphicon glyphicon-wrench"></span></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
