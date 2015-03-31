@@ -1,10 +1,8 @@
 define([
 	'marionette'
 	, 'app'
-	, 'text!../../templates/about.tpl'
-], function (Marionette, App, Template)  {
+], function (Marionette, App)  {
 	var ItemView = Marionette.ItemView.extend({
-		// template: Template,
 		template: 'app/templates/about.tpl',
 		tagName: 'div',
 		className: 'box'

@@ -7,8 +7,8 @@ define([
 	, 'hideShowPassword'
 ], function (_, Marionette, App, BindingView, RegisterView) {
 	var ItemView = RegisterView.extend({
-		tagName: 'div',
-		className: 'box'
+		tagName: 'div'
+		, className: 'box'
 		, template: 'app/templates/settings.tpl'
 		, objectStore: 'settings'
 		, events: function() {
