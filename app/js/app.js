@@ -54,5 +54,9 @@ define([
 		this.indexedDB.openDB();
 	};
 
+	app.getEntities = function() {
+		return ['expenses', 'oils', 'refuels', 'timesheets', 'settings'];
+	};
+
 	return app;
 });

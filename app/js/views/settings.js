@@ -34,8 +34,8 @@ define([
 		}
 		, cleanLocalStorage: function(ev) {
 			ev.preventDefault();
-			// TODO implement [] app.getEntities();
-			var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings'], 'readwrite');
+			var transaction = App.indexedDB.db.transaction(App.getEntities(), 'readwrite');
+			// var transaction = App.indexedDB.db.transaction(['expenses', 'oils', 'refuels', 'timesheets', 'settings'], 'readwrite');
 
 			transaction.objectStore('settings').clear().onsuccess = function(event) {
 				console.log('Cleaned settings');
