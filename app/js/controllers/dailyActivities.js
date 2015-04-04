@@ -3,6 +3,7 @@ define([
 	, 'app'
 	, 'models/indexedDB'
 	, 'collections/generic'
+	, 'views/contraceptive/register'
 	, 'views/expense/register'
 	, 'views/expense/list'
 	, 'views/expense/credit/register'
@@ -20,9 +21,11 @@ define([
 	, 'models/motorcycle/refuel'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ContraceptiveView, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
+			'contraceptive/register': 'contraceptive',
+
 			'expense/credits': 'credits',
 			'expense/credit/owner/new': 'owner',
 			'expense/credit/owner/:id': 'owner',
@@ -46,6 +49,10 @@ define([
 			, 'backup': 'backup'
 
 			, 'settings': 'settings'
+		},
+
+		contraceptive: function() {
+			App.mainRegion.show(new ContraceptiveView());
 		},
 
 		expenses: function() {

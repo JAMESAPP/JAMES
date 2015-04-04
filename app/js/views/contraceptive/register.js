@@ -9,7 +9,7 @@ define([
 	, 'jqueryui'
 ], function (Marionette, _, App, JAMES_DATA, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
-		template: 'app/templates/expense/register.tpl'
+		template: 'app/templates/contraceptive/register.tpl'
 		, objectStore: 'expenses'
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes),
