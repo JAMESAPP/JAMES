@@ -4,6 +4,7 @@ define([
 	, 'models/indexedDB'
 	, 'collections/generic'
 	, 'views/contraceptive/register'
+	, 'views/contraceptive/list'
 	, 'views/expense/register'
 	, 'views/expense/list'
 	, 'views/expense/credit/register'
@@ -16,15 +17,18 @@ define([
 	, 'views/timesheet/list'
 	, 'views/backup'
 	, 'views/settings'
+	, 'models/contraceptive'
 	, 'models/expense'
 	, 'models/motorcycle/oil'
 	, 'models/motorcycle/refuel'
 	, 'models/timesheet'
 	, 'models/setting'
-], function (Backbone, App, IndexedDB, Collection, ContraceptiveView, ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
+], function (Backbone, App, IndexedDB, Collection, ContraceptiveRegisterView, ContraceptiveListView,  ExpenseRegisterView, ExpensesListView, CreditRegisterView, CreditsListView, OilRegisterView, OilsListView, RefuelRegisterView, RefuelsListView, TimesheetRegisterView, TimesheetsListView, BackupView, SettingsView, ContraceptiveModel, ExpenseModel, OilModel, RefuelModel, TimesheetModel, SettingModel) {
 	var DailyActivitiesController = Backbone.Router.extend({
 		routes: {
-			'contraceptive/register': 'contraceptive',
+			'contraceptives': 'contraceptives',
+			'contraceptive/new': 'contraceptive',
+			'contraceptive/:id': 'contraceptive',
 
 			'expense/credits': 'credits',
 			'expense/credit/owner/new': 'owner',
@@ -51,8 +55,11 @@ define([
 			, 'settings': 'settings'
 		},
 
-		contraceptive: function() {
-			App.mainRegion.show(new ContraceptiveView());
+		contraceptives: function() {
+			this.list('contraceptives', ContraceptiveListView);
+		},
+		contraceptive: function(id) {
+			this.register(id, 'contraceptives', ContraceptiveModel, ContraceptiveRegisterView);
 		},
 
 		expenses: function() {

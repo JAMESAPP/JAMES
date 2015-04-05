@@ -11,25 +11,25 @@ define([
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/contraceptive/register.tpl'
 		, objectStore: 'expenses'
-		, serializeData: function() {
-			var attrToView = _.clone(this.attributes),
-				accountFrom,
-				accountTo
-			;
+		// , serializeData: function() {
+		// 	var attrToView = _.clone(this.attributes),
+		// 		accountFrom,
+		// 		accountTo
+		// 	;
 
-			// attrToView.selectCategory = JAMES_DATA.Financial.getChartOfAccounts();
-			attrToView.accountFrom = JAMES_DATA.Financial.getChartOfAccounts();
-			attrToView.accountTo = JAMES_DATA.Financial.getChartOfAccounts();
+		// 	// attrToView.selectCategory = JAMES_DATA.Financial.getChartOfAccounts();
+		// 	attrToView.accountFrom = JAMES_DATA.Financial.getChartOfAccounts();
+		// 	attrToView.accountTo = JAMES_DATA.Financial.getChartOfAccounts();
 
-			if (attrToView.id != undefined) {
-				attrToView.accountFrom.unshift(attrToView.accountFrom);
-				attrToView.accountTo.unshift(attrToView.accountTo);
+		// 	if (attrToView.id != undefined) {
+		// 		attrToView.accountFrom.unshift(attrToView.accountFrom);
+		// 		attrToView.accountTo.unshift(attrToView.accountTo);
 
-				// attrToView.selectCategory.unshift(attrToView.category);
-			}
+		// 		// attrToView.selectCategory.unshift(attrToView.category);
+		// 	}
 
-			return attrToView;
-		}
+		// 	return attrToView;
+		// }
 		, onRender: function() {
 			var self = this,
 				setting = new SettingModel(),
