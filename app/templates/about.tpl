@@ -1,13 +1,24 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
+  <li class="active"><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
+  <li><a href="#contraceptive" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span></a></li>
+  <li><a href="#expense" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a></li>
   <li><a href="#motorcycle" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-road"></span></a></li>
-  <li><a href="#timesheet" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
   <li><a href="#backup" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
   <li><a href="#settings" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-wrench"></span></a></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="expense">
+  <div class="tab-pane active" id="timesheet">
+	<h2>Timesheet</h2>
+	<a href="#timesheets" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> List/Manage Timesheets</a>
+	<a href="#timesheet/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> New Timesheet</a>
+  </div>
+  <div class="tab-pane" id="contraceptive">
+	<h2>Contraceptive</h2>
+	<a href="#contraceptives" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-calendar"></span> List/Manage Contraceptives</a>
+	<a href="#contraceptive/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-calendar"></span> New Contraceptive</a>
+  </div>
+  <div class="tab-pane" id="expense">
 	<h2>Expenses</h2>
 	<a href="#expenses" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> List/Manage Expenses</a>
 	<a href="#expense/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-usd"></span> New Expense</a>
@@ -20,11 +31,6 @@
 	<h2>Oil Exchange</h2>
 	<a href="#motorcycle/oils" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-oil"></span> List/Manage Oil Exchange</a>
 	<a href="#motorcycle/oil/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-oil"></span> New Oil Exchange</a>
-  </div>
-  <div class="tab-pane" id="timesheet">
-	<h2>Timesheet</h2>
-	<a href="#timesheets" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> List/Manage Timesheets</a>
-	<a href="#timesheet/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-time"></span> New Timesheet</a>
   </div>
   <div class="tab-pane" id="backup">
 	<h2>Backup</h2>

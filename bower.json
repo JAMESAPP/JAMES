@@ -20,6 +20,7 @@
     "backfire": "~0.3.0",
     "goog-api": "latest",
     "james-data": "latest",
-    "localforage": "~1.1.1"
+    "localforage": "~1.1.1",
+    "fullcalendar": "~2.3.1"
   }
 }

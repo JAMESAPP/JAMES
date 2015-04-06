@@ -23,6 +23,7 @@ define([
 
 			request.onupgradeneeded = function(event) { 
 				var db = event.target.result;
+				db.createObjectStore('contraceptives', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('expenses', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('oils', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('refuels', { keyPath: 'id', autoIncrement: true});
@@ -57,11 +58,15 @@ define([
 
 			request.onupgradeneeded = function(event) { 
 				var db = event.target.result;
+				db.createObjectStore('contraceptives', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('expenses', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('oils', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('refuels', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('timesheets', { keyPath: 'id', autoIncrement: true});
 				db.createObjectStore('settings', { keyPath: 'id', autoIncrement: true});
+
+				db.createObjectStore('credits', { keyPath: 'id', autoIncrement: true});
+				db.createObjectStore('owners', { keyPath: 'id', autoIncrement: true});
 			};
 
 			return request;

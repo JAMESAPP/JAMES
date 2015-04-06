@@ -5,8 +5,7 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
-			, taken: false
-			, isMenstruating: false
+			, state: undefined // not taken yet (yellow); taken (green); missed(red); void day (gray); is menstruating (blue)
 			, memo: null
 		}
 
@@ -14,11 +13,8 @@ define([
 			if (attr.date == '')
 				return 'Date can\'t be empty';
 
-			if (attr.taken == '')
-				return 'Taken can\'t be empty!';
-
-			if (attr.isMenstruating == '')
-				return 'isMesntriating can\'t be empty!';
+			if (attr.state == '')
+				return 'State can\'t be empty!';
 
 			if (attr.memo == '')
 				return 'Memo can\'t be empty!';

@@ -16,6 +16,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+		<li><a href="#contraceptives"><span class="glyphicon glyphicon-calendar"> Contraceptives</span></a></li>
 		<li><a href="#expenses"><span class="glyphicon glyphicon-usd"> Expenses</span></a></li>
 		<li><a href="#motorcycle/oils"><span class="glyphicon glyphicon-oil"> Oils</span></a></li>
 		<li><a href="#motorcycle/refuels"><span class="glyphicon glyphicon-road"> Refuels</span></a></li>

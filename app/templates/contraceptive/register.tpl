@@ -1,23 +1,17 @@
-<h1>COntraceptive</h1>
+<h1>Contraceptive</h1>
 <div id="divRegister" class="container">
     <div class="row">
         <label for="inputDate">Date</label><br />
         <input type="text" id="inputDate" class="col-xs-6 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
     </div>
     <div class="row">
-        <label for="inputTaken">Taken</label>
-        <select id="selectAccountFrom" class="col-xs-12" data-bind="value:accountFrom,events:['change']">
-            {{#each accountFrom}}
-            <option value="{{value}}">{{label}}</option>
-            {{/each}}
-        </select>
-    </div>
-    <div class="row">
-        <label for="inputIsMenstruating">Is menstruating?</label>
-        <select id="selectAccountTo" class="col-xs-12" data-bind="value:accountTo,events:['change']">
-            {{#each accountTo}}
-            <option value="{{value}}">{{label}}</option>
-            {{/each}}
+        <label for="inputTaken">Status</label>
+        <select id="selectStaus" class="col-xs-12" data-bind="value:accountFrom,events:['change']">
+            <option value="NOT_TAKEN_YET">Not taken yet</option>
+            <option value="TAKEN">Taken</option>
+            <option value="MISSED">Missed</option>
+            <option value="VOID">Void</option>
+            <option value="IS_MENSTRUATING">Is menstruating</option>
         </select>
     </div>
     <div class="row">

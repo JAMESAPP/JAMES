@@ -50,6 +50,27 @@ div#menu {
 	background: #F4F4F4;
 }
 
+/* Contraceptive */
+.not-taken-yet {
+    background: yellow;
+}
+
+.taken {
+    background: green;
+}
+
+.missed {
+    background: red;
+}
+
+.void {
+    background: gray;
+}
+
+.is-menstruating {
+    background: blue;
+}
+
 /* TODO implement wink button */
 /**************************************/
 /**************************************/

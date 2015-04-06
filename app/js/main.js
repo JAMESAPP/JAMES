@@ -17,6 +17,7 @@ require.config({
 		'hideShowPassword': 'libs/bower/hideShowPassword/hideShowPassword.min',
 		'localforage': 'libs/bower/localforage/dist/localforage.min',
 		'goog-api': 'libs/bower/goog-api/dist/goog-api.min',
+		'fullcalendar': 'libs/bower/fullcalendar/dist/fullcalendar.min',
 		// FIXME update path when 0.0.7 or above is out!
 		// 'james-data': 'libs/bower/james-data/dist/james-data.min'
 		'james-data': 'libs/custom/test-dev/james-data/james-data.min'
@@ -67,6 +68,10 @@ require.config({
 		'hideShowPassword': {
 			deps: ['jquery'],
 			exports : 'HideShowPassword'
+		},
+		'fullcalendar': {
+			deps: ['jquery', 'moment'],
+			exports : 'Fullcalendar'
 		}
 		// , 'localforage': {
 		// 	deps: ['jquery'],
