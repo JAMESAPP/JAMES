@@ -56,9 +56,7 @@ define([
 		},
 
 		contraceptives: function() {
-			var model = new ContraceptiveModel();
-			var collection = new Collection();
-			App.mainRegion.show(new ContraceptiveListView(collection, model));
+			this.list('contraceptives', ContraceptiveListView);
 		},
 		contraceptive: function(id) {
 			this.register(id, 'contraceptives', ContraceptiveModel, ContraceptiveRegisterView);

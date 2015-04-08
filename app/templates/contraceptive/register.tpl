@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <label for="inputTaken">Status</label>
-        <select id="selectStaus" class="col-xs-12" data-bind="value:accountFrom,events:['change']">
+        <select id="selectStaus" class="col-xs-12" data-bind="value:state,events:['change']">
             <option value="NOT_TAKEN_YET">Not taken yet</option>
             <option value="TAKEN">Taken</option>
             <option value="MISSED">Missed</option>

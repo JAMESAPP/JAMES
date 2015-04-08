@@ -10,7 +10,7 @@ define([
 ], function (Marionette, _, App, JAMES_DATA, RegisterView, SettingModel) {
 	var ItemView = RegisterView.extend({
 		template: 'app/templates/contraceptive/register.tpl'
-		, objectStore: 'expenses'
+		, objectStore: 'contraceptives'
 		// , serializeData: function() {
 		// 	var attrToView = _.clone(this.attributes),
 		// 		accountFrom,
@@ -41,7 +41,6 @@ define([
 
 				self.$el.find('#inputDate').datepicker(conf.datePickerConf);
 				self.$el.find('#inputDate').datepicker('option', 'yearRange', conf.datePickerConf.yearRange);
-				self.$el.find('#inputAmount').mask('###00,00', {reverse: true});
 			});
 		}
 	});
