@@ -7,16 +7,18 @@ define([
 	, 'fullcalendar'
 ], function (_, Marionette, Moment, App, ContraceptiveModel) {
 	var itemView = Marionette.ItemView.extend({
-		template: 'app/templates/contraceptive/list.tpl',
-		tagName: 'div',
-		className: 'box'
-
+		template: 'app/templates/contraceptive/list.tpl'
+		, tagName: 'div'
+		, className: 'box'
+		, events: {
+			"shown.bs.tab #tabCalendar": 'startCalendar'
+		}
 		, initialize: function(coll, model) {
 			this.collection = coll;
 			this.model = model;
 		}
 
-		, onShow: function() {
+		, startCalendar: function(ev) {
 			var coll = this.collection.toJSON();
 
 			this.$el.find('#calendar').fullCalendar({
