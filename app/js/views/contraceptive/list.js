@@ -44,8 +44,8 @@ define([
 
 			attrToView.notTakenYet = notTakenYet.length;
 			attrToView.taken = taken.length;
-			attrToView.missed = missed.lengeth;
-			attrToView.void = voidDay.lengeth;
+			attrToView.missed = missed.length;
+			attrToView.void = voidDay.length;
 			attrToView.isMenstruating = isMenstruating.length;
 
 			return attrToView;
