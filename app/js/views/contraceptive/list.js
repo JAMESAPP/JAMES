@@ -19,17 +19,34 @@ define([
 		}
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
-				accountFrom,
-				accountTo
+				notTakenYet,
+				taken,
+				missed,
+				voidDay,
+				isMenstruating
 			;
 
-			attrToView.notTakenYet = _.filter(this.collection, function(model) {
+			notTakenYet = _.filter(this.collection.toJSON(), function(model) {
 				return model.state == 'NOT_TAKEN_YET';
 			});
-			attrToView.taken = 0;
-			attrToView.missed = 0;
-			attrToView.void = 0;
-			attrToView.isMenstruating = 0;
+			taken = _.filter(this.collection.toJSON(), function(model) {
+				return model.state == 'TAKEN';
+			});
+			missed = _.filter(this.collection.toJSON(), function(model) {
+				return model.state == 'MISSED';
+			});
+			voidDay = _.filter(this.collection.toJSON(), function(model) {
+				return model.state == 'VOID';
+			});
+			isMenstruating = _.filter(this.collection.toJSON(), function(model) {
+				return model.state == 'IS_MENSTRUATING';
+			});
+
+			attrToView.notTakenYet = notTakenYet.length;
+			attrToView.taken = taken.length;
+			attrToView.missed = missed.lengeth;
+			attrToView.void = voidDay.lengeth;
+			attrToView.isMenstruating = isMenstruating.length;
 
 			return attrToView;
 		}
