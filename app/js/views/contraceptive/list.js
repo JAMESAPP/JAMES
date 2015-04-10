@@ -17,7 +17,23 @@ define([
 			this.collection = coll;
 			this.model = model;
 		}
+		, serializeData: function() {
+			var attrToView = _.clone(this.attributes) || {},
+				accountFrom,
+				accountTo
+			;
 
+			attrToView.notTakenYet = _.filter(this.collection, function(model) {
+				return model.state == 'NOT_TAKEN_YET';
+			});
+			attrToView.taken = 0;
+			attrToView.missed = 0;
+			attrToView.void = 0;
+			attrToView.isMenstruating = 0;
+
+			return attrToView;
+		}
+		
 		, startCalendar: function(ev) {
 			var coll = this.collection.toJSON();
 
