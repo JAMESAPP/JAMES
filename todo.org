@@ -30,7 +30,7 @@
 *** timesheet (integrate with redmine and emacs org mode and other tool for timesheet management)
 ** TODO Implement decreto 21404/2014
 *** TODO Upgrade algorythm of extra time
-**** TODO Implement new rule: 30/30
+**** DONE Implement new rule: 30/30
 ***** TODO test
 ***** DONE Implement
 **** DONE Move actual calc to model or other reusable component
@@ -43,6 +43,11 @@
 *** TODO use input type time and date
 *** TODO implement official shift
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
+** TODO Contraceptive
+*** Implement the concept of cycle
+**** TODO Status table must show the curret
+**** TODO Calendar view must start with cycle
+**** DONE Implementation of cycle
 ** TODO Configuration
 *** TODO datetime picker
 *** TODO Replace app/js/config.js by app/js/models/configuration

@@ -5,6 +5,7 @@ define([
     var Model = Backbone.Model.extend({
 		defaults: {
 			date: null
+			, cycle: null
 			, state: undefined // not taken yet (yellow); taken (green); missed(red); void day (gray); is menstruating (blue)
 			, memo: null
 		}

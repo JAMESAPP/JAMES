@@ -5,6 +5,10 @@
         <input type="text" id="inputDate" class="col-xs-6 dateMask" value="{{date}}" placeholder="dd/mm/yyyy" data-bind="value:date,events:['keyup']"/>
     </div>
     <div class="row">
+        <label for="inputCycle">Cycle</label><br />
+        <input type="text" id="inputCycle" class="col-xs-6 cycleMask" value="{{cycle}}" placeholder="mm/yyyy" data-bind="value:cycle,events:['keyup']"/>
+    </div>
+    <div class="row">
         <label for="inputTaken">Status</label>
         <select id="selectStaus" class="col-xs-12" data-bind="value:state,events:['change']">
             <option value="NOT_TAKEN_YET">Not taken yet</option>

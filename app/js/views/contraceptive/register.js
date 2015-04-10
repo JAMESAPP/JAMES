@@ -41,6 +41,7 @@ define([
 
 				self.$el.find('#inputDate').datepicker(conf.datePickerConf);
 				self.$el.find('#inputDate').datepicker('option', 'yearRange', conf.datePickerConf.yearRange);
+				self.$el.find('#inputCycle').mask('##/####');
 			});
 		}
 	});
