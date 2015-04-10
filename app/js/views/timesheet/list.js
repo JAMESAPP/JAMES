@@ -212,21 +212,20 @@ define([
 		}
 
 		, deleteAll: function(ev) {
-			var i = 0, 
-				self = this
-			;
+			var self = this;
 
 			ev.preventDefault();
 
 			// console.log(this.collection);
 
-			for (i = 0; i < this.collection.length; i++) {
-				App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).delete(i).onsuccess = function(e) {
+			_.forEach(this.collection.toJSON(), function(model) {
+				App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).delete(model.id).onsuccess = function(e) {
 					self.$el.find('#spanMessage').removeClass();
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
+					// FIXME if I have 30 timesheets, it will have to wait 5000 * 30 = 150000 ms to message fadeout?
 					self.$el.find('#spanMessage').html('Cleaned all timesheets!!!').fadeIn().delay(5000).fadeOut();
 				};
-			}			
+			});
 		}
 	});
 

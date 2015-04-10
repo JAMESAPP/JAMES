@@ -9,7 +9,7 @@
 <div class="tab-content">
     <div id="status" class="tab-pane active">
         <table class="table table-bordered table-hover">
-            <caption><strong><em>Contraceptive's Status</em></strong></caption>
+            <caption><strong><em>Contraceptive's Status in this Cycle</em></strong></caption>
             <thead>
                 <tr>
                     <th>Status</th>
