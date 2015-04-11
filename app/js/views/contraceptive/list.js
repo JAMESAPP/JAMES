@@ -23,23 +23,25 @@ define([
 				taken,
 				missed,
 				voidDay,
-				isMenstruating
+				isMenstruating,
+				today = new Moment(),
+				dt
 			;
 
 			notTakenYet = _.filter(this.collection.toJSON(), function(model) {
-				return model.state == 'NOT_TAKEN_YET';
+				return model.state == 'NOT_TAKEN_YET' && today.isSame(new Moment(model.date, 'DD/MM/YYYY'), 'month');
 			});
 			taken = _.filter(this.collection.toJSON(), function(model) {
-				return model.state == 'TAKEN';
+				return model.state == 'TAKEN' && today.isSame(new Moment(model.date, 'DD/MM/YYYY'), 'month');
 			});
 			missed = _.filter(this.collection.toJSON(), function(model) {
-				return model.state == 'MISSED';
+				return model.state == 'MISSED' && today.isSame(new Moment(model.date, 'DD/MM/YYYY'), 'month');
 			});
 			voidDay = _.filter(this.collection.toJSON(), function(model) {
-				return model.state == 'VOID';
+				return model.state == 'VOID' && today.isSame(new Moment(model.date, 'DD/MM/YYYY'), 'month');
 			});
 			isMenstruating = _.filter(this.collection.toJSON(), function(model) {
-				return model.state == 'IS_MENSTRUATING';
+				return model.state == 'IS_MENSTRUATING' && today.isSame(new Moment(model.date, 'DD/MM/YYYY'), 'month');
 			});
 
 			attrToView.notTakenYet = notTakenYet.length;

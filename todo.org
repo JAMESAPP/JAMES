@@ -45,8 +45,8 @@
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Contraceptive
 *** Implement the concept of cycle
-**** TODO Status table must show the curret
 **** TODO Calendar view must start with cycle
+**** DONE Status table must show the curret month
 **** DONE Implementation of cycle
 ** TODO Configuration
 *** TODO datetime picker
