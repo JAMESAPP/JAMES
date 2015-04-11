@@ -22,7 +22,6 @@ define([
 			return _.extend({}, ListView.prototype.events, {
 				'click #btnSync': 'sync'
 				, 'click .edit-td': 'edit'
-				, 'click #deleteAll': 'deleteAll'
 			});
 		}
 		// FIXME retrieve data from setting - in offline storage
@@ -209,23 +208,6 @@ define([
 			ev.preventDefault();
 
 			console.error('TODO');
-		}
-
-		, deleteAll: function(ev) {
-			var self = this;
-
-			ev.preventDefault();
-
-			// console.log(this.collection);
-
-			_.forEach(this.collection.toJSON(), function(model) {
-				App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).delete(model.id).onsuccess = function(e) {
-					self.$el.find('#spanMessage').removeClass();
-					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-					// FIXME if I have 30 timesheets, it will have to wait 5000 * 30 = 150000 ms to message fadeout?
-					self.$el.find('#spanMessage').html('Cleaned all timesheets!!!').fadeIn().delay(5000).fadeOut();
-				};
-			});
 		}
 	});
 
