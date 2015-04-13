@@ -29,4 +29,7 @@
     <br />
     <a href="#contraceptives" class="btn btn-default"><i class="icon-home icon-white"></i> Go Back!</a>
     <a href="#" id="btnPersist" type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Send</a>
+    {{#if id}}
+    <a id="btnAskDeleteConfirmation" href="#" class="btn btn-warning"><i class="icon-white glyphicon glyphicon-trash"></i> Delete</a>
+    {{/if}}
 </div>
