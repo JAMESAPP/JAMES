@@ -1,9 +1,10 @@
 <h1>Contraceptives</h1>
-<a href="#contraceptive/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
+<a href="#contraceptive/new" class="btn btn-success"><i class="glyphicon glyphicon-plus glyphicon-white"></i> New</a>
+<a href="#" class="btn btn-warning"><i class="glyphicon glyphicon-trash glyphicon-white"></i> Del All</a>
 <br />
 <br />
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#status" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats"></span></a></li>
+    <li id="tabStatus" class="active"><a href="#status" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats"></span></a></li>
     <li id="tabCalendar"><a href="#calendarTab" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span></a></li>
 </ul>
 <div class="tab-content">
