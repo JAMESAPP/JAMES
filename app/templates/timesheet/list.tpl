@@ -3,7 +3,8 @@
 	    <a href="#timesheet/new" class="btn btn-success btn-xm"><i class="icon-plus icon-white"></i> New</a>
   </div>
   <div class="col-xs-6">
-    <a id="btnDeleteAll" href="#" class="btn btn-danger btn-xm"><i class="icon-refresh icon-white"></i> Del All</a>
+<!-- FIXME use another class than warnig to delete all or us another class than warning to sync (maybe blue? -->
+    <a id="btnDeleteAll" href="#" class="btn btn-warning delete btn-xm"><i class="icon-refresh icon-white"></i> Del All</a>
     <!--	<select id="selectMonth" data-bind="value:category,events:['change']"> -->
 	  {{#each selectMonth}}
 <!--      <option value="{{value}}">{{label}}</option> -->

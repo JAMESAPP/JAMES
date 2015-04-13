@@ -31,7 +31,6 @@ define([
 			});
 		}
 
-		// TODO hide when it is new
 		, askDeleteConfirmation: function(ev) {
 			ev.preventDefault();
 

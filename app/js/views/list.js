@@ -26,7 +26,7 @@ define([
 
 		, events: {
 			'click .btn-warning': 'sync'
-			, 'click #deleteAll': 'deleteAll'
+			, 'click .delete': 'deleteAll'
 			, 'click .btn-danger': 'delete'
 		}
 		, sync: function(ev) {
@@ -48,7 +48,7 @@ define([
 
 			ev.preventDefault();
 
-			// console.log(this.collection);
+			console.log(this.collection);
 
 			_.forEach(this.collection.toJSON(), function(model) {
 				App.indexedDB.db.transaction([self.objectStore], 'readwrite').objectStore(self.objectStore).delete(model.id).onsuccess = function(e) {
@@ -56,6 +56,9 @@ define([
 					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
 					// FIXME if I have 30 entities, it will have to wait 5000 * 30 = 150000 ms to message fadeout?
 					self.$el.find('#spanMessage').html('Cleaned all registers!!!').fadeIn().delay(5000).fadeOut();
+
+					var m = self.collection.where({id: model.id});
+					self.collection.remove(m);
 				};
 			});
 		}
