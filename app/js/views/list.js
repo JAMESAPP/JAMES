@@ -1,7 +1,7 @@
 define([
 	'marionette'
 	, 'app'
-	, 'colections/generic'
+	, 'collections/generic'
 ], function (Marionette, App, Collection) {
 
 	/*
