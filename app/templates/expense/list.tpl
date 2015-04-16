@@ -1,7 +1,7 @@
 <h1>Expenses</h1>
-<a href="#expense/new" class="btn btn-success"><i class="icon-plus icon-white"></i> New</a>
-<a href="#expense/budget" class="btn btn-info"><i class="icon-eye-open icon-white"></i> Budget</a>
-    <a id="btnDeleteAll" href="#" class="btn btn-warning delete"><i class="icon-refresh icon-white"></i> Del All</a>
+<a href="#expense/new" class="btn btn-success"><i class="glyphicon glyphicon-plus glyphicon-white"></i> New</a>
+<a href="#expense/budget" class="btn btn-info"><i class="glyphicon glyphicon-eye-open glyphicon-white"></i> Budget</a>
+    <a id="btnDeleteAll" href="#" class="btn btn-warning delete"><i class="glyphicon glyphicon-refresh glyphicon-white"></i> Del All</a>
 <br />
 <br />
 <ul class="nav nav-tabs" role="tablist">
