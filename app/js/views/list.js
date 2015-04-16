@@ -1,8 +1,9 @@
 define([
 	'marionette'
+	, 'underscore'
 	, 'app'
 	, 'collections/generic'
-], function (Marionette, App, Collection) {
+], function (Marionette, _, App, Collection) {
 
 	/*
 	 * Must implement the follow:
@@ -25,13 +26,18 @@ define([
 		}
 
 		, events: {
-			'click .btn-warning': 'sync'
-			, 'click .delete': 'deleteAll'
+			'click .delete': 'deleteAll'
+			, 'click .btn-warning': 'sync'
 			, 'click .btn-danger': 'delete'
 		}
 		, sync: function(ev) {
 			ev.preventDefault();
-			console.log('clear all not implemented...');
+
+			// Workarround to double call of .delete and .btn-warning
+			if (_.contains(ev.target.classList, 'delete'))
+				return;
+
+			console.log('sync not implemented...');
 		}
 		, delete: function(ev) {
 			ev.preventDefault();
