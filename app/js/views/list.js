@@ -1,8 +1,8 @@
 define([
 	'marionette'
-	, 'underscore'
 	, 'app'
-], function (Marionette, _, App) {
+	, 'colections/generic'
+], function (Marionette, App, Collection) {
 
 	/*
 	 * Must implement the follow:
@@ -48,19 +48,9 @@ define([
 
 			ev.preventDefault();
 
-			console.log(this.collection);
-
-			_.forEach(this.collection.toJSON(), function(model) {
-				App.indexedDB.db.transaction([self.objectStore], 'readwrite').objectStore(self.objectStore).delete(model.id).onsuccess = function(e) {
-					self.$el.find('#spanMessage').removeClass();
-					self.$el.find('#spanMessage').addClass('col-xs-12 text-center alert alert-danger');
-					// FIXME if I have 30 entities, it will have to wait 5000 * 30 = 150000 ms to message fadeout?
-					self.$el.find('#spanMessage').html('Cleaned all registers!!!').fadeIn().delay(5000).fadeOut();
-
-					var m = self.collection.where({id: model.id});
-					self.collection.remove(m);
-				};
-			});
+			App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).clear().onsuccess = function(e) {
+				self.collection = new Collection();
+			};
 		}
 	});
 
