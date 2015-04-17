@@ -1,7 +1,7 @@
 define([
 	'marionette'
 	, 'underscore'
-	, 'Moment'
+	, 'moment'
 	, 'app'
 	, 'collections/generic'
 ], function (Marionette, _, Moment, App, Collection) {

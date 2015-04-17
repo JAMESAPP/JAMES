@@ -57,6 +57,7 @@ define([
 		}
 		
 		, startCalendar: function(ev) {
+			var self = this;
 
 			this.$el.find('#calendar').fullCalendar({
 				defaultDate: new Moment()
