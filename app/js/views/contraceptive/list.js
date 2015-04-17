@@ -57,12 +57,12 @@ define([
 		}
 		
 		, startCalendar: function(ev) {
-			var coll = this.collection.toJSON();
 
 			this.$el.find('#calendar').fullCalendar({
 				defaultDate: new Moment()
 				, eventClick: function(event, jsEvent, view) {
-					window.location.href = '#contraceptive/' + event.id;
+					// window.location.href = '#contraceptive/' + event.id;
+					window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + event.id;
 				}
 				, header: {
 					left: 'prev,next',
@@ -71,29 +71,36 @@ define([
 				}
 				, editable: false
 				, eventLimit: false
-				, eventSources: [
-					{
-						events: this.filterCollByState(coll, 'TAKEN'),
-						backgroundColor: 'green'
-					},
-					{
-						events: this.filterCollByState(coll, 'MISSED'),
-						backgroundColor: 'red'
-					},
-					{
-						events: this.filterCollByState(coll, 'NOT_TAKEN_YET'),
-						backgroundColor: 'yellow'
-					},
-					{
-						events: this.filterCollByState(coll, 'VOID'),
-						backgroundColor: 'grey'
-					},
-					{
-						events: this.filterCollByState(coll, 'IS_MENSTRUATING'),
-						backgroundColor: 'blue'
-					}
-				]
+				, eventSources: self.getEventSource()
 			});
+		}
+
+		, getEventSource: function() {
+			var coll = this.collection.toJSON();
+
+			return  [
+				{
+					events: this.filterCollByState(coll, 'TAKEN'),
+					backgroundColor: 'green'
+				},
+				{
+					events: this.filterCollByState(coll, 'MISSED'),
+					backgroundColor: 'red'
+				},
+				{
+					events: this.filterCollByState(coll, 'NOT_TAKEN_YET'),
+					backgroundColor: 'yellow'
+				},
+				{
+					events: this.filterCollByState(coll, 'VOID'),
+					backgroundColor: 'grey'
+				},
+				{
+					events: this.filterCollByState(coll, 'IS_MENSTRUATING'),
+					backgroundColor: 'blue'
+				}
+			];
+			
 		}
 
 		/*

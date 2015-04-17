@@ -1,9 +1,10 @@
 define([
 	'marionette'
 	, 'underscore'
+	, 'Moment'
 	, 'app'
 	, 'collections/generic'
-], function (Marionette, _, App, Collection) {
+], function (Marionette, _, Moment, App, Collection) {
 
 	/*
 	 * Must implement the follow:
@@ -11,6 +12,7 @@ define([
 	 * - template of composite view
 	 * - Must receive a collection in constructor
 	 * - Must define objectStore (string)
+	 * - Optional: implement getEventSource if use the calendar view
 	 */
 	var CompositeView = Marionette.CompositeView.extend({
 		itemViewContainer: '#tbodyItem',
@@ -57,6 +59,36 @@ define([
 			App.indexedDB.db.transaction([this.objectStore], 'readwrite').objectStore(this.objectStore).clear().onsuccess = function(e) {
 				self.collection = new Collection();
 			};
+		}
+
+		/*
+		 * Need implement getEventSource()
+		 */
+		, startCalendar: function(ev) {
+			var coll = this.collection.toJSON(),
+				self = this
+			;
+
+			this.$el.find('#calendar').fullCalendar({
+				defaultDate: new Moment()
+				, eventClick: function(event, jsEvent, view) {
+					window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + event.id;
+				}
+				, header: {
+					left: 'prev,next',
+					center: 'title',
+					right: 'today'
+				}
+				, editable: false
+				, eventLimit: false
+				, eventSources: self.getEventSource()
+			});
+		}
+		/*
+		 * Need a real implementation
+		 */
+		, getEventSource: function() {
+			return [];
 		}
 	});
 
