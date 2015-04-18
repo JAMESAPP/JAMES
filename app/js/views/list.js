@@ -60,6 +60,10 @@ define([
 				self.collection = new Collection();
 			};
 		}
+		, edit: function (ev) {
+			ev.preventDefault();
+			window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + ev.currentTarget.getAttribute('id');
+		}
 
 		/*
 		 * Need implement getEventSource()

@@ -30,10 +30,10 @@ define([
 
 			return attrToView;
 		}
-		, edit: function(ev) {
-			ev.preventDefault();
-			window.location = '#expense/' + ev.currentTarget.getAttribute('id');
-		}
+		// , edit: function(ev) {
+		// 	ev.preventDefault();
+		// 	window.location = '#expense/' + ev.currentTarget.getAttribute('id');
+		// }
 		// FIXME round precision: 0.060000000000002274 with test 63.00
 		, totalExpended: function() {
 			var expenses = this.collection.toJSON(),
