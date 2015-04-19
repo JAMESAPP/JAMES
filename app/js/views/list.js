@@ -32,6 +32,15 @@ define([
 			, 'click .btn-warning': 'sync'
 			, 'click .btn-danger': 'delete'
 		}
+
+		/*
+		 * Default implemetation removed the last character (assume that last character is 's').
+		 * You can override it, of course.
+		 */
+		, entitySingular: function () {
+			return this.objectStore.substring(0, this.objectStore.length - 1);
+		}
+
 		, sync: function(ev) {
 			ev.preventDefault();
 
@@ -62,7 +71,7 @@ define([
 		}
 		, edit: function (ev) {
 			ev.preventDefault();
-			window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + ev.currentTarget.getAttribute('id');
+			window.location.href = '#' + this.entitySingular +  '/' + ev.currentTarget.getAttribute('id');
 		}
 
 		/*
@@ -76,7 +85,7 @@ define([
 			this.$el.find('#calendar').fullCalendar({
 				defaultDate: new Moment()
 				, eventClick: function(event, jsEvent, view) {
-					window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + event.id;
+					window.location.href = '#' + this.entitySingular +  '/' + event.id;
 				}
 				, header: {
 					left: 'prev,next',
