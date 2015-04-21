@@ -1,6 +1,7 @@
 <h1>Contraceptives</h1>
 <a href="#contraceptive/new" class="btn btn-success"><i class="glyphicon glyphicon-plus glyphicon-white"></i> New</a>
-<a href="#" class="btn btn-warning"><i class="glyphicon glyphicon-trash glyphicon-white"></i> Del All</a>
+<!-- <a href="#" class="btn btn&#45;warning"><i class="glyphicon glyphicon&#45;trash glyphicon&#45;white"></i> Del All</a> -->
+<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash glyphicon-white"></i> Del All</a>
 <br />
 <br />
 <ul class="nav nav-tabs" role="tablist">

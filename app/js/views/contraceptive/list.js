@@ -18,10 +18,10 @@ define([
 		// 	'shown.bs.tab #tabCalendar': 'startCalendar'
 		// 	, 'click .btn-warning': 'deleteAll'
 		// }
-		, initialize: function(coll, model) {
-			this.collection = coll;
-			this.model = model;
-		}
+		// , initialize: function(coll, model) {
+		// 	this.collection = coll;
+		// 	this.model = model;
+		// }
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
 				notTakenYet,
@@ -58,25 +58,25 @@ define([
 			return attrToView;
 		}
 		
-		, startCalendar: function(ev) {
-			var self = this;
+		// , startCalendar: function(ev) {
+		// 	var self = this;
 
-			this.$el.find('#calendar').fullCalendar({
-				defaultDate: new Moment()
-				, eventClick: function(event, jsEvent, view) {
-					// window.location.href = '#contraceptive/' + event.id;
-					window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + event.id;
-				}
-				, header: {
-					left: 'prev,next',
-					center: 'title',
-					right: 'today'
-				}
-				, editable: false
-				, eventLimit: false
-				, eventSources: self.getEventSource()
-			});
-		}
+		// 	this.$el.find('#calendar').fullCalendar({
+		// 		defaultDate: new Moment()
+		// 		, eventClick: function(event, jsEvent, view) {
+		// 			// window.location.href = '#contraceptive/' + event.id;
+		// 			window.location.href = '#' + self.objectStore.substring(0, self.objectStore.length - 1) +  '/' + event.id;
+		// 		}
+		// 		, header: {
+		// 			left: 'prev,next',
+		// 			center: 'title',
+		// 			right: 'today'
+		// 		}
+		// 		, editable: false
+		// 		, eventLimit: false
+		// 		, eventSources: self.getEventSource()
+		// 	});
+		// }
 
 		, getEventSource: function() {
 			var coll = this.collection.toJSON();

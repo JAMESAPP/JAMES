@@ -12,17 +12,11 @@ define([
 	 * - template of item view
 	 * - Must receive a collection in constructor
 	 * - Must define objectStore (string)
-	 * - Optional: implement getEventSource if use the calendar view
+	 * - Implement getEventSource if use the calendar view
 	 */
 	var itemView = Marionette.ItemView.extend({
-		itemViewContainer: '#tbodyItem'
-		, className: 'box'
+		className: 'box'
 		, tagName: 'div'
-
-		// template: 'app/templates/contraceptive/list.tpl'
-		// , objectStore: 'contraceptives'
-
-
 		, events: {
 			'shown.bs.tab #tabCalendar': 'startCalendar'
 			, 'click .btn-danger': 'deleteAll'
@@ -33,16 +27,6 @@ define([
 			// Fix default behavior of marionette.js when receive a collection constructor
 			// this.model = undefined;
 			this.model = model;
-		}
-
-
-
-		/*
-		 * Default implemetation removed the last character (assume that last character is 's').
-		 * You can override it, of course.
-		 */
-		, entitySingular: function () {
-			return this.objectStore.substring(0, this.objectStore.length - 1);
 		}
 
 		, sync: function(ev) {
@@ -63,11 +47,14 @@ define([
 				self.collection = new Collection();
 			};
 		}
-		, edit: function (ev) {
-			ev.preventDefault();
-			window.location.href = '#' + this.entitySingular +  '/' + ev.currentTarget.getAttribute('id');
-		}
 
+		/*
+		 * Default implemetation removed the last character (assume that last character is 's').
+		 * You can override it, of course.
+		 */
+		, entitySingular: function () {
+			return this.objectStore.substring(0, this.objectStore.length - 1);
+		}
 		/*
 		 * Need implement getEventSource()
 		 */
