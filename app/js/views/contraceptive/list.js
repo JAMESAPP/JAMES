@@ -3,19 +3,21 @@ define([
 	, 'marionette'
 	, 'moment'
 	, 'app'
+	, 'views/calendar'
 	, 'models/contraceptive'
 	, 'collections/generic'
 	, 'fullcalendar'
-], function (_, Marionette, Moment, App, ContraceptiveModel, Collection) {
-	var itemView = Marionette.ItemView.extend({
+], function (_, Marionette, Moment, App, CalendarView, ContraceptiveModel, Collection) {
+	// var itemView = Marionette.ItemView.extend({
+	var itemView = CalendarView.extend({
 		template: 'app/templates/contraceptive/list.tpl'
 		, objectStore: 'contraceptives'
-		, tagName: 'div'
-		, className: 'box'
-		, events: {
-			'shown.bs.tab #tabCalendar': 'startCalendar'
-			, 'click .btn-warning': 'deleteAll'
-		}
+		// , tagName: 'div'
+		// , className: 'box'
+		// , events: {
+		// 	'shown.bs.tab #tabCalendar': 'startCalendar'
+		// 	, 'click .btn-warning': 'deleteAll'
+		// }
 		, initialize: function(coll, model) {
 			this.collection = coll;
 			this.model = model;

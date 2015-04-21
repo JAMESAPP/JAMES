@@ -9,7 +9,7 @@ define([
 	/*
 	 * Must implement the follow:
 	 * - itemView (tagName and template)
-	 * - template of composite view
+	 * - template of item view
 	 * - Must receive a collection in constructor
 	 * - Must define objectStore (string)
 	 * - Optional: implement getEventSource if use the calendar view
