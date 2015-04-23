@@ -117,6 +117,7 @@ define([
 		refuel: function(id) {
 			var settingsObjectStore = App.indexedDB.db.transaction(['settings']).objectStore('settings').get(1);
 			settingsObjectStore.onsuccess = function(event) {
+				// TODO implement defensive code against settings is not defined
 				var motorcycleDefaults = event.target.result.motorcycle,
 					refuelObjectStore = App.indexedDB.db.transaction(['refuels']).objectStore('refuels').get(id != undefined ? parseInt(id) : 0)
 				;
