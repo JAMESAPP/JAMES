@@ -44,6 +44,12 @@
 *** TODO implement official shift
 *** TODO implement status of day ([data registered| verified by employee | verified by employer])
 ** TODO Contraceptive
+*** Calendar View
+**** Create a separated template caled list
+**** reimplement list format becuase of UX
+*** Sync & Export
+**** Export to iCal format
+**** sync with google and firefox calendar
 *** Implement the concept of cycle
 **** TODO Calendar view must start with cycle
 **** DONE Status table must show the curret month
