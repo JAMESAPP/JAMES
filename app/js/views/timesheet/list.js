@@ -1,29 +1,13 @@
 define([
-	'underscore',
-	'jquery',
-	'marionette',
-	'moment',
-	'app',
-	'james-data',
-	'models/expense',
-	'views/list',
-	'models/setting'
-], function (_, $, Marionette, Moment, App, JAMES_DATA, ExpenseModel, ListView, SettingModel) {
-	var itemView = Marionette.ItemView.extend({
-		template: 'app/templates/timesheet/list-item.tpl',
-		tagName: 'tr'
-	});
-
-	var CompositeView = ListView.extend({
-		template: 'app/templates/timesheet/list.tpl',
-		itemView: itemView,
-		objectStore: 'timesheets'
-		, events: function() {
-			return _.extend({}, ListView.prototype.events, {
-				'click #btnSync': 'sync'
-				, 'click .edit-td': 'edit'
-			});
-		}
+	'underscore'
+	, 'moment'
+	, 'views/calendar'
+	, 'james-data'
+	, 'models/setting'
+], function (_, Moment, CalendarView, JAMES_DATA, SettingModel) {
+	var calendarView = CalendarView.extend({
+		template: 'app/templates/motorcycle/refuel/list.tpl'
+		, objectStore: 'refuels'
 		// FIXME retrieve data from setting - in offline storage
 		, serializeData: function() {
 			var attrToView = _.clone(this.attributes) || {},
@@ -59,6 +43,28 @@ define([
 
 			return attrToView;
 		}
+		, getEventSource: function() {
+			var arr = [],
+				el
+			;
+
+			_.forEach(this.collection.toJSON(), function(element, index, list) {
+				el = {allDay: true};
+				el.id = element.id;
+				el.start = Moment(element.date, 'DD/MM/YYYY');
+				el.title = 'KM ' + element.KM + ' $' + element.amount;
+
+				arr.push(el);
+			});
+			
+			return  [
+				{
+					events: arr,
+					backgroundColor: 'green'
+				}
+			];
+		}
+
 		, daysLateToWork: function(timesheets, configStartTime) {
 			var checkin,
 				later = _.filter(timesheets, function(timesheet) {
@@ -197,19 +203,52 @@ define([
 
 			return status;
 		}
-
-		, edit: function(ev) {
-			ev.preventDefault();
-
-			window.location = '#timesheet/' + ev.currentTarget.getAttribute('id');
-		}
-
-		, sync: function(ev) {
-			ev.preventDefault();
-
-			console.error('TODO');
-		}
 	});
 
-	return CompositeView;
+	return calendarView;
 });
+
+
+
+// define([
+// 	'underscore',
+// 	'jquery',
+// 	'marionette',
+// 	'moment',
+// 	'app',
+// 	'james-data',
+// 	'models/expense',
+// 	'views/list',
+// 	'models/setting'
+// ], function (_, $, Marionette, Moment, App, JAMES_DATA, ExpenseModel, ListView, SettingModel) {
+// 	var itemView = Marionette.ItemView.extend({
+// 		template: 'app/templates/timesheet/list-item.tpl',
+// 		tagName: 'tr'
+// 	});
+
+// 	var CompositeView = ListView.extend({
+// 		template: 'app/templates/timesheet/list.tpl',
+// 		itemView: itemView,
+// 		objectStore: 'timesheets'
+// 		, events: function() {
+// 			return _.extend({}, ListView.prototype.events, {
+// 				'click #btnSync': 'sync'
+// 				, 'click .edit-td': 'edit'
+// 			});
+// 		}
+
+// 		, edit: function(ev) {
+// 			ev.preventDefault();
+
+// 			window.location = '#timesheet/' + ev.currentTarget.getAttribute('id');
+// 		}
+
+// 		, sync: function(ev) {
+// 			ev.preventDefault();
+
+// 			console.error('TODO');
+// 		}
+// 	});
+
+// 	return CompositeView;
+// });
